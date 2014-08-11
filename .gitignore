@@ -1,4 +1,5 @@
 database_backups
+*local_settings.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
