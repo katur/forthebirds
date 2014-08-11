@@ -1,5 +1,6 @@
-database_backups
 *local_settings.*
+database_backups
+staticfiles
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -54,3 +55,6 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# OS X
+*.DS_Store
