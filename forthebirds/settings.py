@@ -16,7 +16,7 @@ from local_settings import DEBUG, SECRET_KEY, DATABASES, STATIC_ROOT
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
