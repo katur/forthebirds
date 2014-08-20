@@ -23,7 +23,7 @@ is the database schema on Lucidchart.
 Django/Python. Scripts live in the standard location (an app's management/commands).
 
 CSS is in [SASS](http://sass-lang.com/). Run
-`sass -wc --style compressed universal/static/stylesheets/styles.sass`
+`sass -wc --style compressed website/static/stylesheets/styles.sass`
 to compile.
 
 Javascript in [jQuery](http://jquery.com/).
