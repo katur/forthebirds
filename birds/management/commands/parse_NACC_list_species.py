@@ -1,20 +1,24 @@
 from django.core.management.base import BaseCommand
 
+from birds.models import Order, Family, Subfamily, Genus, Species
+
 import csv
 
 
 expected_fields = (
     'id', 'rank',
-    'common_name', 'french_name', 'order', 'family', 'subfamily',
-    'genus', 'species', 'annotation',
+    'order', 'family', 'subfamily', 'genus', 'species',
+    'common_name', 'french_name',
+    'annotation',
     'status_accidental', 'status_hawaiian', 'status_introduced',
     'status_nonbreeding', 'status_extinct', 'status_misplaced',
 )
 
 
 required_fields = (
-    'id', 'rank', 'common_name', 'french_name', 'order', 'family',
-    'genus', 'species',
+    'id', 'rank',
+    'order', 'family', 'genus', 'species',
+    'common_name', 'french_name',
 )
 
 
@@ -64,6 +68,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         filename = args[0]
         max_field_widths = {}
+        subfamily_count = 0
+        no_subfamily = 0
 
         with open(filename, 'rb') as csvfile:
             reader = csv.DictReader(csvfile)
@@ -74,4 +80,26 @@ class Command(BaseCommand):
                 confirm_required_fields_present(row)
                 update_max_field_widths(row, fieldnames, max_field_widths)
 
-        print max_field_widths
+                try:
+                    order = Order.objects.get(name=row['order'])
+                except Order.DoesNotExist:
+                    order = Order(name=row['order'])
+                    order.save()
+
+                try:
+                    family = Family.objects.get(name=row['family'])
+                    if family.order != order:
+                        raise Exception(
+                            'Order does not match for family ' + str(family)
+                        )
+                except Family.DoesNotExist:
+                    family = Family(name=row['family'], order=order)
+                    family.save()
+
+                if row['subfamily']:
+                    subfamily_count += 1
+                else:
+                    no_subfamily += 1
+
+            print subfamily_count
+            print no_subfamily
