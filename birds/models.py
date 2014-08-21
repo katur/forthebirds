@@ -1,42 +1,28 @@
 from django.db import models
 
 
-class Order(models.Model):
-    name = models.CharField(max_length=30, unique=True)
+class TaxonomicLevel(models.Model):
+    name = models.CharField(max_length=20)
+    depth = models.PositiveSmallIntegerField()
 
     def __unicode__(self):
         return self.name
 
 
-class Family(models.Model):
-    name = models.CharField(max_length=30, unique=True)
+class TaxonomicGroup(models.Model):
+    name = models.CharField(max_length=30)
     common_name = models.CharField(max_length=50)
-    order = models.ForeignKey(Order)
+    level = models.ForeignKey(TaxonomicLevel)
+    parent = models.ForeignKey('self', null=True, blank=True)
 
     def __unicode__(self):
-        return self.name
-
-
-class Subfamily(models.Model):
-    name = models.CharField(max_length=30, unique=True)
-    family = models.ForeignKey(Family)
-
-    def __unicode__(self):
-        return self.name
-
-
-class Genus(models.Model):
-    name = models.CharField(max_length=30, unique=True)
-    subfamily = models.ForeignKey(Subfamily)
-
-    def __unicode__(self):
-        return self.name
+        return self.common_name if self.common_name else self.name
 
 
 class Species(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
-    genus = models.ForeignKey(Genus)
+    parent = models.ForeignKey(TaxonomicGroup)
     common_name = models.CharField(max_length=50)
     french_name = models.CharField(max_length=50)
     nacc_annotation = models.TextField()
