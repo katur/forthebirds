@@ -5,7 +5,9 @@ from birds.models import TaxonomicLevel, TaxonomicGroup, Species
 import csv
 
 
-expected_fields = (
+UNCERTAIN_IN_LATIN = '<i>Incertae Sedis</i>'
+
+EXPECTED_FIELDS = (
     'id', 'rank',
     'order', 'family', 'subfamily', 'genus', 'species',
     'common_name', 'french_name',
@@ -14,65 +16,13 @@ expected_fields = (
     'status_nonbreeding', 'status_extinct', 'status_misplaced',
 )
 
-
-required_fields = (
+REQUIRED_FIELDS = (
     'id', 'rank',
     'order', 'family', 'genus', 'species',
     'common_name', 'french_name',
 )
 
-expected_levels = ('order', 'family', 'subfamily', 'genus')
-
-
-def confirm_expected_fields_present(header):
-    for field in expected_fields:
-        if field not in header:
-            raise Exception(
-                'Expected field `' + field + '` is missing from header')
-
-    if set(header) - set(expected_fields):
-        print 'Warning: extra fields present in input:'
-        print [i for i in set(header) - set(expected_fields)]
-
-    return
-
-
-def confirm_required_fields_present(row):
-    if not row['common_name']:
-        raise Exception('some common name missing')
-
-    for field in required_fields:
-        if not row[field]:
-            raise Exception(field + ' missing in ' + row['common_name'])
-
-    return
-
-
-def confirm_rank_is_species(row):
-    if row['rank'] != 'species':
-        print 'Warning: rank != "species" for ' + row['common_name']
-
-
-def update_max_field_widths(row, fieldnames, max_field_widths):
-    for field in fieldnames:
-        if row[field] and (
-                field not in max_field_widths
-                or len(row[field]) > max_field_widths[field]):
-            max_field_widths[field] = len(row[field])
-
-
-def get_taxonomic_level_dictionary():
-    levels = {}
-
-    for level in expected_levels:
-        try:
-            level_object = TaxonomicLevel.objects.get(name=level)
-            levels[level] = level_object
-        except TaxonomicLevel.DoesNotExist:
-            raise Exception(
-                'Expected taxonomic level ' + level + ' not in database')
-
-    return levels
+ANCESTOR_LEVELS = ('order', 'family', 'subfamily', 'genus')
 
 
 class Command(BaseCommand):
@@ -89,28 +39,27 @@ class Command(BaseCommand):
         with open(filename, 'rb') as csvfile:
             reader = csv.DictReader(csvfile)
             fieldnames = reader.fieldnames
-            confirm_expected_fields_present(fieldnames)
+            confirm_expected_header_fields(fieldnames)
 
-            unknown = '<i>Incertae Sedis</i>'
-            unknown_counter = 0
+            uncertain_counter = 0
             previous_row = None
 
             for row in reader:
-                confirm_rank_is_species(row)
-                confirm_required_fields_present(row)
+                confirm_proper_row(row)
 
                 for field, value in row.iteritems():
-                    if unknown in value:
-                        if unknown not in previous_row[field]:
-                            unknown_counter += 1
-                            row[field] = unknown + str(unknown_counter)
+                    if UNCERTAIN_IN_LATIN in value:
+                        if UNCERTAIN_IN_LATIN not in previous_row[field]:
+                            uncertain_counter += 1
+                            row[field] = (UNCERTAIN_IN_LATIN +
+                                          str(uncertain_counter))
                         else:
                             row[field] = previous_row[field]
 
                 update_max_field_widths(row, fieldnames, max_field_widths)
 
                 current_parent = None
-                for level in expected_levels:
+                for level in ANCESTOR_LEVELS:
                     if not row[level]:
                         continue
 
@@ -168,3 +117,52 @@ class Command(BaseCommand):
                     species.save()
 
                 previous_row = row
+
+
+def confirm_expected_header_fields(header):
+    for field in EXPECTED_FIELDS:
+        if field not in header:
+            raise Exception(
+                'Expected field `' + field + '` is missing from header')
+
+    if set(header) - set(EXPECTED_FIELDS):
+        print 'Warning: extra fields present in input:'
+        print [i for i in set(header) - set(EXPECTED_FIELDS)]
+
+    return
+
+
+def confirm_proper_row(row):
+    if not row['common_name']:
+        raise Exception('some common name missing')
+
+    for field in REQUIRED_FIELDS:
+        if not row[field]:
+            raise Exception(field + ' missing in ' + row['common_name'])
+
+    if row['rank'] != 'species':
+        print 'Warning: rank != "species" for ' + row['common_name']
+
+    return
+
+
+def update_max_field_widths(row, fieldnames, max_field_widths):
+    for field in fieldnames:
+        if row[field] and (
+                field not in max_field_widths
+                or len(row[field]) > max_field_widths[field]):
+            max_field_widths[field] = len(row[field])
+
+
+def get_taxonomic_level_dictionary():
+    levels = {}
+
+    for level in ANCESTOR_LEVELS:
+        try:
+            level_object = TaxonomicLevel.objects.get(name=level)
+            levels[level] = level_object
+        except TaxonomicLevel.DoesNotExist:
+            raise Exception(
+                'Expected taxonomic level ' + level + ' not in database')
+
+    return levels

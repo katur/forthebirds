@@ -14,6 +14,7 @@ class TaxonomicGroup(models.Model):
     common_name = models.CharField(max_length=50)
     level = models.ForeignKey(TaxonomicLevel)
     parent = models.ForeignKey('self', null=True, blank=True)
+    sibling_ordering = models.PositiveSmallIntegerField(null=True)
 
     def __unicode__(self):
         return self.common_name if self.common_name else self.name
@@ -21,6 +22,7 @@ class TaxonomicGroup(models.Model):
 
 class Species(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
+    absolute_ordering = models.PositiveSmallIntegerField(null=True)
     name = models.CharField(max_length=50, unique=True)
     parent = models.ForeignKey(TaxonomicGroup)
     common_name = models.CharField(max_length=50)
