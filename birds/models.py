@@ -1,4 +1,5 @@
 from django.db import models
+from itertools import chain
 
 
 class TaxonomicLevel(models.Model):
@@ -16,8 +17,18 @@ class TaxonomicGroup(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True)
     relative_position = models.PositiveSmallIntegerField(null=True)
 
+    class Meta:
+        ordering = ['level__depth', 'relative_position']
+
     def __unicode__(self):
         return self.common_name if self.common_name else self.name
+
+    def attach_descendants(self):
+        group_children = TaxonomicGroup.objects.filter(parent=self)
+        species_children = Species.objects.filter(parent=self)
+        self.children = chain(group_children, species_children)
+        for child in group_children:
+            child.attach_descendants()
 
 
 class Species(models.Model):
@@ -34,6 +45,9 @@ class Species(models.Model):
     nacc_is_nonbreeding = models.NullBooleanField()
     nacc_is_extinct = models.NullBooleanField()
     nacc_is_misplaced = models.NullBooleanField()
+
+    class Meta:
+        ordering = ['absolute_position']
 
     def __unicode__(self):
         return self.name
