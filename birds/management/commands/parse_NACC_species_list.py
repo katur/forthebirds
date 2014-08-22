@@ -20,6 +20,7 @@ class Command(BaseCommand):
                    './manage.py parse_NACC_species_list filename.csv')
             sys.exit(2)
         levels = get_taxonomic_level_objects()
+        TaxonomicGroup.objects.all().update(relative_position=None)
         max_field_widths = {}
 
         with open(filename, 'rb') as csvfile:
@@ -33,7 +34,7 @@ class Command(BaseCommand):
                 confirm_proper_row(row)
                 update_UNCERTAIN_fields(row, previous_row)
                 update_max_field_widths(row, fieldnames, max_field_widths)
-                parent = update_ancestors(row, previous_row, levels)
+                parent = update_ancestors(row, previous_row, levels, row_count)
                 update_species(row, parent, row_count)
                 previous_row = row
                 row_count += 1
@@ -113,7 +114,7 @@ def update_UNCERTAIN_fields(row, previous_row):
 update_UNCERTAIN_fields.counter = 0
 
 
-def update_ancestors(row, previous_row, levels):
+def update_ancestors(row, previous_row, levels, row_count):
     current_parent = None
     for level in levels:
         if not row[level.name]:
@@ -151,11 +152,16 @@ def update_ancestors(row, previous_row, levels):
                 group.parent = current_parent
                 group.save()
 
+            if group.relative_position > row_count:
+                raise Exception('this group already exists with higher '
+                                'relative position; should be impossible')
+
         except TaxonomicGroup.DoesNotExist:
             group = TaxonomicGroup(
                 name=row[level.name],
                 level=level,
-                parent=current_parent
+                parent=current_parent,
+                relative_position=row_count,
             )
             group.save()
 
