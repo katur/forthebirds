@@ -2,7 +2,7 @@ from django.db import models
 
 
 class TaxonomicLevel(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(primary_key=True, max_length=20)
     depth = models.PositiveSmallIntegerField()
 
     def __unicode__(self):
@@ -10,7 +10,7 @@ class TaxonomicLevel(models.Model):
 
 
 class TaxonomicGroup(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(primary_key=True, max_length=30)
     common_name = models.CharField(max_length=50)
     level = models.ForeignKey(TaxonomicLevel)
     parent = models.ForeignKey('self', null=True, blank=True)
