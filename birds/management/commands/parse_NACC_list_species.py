@@ -21,14 +21,16 @@ class Command(BaseCommand):
             fieldnames = reader.fieldnames
             confirm_expected_header_fields(fieldnames)
 
+            row_count = 0
             previous_row = None
             for row in reader:
                 confirm_proper_row(row)
                 update_UNCERTAIN_fields(row, previous_row)
                 update_max_field_widths(row, fieldnames, max_field_widths)
                 parent = update_ancestors(row, previous_row, levels)
-                update_species(row, parent)
+                update_species(row, parent, row_count)
                 previous_row = row
+                row_count += 1
 
 
 def get_taxonomic_level_objects():
@@ -112,7 +114,7 @@ def update_ancestors(row, previous_row, levels):
             continue
 
         if not current_parent and level.depth > 1:
-            raise Exception('levels of depth > 1 require parent')
+            raise Exception('taxon groups with level depth > 1 require parent')
 
         try:
             group = TaxonomicGroup.objects.get(
@@ -156,28 +158,35 @@ def update_ancestors(row, previous_row, levels):
     return current_parent
 
 
-def update_species(row, parent):
+def update_species(row, parent, row_count):
+    new_species = Species(
+        id=row['id'],
+        parent=parent,
+        name=row['species'],
+        common_name=row['common_name'],
+        french_name=row['french_name'],
+        nacc_annotation=row['annotation'],
+        nacc_is_accidental=bool(row['status_accidental']),
+        nacc_is_hawaiian=bool(row['status_hawaiian']),
+        nacc_is_introduced=bool(row['status_introduced']),
+        nacc_is_nonbreeding=bool(row['status_nonbreeding']),
+        nacc_is_extinct=bool(row['status_extinct']),
+        nacc_is_misplaced=bool(row['status_misplaced']),
+    )
+
     try:
-        species = Species.objects.get(
+        old_species = Species.objects.get(
             id=row['id']
         )
-        if (species.name != row['species'] or
-                species.common_name != row['common_name']):
-            print 'warning: species ' + str(species) + ' issue'
+
+        if old_species.important_field_differs(new_species):
+            print ('Warning: bird id {0} had some important field update'
+                   .format(str(old_species.id)))
+
+        old_species.update_aou_fields(new_species)
+        old_species.absolute_position = row_count
+        old_species.save()
 
     except Species.DoesNotExist:
-        species = Species(
-            id=row['id'],
-            parent=parent,
-            name=row['species'],
-            common_name=row['common_name'],
-            french_name=row['french_name'],
-            nacc_annotation=row['annotation'],
-            nacc_is_accidental=bool(row['status_accidental']),
-            nacc_is_hawaiian=bool(row['status_hawaiian']),
-            nacc_is_introduced=bool(row['status_introduced']),
-            nacc_is_nonbreeding=bool(row['status_nonbreeding']),
-            nacc_is_extinct=bool(row['status_extinct']),
-            nacc_is_misplaced=bool(row['status_misplaced']),
-        )
-        species.save()
+        new_species.absolute_position = row_count
+        new_species.save()
