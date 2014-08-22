@@ -2,17 +2,23 @@ from django.core.management.base import BaseCommand
 
 from birds.models import TaxonomicLevel, TaxonomicGroup, Species
 
+import sys
 import csv
 
 
 class Command(BaseCommand):
     """
-    Run as: ./manage.py parse_NACC_list_species filename.csv
+    Run as: ./manage.py parse_NACC_species_list filename.csv
     """
     help = 'Populate Bird taxonomy tables from official NACC list'
 
     def handle(self, *args, **options):
-        filename = args[0]
+        try:
+            filename = args[0]
+        except IndexError:
+            print ('Incorrect usage. Correct usage: '
+                   './manage.py parse_NACC_species_list filename.csv')
+            sys.exit(2)
         levels = get_taxonomic_level_objects()
         max_field_widths = {}
 
