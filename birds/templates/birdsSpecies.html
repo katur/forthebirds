@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4>Birds</h4>
+
+  {% regroup species by genus as genus_list %}
+  {% for genus in genus_list %}
+    {{ genus.grouper }}
+    {% for item in genus.list %}
+      {{ item }}
+    {% endfor %}
+    <br>
+  {% endfor %}
+
+{% endblock %}

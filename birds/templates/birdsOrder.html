@@ -2,6 +2,7 @@
 
 {% block content %}
   <h4>Birds</h4>
+
   {% for order in orders %}
     <br>{{ order.level }} {{ order.name }}
     {% for c1 in order.children %}
@@ -16,9 +17,17 @@
             <i>{{ c3.name }}</i>
           {% else %}
             {{ c3.level }} {{ c3.name}}
+            {% for c4 in c3.children %}
+              <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {% ifnotequal c4.absolute_position None %}
+                <i>{{ c4.name }}</i>
+              {% endifnotequal %}
+            {% endfor %}
           {% endifnotequal %}
         {% endfor %}
       {% endfor %}
     {% endfor %}
   {% endfor %}
+
 {% endblock %}
