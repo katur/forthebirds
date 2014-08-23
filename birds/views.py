@@ -4,19 +4,6 @@ from django.template import RequestContext
 from birds.models import TaxonomicGroup, Species
 
 
-def birdsOrder(request):
-    orders = TaxonomicGroup.objects.filter(level__name='order')
-    for order in orders:
-        order.attach_descendants()
-
-    template_dictionary = {
-        'orders': orders,
-    }
-
-    return render_to_response('birdsOrder.html', template_dictionary,
-                              context_instance=RequestContext(request))
-
-
 def birds(request):
     species = Species.objects.raw(
         'SELECT species.id, species.name, species.common_name, '
