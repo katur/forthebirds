@@ -13,7 +13,12 @@
   <ul class="families collapsed">
   {% regroup order.list by family_name as families %}
   {% for family in families %}
-    <li><a href="#">{{ family.grouper }}
+    <li><a href="#">
+      {% if family.list.0.family_common %}
+        {{ family.list.0.family_common }}
+      {% else %}
+        {{ family.grouper }}
+      {% endif %}
       <div class="plus-sign"></div>
     </a></li>
 
@@ -21,7 +26,12 @@
     {% regroup family.list by subfamily_name as subfamilies %}
     {% for subfamily in subfamilies %}
       {% if subfamily.grouper %}
-        <li><a href="#">{{ subfamily.grouper }}
+        <li><a href="#">
+          {% if subfamily.list.0.subfamily_common %}
+            {{ subfamily.list.0.subfamily_common }}
+          {% else %}
+            {{ subfamily.grouper }}
+          {% endif %}
           <div class="plus-sign"></div>
         </a></li>
       {% else %}
