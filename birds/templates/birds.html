@@ -1,42 +1,39 @@
 {% extends "base.html" %}
 
-{% block page_title %}
-  Birds
-{% endblock %}
+{% block page_title %}Birds{% endblock %}
 
 {% block content %}
-  {% regroup species by order_name as orders %}
-  {% for order in orders %}
+<ul>
+{% regroup species by order_name as orders %}
+{% for order in orders %}
+  <li>Order: {{ order.grouper }}</li>
 
-    <br>
-    Order: {{ order.grouper }}
+  <ul>
+  {% regroup order.list by family_name as families %}
+  {% for family in families %}
+    <li>Family: {{ family.grouper }}</li>
 
-    {% regroup order.list by family_name as families %}
-    {% for family in families %}
+    <ul>
+    {% regroup family.list by subfamily_name as subfamilies %}
+    {% for subfamily in subfamilies %}
+      <li>Subfamily: {{ subfamily.grouper }}</li>
 
-      <br>&nbsp;&nbsp;
-      Family: {{ family.grouper }}
+      <ul>
+      {% regroup subfamily.list by genus_name as genuses %}
+      {% for genus in genuses %}
+        <li>Genus: {{ genus.grouper }}</li>
 
-      {% regroup family.list by subfamily_name as subfamilies %}
-      {% for subfamily in subfamilies %}
-
-        <br>&nbsp;&nbsp;&nbsp;&nbsp;
-        Subfamily: {{ subfamily.grouper }}
-
-        {% regroup subfamily.list by genus_name as genuses %}
-        {% for genus in genuses %}
-
-          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Genus: {{ genus.grouper }}
-
-          {% for species in genus.list %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i>{{ species }}</i>
-          {% endfor %}
+        <ul>
+        {% for species in genus.list %}
+        <li>{{ species.common_name }} (<i>{{ species }}</i>)</li>
         {% endfor %}
+        </ul>
       {% endfor %}
+      </ul>
     {% endfor %}
-    <br>
+    </ul>
   {% endfor %}
-
+  </ul>
+{% endfor %}
+</ul>
 {% endblock %}
