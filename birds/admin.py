@@ -20,6 +20,11 @@ class SpeciesAdmin(admin.ModelAdmin):
         'nacc_is_misplaced',
     )
 
+    search_fields = (
+        'name',
+        'common_name',
+    )
+
 
 class TaxonomicGroupAdmin(admin.ModelAdmin):
     list_display = (
@@ -36,6 +41,11 @@ class TaxonomicGroupAdmin(admin.ModelAdmin):
 
     list_filter = (
         'level',
+    )
+
+    search_fields = (
+        'name',
+        'common_name',
     )
 
 
