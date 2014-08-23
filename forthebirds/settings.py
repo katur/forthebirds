@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
+PROJECT_DIR = os.path.join(SETTINGS_DIR, '..')
 
 from local_settings import DEBUG, SECRET_KEY, DATABASES, STATIC_ROOT
 
@@ -74,4 +76,9 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
+)
+
+# Needed so overridden admin templates take precedence
+TEMPLATE_DIRS = (
+    PROJECT_DIR + '/website/templates/'
 )

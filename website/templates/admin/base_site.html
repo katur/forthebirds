@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+
+{% block branding %}
+<h1 id="site-name">
+  <a href="{% url 'admin:index' %}">Admin for Laura's For The Birds</a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}
+<style type="text/css">
+  .admin-menu-item {margin:0 10px 10px;display:block;float:left;}
+</style>
+
+<style type="text/css">
+  #admin-menu-site-home {float:right;}
+</style>
+
+<a href="/" id="admin-menu-site-home" class="admin-menu-item">
+  Back To Website
+</a>
+{% endblock %}
