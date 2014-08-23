@@ -1,4 +1,24 @@
 <div id="header">
   <h1>Laura Erickson's For the Birds</h1>
-  <a id="login" href="admin">Site Admin</a>
+
+  <div id="menu">
+    {% url 'home_url' as home_url %}
+    {% url 'birds_url' as birds_url %}
+
+    <a href="{{ home_url }}"
+        {% ifequal request.path home_url %}
+        class="active"
+        {% endifequal %}>
+      Home
+    </a>
+
+    <a href="{{ birds_url }}"
+        {% ifequal request.path birds_url %}
+        class="active"
+        {% endifequal %}>
+      Birds
+    </a>
+
+    <a id="login" href="admin">Site Admin</a>
+  </div>
 </div>

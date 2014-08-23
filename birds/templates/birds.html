@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
-{% block content %}
-  <h4>Birds</h4>
+{% block page_title %}
+  Birds
+{% endblock %}
 
+{% block content %}
   {% regroup species by order_name as orders %}
   {% for order in orders %}
 

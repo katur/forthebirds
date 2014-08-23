@@ -3,9 +3,17 @@ body
   font-size: 17px
   color: $chickadee-black
 
-h1
+h1, h2, h3, h4
+  margin: 0
+  padding: 0
   font-weight: normal
+
+h2
+  font-weight: bold
 
 a
   text-decoration: none
   color: $moss-light-green
+
+  &:hover, &.active
+    color: $moss-dark-green
