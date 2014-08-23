@@ -1,5 +1,7 @@
-.collapsed
-  display: none
+ul
+  line-height: 150%
+  &.collapsed
+    display: none
 
 .plus-sign
   position: relative
@@ -7,10 +9,16 @@
   width: 10px
   height: 10px
 
+  &:hover
+    cursor: pointer
+
   &::after, &::before
     content: ' '
     position: absolute
-    background: $moss-dark-green
+    background: $moss
+
+    &:hover
+      background: $moss-dark
 
   &::after
     top: 4px
@@ -25,5 +33,8 @@
     height: 10px
 
   &.minus
+    &::after
+      background: $moss-dark
+
     &::before
       display: none
