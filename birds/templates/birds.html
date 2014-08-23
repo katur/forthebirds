@@ -38,20 +38,12 @@
         <li class="no-subfamily">No subfamily</li>
       {% endif%}
 
-      <ul class="genuses collapsed">
-      {% regroup subfamily.list by genus_name as genuses %}
-      {% for genus in genuses %}
-        <li><a href="#">{{ genus.grouper }}
-          <div class="plus-sign"></div>
-        </a></li>
-
-        <ul class="species collapsed">
-        {% for species in genus.list %}
+      <ul class="species collapsed">
+      {% for species in subfamily.list %}
         <li>{{ species.common_name }} (<i>{{ species }}</i>)</li>
-        {% endfor %}
-        </ul>
       {% endfor %}
       </ul>
+
     {% endfor %}
     </ul>
   {% endfor %}

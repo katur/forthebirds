@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from birds.models import TaxonomicGroup, Species
+from birds.models import Species
 
 
 def birds(request):
