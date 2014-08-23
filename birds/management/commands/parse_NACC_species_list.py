@@ -34,8 +34,9 @@ class Command(BaseCommand):
                 confirm_proper_row(row)
                 update_UNCERTAIN_fields(row, previous_row)
                 update_max_field_widths(row, fieldnames, max_field_widths)
-                parent = update_ancestors(row, previous_row, levels, row_count)
-                update_species(row, parent, row_count)
+                parent = update_ancestors(
+                    row, previous_row, levels, row_count)
+                update_species(row, row_count, parent)
                 previous_row = row
                 row_count += 1
 
@@ -170,10 +171,10 @@ def update_ancestors(row, previous_row, levels, row_count):
     return current_parent
 
 
-def update_species(row, parent, row_count):
+def update_species(row, row_count, parent):
     new_species = Species(
         id=row['id'],
-        parent=parent,
+        parent=(parent),
         name=row['species'],
         common_name=row['common_name'],
         french_name=row['french_name'],

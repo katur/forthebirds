@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4>Birds</h4>
+
+  {% regroup species by order_name as orders %}
+  {% for order in orders %}
+
+    <br>
+    Order: {{ order.grouper }}
+
+    {% regroup order.list by family_name as families %}
+    {% for family in families %}
+
+      <br>&nbsp;&nbsp;
+      Family: {{ family.grouper }}
+
+      {% regroup family.list by subfamily_name as subfamilies %}
+      {% for subfamily in subfamilies %}
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;
+        Subfamily: {{ subfamily.grouper }}
+
+        {% regroup subfamily.list by genus_name as genuses %}
+        {% for genus in genuses %}
+
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Genus: {{ genus.grouper }}
+
+          {% for species in genus.list %}
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i>{{ species }}</i>
+          {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+    <br>
+  {% endfor %}
+
+{% endblock %}

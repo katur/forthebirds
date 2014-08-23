@@ -52,24 +52,6 @@ class Species(models.Model):
     def __unicode__(self):
         return self.name
 
-    def attach_ancestors(self):
-        self.genus = self.parent
-        grandparent = self.parent.parent
-        if grandparent.level.name == 'subfamily':
-            self.subfamily = grandparent
-            self.family = grandparent.parent
-        else:
-            self.subfamily = None
-            self.family = grandparent
-
-        self.order = self.family.parent
-        '''
-        current = self
-        while current.parent:
-            self.ancestors.append(current.parent)
-            current = current.parent
-        '''
-
     def important_field_differs(self, other):
         return (
             self.name != other.name or
