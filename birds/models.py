@@ -12,7 +12,7 @@ class TaxonomicLevel(models.Model):
 
 class TaxonomicGroup(models.Model):
     name = models.CharField(max_length=30, unique=True)
-    common_name = models.CharField(max_length=50)
+    common_name = models.CharField(max_length=50, blank=True)
     level = models.ForeignKey(TaxonomicLevel)
     parent = models.ForeignKey('self', null=True, blank=True)
     relative_position = models.PositiveSmallIntegerField(null=True)
