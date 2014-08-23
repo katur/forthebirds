@@ -20,6 +20,7 @@ def birds(request):
         'ON (S.parent_id=F.id OR G.parent_id=F.id) AND F.level_id=2 '
         'LEFT JOIN birds_taxonomicgroup AS O '
         'ON F.parent_id=O.id '
+        'ORDER BY species.absolute_position'
     )
 
     template_dictionary = {

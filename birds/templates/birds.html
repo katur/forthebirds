@@ -3,27 +3,32 @@
 {% block page_title %}Birds{% endblock %}
 
 {% block content %}
-<ul>
+<ul class="orders">
 {% regroup species by order_name as orders %}
 {% for order in orders %}
-  <li>Order: {{ order.grouper }}</li>
+  <li>{{ order.grouper }}
+    <div class="plus-sign">
+      <div class="horizontal"></div>
+      <div class="vertical"></div>
+    </div>
+  </li>
 
-  <ul>
+  <ul class="families collapsed">
   {% regroup order.list by family_name as families %}
   {% for family in families %}
-    <li>Family: {{ family.grouper }}</li>
+    <li>{{ family.grouper }}</li>
 
-    <ul>
+    <ul class="subfamilies collapsed">
     {% regroup family.list by subfamily_name as subfamilies %}
     {% for subfamily in subfamilies %}
-      <li>Subfamily: {{ subfamily.grouper }}</li>
+      <li>{{ subfamily.grouper }}</li>
 
-      <ul>
+      <ul class="genuses collapsed">
       {% regroup subfamily.list by genus_name as genuses %}
       {% for genus in genuses %}
-        <li>Genus: {{ genus.grouper }}</li>
+        <li>{{ genus.grouper }}</li>
 
-        <ul>
+        <ul class="species collapsed">
         {% for species in genus.list %}
         <li>{{ species.common_name }} (<i>{{ species }}</i>)</li>
         {% endfor %}
