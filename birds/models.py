@@ -48,6 +48,7 @@ class Species(models.Model):
 
     class Meta:
         ordering = ['absolute_position']
+        verbose_name_plural = 'bird species'
 
     def __unicode__(self):
         return self.name
