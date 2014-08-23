@@ -1,6 +1,11 @@
 $(document).ready(function() {
+  expandNoSubfamilies();
   createExpandButtons();
 });
+
+expandNoSubfamilies = function() {
+  $(".no-subfamily").next("ul").toggleClass("collapsed");
+}
 
 createExpandButtons = function() {
   links = $(".plus-sign").closest("a");

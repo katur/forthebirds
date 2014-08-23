@@ -20,9 +20,13 @@
     <ul class="subfamilies collapsed">
     {% regroup family.list by subfamily_name as subfamilies %}
     {% for subfamily in subfamilies %}
-      <li><a href="#">{{ subfamily.grouper }}
-        <div class="plus-sign"></div>
-      </a></li>
+      {% if subfamily.grouper %}
+        <li><a href="#">{{ subfamily.grouper }}
+          <div class="plus-sign"></div>
+        </a></li>
+      {% else %}
+        <li class="no-subfamily">No subfamily</li>
+      {% endif%}
 
       <ul class="genuses collapsed">
       {% regroup subfamily.list by genus_name as genuses %}
