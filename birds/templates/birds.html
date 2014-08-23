@@ -7,26 +7,29 @@
 {% regroup species by order_name as orders %}
 {% for order in orders %}
   <li>{{ order.grouper }}
-    <div class="plus-sign">
-      <div class="horizontal"></div>
-      <div class="vertical"></div>
-    </div>
+    <div class="plus-sign"></div>
   </li>
 
   <ul class="families collapsed">
   {% regroup order.list by family_name as families %}
   {% for family in families %}
-    <li>{{ family.grouper }}</li>
+    <li>{{ family.grouper }}
+      <div class="plus-sign"></div>
+    </li>
 
     <ul class="subfamilies collapsed">
     {% regroup family.list by subfamily_name as subfamilies %}
     {% for subfamily in subfamilies %}
-      <li>{{ subfamily.grouper }}</li>
+      <li>{{ subfamily.grouper }}
+        <div class="plus-sign"></div>
+      </li>
 
       <ul class="genuses collapsed">
       {% regroup subfamily.list by genus_name as genuses %}
       {% for genus in genuses %}
-        <li>{{ genus.grouper }}</li>
+        <li>{{ genus.grouper }}
+          <div class="plus-sign"></div>
+        </li>
 
         <ul class="species collapsed">
         {% for species in genus.list %}

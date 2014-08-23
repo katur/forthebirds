@@ -7,18 +7,23 @@
   width: 10px
   height: 10px
 
-  .horizontal
+  &::after, &::before
+    content: ' '
     position: absolute
+    background: $moss-dark-green
+
+  &::after
     top: 4px
     left: 0
     width: 10px
     height: 2px
-    background: $moss-dark-green
 
-  .vertical
-    position: absolute
+  &::before
     top: 0
     left: 4px
     width: 2px
     height: 10px
-    background: $moss-dark-green
+
+  &.minus
+    &::before
+      display: none
