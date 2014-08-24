@@ -31,6 +31,7 @@ class Species(models.Model):
     name = models.CharField(max_length=50, unique=True)
     parent = models.ForeignKey(TaxonomicGroup)
     common_name = models.CharField(max_length=50)
+    bird_of_the_week_name = models.CharField(max_length=50, blank=True)
     is_hidden = models.BooleanField(default=False)
     blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     main_photo_url = models.TextField(blank=True)
