@@ -33,6 +33,7 @@ class Species(models.Model):
     common_name = models.CharField(max_length=50)
     is_hidden = models.BooleanField(default=False)
     blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    main_photo_url = models.TextField(blank=True)
     french_name = models.CharField(max_length=50)
     nacc_is_accidental = models.NullBooleanField()
     nacc_is_hawaiian = models.NullBooleanField()
