@@ -7,8 +7,9 @@ class SpeciesAdmin(admin.ModelAdmin):
     list_display = (
         'common_name',
         'name',
-        'is_hidden',
+        'main_photo_url',
         'absolute_position',
+        'is_hidden',
     )
 
     list_filter = (
