@@ -12,7 +12,10 @@
   {% for ancestor in bird.get_ancestors %}
     <span>
       {{ ancestor.level|capfirst }}:
-      {{ ancestor }}
+      {{ ancestor.name }}
+      {% if ancestor.common_name %}
+        ({{ ancestor.common_name }})
+      {% endif %}
     </span>
   {% endfor %}
 </div>
