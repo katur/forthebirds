@@ -2,56 +2,31 @@
 
 {% block body_id %}birds{% endblock %}
 
-{% block page_title %}Birds{% endblock %}
+{% block page_title %}Find Birds{% endblock %}
 
 {% block content %}
-<ul class="orders">
-{% regroup birds by order_name as orders %}
-{% for order in orders %}
-  <li><a href="#">{{ order.grouper }}
-    <div class="plus-sign"></div>
-  </a></li>
+<form action={% url 'birds_url' %} method="get">
+  <input type="text" name="query">
+  <input type="submit" value="Search">
+</form>
 
-  <ul class="families collapsed">
-  {% regroup order.list by family_name as families %}
-  {% for family in families %}
-    <li><a href="#">
-      {% if family.list.0.family_common %}
-        {{ family.list.0.family_common }}
-      {% else %}
-        {{ family.grouper }}
-      {% endif %}
-      <div class="plus-sign"></div>
+{% if was_search %}
+  <ul>
+  {% for bird in search_birds %}
+    <li><a href="{% url 'bird_url' id=bird.id %}">
+      {{ bird.common_name }} (<i>{{ bird.name }}</i>)
     </a></li>
-
-    <ul class="subfamilies collapsed">
-    {% regroup family.list by subfamily_name as subfamilies %}
-    {% for subfamily in subfamilies %}
-      {% if subfamily.grouper %}
-        <li><a href="#">
-          {% if subfamily.list.0.subfamily_common %}
-            {{ subfamily.list.0.subfamily_common }}
-          {% else %}
-            {{ subfamily.grouper }}
-          {% endif %}
-          <div class="plus-sign"></div>
-        </a></li>
-      {% else %}
-        <li class="no-subfamily">No subfamily</li>
-      {% endif%}
-
-      <ul class="species collapsed">
-      {% for species in subfamily.list %}
-        <li><a href="{% url 'bird_url' id=species.id %}">
-          {{ species.common_name }} (<i>{{ species }}</i>)
-        </a></li>
-      {% endfor %}
-      </ul>
-
-    {% endfor %}
-    </ul>
+  {% empty %}
+    <li>Sorry, no birds match that term</li>
   {% endfor %}
   </ul>
-{% endfor %}
-</ul>
+{% endif %}
+
+<div id="alternate-search">
+  Or find birds:
+  <ul id="alternate-searches">
+    <li>by photo collage</li>
+    <li><a href="{% url 'birds_taxonomical_url' %}">by taxonomy</a></li>
+  </ul>
+</div>
 {% endblock %}

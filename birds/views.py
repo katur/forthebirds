@@ -5,6 +5,30 @@ from birds.models import Species
 
 
 def birds(request):
+    was_search = False
+    search_birds = []
+    if 'query' in request.GET:
+        was_search = True
+        terms = request.GET['query'].split()
+        birds = Species.objects.all()
+        for bird in birds:
+            for term in terms:
+                if (term.lower() not in bird.name.lower() and
+                        term.lower() not in bird.common_name.lower()):
+                    break
+            else:
+                search_birds.append(bird)
+
+    template_dictionary = {
+        'was_search': was_search,
+        'search_birds': search_birds,
+    }
+
+    return render_to_response('birds.html', template_dictionary,
+                              context_instance=RequestContext(request))
+
+
+def birds_taxonomical(request):
     birds = Species.objects.raw(
         'SELECT species.id, species.name, species.common_name, '
         'G.name AS genus_name, '
@@ -29,7 +53,7 @@ def birds(request):
         'birds': birds,
     }
 
-    return render_to_response('birds.html', template_dictionary,
+    return render_to_response('birds_taxonomical.html', template_dictionary,
                               context_instance=RequestContext(request))
 
 
