@@ -7,9 +7,7 @@
 {% block content %}
 <div id="taxonomy" class="card">
   <h3>Taxonomy</h3>
-  <span>Scientific name: <i>{{ bird.name }}</i></span>
-  <span>French name: <i>{{ bird.french_name }}</i></span>
-  {% for ancestor in bird.get_ancestors %}
+  {% for ancestor in bird.get_ancestors reversed %}
     <span>
       {{ ancestor.level|capfirst }}:
       {{ ancestor.name }}
@@ -18,6 +16,8 @@
       {% endif %}
     </span>
   {% endfor %}
+  <span>Scientific name: <i>{{ bird.name }}</i></span>
+  <span>French name: <i>{{ bird.french_name }}</i></span>
 </div>
 
 {% if bird.nacc_annotation or bird.get_nacc_statuses %}
