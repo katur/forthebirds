@@ -5,10 +5,31 @@
 {% block page_title %}{{ bird.common_name }}{% endblock %}
 
 {% block content %}
-<div id="taxonomy">
+<div id="taxonomy" class="card">
+  <h3>Taxonomy</h3>
   <span>Scientific name: <i>{{ bird.name }}</i></span>
+  <span>French name: <i>{{ bird.french_name }}</i></span>
   {% for ancestor in bird.get_ancestors %}
-    <span>{{ ancestor.level }}: {{ ancestor }}</span>
+    <span>
+      {{ ancestor.level|capfirst }}:
+      {{ ancestor }}
+    </span>
   {% endfor %}
 </div>
+
+{% if bird.nacc_annotation or bird.get_nacc_statuses %}
+<div id="nacc" class="card">
+  <h3>NACC Information</h3>
+  {% if bird.nacc_annotation %}
+    <span>Annotation: {{ bird.nacc_annotation }}</span>
+  {% endif %}
+
+  {% if bird.get_nacc_statuses %}
+    {% for status in bird.get_nacc_statuses %}
+      <span>Status: {{ status }}</span>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endif %}
+
 {% endblock %}

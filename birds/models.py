@@ -46,6 +46,22 @@ class Species(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_nacc_statuses(self):
+        statuses = []
+        if self.nacc_is_accidental:
+            statuses.append('Accidental')
+        if self.nacc_is_hawaiian:
+            statuses.append('Hawaiian')
+        if self.nacc_is_introduced:
+            statuses.append('Introduced')
+        if self.nacc_is_nonbreeding:
+            statuses.append('Non-breeding')
+        if self.nacc_is_extinct:
+            statuses.append('Extinct')
+        if self.nacc_is_misplaced:
+            statuses.append('Misplaced')
+        return statuses
+
     def get_ancestors(self):
         ancestors = []
         parent = self.parent
