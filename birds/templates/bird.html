@@ -17,7 +17,7 @@
     </span>
   {% endfor %}
   <span>Scientific name: <i>{{ bird.name }}</i></span>
-  <span>French name: <i>{{ bird.french_name }}</i></span>
+  <span>French name: {{ bird.french_name }}</span>
 </div>
 
 {% if bird.nacc_annotation or bird.get_nacc_statuses %}
