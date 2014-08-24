@@ -1,5 +1,6 @@
 from django.db import models
-from itertools import chain
+
+from forthebirds.settings import MARKDOWN_PROMPT
 
 
 class TaxonomicLevel(models.Model):
@@ -30,16 +31,16 @@ class Species(models.Model):
     name = models.CharField(max_length=50, unique=True)
     parent = models.ForeignKey(TaxonomicGroup)
     common_name = models.CharField(max_length=50)
+    is_hidden = models.BooleanField(default=False)
+    blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     french_name = models.CharField(max_length=50)
-    nacc_annotation = models.TextField()
     nacc_is_accidental = models.NullBooleanField()
     nacc_is_hawaiian = models.NullBooleanField()
     nacc_is_introduced = models.NullBooleanField()
     nacc_is_nonbreeding = models.NullBooleanField()
     nacc_is_extinct = models.NullBooleanField()
     nacc_is_misplaced = models.NullBooleanField()
-    is_hidden = models.BooleanField(default=False)
-    blurb = models.TextField(blank=True)
+    nacc_annotation = models.TextField(blank=True)
 
     class Meta:
         ordering = ['absolute_position']
