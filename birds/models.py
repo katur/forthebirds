@@ -38,6 +38,8 @@ class Species(models.Model):
     nacc_is_nonbreeding = models.NullBooleanField()
     nacc_is_extinct = models.NullBooleanField()
     nacc_is_misplaced = models.NullBooleanField()
+    is_hidden = models.BooleanField(default=False)
+    blurb = models.TextField(blank=True)
 
     class Meta:
         ordering = ['absolute_position']
