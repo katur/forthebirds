@@ -2,7 +2,7 @@
 <html lang="en">
   {% include "head.html" %}
 
-  <body>
+  <body id="{% block body_id %}{% endblock %}">
     {% include "header.html" %}
     <div id="content">
       <h2>{% block page_title %}{% endblock%}</h2>

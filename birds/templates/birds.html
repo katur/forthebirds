@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
+{% block body_id %}birds{% endblock %}
+
 {% block page_title %}Birds{% endblock %}
 
 {% block content %}
 <ul class="orders">
-{% regroup species by order_name as orders %}
+{% regroup birds by order_name as orders %}
 {% for order in orders %}
   <li><a href="#">{{ order.grouper }}
     <div class="plus-sign"></div>
@@ -40,7 +42,9 @@
 
       <ul class="species collapsed">
       {% for species in subfamily.list %}
-        <li>{{ species.common_name }} (<i>{{ species }}</i>)</li>
+        <li><a href="{% url 'bird_url' id=species.id %}">
+          {{ species.common_name }} (<i>{{ species }}</i>)
+        </a></li>
       {% endfor %}
       </ul>
 

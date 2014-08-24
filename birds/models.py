@@ -23,13 +23,6 @@ class TaxonomicGroup(models.Model):
     def __unicode__(self):
         return self.common_name if self.common_name else self.name
 
-    def attach_descendants(self):
-        group_children = TaxonomicGroup.objects.filter(parent=self)
-        species_children = Species.objects.filter(parent=self)
-        self.children = chain(group_children, species_children)
-        for child in group_children:
-            child.attach_descendants()
-
 
 class Species(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
@@ -52,6 +45,16 @@ class Species(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_ancestors(self):
+        ancestors = []
+        parent = self.parent
+
+        while parent:
+            ancestors.append(parent)
+            parent = parent.parent
+
+        return ancestors
 
     def important_field_differs(self, other):
         return (

@@ -1,11 +1,11 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
 from birds.models import Species
 
 
 def birds(request):
-    species = Species.objects.raw(
+    birds = Species.objects.raw(
         'SELECT species.id, species.name, species.common_name, '
         'G.name AS genus_name, '
         'S.name AS subfamily_name, '
@@ -26,8 +26,19 @@ def birds(request):
     )
 
     template_dictionary = {
-        'species': species,
+        'birds': birds,
     }
 
     return render_to_response('birds.html', template_dictionary,
+                              context_instance=RequestContext(request))
+
+
+def bird(request, id):
+    bird = get_object_or_404(Species, id=id)
+
+    template_dictionary = {
+        'bird': bird,
+    }
+
+    return render_to_response('bird.html', template_dictionary,
                               context_instance=RequestContext(request))

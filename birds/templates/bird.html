@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body_id %}bird{% endblock %}
+
+{% block page_title %}{{ bird.common_name }}{% endblock %}
+
+{% block content %}
+<div id="taxonomy">
+  <span>Scientific name: <i>{{ bird.name }}</i></span>
+  {% for ancestor in bird.get_ancestors %}
+    <span>{{ ancestor.level }}: {{ ancestor }}</span>
+  {% endfor %}
+</div>
+{% endblock %}
