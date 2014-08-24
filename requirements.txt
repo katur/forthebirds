@@ -3,5 +3,7 @@ MySQL-python==1.2.5
 South==1.0
 dj-database-url==0.3.0
 dj-static==0.0.6
+django-markdown-deux==1.0.4
+markdown2==2.2.2
 static3==0.5.1
 wsgiref==0.1.2

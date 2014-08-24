@@ -8,7 +8,11 @@
 <ul class="orders">
 {% regroup birds by order_name as orders %}
 {% for order in orders %}
-  <li><a href="#">{{ order.grouper }}
+  <li><a href="#">
+    {{ order.grouper }}
+    {% if order.list.0.order_common %}
+      ({{ order.list.0.order_common }})
+    {% endif %}
     <div class="plus-sign"></div>
   </a></li>
 

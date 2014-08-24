@@ -1,10 +1,17 @@
 {% extends "base.html" %}
+{% load markdown_deux_tags %}
 
 {% block body_id %}bird{% endblock %}
 
 {% block page_title %}{{ bird.common_name }}{% endblock %}
 
 {% block content %}
+{% if bird.photo %}
+  <div id="main-photo">
+    {{ bird.photo }}
+  </div>
+{% endif %}
+
 <div id="taxonomy" class="card">
   <h3>Taxonomy</h3>
   {% for ancestor in bird.get_ancestors reversed %}
@@ -32,6 +39,12 @@
       <span>Status: {{ status }}</span>
     {% endfor %}
   {% endif %}
+</div>
+{% endif %}
+
+{% if bird.blurb %}
+<div id="blurb" class="markdown-section">
+  {{ bird.blurb|markdown }}
 </div>
 {% endif %}
 
