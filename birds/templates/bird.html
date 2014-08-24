@@ -6,9 +6,9 @@
 {% block page_title %}{{ bird.common_name }}{% endblock %}
 
 {% block content %}
-{% if bird.photo %}
+{% if bird.main_photo_url %}
   <div id="main-photo">
-    {{ bird.photo }}
+    <img src="{{ bird.main_photo_url }}"/>
   </div>
 {% endif %}
 
