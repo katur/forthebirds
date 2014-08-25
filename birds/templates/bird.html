@@ -43,6 +43,14 @@
     {% endif %}
   </div>
   {% endif %}
+
+  {% if bird.bird_of_the_week_name %}
+  <div id="links" class="card">
+    <h3>External Links</h3>
+    <a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
+      Bird of the Week</a>
+  </div>
+  {% endif %}
 </div>
 
 {% if bird.blurb %}
