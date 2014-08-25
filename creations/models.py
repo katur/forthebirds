@@ -6,6 +6,7 @@ class Book(models.Model):
     date_published = models.DateField(null=True, blank=True)
     purchase_url = models.CharField(max_length=500)
     description = models.TextField(blank=True)
+    photo = models.ImageField(null=True, blank=True, upload_to='books')
 
     class Meta:
         ordering = ['date_published']

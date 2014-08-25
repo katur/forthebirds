@@ -14,7 +14,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.join(SETTINGS_DIR, '..')
 
-from local_settings import DEBUG, SECRET_KEY, DATABASES, STATIC_ROOT
+from local_settings import (DEBUG, SECRET_KEY, DATABASES, STATIC_ROOT,
+                            MEDIA_ROOT)
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -71,6 +72,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # For request object in templates
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP

@@ -1,6 +1,7 @@
 *local_settings.*
 database_backups
 staticfiles
+mediafiles
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
