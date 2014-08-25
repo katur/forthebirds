@@ -7,9 +7,11 @@
 {% block content %}
 <ul>
 {% for book in books %}
-  <li><a href="{{ book.purchase_url }}">
-    {{ book.title }}
-  </a></li>
+  <li>
+    <i>{{ book.title }}</i>
+    ({{ book.date_published|date:"Y" }}),
+    <a href="{{ book.purchase_url }}">click to purchase</a>
+  </li>
 {% endfor %}
 </ul>
 {% endblock %}
