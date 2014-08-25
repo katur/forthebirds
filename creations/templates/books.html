@@ -8,6 +8,7 @@
 <ul>
 {% for book in books %}
   <li>
+    <img src="{{ MEDIA_URL }}{{ book.photo }}" />
     <i>{{ book.title }}</i>
     ({{ book.date_published|date:"Y" }}),
     <a href="{{ book.purchase_url }}">click to purchase</a>
