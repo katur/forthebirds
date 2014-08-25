@@ -43,11 +43,19 @@
 </div>
 {% endif %}
 
-{% if bird.bird_of_the_week_name %}
+{% if bird.bird_of_the_week_name or bird.links %}
 <div id="links" class="card">
   <h3>External Links</h3>
-  <a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
-    Bird of the Week</a>
+  <ul>
+  {% if bird.bird_of_the_week_name %}
+    <li><a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
+        ABC Bird of the Week</a></li>
+  {% endif %}
+
+  {% for link in bird.links %}
+    <li><a href="{{ link.url }}">{{ link.title }}</li>
+  {% endfor %}
+  </ul>
 </div>
 {% endif %}
 
