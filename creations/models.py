@@ -9,7 +9,7 @@ class Book(models.Model):
     photo = models.ImageField(null=True, blank=True, upload_to='books')
 
     class Meta:
-        ordering = ['date_published']
+        ordering = ['-date_published']
 
     def __unicode__(self):
         return self.title
