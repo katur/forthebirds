@@ -5,19 +5,28 @@
 {% block page_title %}Books{% endblock %}
 
 {% block content %}
+
 {% for book in books %}
   <div id="book">
     {% if book.photo %}
+    <div class="photo">
       <img src="{{ MEDIA_URL }}{{ book.photo }}" />
+    </div>
     {% endif %}
+
     <div class="info">
-      <span class="title"><i>{{ book.title }}</i></span>
-      <span class="date">{{ book.date_published|date:"Y" }}</span>
-      <a class="purchase-link" href="{{ book.purchase_url }}">
+      <div class="info-header">
+        <span class="title">{{ book.title }}</span>
+        <span class="date">{{ book.date_published|date:"Y" }}</span>
+        <a class="purchase-link" href="{{ book.purchase_url }}">
         click to purchase</a>
+      </div>
+
       <span class="description">{{ book.description }}</span>
     </div>
+
   </div>
+  <div class='book-separator'></div>
 {% endfor %}
-</ul>
+
 {% endblock %}

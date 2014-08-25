@@ -1,24 +1,40 @@
 #books
   #book
+    float: left
     width: 100%
     clear: both
-    margin: 40px 0
-    border-top: 1px solid gray
 
-    &:first-child
-      border-bottom: none
-
-    img
+    .photo
       float: left
-      width: 100px
+      width: 20%
+      margin-right: 5%
+
+      img
+        width: 100%
+        max-width: 250px
 
     .info
-      float: left
-      margin-left: 50px
+      float: right
+      width: 75%
 
-      span
-        float: left
-        margin-right: 20px
+      .info-header
+        width: 100%
+        margin-bottom: 20px
 
-        &.description
-          clear: both
+        span
+          float: left
+          margin-right: 20px
+
+          &.title
+            font-size: 22px
+            font-style: italic
+
+          &.purchase-link
+            float: right
+
+  .book-separator
+    float: left
+    margin: 40px 10%
+    height: 1px
+    width: 80%
+    background-color: $chickadee-light-gray
