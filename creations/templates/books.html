@@ -9,28 +9,21 @@
 {% for book in books %}
   <div id="book">
     {% if book.photo %}
-    <div class="photo">
-      <img src="{{ MEDIA_URL }}{{ book.photo }}" />
-    </div>
+    <img src="{{ MEDIA_URL }}{{ book.photo }}" />
     {% endif %}
 
     <div class="info">
-
-      <div class="info-header">
-        <span class="title">{{ book.title }}</span>
-        <span class="date">{{ book.year_published }}</span>
-      </div>
-
+      <span class="title">{{ book.title }}</span>
+      <span class="year">{{ book.year_published }}</span>
       <span class="description">{{ book.description }}</span>
 
       {% if book.purchase_url %}
       <a class="purchase-link" href="{{ book.purchase_url }}">
-        click to purchase</a>
+          click to purchase</a>
       {% endif %}
     </div>
 
   </div>
-  <div class='book-separator'></div>
 {% endfor %}
 
 {% endblock %}
