@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body_id %}books{% endblock %}
+
+{% block page_title %}Books{% endblock %}
+
+{% block content %}
+<ul>
+{% for book in books %}
+  <li><a href="{{ book.purchase_url }}">
+    {{ book.title }}
+  </a></li>
+{% endfor %}
+</ul>
+{% endblock %}
