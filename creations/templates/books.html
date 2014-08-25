@@ -15,16 +15,18 @@
     {% endif %}
 
     <div class="info">
+
       <div class="info-header">
         <span class="title">{{ book.title }}</span>
         <span class="date">{{ book.year_published }}</span>
-        {% if book.purchase_url %}
-        <a class="purchase-link" href="{{ book.purchase_url }}">
-          click to purchase</a>
-        {% endif %}
       </div>
 
       <span class="description">{{ book.description }}</span>
+
+      {% if book.purchase_url %}
+      <a class="purchase-link" href="{{ book.purchase_url }}">
+        click to purchase</a>
+      {% endif %}
     </div>
 
   </div>
