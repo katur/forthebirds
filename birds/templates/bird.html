@@ -13,45 +13,43 @@
   </div>
 {% endif %}
 
-<div id="cards">
-  <div id="taxonomy" class="card">
-    <h3>Taxonomy</h3>
-    {% for ancestor in bird.get_ancestors reversed %}
-      <span>
-        {{ ancestor.level|capfirst }}:
-        {{ ancestor.name }}
-        {% if ancestor.common_name %}
-          ({{ ancestor.common_name }})
-        {% endif %}
-      </span>
-    {% endfor %}
-    <span>Scientific name: <i>{{ bird.name }}</i></span>
-    <span>French name: {{ bird.french_name }}</span>
-  </div>
+<div id="taxonomy" class="card">
+  <h3>Taxonomy</h3>
+  {% for ancestor in bird.get_ancestors reversed %}
+    <span>
+      {{ ancestor.level|capfirst }}:
+      {{ ancestor.name }}
+      {% if ancestor.common_name %}
+        ({{ ancestor.common_name }})
+      {% endif %}
+    </span>
+  {% endfor %}
+  <span>Scientific name: <i>{{ bird.name }}</i></span>
+  <span>French name: {{ bird.french_name }}</span>
+</div>
 
-  {% if bird.nacc_annotation or bird.get_nacc_statuses %}
-  <div id="nacc" class="card">
-    <h3>NACC Information</h3>
-    {% if bird.nacc_annotation %}
-      <span>Annotation: {{ bird.nacc_annotation }}</span>
-    {% endif %}
-
-    {% if bird.get_nacc_statuses %}
-      {% for status in bird.get_nacc_statuses %}
-        <span>Status: {{ status }}</span>
-      {% endfor %}
-    {% endif %}
-  </div>
+{% if bird.nacc_annotation or bird.get_nacc_statuses %}
+<div id="nacc" class="card">
+  <h3>NACC Information</h3>
+  {% if bird.nacc_annotation %}
+    <span>Annotation: {{ bird.nacc_annotation }}</span>
   {% endif %}
 
-  {% if bird.bird_of_the_week_name %}
-  <div id="links" class="card">
-    <h3>External Links</h3>
-    <a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
-      Bird of the Week</a>
-  </div>
+  {% if bird.get_nacc_statuses %}
+    {% for status in bird.get_nacc_statuses %}
+      <span>Status: {{ status }}</span>
+    {% endfor %}
   {% endif %}
 </div>
+{% endif %}
+
+{% if bird.bird_of_the_week_name %}
+<div id="links" class="card">
+  <h3>External Links</h3>
+  <a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
+    Bird of the Week</a>
+</div>
+{% endif %}
 
 {% if bird.blurb %}
 <div id="blurb" class="markdown-section">
