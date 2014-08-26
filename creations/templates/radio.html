@@ -9,7 +9,17 @@
 {% for program in programs %}
   <div id="program">
     {{ program.title }}
+    <br>
+    {{ program.description }}
+    <br>
+    {{ program.original_air_date }}
+    <br>
+    {% if program.supplementary_content_url %}
+      <a href="{{ program.supplementary_content_url }}">Click here for
+        transcript and photos</a>
+    {% endif %}
   </div>
+  <br><br><br>
 {% endfor %}
 
 {% endblock %}
