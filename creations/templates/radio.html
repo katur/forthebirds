@@ -18,6 +18,10 @@
       <a href="{{ program.supplemental_content_url }}">Click here for
         transcript and photos</a>
     {% endif %}
+    <audio controls>
+      <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </div>
   <br><br><br>
 {% endfor %}
