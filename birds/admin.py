@@ -7,6 +7,7 @@ class SpeciesAdmin(admin.ModelAdmin):
     list_display = (
         'common_name',
         'name',
+        'bird_of_the_week_name',
         'main_photo_url',
         'absolute_position',
         'is_hidden',
