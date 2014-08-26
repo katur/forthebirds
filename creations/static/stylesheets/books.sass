@@ -1,9 +1,11 @@
 #books
+  width: 100%
+
   #book
     float: left
-    width: 20%
     margin-right: 5%
     margin-bottom: 5%
+    width: 20%
 
     img, span, a
       float: left
@@ -12,3 +14,32 @@
 
     .title
       font-style: italic
+      font-weight: bold
+
+    &:nth-child(4n+2)
+      clear: left
+
+  @media (max-width: 1000px)
+    #book
+      width: 28%
+
+      &:nth-child(4n+2)
+        clear: none
+      &:nth-child(3n+2)
+        clear: left
+
+  @media (max-width: 750px)
+    #book
+      width: 40%
+
+      &:nth-child(4n+2)
+        clear: none
+      &:nth-child(3n+2)
+        clear: none
+      &:nth-child(even)
+        clear: left
+
+  @media (max-width: 500px)
+    #book
+      width: 100%
+      margin-right: none
