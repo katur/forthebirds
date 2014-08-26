@@ -19,9 +19,10 @@ class Book(Creation):
 
 
 class RadioProgram(Creation):
-    transcript = models.TextField(blank=True)
-    file = models.FileField(null=True, blank=True, upload_to='radio')
     original_air_date = models.DateField(null=True, blank=True)
+    file = models.FileField(null=True, blank=True, upload_to='radio')
+    supplemental_content_url = models.CharField(max_length=500, blank=True)
+    transcript = models.TextField(blank=True)
 
     class Meta:
         ordering = ['-original_air_date']
