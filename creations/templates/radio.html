@@ -10,18 +10,26 @@
   <div id="program">
     {{ program.title }}
     <br>
-    {{ program.description }}
-    <br>
     {{ program.original_air_date }}
     <br>
+    {{ program.description }}
+
     {% if program.supplemental_content_url %}
+      <br>
       <a href="{{ program.supplemental_content_url }}">Click here for
         transcript and photos</a>
     {% endif %}
+
+    {% if program.file %}
+    <br>
     <audio controls>
       <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
+    <br>
+    <a href="{{ MEDIA_URL }}{{ program.file }}">Click to download</a>
+    {% endif %}
+
   </div>
   <br><br><br>
 {% endfor %}
