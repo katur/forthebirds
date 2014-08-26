@@ -14,12 +14,6 @@
     <br>
     {{ program.description }}
 
-    {% if program.supplemental_content_url %}
-      <br>
-      <a href="{{ program.supplemental_content_url }}">Click here for
-        transcript and photos</a>
-    {% endif %}
-
     {% if program.file %}
     <br>
     <audio controls>
@@ -30,6 +24,11 @@
     <a href="{{ MEDIA_URL }}{{ program.file }}">Click to download</a>
     {% endif %}
 
+    {% if program.supplemental_content_url %}
+      <br>
+      <a href="{{ program.supplemental_content_url }}">Click here for
+        transcript and photos</a>
+    {% endif %}
   </div>
   <br><br><br>
 {% endfor %}
