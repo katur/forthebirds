@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body_id %}radio{% endblock %}
+
+{% block page_title %}<i>For the Birds</i> Radio Program{% endblock %}
+
+{% block content %}
+
+{% for program in programs %}
+  <div id="program">
+    {{ program.title }}
+  </div>
+{% endfor %}
+
+{% endblock %}

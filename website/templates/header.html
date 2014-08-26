@@ -1,6 +1,8 @@
 {% url 'home_url' as home_url %}
 {% url 'birds_url' as birds_url %}
 {% url 'books_url' as books_url %}
+{% url 'radio_url' as radio_url %}
+
 <div id="header">
   Laura Erickson's
   <a href="{{ home_url }}">
@@ -27,6 +29,13 @@
         class="active"
         {% endifequal %}>
       Books
+    </a>
+
+    <a href="{{ radio_url }}"
+        {% ifequal request.path radio_url %}
+        class="active"
+        {% endifequal %}>
+      Radio
     </a>
 
     <a href="http://lauraerickson.blogspot.com">Blog</a>
