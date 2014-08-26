@@ -6,31 +6,34 @@
 
 {% block content %}
 
-{% for program in programs %}
-  <div id="program">
-    {{ program.title }}
-    <br>
-    {{ program.original_air_date }}
-    <br>
-    {{ program.description }}
-
-    {% if program.file %}
-    <br>
-    <audio controls>
-      <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-    <br>
-    <a href="{{ MEDIA_URL }}{{ program.file }}">Download .mp3</a>
-    {% endif %}
-
-    {% if program.supplemental_content_url %}
+<ul>
+{% regroup programs by original_air_date|date:"Y" as years %}
+{% for year in years %}
+  <li>{{ year.grouper }}</li>
+  <ul>
+  {% for program in year.list %}
+    <li>
+      <b>{{ program.title }}</b> ({{ program.original_air_date }})
       <br>
-      <a href="{{ program.supplemental_content_url }}">See
-        transcript and photos</a>
-    {% endif %}
-  </div>
-  <br><br><br>
+      {{ program.description }}
+      {% if program.supplemental_content_url %}
+        <a href="{{ program.supplemental_content_url }}">See
+          transcript and photos</a>
+      {% endif %}
+
+      {% if program.file %}
+      <br>
+      <audio controls>
+        <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <a href="{{ MEDIA_URL }}{{ program.file }}">Download .mp3</a>
+      {% endif %}
+
+    </li>
+  {% endfor %}
+  </ul>
 {% endfor %}
+</ul>
 
 {% endblock %}
