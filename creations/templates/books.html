@@ -6,8 +6,9 @@
 
 {% block content %}
 
+<div id="all-books">
 {% for book in books %}
-  <div id="book">
+  <div class="book">
     {% if book.photo %}
     <img src="{{ MEDIA_URL }}{{ book.photo }}" />
     {% endif %}
@@ -25,5 +26,6 @@
 
   </div>
 {% endfor %}
+</div>
 
 {% endblock %}
