@@ -21,12 +21,12 @@
       Your browser does not support the audio element.
     </audio>
     <br>
-    <a href="{{ MEDIA_URL }}{{ program.file }}">Click to download</a>
+    <a href="{{ MEDIA_URL }}{{ program.file }}">Download .mp3</a>
     {% endif %}
 
     {% if program.supplemental_content_url %}
       <br>
-      <a href="{{ program.supplemental_content_url }}">Click here for
+      <a href="{{ program.supplemental_content_url }}">See
         transcript and photos</a>
     {% endif %}
   </div>
