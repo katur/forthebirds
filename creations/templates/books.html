@@ -15,7 +15,20 @@
 
     <div class="info">
       <span class="title">{{ book.title }}</span>
-      <span class="year">{{ book.year_published }}</span>
+      <span class="date">{{ book.date_published|date:"Y" }}</span>
+
+      {% if book.publisher %}
+        <span class="publisher">Publisher: {{ book.publisher }}</span>
+      {% endif %}
+
+      {% if book.isbn_10 %}
+        <span>ISBN-10: {{ book.isbn_10 }}</span>
+      {% endif %}
+
+      {% if book.isbn_13 %}
+        <span>ISBN-13: {{ book.isbn_13 }}</span>
+      {% endif %}
+
       <span class="description">{{ book.description }}</span>
 
       {% if book.purchase_url %}
