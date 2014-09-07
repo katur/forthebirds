@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body_id %}ways-to-help{% endblock %}
+
+{% block page_title %}101 Ways To Help Birds{% endblock %}
+
+{% block content %}
+
+<ul>
+{% for way in ways %}
+  <li>
+    <a href="{% url 'waytohelp_url' id=way.id %}">{{ way.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

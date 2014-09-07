@@ -2,6 +2,7 @@
 {% url 'birds_url' as birds_url %}
 {% url 'books_url' as books_url %}
 {% url 'radio_url' as radio_url %}
+{% url 'waystohelp_url' as waystohelp_url %}
 
 <div id="header">
   Laura Erickson's
@@ -36,6 +37,13 @@
         class="active"
         {% endifequal %}>
       Radio
+    </a>
+
+    <a href="{{ waystohelp_url }}"
+        {% ifequal request.path radio_url %}
+        class="active"
+        {% endifequal %}>
+      101 Ways To Help Birds
     </a>
 
     <a href="http://lauraerickson.blogspot.com">Blog</a>

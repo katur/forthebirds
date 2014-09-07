@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}way-to-help{% endblock %}
+
+{% block page_title %}{{ way.title }}{% endblock %}
+
+{% block content %}
+
+{{ way.text|markdown }}
+
+{% endblock %}
