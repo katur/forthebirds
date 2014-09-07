@@ -23,7 +23,7 @@
 
       {% if program.file %}
       <br>
-      <audio controls>
+      <audio controls preload="none">
         <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
