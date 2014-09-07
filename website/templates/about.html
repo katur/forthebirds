@@ -8,4 +8,5 @@
 {% block content %}
   <img src="{{ laura.userprofile.primary_photo }}" />
   {{ laura.userprofile.about|markdown }}
+  <a href="{% url 'books_url' %}">Laura's Books</a>
 {% endblock %}
