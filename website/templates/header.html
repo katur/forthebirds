@@ -1,6 +1,6 @@
 {% url 'home_url' as home_url %}
 {% url 'birds_url' as birds_url %}
-{% url 'books_url' as books_url %}
+{% url 'about_url' as about_url %}
 {% url 'radio_url' as radio_url %}
 {% url 'waystohelp_url' as waystohelp_url %}
 
@@ -18,18 +18,18 @@
       Home
     </a>
 
+    <a href="{{ about_url }}"
+        {% ifequal request.path about_url %}
+        class="active"
+        {% endifequal %}>
+      About Laura
+    </a>
+
     <a href="{{ birds_url }}"
         {% ifequal request.path birds_url %}
         class="active"
         {% endifequal %}>
       Birds
-    </a>
-
-    <a href="{{ books_url }}"
-        {% ifequal request.path books_url %}
-        class="active"
-        {% endifequal %}>
-      Books
     </a>
 
     <a href="{{ radio_url }}"
