@@ -7,8 +7,7 @@
 
 {% block content %}
   <img id="primary-photo"
-       src="{{ MEDIA_URL }}{{ laura.userprofile.primary_photo }}"
-       width="500" height="440" />
+       src="{{ MEDIA_URL }}{{ laura.userprofile.primary_photo }}" />
   <div id="blurb">{{ laura.userprofile.about|markdown }}</div>
 
   <div id="links">
