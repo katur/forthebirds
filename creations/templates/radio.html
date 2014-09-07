@@ -12,12 +12,12 @@
   <li>{{ year.grouper }}</li>
   <ul>
   {% for program in year.list %}
-    <li>
+    <li class="program">
       <b>{{ program.title }}</b> ({{ program.original_air_date }})
       <br>
       {{ program.description }}
       {% if program.supplemental_content_url %}
-        <a href="{{ program.supplemental_content_url }}">See
+        <br><a href="{{ program.supplemental_content_url }}">See
           transcript and photos</a>
       {% endif %}
 
