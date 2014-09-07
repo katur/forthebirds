@@ -6,7 +6,8 @@
 {% block page_title %}About {{ laura.get_full_name }}{% endblock %}
 
 {% block content %}
-  <img src="{{ MEDIA_URL }}{{ laura.userprofile.primary_photo }}" />
+  <img src="{{ MEDIA_URL }}{{ laura.userprofile.primary_photo }}"
+       width="500" height="440" />
   {{ laura.userprofile.about|markdown }}
   <a href="{% url 'books_url' %}">Laura's Books</a>
 {% endblock %}
