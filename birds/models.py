@@ -110,8 +110,10 @@ class MinnesotaSpecies(models.Model):
     mou_status = models.CharField('MOU status', max_length=50, blank=True)
     mou_breeding_status = models.NullBooleanField('MOU breeding status',
                                                   default=None)
-    mou_annotation = models.TextField('MOU annotation', blank=True)
+    mou_annotation = models.CharField('MOU annotation', max_length=500,
+                                      blank=True)
     range_in_minnesota = models.CharField(max_length=500, blank=True)
+    miscellaneous_notes = models.TextField(blank=True)
 
     class Meta:
         ordering = ['species__absolute_position']
