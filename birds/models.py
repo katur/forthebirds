@@ -108,8 +108,8 @@ class MinnesotaSpecies(models.Model):
     species = models.OneToOneField(Species, primary_key=True)
     include_in_book = models.NullBooleanField(default=None)
     range_in_minnesota = models.CharField(max_length=500, blank=True)
-    mou_category = models.CharField(max_length=50, blank=True)
-    mou_notes = models.TextField(blank=True)
+    mou_category = models.CharField('MOU category', max_length=50, blank=True)
+    mou_notes = models.TextField('MOU notes', blank=True)
 
     class Meta:
         ordering = ['species__absolute_position']
