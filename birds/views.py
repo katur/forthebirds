@@ -23,7 +23,7 @@ def birds(request):
         'search_birds': search_birds,
     }
 
-    return render('birds.html', context)
+    return render(request, 'birds.html', context)
 
 
 def birds_taxonomical(request):
@@ -53,7 +53,7 @@ def birds_taxonomical(request):
         'birds': birds,
     }
 
-    return render('birds_taxonomical.html', context)
+    return render(request, 'birds_taxonomical.html', context)
 
 
 def bird(request, id):
@@ -63,4 +63,4 @@ def bird(request, id):
         'bird': bird,
     }
 
-    return render('bird.html', context)
+    return render(request, 'bird.html', context)

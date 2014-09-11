@@ -10,7 +10,7 @@ def ways_to_help(request):
         'ways': ways_to_help,
     }
 
-    return render('101waystohelpbirds.html', context)
+    return render(request, '101waystohelpbirds.html', context)
 
 
 def way_to_help(request, id):
@@ -20,4 +20,4 @@ def way_to_help(request, id):
         'way': way_to_help,
     }
 
-    return render('waytohelpbirds.html', context)
+    return render(request, 'waytohelpbirds.html', context)

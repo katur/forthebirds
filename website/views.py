@@ -4,7 +4,7 @@ from website.models import User
 
 
 def home(request):
-    return render('home.html', {})
+    return render(request, 'home.html', {})
 
 
 def about(request):
@@ -12,4 +12,4 @@ def about(request):
     context = {
         'laura': laura,
     }
-    return render('about.html', context)
+    return render(request, 'about.html', context)

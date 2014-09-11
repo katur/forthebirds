@@ -9,7 +9,7 @@ def books(request):
         'books': books,
     }
 
-    return render('books.html', context)
+    return render(request, 'books.html', context)
 
 
 def radio(request):
@@ -18,4 +18,4 @@ def radio(request):
         'programs': programs,
     }
 
-    return render('radio.html', context)
+    return render(request, 'radio.html', context)
