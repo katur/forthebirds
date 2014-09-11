@@ -10,8 +10,8 @@
 <ul id="all-programs">
 {% regroup programs by original_air_date|date:"Y" as years %}
 {% for year in years %}
-  <li>{{ year.grouper }}</li>
-  <ul>
+  <li class="year">{{ year.grouper }}</li>
+  <ul class="year-programs">
   {% for program in year.list %}
     <li class="program">
       <div class="program-title">
