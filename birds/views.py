@@ -9,7 +9,7 @@ def birds(request):
     if 'query' in request.GET:
         was_search = True
         terms = request.GET['query'].split()
-        birds = Species.objects.filter(is_hidden=False)
+        birds = Species.objects.filter(is_visible=True)
         for bird in birds:
             for term in terms:
                 if (term.lower() not in bird.name.lower() and
@@ -45,7 +45,7 @@ def birds_taxonomical(request):
         'ON (S.parent_id=F.id OR G.parent_id=F.id) AND F.level_id=2 '
         'LEFT JOIN birds_taxonomicgroup AS O '
         'ON F.parent_id=O.id '
-        'WHERE species.is_hidden = 0 '
+        'WHERE species.is_visible = 1 '
         'ORDER BY species.absolute_position'
     )
 

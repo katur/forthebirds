@@ -23,12 +23,12 @@ class SpeciesAdmin(admin.ModelAdmin):
         'bird_of_the_week_name',
         'main_photo_url',
         'absolute_position',
-        'is_hidden',
+        'is_visible',
         'is_in_minnesota_list',
     )
 
     list_filter = (
-        'is_hidden',
+        'is_visible',
         'nacc_is_accidental',
         'nacc_is_hawaiian',
         'nacc_is_introduced',
@@ -55,7 +55,7 @@ class SpeciesAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('is_hidden', 'main_photo_url',
+            'fields': ('is_visible', 'main_photo_url',
                        'blurb', 'bird_of_the_week_name',),
         }),
         ('From AOU checklist', {

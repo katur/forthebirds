@@ -32,8 +32,6 @@ class Species(models.Model):
     name = models.CharField(max_length=50, unique=True)
     parent = models.ForeignKey(TaxonomicGroup)
     common_name = models.CharField(max_length=50)
-    is_hidden = models.BooleanField('Hidden from website',
-                                    default=False)
     is_visible = models.BooleanField('Visible on website',
                                      default=True)
     blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
