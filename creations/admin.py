@@ -12,7 +12,9 @@ class BookAdmin(admin.ModelAdmin):
         'title',
         'date_published',
     )
+
     filter_horizontal = ('species',)
+
     fieldsets = (
         (None, {
             'fields': creation_id_fields
@@ -33,7 +35,9 @@ class RadioProgramAdmin(admin.ModelAdmin):
         'title',
         'original_air_date',
     )
+
     filter_horizontal = ('species',)
+
     fieldsets = (
         (None, {
             'fields': creation_id_fields

@@ -27,11 +27,13 @@ class TaxonomicGroup(models.Model):
 
 class Species(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
-    absolute_position = models.PositiveSmallIntegerField(null=True)
+    absolute_position = models.PositiveSmallIntegerField(
+        'Taxonomic position', null=True)
     name = models.CharField(max_length=50, unique=True)
     parent = models.ForeignKey(TaxonomicGroup)
     common_name = models.CharField(max_length=50)
-    is_hidden = models.BooleanField(default=False)
+    is_hidden = models.BooleanField('Hidden from website',
+                                    default=False)
     blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     main_photo_url = models.TextField(blank=True)
     bird_of_the_week_name = models.CharField(max_length=50, blank=True)

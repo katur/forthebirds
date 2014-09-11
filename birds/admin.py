@@ -27,14 +27,6 @@ class SpeciesAdmin(admin.ModelAdmin):
         'is_in_minnesota_list',
     )
 
-    def is_in_minnesota_list(self, obj):
-        try:
-            MinnesotaSpecies.objects.get(species=obj)
-            return True
-        except MinnesotaSpecies.DoesNotExist:
-            return False
-    is_in_minnesota_list.boolean = True
-
     list_filter = (
         'is_hidden',
         'nacc_is_accidental',
@@ -50,14 +42,34 @@ class SpeciesAdmin(admin.ModelAdmin):
         'common_name',
     )
 
-    readonly_fields = ('common_name', 'name', 'french_name', 'parent',
-                       'id', 'absolute_position',
-                       'nacc_is_accidental',
-                       'nacc_is_hawaiian', 'nacc_is_introduced',
-                       'nacc_is_nonbreeding', 'nacc_is_extinct',
-                       'nacc_is_misplaced', 'nacc_annotation')
-
     actions = [add_to_minnesota_species]
+
+    aou_fields = ('common_name', 'name', 'parent',
+                  'id', 'absolute_position',
+                  'french_name', 'nacc_is_accidental',
+                  'nacc_is_hawaiian', 'nacc_is_introduced',
+                  'nacc_is_nonbreeding', 'nacc_is_extinct',
+                  'nacc_is_misplaced', 'nacc_annotation')
+
+    readonly_fields = aou_fields
+
+    fieldsets = (
+        (None, {
+            'fields': ('is_hidden', 'main_photo_url',
+                       'blurb', 'bird_of_the_week_name',),
+        }),
+        ('From AOU checklist', {
+            'fields': aou_fields,
+        }),
+    )
+
+    def is_in_minnesota_list(self, obj):
+        try:
+            MinnesotaSpecies.objects.get(species=obj)
+            return True
+        except MinnesotaSpecies.DoesNotExist:
+            return False
+    is_in_minnesota_list.boolean = True
 
 
 class MinnesotaSpeciesAdmin(admin.ModelAdmin):
@@ -85,6 +97,22 @@ class MinnesotaSpeciesAdmin(admin.ModelAdmin):
         'species__name',
     )
 
+    mou_fields = (
+        'mou_status',
+        'mou_breeding_status',
+        'mou_annotation',
+    )
+
+    fieldsets = (
+        (None, {
+            'fields': ('species', 'include_in_book',
+                       'range_in_minnesota', 'miscellaneous_notes',),
+        }),
+        ('From MOU checklist', {
+            'fields': mou_fields,
+        }),
+    )
+
 
 class TaxonomicGroupAdmin(admin.ModelAdmin):
     list_display = (
@@ -104,7 +132,17 @@ class TaxonomicGroupAdmin(admin.ModelAdmin):
         'common_name',
     )
 
-    readonly_fields = ('name', 'level', 'parent', 'relative_position')
+    aou_fields = ('name', 'level', 'parent', 'relative_position')
+    readonly_fields = aou_fields
+
+    fieldsets = (
+        (None, {
+            'fields': ('common_name',),
+        }),
+        ('From AOU checklist', {
+            'fields': aou_fields,
+        }),
+    )
 
 
 admin.site.register(Species, SpeciesAdmin)
