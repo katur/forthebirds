@@ -95,10 +95,6 @@ class TaxonomicGroupAdmin(admin.ModelAdmin):
         'relative_position',
     )
 
-    list_editable = (
-        'common_name',
-    )
-
     list_filter = (
         'level',
     )
