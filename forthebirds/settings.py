@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'markdown_deux',
+    'taggit',
 
     'website',
     'birds',
