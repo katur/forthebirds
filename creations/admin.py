@@ -8,6 +8,7 @@ class BookAdmin(admin.ModelAdmin):
         'title',
         'year_published',
     )
+    filter_horizontal = ('species',)
 
 
 class RadioProgramAdmin(admin.ModelAdmin):
@@ -15,6 +16,7 @@ class RadioProgramAdmin(admin.ModelAdmin):
         'title',
         'original_air_date',
     )
+    filter_horizontal = ('species',)
 
 
 admin.site.register(Book, BookAdmin)
