@@ -70,6 +70,7 @@ class MinnesotaSpeciesAdmin(admin.ModelAdmin):
         'include_in_book',
         'mou_status',
         'mou_breeding_status',
+        'mou_annotation',
     )
 
     list_filter = (
@@ -82,6 +83,7 @@ class MinnesotaSpeciesAdmin(admin.ModelAdmin):
         'include_in_book',
         'mou_status',
         'mou_breeding_status',
+        'mou_annotation',
     )
 
     search_fields = (
