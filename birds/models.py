@@ -107,9 +107,11 @@ class Species(models.Model):
 class MinnesotaSpecies(models.Model):
     species = models.OneToOneField(Species, primary_key=True)
     include_in_book = models.NullBooleanField(default=None)
+    mou_status = models.CharField('MOU status', max_length=50, blank=True)
+    mou_breeding_status = models.NullBooleanField('MOU breeding status',
+                                                  default=None)
+    mou_annotation = models.TextField('MOU annotation', blank=True)
     range_in_minnesota = models.CharField(max_length=500, blank=True)
-    mou_category = models.CharField('MOU category', max_length=50, blank=True)
-    mou_notes = models.TextField('MOU notes', blank=True)
 
     class Meta:
         ordering = ['species__absolute_position']
