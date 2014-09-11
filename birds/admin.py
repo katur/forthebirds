@@ -24,7 +24,16 @@ class SpeciesAdmin(admin.ModelAdmin):
         'main_photo_url',
         'absolute_position',
         'is_hidden',
+        'is_in_minnesota_list',
     )
+
+    def is_in_minnesota_list(self, obj):
+        try:
+            MinnesotaSpecies.objects.get(species=obj)
+            return True
+        except MinnesotaSpecies.DoesNotExist:
+            return False
+    is_in_minnesota_list.boolean = True
 
     list_filter = (
         'is_hidden',

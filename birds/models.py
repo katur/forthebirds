@@ -49,7 +49,7 @@ class Species(models.Model):
         verbose_name_plural = 'bird species'
 
     def __unicode__(self):
-        return self.name
+        return self.common_name
 
     def get_nacc_statuses(self):
         statuses = []
@@ -116,4 +116,4 @@ class MinnesotaSpecies(models.Model):
         verbose_name_plural = 'Minnesota species'
 
     def __unicode__(self):
-        return str(self.common_name)
+        return str(self.species)
