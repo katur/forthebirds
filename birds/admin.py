@@ -45,10 +45,6 @@ class SpeciesAdmin(admin.ModelAdmin):
         'nacc_is_misplaced',
     )
 
-    list_editable = (
-        'is_hidden',
-    )
-
     search_fields = (
         'name',
         'common_name',
@@ -80,8 +76,6 @@ class MinnesotaSpeciesAdmin(admin.ModelAdmin):
     )
 
     list_editable = (
-        'include_in_book',
-        'mou_status',
         'mou_breeding_status',
         'mou_annotation',
     )

@@ -15,7 +15,7 @@
     <li class="program">
       <b>{{ program.title }}</b> ({{ program.original_air_date }})
       <br>
-      {{ program.description }}
+      {{ program.description|markdown }}
       {% if program.supplemental_content_url %}
         <br><a href="{{ program.supplemental_content_url }}">See
           transcript and photos</a>

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load markdown_deux_tags %}
 
 {% block body_id %}books{% endblock %}
 
@@ -29,7 +30,7 @@
         <span>ISBN-13: {{ book.isbn_13 }}</span>
       {% endif %}
 
-      <span class="description">{{ book.description }}</span>
+      <span class="description">{{ book.description|markdown }}</span>
 
       {% if book.purchase_url %}
       <a class="purchase-link" href="{{ book.purchase_url }}">
