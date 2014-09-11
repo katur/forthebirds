@@ -69,6 +69,7 @@ class MinnesotaSpeciesAdmin(admin.ModelAdmin):
         'species',
         'include_in_book',
         'mou_status',
+        'mou_breeding_status',
         'range_in_minnesota',
     )
 
