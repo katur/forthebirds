@@ -19,7 +19,7 @@
       <span class="date">{{ book.date_published|date:"Y" }}</span>
 
       {% if book.publisher %}
-        <span class="publisher">Publisher: {{ book.publisher }}</span>
+        <span class="publisher">Published by {{ book.publisher }}</span>
       {% endif %}
 
       {% if book.isbn_10 %}
@@ -33,8 +33,28 @@
       <span class="description">{{ book.description|markdown }}</span>
 
       {% if book.purchase_url %}
-      <a class="purchase-link" href="{{ book.purchase_url }}">
-          click to purchase</a>
+      <span><a class="purchase-link" href="{{ book.purchase_url }}">
+          click to purchase</a></span>
+      {% endif %}
+
+      {% if book.species.all|length %}
+      <span>Relevant species:</span>
+      <ul class="relevant-species">
+      {% for bird in book.species.all %}
+        <li>
+          <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
+        </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if book.tags.all|length %}
+      <span>Tags:</span>
+      <ul class="tags">
+      {% for tag in book.tags.all %}
+        <li>{{ tag }}</li>
+      {% endfor %}
+      </ul>
       {% endif %}
     </div>
 
