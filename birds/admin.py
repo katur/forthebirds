@@ -68,18 +68,20 @@ class MinnesotaSpeciesAdmin(admin.ModelAdmin):
     list_display = (
         'species',
         'include_in_book',
-        'mou_category',
+        'mou_status',
         'range_in_minnesota',
     )
 
     list_filter = (
         'include_in_book',
-        'mou_category',
+        'mou_status',
+        'mou_breeding_status',
     )
 
     list_editable = (
         'include_in_book',
-        'mou_category',
+        'mou_status',
+        'mou_breeding_status',
     )
 
     search_fields = (
