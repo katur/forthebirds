@@ -116,4 +116,4 @@ class MinnesotaSpecies(models.Model):
         verbose_name_plural = 'Minnesota species'
 
     def __unicode__(self):
-        return str(self.species)
+        return str(self.common_name)
