@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from birds.models import (Species, MinnesotaSpecies, TaxonomicGroup)
+from birds.models import Species, MinnesotaSpecies, TaxonomicGroup
 
 
 def add_to_minnesota_species(modeladmin, request, queryset):
@@ -17,30 +17,15 @@ add_to_minnesota_species.short_description = ('Add this bird to MN list if '
 
 
 class SpeciesAdmin(admin.ModelAdmin):
-    list_display = (
-        'common_name',
-        'name',
-        'bird_of_the_week_name',
-        'main_photo_url',
-        'absolute_position',
-        'is_visible',
-        'is_in_minnesota_list',
-    )
+    list_display = ('common_name', 'name', 'bird_of_the_week_name',
+                    'main_photo_url', 'absolute_position', 'is_visible',
+                    'is_in_minnesota_list',)
 
-    list_filter = (
-        'is_visible',
-        'nacc_is_accidental',
-        'nacc_is_hawaiian',
-        'nacc_is_introduced',
-        'nacc_is_nonbreeding',
-        'nacc_is_extinct',
-        'nacc_is_misplaced',
-    )
+    list_filter = ('is_visible', 'nacc_is_accidental', 'nacc_is_hawaiian',
+                   'nacc_is_introduced', 'nacc_is_nonbreeding',
+                   'nacc_is_extinct', 'nacc_is_misplaced',)
 
-    search_fields = (
-        'name',
-        'common_name',
-    )
+    search_fields = ('name', 'common_name',)
 
     actions = [add_to_minnesota_species]
 
@@ -73,40 +58,21 @@ class SpeciesAdmin(admin.ModelAdmin):
 
 
 class MinnesotaSpeciesAdmin(admin.ModelAdmin):
-    list_display = (
-        'species',
-        'include_in_book',
-        'mou_status',
-        'mou_breeding_status',
-        'mou_annotation',
-    )
+    list_display = ('species', 'include_in_book', 'mou_status',
+                    'mou_breeding_status', 'mou_annotation',)
 
-    list_filter = (
-        'include_in_book',
-        'mou_status',
-        'mou_breeding_status',
-    )
+    list_filter = ('include_in_book', 'mou_status', 'mou_breeding_status',)
 
-    list_editable = (
-        'mou_breeding_status',
-        'mou_annotation',
-    )
+    list_editable = ('mou_breeding_status', 'mou_annotation',)
 
-    search_fields = (
-        'species__common_name',
-        'species__name',
-    )
+    search_fields = ('species__common_name', 'species__name',)
 
-    mou_fields = (
-        'mou_status',
-        'mou_breeding_status',
-        'mou_annotation',
-    )
+    mou_fields = ('mou_status', 'mou_breeding_status', 'mou_annotation',)
 
     fieldsets = (
         (None, {
-            'fields': ('species', 'include_in_book',
-                       'range_in_minnesota', 'miscellaneous_notes',),
+            'fields': ('species', 'include_in_book', 'range_in_minnesota',
+                       'miscellaneous_notes',),
         }),
         ('From MOU checklist', {
             'fields': mou_fields,
@@ -115,24 +81,15 @@ class MinnesotaSpeciesAdmin(admin.ModelAdmin):
 
 
 class TaxonomicGroupAdmin(admin.ModelAdmin):
-    list_display = (
-        'name',
-        'common_name',
-        'level',
-        'parent',
-        'relative_position',
-    )
+    list_display = ('name', 'common_name', 'level', 'parent',
+                    'relative_position',)
 
-    list_filter = (
-        'level',
-    )
+    list_filter = ('level',)
 
-    search_fields = (
-        'name',
-        'common_name',
-    )
+    search_fields = ('name', 'common_name',)
 
     aou_fields = ('name', 'level', 'parent', 'relative_position')
+
     readonly_fields = aou_fields
 
     fieldsets = (

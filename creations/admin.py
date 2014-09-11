@@ -8,10 +8,7 @@ creation_tagging_fields = ('species', 'tags',)
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = (
-        'title',
-        'date_published',
-    )
+    list_display = ('title', 'date_published',)
 
     filter_horizontal = ('species',)
 
@@ -31,10 +28,7 @@ class BookAdmin(admin.ModelAdmin):
 
 
 class RadioProgramAdmin(admin.ModelAdmin):
-    list_display = (
-        'title',
-        'original_air_date',
-    )
+    list_display = ('title', 'original_air_date',)
 
     filter_horizontal = ('species',)
 
