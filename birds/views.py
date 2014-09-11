@@ -1,5 +1,4 @@
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.shortcuts import render, get_object_or_404
 
 from birds.models import Species
 
@@ -19,13 +18,12 @@ def birds(request):
             else:
                 search_birds.append(bird)
 
-    template_dictionary = {
+    context = {
         'was_search': was_search,
         'search_birds': search_birds,
     }
 
-    return render_to_response('birds.html', template_dictionary,
-                              context_instance=RequestContext(request))
+    return render('birds.html', context)
 
 
 def birds_taxonomical(request):
@@ -51,20 +49,18 @@ def birds_taxonomical(request):
         'ORDER BY species.absolute_position'
     )
 
-    template_dictionary = {
+    context = {
         'birds': birds,
     }
 
-    return render_to_response('birds_taxonomical.html', template_dictionary,
-                              context_instance=RequestContext(request))
+    return render('birds_taxonomical.html', context)
 
 
 def bird(request, id):
     bird = get_object_or_404(Species, id=id)
 
-    template_dictionary = {
+    context = {
         'bird': bird,
     }
 
-    return render_to_response('bird.html', template_dictionary,
-                              context_instance=RequestContext(request))
+    return render('bird.html', context)

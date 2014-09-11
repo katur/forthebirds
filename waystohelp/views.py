@@ -1,26 +1,23 @@
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.shortcuts import render, get_object_or_404
 
 from waystohelp.models import WayToHelp
 
 
 def ways_to_help(request):
     ways_to_help = WayToHelp.objects.all()
-    template_dictionary = {
+
+    context = {
         'ways': ways_to_help,
     }
 
-    return render_to_response('101waystohelpbirds.html',
-                              template_dictionary,
-                              context_instance=RequestContext(request))
+    return render('101waystohelpbirds.html', context)
 
 
 def way_to_help(request, id):
     way_to_help = get_object_or_404(WayToHelp, id=id)
 
-    template_dictionary = {
+    context = {
         'way': way_to_help,
     }
 
-    return render_to_response('waytohelpbirds.html', template_dictionary,
-                              context_instance=RequestContext(request))
+    return render('waytohelpbirds.html', context)
