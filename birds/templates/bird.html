@@ -60,8 +60,16 @@
 {% endif %}
 
 {% if bird.blurb %}
-<div id="blurb" class="markdown-section">
+<div id="blurb" class="card markdown-section">
   {{ bird.blurb|markdown }}
+</div>
+{% endif %}
+
+{% if bird.creation_set %}
+<div id="creations" class="card">
+  {% for creation in bird.creation_set.all %}
+    <a href="{{ creation.get_absolute_url }}">{{ creation }}</a>
+  {% endfor %}
 </div>
 {% endif %}
 

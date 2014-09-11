@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from taggit.managers import TaggableManager
 
@@ -16,6 +17,9 @@ class Creation(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return None
+
 
 class Book(Creation):
     purchase_url = models.CharField(max_length=500, blank=True)
@@ -28,6 +32,9 @@ class Book(Creation):
     class Meta:
         ordering = ['-date_published']
 
+    def get_absolute_url(self):
+        return reverse('creations.views.books')
+
 
 class RadioProgram(Creation):
     original_air_date = models.DateField(null=True, blank=True)
@@ -38,3 +45,6 @@ class RadioProgram(Creation):
 
     class Meta:
         ordering = ['-original_air_date']
+
+    def get_absolute_url(self):
+        return reverse('creations.views.radio')
