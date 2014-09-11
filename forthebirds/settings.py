@@ -32,7 +32,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'south',
     'markdown_deux',
 
     'website',
@@ -84,7 +83,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 
 # Needed so overridden admin templates take precedence
 TEMPLATE_DIRS = (
-    PROJECT_DIR + '/website/templates/'
+    PROJECT_DIR + '/website/templates/',
 )
 
 MARKDOWN_PROMPT = (

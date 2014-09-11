@@ -1,34 +1,26 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'WayToHelp'
-        db.create_table(u'waystohelp_waytohelp', (
-            ('id', self.gf('django.db.models.fields.PositiveIntegerField')(primary_key=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('text', self.gf('django.db.models.fields.TextField')(blank=True)),
-        ))
-        db.send_create_signal(u'waystohelp', ['WayToHelp'])
+    dependencies = [
+    ]
 
-
-    def backwards(self, orm):
-        # Deleting model 'WayToHelp'
-        db.delete_table(u'waystohelp_waytohelp')
-
-
-    models = {
-        u'waystohelp.waytohelp': {
-            'Meta': {'ordering': "['id']", 'object_name': 'WayToHelp'},
-            'id': ('django.db.models.fields.PositiveIntegerField', [], {'primary_key': 'True'}),
-            'text': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
-        }
-    }
-
-    complete_apps = ['waystohelp']
+    operations = [
+        migrations.CreateModel(
+            name='WayToHelp',
+            fields=[
+                ('id', models.PositiveIntegerField(serialize=False, primary_key=True)),
+                ('title', models.CharField(max_length=200)),
+                ('text', models.TextField(help_text=b'Use Markdown syntax for italics, bullets, etc. See <a href="http://www.darkcoding.net/software/markdown-quick-reference">a quick reference</a>, <a href="http://www.markdowntutorial.com/">a tutorial</a>, or practice <a href="http://dillinger.io/">here</a>. ', blank=True)),
+            ],
+            options={
+                'ordering': ['id'],
+                'verbose_name_plural': 'ways to help',
+            },
+            bases=(models.Model,),
+        ),
+    ]
