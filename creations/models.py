@@ -22,7 +22,6 @@ class Book(Creation):
     isbn_10 = models.CharField(max_length=20, blank=True)
     isbn_13 = models.CharField(max_length=20, blank=True)
     date_published = models.DateField(null=True, blank=True)
-    year_published = models.PositiveSmallIntegerField(null=True, blank=True)
 
     class Meta:
         ordering = ['-date_published']

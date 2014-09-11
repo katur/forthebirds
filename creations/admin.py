@@ -10,7 +10,7 @@ creation_tagging_fields = ('species', 'tags',)
 class BookAdmin(admin.ModelAdmin):
     list_display = (
         'title',
-        'year_published',
+        'date_published',
     )
     filter_horizontal = ('species',)
     fieldsets = (
