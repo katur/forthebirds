@@ -102,3 +102,18 @@ class Species(models.Model):
         self.nacc_is_nonbreeding = other.nacc_is_nonbreeding
         self.nacc_is_extinct = other.nacc_is_extinct
         self.nacc_is_misplaced = other.nacc_is_misplaced
+
+
+class MinnesotaSpecies(models.Model):
+    species = models.OneToOneField(Species, primary_key=True)
+    include_in_book = models.NullBooleanField(default=None)
+    range_in_minnesota = models.CharField(max_length=500, blank=True)
+    mou_category = models.CharField(max_length=50, blank=True)
+    mou_notes = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ['species__absolute_position']
+        verbose_name_plural = 'Minnesota species'
+
+    def __unicode__(self):
+        return str(self.species)

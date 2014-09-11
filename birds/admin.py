@@ -1,6 +1,19 @@
 from django.contrib import admin
 
-from birds.models import (Species, TaxonomicGroup)
+from birds.models import (Species, MinnesotaSpecies, TaxonomicGroup)
+
+
+def add_to_minnesota_species(modeladmin, request, queryset):
+    for species in queryset:
+        print species
+        try:
+            minnesota_species = MinnesotaSpecies.objects.get(
+                species=species)
+        except MinnesotaSpecies.DoesNotExist:
+            minnesota_species = MinnesotaSpecies(species=species)
+            minnesota_species.save()
+add_to_minnesota_species.short_description = ('Add this bird to MN list if '
+                                              'not already there')
 
 
 class SpeciesAdmin(admin.ModelAdmin):
@@ -39,6 +52,32 @@ class SpeciesAdmin(admin.ModelAdmin):
                        'nacc_is_nonbreeding', 'nacc_is_extinct',
                        'nacc_is_misplaced', 'nacc_annotation')
 
+    actions = [add_to_minnesota_species]
+
+
+class MinnesotaSpeciesAdmin(admin.ModelAdmin):
+    list_display = (
+        'species',
+        'include_in_book',
+        'mou_category',
+        'range_in_minnesota',
+    )
+
+    list_filter = (
+        'include_in_book',
+        'mou_category',
+    )
+
+    list_editable = (
+        'include_in_book',
+        'mou_category',
+    )
+
+    search_fields = (
+        'species__common_name',
+        'species__name',
+    )
+
 
 class TaxonomicGroupAdmin(admin.ModelAdmin):
     list_display = (
@@ -66,4 +105,5 @@ class TaxonomicGroupAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Species, SpeciesAdmin)
+admin.site.register(MinnesotaSpecies, MinnesotaSpeciesAdmin)
 admin.site.register(TaxonomicGroup, TaxonomicGroupAdmin)
