@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render, get_object_or_404
 
 from birds.models import Species
@@ -58,9 +60,20 @@ def birds_taxonomical(request):
 
 def bird(request, id):
     bird = get_object_or_404(Species, id=id)
+    actual_creations = []
+    for creation in bird.creation_set.all():
+        actual_creation = creation.get_actual_instance()
+        class_name = actual_creation.__class__.__name__
+        words = re.findall('[A-Z][^A-Z]*', class_name)
+        actual_creation.category = ' '.join(words)
+        actual_creations.append(actual_creation)
+
+    actual_creations = sorted(actual_creations,
+                              key=lambda x: x.category)
 
     context = {
         'bird': bird,
+        'actual_creations': actual_creations,
     }
 
     return render(request, 'bird.html', context)

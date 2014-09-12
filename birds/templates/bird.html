@@ -46,16 +46,20 @@
 {% if bird.bird_of_the_week_name or bird.links %}
 <div id="links" class="card">
   <h3>External Links</h3>
-  <ul>
+
   {% if bird.bird_of_the_week_name %}
-    <li><a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
-        ABC Bird of the Week</a></li>
+  <span>
+    <a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
+      ABC Bird of the Week</a>
+  </span>
   {% endif %}
 
   {% for link in bird.links %}
-    <li><a href="{{ link.url }}">{{ link.title }}</li>
+  <span>
+    <a href="{{ link.url }}">{{ link.title }}</a>
+  </span>
   {% endfor %}
-  </ul>
+
 </div>
 {% endif %}
 
@@ -65,12 +69,20 @@
 </div>
 {% endif %}
 
-{% if bird.creation_set %}
-<div id="creations" class="card">
-  {% for creation in bird.creation_set.all %}
-    <a href="{{ creation.get_absolute_url }}">{{ creation }}</a>
+{% if actual_creations %}
+{% regroup actual_creations by category as category_list %}
+{% for category in category_list %}
+<div class="card">
+  <h3>{{ category.grouper }}{{ category.list|pluralize }}</h3>
+
+  {% for creation in category.list %}
+  <span>
+    <a href="{{ creation.get_absolute_url }}">{{ creation.title }}</a>
+  </span>
   {% endfor %}
+
 </div>
+{% endfor %}
 {% endif %}
 
 {% endblock %}

@@ -5,9 +5,10 @@ from taggit.managers import TaggableManager
 
 from forthebirds.settings import MARKDOWN_PROMPT
 from birds.models import Species
+from utils.models import RealInstanceProvider
 
 
-class Creation(models.Model):
+class Creation(models.Model, RealInstanceProvider):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True,
                                    help_text=MARKDOWN_PROMPT)
@@ -35,6 +36,9 @@ class Book(Creation):
     def get_absolute_url(self):
         return reverse('creations.views.books')
 
+    def __unicode__(self):
+        return 'Book: ' + self.title
+
 
 class RadioProgram(Creation):
     original_air_date = models.DateField(null=True, blank=True)
@@ -48,3 +52,6 @@ class RadioProgram(Creation):
 
     def get_absolute_url(self):
         return reverse('creations.views.radio')
+
+    def __unicode__(self):
+        return 'Radio Program: ' + self.title

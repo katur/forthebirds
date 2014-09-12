@@ -36,9 +36,10 @@ INSTALLED_APPS = (
     'taggit',
 
     'website',
+    'utils',
     'birds',
-    'waystohelp',
     'creations',
+    'waystohelp',
 )
 
 MIDDLEWARE_CLASSES = (
