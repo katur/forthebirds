@@ -18,12 +18,19 @@
         <b>{{ program.title }}</b> ({{ program.original_air_date }})
       </div>
 
-      <div>{{ program.description|markdown }}</div>
+      <div>
+        {{ program.description|markdown }}
+
+        {% if program.supplemental_content_url %}
+          <a href="{{ program.supplemental_content_url }}">
+            See transcript and photos</a>
+        {% endif %}
+      </div>
 
       {% if program.species.all|length %}
-      <div>
+      <div class="scroll-box">
         <span>Relevant species:</span>
-        <ul class="relevant-species">
+        <ul>
         {% for bird in program.species.all %}
           <li>
             <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
@@ -34,9 +41,9 @@
       {% endif %}
 
       {% if program.tags.all|length %}
-      <div>
+      <div class="scroll-box">
         <span>Tags:</span>
-        <ul class="tags">
+        <ul>
         {% for tag in program.tags.all %}
           <li>{{ tag }}</li>
         {% endfor %}
@@ -44,10 +51,6 @@
       </div>
       {% endif %}
 
-      {% if program.supplemental_content_url %}
-        <div><a href="{{ program.supplemental_content_url }}">See
-            transcript and photos</a></div>
-      {% endif %}
 
       {% if program.file %}
       <div>

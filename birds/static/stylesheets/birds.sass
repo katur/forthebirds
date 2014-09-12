@@ -1,51 +1,9 @@
 #birds
-  #alternate-search
-    margin-top: 30px
-
   ul
-    line-height: 150%
-    &.collapsed
-      display: none
+    @include bulleted-list
 
-    li
-      &.no-subfamily
-        font-size: 14px
-        font-style: italic
-        color: gray
+  #search-results
+    margin-top: $vertical-whitespace / 2
 
-  .plus-sign
-    position: relative
-    top: -1px
-    display: inline-block
-    width: 8px
-    height: 8px
-
-    &:hover
-      cursor: pointer
-
-    &::after, &::before
-      content: ' '
-      position: absolute
-      background: $peach-pink
-
-      &:hover
-        background: $peach-orange
-
-    &::after
-      top: 3px
-      left: 0
-      width: 8px
-      height: 2px
-
-    &::before
-      top: 0
-      left: 3px
-      width: 2px
-      height: 8px
-
-    &.minus
-      &::after
-        background: $peach-orange
-
-      &::before
-        display: none
+  #alternate-search
+    margin-top: $vertical-whitespace

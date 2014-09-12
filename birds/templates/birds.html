@@ -11,7 +11,7 @@
 </form>
 
 {% if was_search %}
-  <ul>
+  <ul id="search-results">
   {% for bird in search_birds %}
     <li><a href="{% url 'bird_url' id=bird.id %}">
       {{ bird.common_name }} (<i>{{ bird.name }}</i>)

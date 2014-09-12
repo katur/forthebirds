@@ -1,0 +1,50 @@
+#birds-taxonomical
+  ul
+    @include bulleted-list
+    line-height: 150%
+
+    &.collapsed
+      display: none
+
+    li
+      &.no-subfamily
+        font-size: 14px
+        font-style: italic
+        color: gray
+
+  .plus-sign
+    position: relative
+    top: -1px
+    display: inline-block
+    width: 8px
+    height: 8px
+
+    &:hover
+      cursor: pointer
+
+    &::after, &::before
+      content: ' '
+      position: absolute
+      background: $peach-pink
+
+      &:hover
+        background: $peach-orange
+
+    &::after
+      top: 3px
+      left: 0
+      width: 8px
+      height: 2px
+
+    &::before
+      top: 0
+      left: 3px
+      width: 2px
+      height: 8px
+
+    &.minus
+      &::after
+        background: $peach-orange
+
+      &::before
+        display: none

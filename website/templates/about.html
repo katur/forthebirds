@@ -14,5 +14,7 @@
 
   <img id="primary-photo"
        src="{{ MEDIA_URL }}{{ laura.userprofile.primary_photo }}" />
-  <div id="blurb">{{ laura.userprofile.about|markdown }}</div>
+  <div id="blurb" class="markdown">
+    {{ laura.userprofile.about|markdown }}
+  </div>
 {% endblock %}

@@ -1,16 +1,19 @@
 #radio
-  #all-programs, .year, .year-programs, .program
-    list-style-type: none
+  .year
+    width: 100%
+    text-align: center
+    font-size: 30px
+    margin-bottom: $vertical-whitespace / 2
 
   .program
     float: left
-    width: 100%
-    margin-bottom: 30px
-
-    p
-      margin: 0
+    margin-bottom: $vertical-whitespace
 
     div
       float: left
-      clear: both
-      margin-bottom: 10px
+      width: 100%
+      margin-bottom: $vertical-whitespace / 4
+
+      &.scroll-box
+        width: auto
+        max-height: 90px

@@ -1,4 +1,4 @@
-.markdown-section
+.markdown
   h1, h2, h3, h4
     font-family: $base-font-family
     letter-spacing: 0
@@ -18,15 +18,41 @@
   h4
     font-size: $base-font-size + 3
 
+  p
+    margin-bottom: 20px
+
+    &:last-child
+      margin-bottom: none
+
 
 .card
   border: 1px solid $chickadee-light-gray
   border-radius: 3px
 
 
-.relevant-species, .tags
-  max-height: 90px
+.scroll-box
   overflow: scroll
 
-ul
-  margin: 0
+
+@mixin bulleted-list
+  list-style-position: inside
+
+  li, ul
+    padding-left: 30px
+
+  list-style-type: disc
+
+  ul
+    list-style-type: circle
+
+    ul
+      list-style-type: square
+
+      ul
+        list-style-type: disc
+
+b, strong
+  font-weight: bold
+
+i, em
+  font-style: italic
