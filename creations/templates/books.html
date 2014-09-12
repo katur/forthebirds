@@ -39,7 +39,7 @@
 
       {% if book.species.all|length %}
       <span>Relevant species:</span>
-      <ul class="relevant-species">
+      <ul class="scroll-box">
       {% for bird in book.species.all %}
         <li>
           <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
@@ -50,7 +50,7 @@
 
       {% if book.tags.all|length %}
       <span>Tags:</span>
-      <ul class="tags">
+      <ul class="scroll-box">
       {% for tag in book.tags.all %}
         <li>{{ tag }}</li>
       {% endfor %}
