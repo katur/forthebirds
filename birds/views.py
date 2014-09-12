@@ -60,6 +60,13 @@ def birds_taxonomical(request):
 
 def bird(request, id):
     bird = get_object_or_404(Species, id=id)
+
+    try:
+        bird.minnesotaspecies
+        bird.is_minnesotan = True
+    except AttributeError:
+        bird.is_minnesotan = False
+
     actual_creations = []
     for creation in bird.creation_set.all():
         actual_creation = creation.get_actual_instance()

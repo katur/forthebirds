@@ -85,4 +85,24 @@
 {% endfor %}
 {% endif %}
 
+{% if user.is_authenticated and bird.is_minnesotan %}
+<div class="card">
+  <h3>MOU checklist info</h3>
+  Status: {{ bird.minnesotaspecies.mou_status }}
+  <br>
+  Breeding status: {{ bird.minnesotaspecies.mou_breeding_status }}
+  <br>
+  Annotation: {{ bird.minnesotaspecies.mou_annotation }}
+</div>
+
+<div class="card">
+  <h3>Other Minnesota Field Guide Info</h3>
+  Include in book: {{ bird.minnesotaspecies.include_in_book }}
+  <br>
+  Range in MN: {{ bird.minnesotaspecies.range_in_minnesota }}
+  <br>
+  Miscellanous notes: {{ bird.minnesotaspecies.miscellaneous_notes }}
+</div>
+{% endif %}
+
 {% endblock %}
