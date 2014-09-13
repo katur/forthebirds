@@ -45,7 +45,7 @@
 
 {% if bird.bird_of_the_week_name or bird.links %}
 <div id="links" class="card">
-  <h3>External Links</h3>
+  <h3>ABC Bird of the Week</h3>
 
   {% if bird.bird_of_the_week_name %}
   <span>
@@ -69,8 +69,8 @@
 </div>
 {% endif %}
 
-{% if public_creations %}
-{% regroup public_creations by category as category_list %}
+{% if actual_creations %}
+{% regroup actual_creations by category as category_list %}
 {% for category in category_list %}
 <div class="card">
   <h3>{{ category.grouper }}{{ category.list|pluralize }}</h3>
@@ -104,16 +104,6 @@
   Miscellanous notes: {{ bird.minnesotaspecies.miscellaneous_notes }}
 </div>
 
-{% if private_creations %}
-<div class="card">
-  <h3>Research</h3>
-  {% for creation in private_creations %}
-  <span>
-    <a href="{{ creation.get_absolute_url }}">{{ creation.title }}</a>
-  </span>
-  {% endfor %}
-</div>
-{% endif %}
 {% endif %}
 
 {% endblock %}

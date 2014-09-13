@@ -3,6 +3,7 @@ import re
 from django.shortcuts import render, get_object_or_404
 
 from birds.models import Species
+from creations.models import Creation, Research, ResearchCategory
 
 
 def birds(request):
@@ -67,25 +68,29 @@ def bird(request, id):
     except AttributeError:
         bird.is_minnesotan = False
 
-    public_creations = []
-    private_creations = []
+    actual_creations = []
     for creation in bird.creation_set.all():
+        # Get actual instances to take advantage of polymorphic fields
         actual_creation = creation.get_actual_instance()
+
+        # Format the title to display for this creation
         class_name = actual_creation.__class__.__name__
         words = re.findall('[A-Z][^A-Z]*', class_name)
         actual_creation.category = ' '.join(words)
-        if actual_creation.category.lower() != 'research':
-            public_creations.append(actual_creation)
-        else:
-            private_creations.append(actual_creation)
 
-    public_creations = sorted(public_creations,
+        # Split up Research instances by research subcategory
+        if actual_creation.category.lower() == 'research':
+            actual_creation.category = actual_creation.research_category
+
+        actual_creations.append(actual_creation)
+
+    # Sort by creation type in order to use template 'regroup'
+    actual_creations = sorted(actual_creations,
                               key=lambda x: x.category)
 
     context = {
         'bird': bird,
-        'public_creations': public_creations,
-        'private_creations': private_creations,
+        'actual_creations': actual_creations,
     }
 
     return render(request, 'bird.html', context)
