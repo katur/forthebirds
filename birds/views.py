@@ -68,10 +68,18 @@ def bird(request, id):
     except AttributeError:
         bird.is_minnesotan = False
 
+    if request.user.is_authenticated():
+        show_private = True
+    else:
+        show_private = False
+
     actual_creations = []
     for creation in bird.creation_set.all():
         # Get actual instances to take advantage of polymorphic fields
         actual_creation = creation.get_actual_instance()
+
+        if not actual_creation.is_public and not show_private:
+            continue
 
         # Format the title to display for this creation
         class_name = actual_creation.__class__.__name__

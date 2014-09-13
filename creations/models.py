@@ -14,6 +14,7 @@ class Creation(models.Model, RealInstanceProvider):
                                    help_text=MARKDOWN_PROMPT)
     species = models.ManyToManyField(Species, blank=True)
     tags = TaggableManager(blank=True)
+    is_public = True
 
     def __unicode__(self):
         return self.title
