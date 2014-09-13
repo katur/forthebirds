@@ -63,11 +63,11 @@ class MinnesotaSpeciesAdmin(admin.ModelAdmin):
 
     list_filter = ('include_in_book', 'mou_status', 'mou_breeding_status',)
 
-    list_editable = ('mou_breeding_status', 'mou_annotation',)
-
     search_fields = ('species__common_name', 'species__name',)
 
     mou_fields = ('mou_status', 'mou_breeding_status', 'mou_annotation',)
+
+    readonly_fields = ('species',)
 
     fieldsets = (
         (None, {
