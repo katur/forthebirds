@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from creations.models import Book, RadioProgram
+from creations.models import (Book, Article, BlogPost, RadioProgram,
+                              Research, ResearchCategory)
 
 
 creation_id_fields = ('title', 'description',)
@@ -27,6 +28,18 @@ class BookAdmin(admin.ModelAdmin):
     )
 
 
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_published', 'published_by')
+
+    filter_horizontal = ('species',)
+
+
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url',)
+
+    filter_horizontal = ('species',)
+
+
 class RadioProgramAdmin(admin.ModelAdmin):
     list_display = ('title', 'original_air_date',)
 
@@ -47,5 +60,24 @@ class RadioProgramAdmin(admin.ModelAdmin):
     )
 
 
+class ResearchCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+class ResearchAdmin(admin.ModelAdmin):
+    list_display = ('title', 'research_category', 'attribution', 'date',
+                    'url',)
+
+    list_filter = ('research_category',)
+
+    filter_horizontal = ('species',)
+
+    search_fields = ('title', 'attribution', 'description',)
+
+
 admin.site.register(Book, BookAdmin)
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(RadioProgram, RadioProgramAdmin)
+admin.site.register(ResearchCategory, ResearchCategoryAdmin)
+admin.site.register(Research, ResearchAdmin)

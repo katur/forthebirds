@@ -40,6 +40,39 @@ class Book(Creation):
         return 'Book: ' + self.title
 
 
+class Article(Creation):
+    published_by = models.CharField(max_length=100, blank=True)
+    date_published = models.DateField(null=True, blank=True)
+    url = models.URLField(blank=True)
+    file = models.FileField(null=True, blank=True, upload_to='articles')
+    text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+
+    class Meta:
+        ordering = ['-date_published']
+
+    def get_absolute_url(self):
+        if self.url:
+            return self.url
+        else:
+            return '#'
+
+    def __unicode__(self):
+        return 'Article: ' + self.title
+
+
+class BlogPost(Creation):
+    url = models.URLField(blank=True)
+
+    class Meta:
+        ordering = ['title']
+
+    def get_absolute_url(self):
+        return self.url
+
+    def __unicode__(self):
+        return 'Blog Post: ' + self.title
+
+
 class RadioProgram(Creation):
     original_air_date = models.DateField(null=True, blank=True)
     file = models.FileField(null=True, blank=True, upload_to='radio')
@@ -55,3 +88,37 @@ class RadioProgram(Creation):
 
     def __unicode__(self):
         return 'Radio Program: ' + self.title
+
+
+class ResearchCategory(models.Model):
+    name = models.CharField(max_length=100)
+    notes = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name_plural = 'research categories'
+
+    def __unicode__(self):
+        return self.name
+
+
+class Research(Creation):
+    research_category = models.ForeignKey(ResearchCategory)
+    date = models.DateField(null=True, blank=True)
+    attribution = models.CharField(max_length=200, blank=True)
+    url = models.URLField(blank=True)
+    file = models.FileField(null=True, blank=True, upload_to='research')
+    text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+
+    class Meta:
+        ordering = ['-date']
+        verbose_name_plural = 'Research'
+
+    def get_absolute_url(self):
+        if self.url:
+            return self.url
+        else:
+            return '#'
+
+    def __unicode__(self):
+        return 'Research: ' + self.title
