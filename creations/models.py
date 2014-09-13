@@ -109,6 +109,7 @@ class Research(Creation):
     url = models.URLField(blank=True)
     file = models.FileField(null=True, blank=True, upload_to='research')
     text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    is_public = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-date']
