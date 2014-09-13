@@ -69,8 +69,8 @@
 </div>
 {% endif %}
 
-{% if actual_creations %}
-{% regroup actual_creations by category as category_list %}
+{% if public_creations %}
+{% regroup public_creations by category as category_list %}
 {% for category in category_list %}
 <div class="card">
   <h3>{{ category.grouper }}{{ category.list|pluralize }}</h3>
@@ -103,6 +103,17 @@
   <br>
   Miscellanous notes: {{ bird.minnesotaspecies.miscellaneous_notes }}
 </div>
+
+{% if private_creations %}
+<div class="card">
+  <h3>Research</h3>
+  {% for creation in private_creations %}
+  <span>
+    <a href="{{ creation.get_absolute_url }}">{{ creation.title }}</a>
+  </span>
+  {% endfor %}
+</div>
+{% endif %}
 {% endif %}
 
 {% endblock %}

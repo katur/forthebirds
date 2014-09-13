@@ -67,20 +67,25 @@ def bird(request, id):
     except AttributeError:
         bird.is_minnesotan = False
 
-    actual_creations = []
+    public_creations = []
+    private_creations = []
     for creation in bird.creation_set.all():
         actual_creation = creation.get_actual_instance()
         class_name = actual_creation.__class__.__name__
         words = re.findall('[A-Z][^A-Z]*', class_name)
         actual_creation.category = ' '.join(words)
-        actual_creations.append(actual_creation)
+        if actual_creation.category.lower() != 'research':
+            public_creations.append(actual_creation)
+        else:
+            private_creations.append(actual_creation)
 
-    actual_creations = sorted(actual_creations,
+    public_creations = sorted(public_creations,
                               key=lambda x: x.category)
 
     context = {
         'bird': bird,
-        'actual_creations': actual_creations,
+        'public_creations': public_creations,
+        'private_creations': private_creations,
     }
 
     return render(request, 'bird.html', context)
