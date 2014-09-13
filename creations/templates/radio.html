@@ -28,7 +28,7 @@
       </div>
 
       {% if program.species.all|length %}
-      <div class="scroll-box">
+      <div id="species-tags">
         <span>Relevant species:</span>
         <ul>
         {% for bird in program.species.all %}
@@ -41,7 +41,7 @@
       {% endif %}
 
       {% if program.tags.all|length %}
-      <div class="scroll-box">
+      <div id="other-tags">
         <span>Tags:</span>
         <ul>
         {% for tag in program.tags.all %}
