@@ -13,7 +13,7 @@
   <a href="{% url 'research_category_url' id=category.id %}">
     {{ category.name }}</a>
     <br>
-    {{ category.notes }}
+    {{ category.notes|markdown }}
   </li>
 {% endfor %}
 </ul>

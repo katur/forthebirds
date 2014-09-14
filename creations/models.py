@@ -90,7 +90,7 @@ class BlogPost(Creation):
 
 class ResearchCategory(models.Model):
     name = models.CharField(max_length=100)
-    notes = models.TextField(blank=True)
+    notes = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
 
     class Meta:
         ordering = ['name']
@@ -103,7 +103,8 @@ class ResearchCategory(models.Model):
 class Research(Creation):
     research_category = models.ForeignKey(ResearchCategory)
     date = models.DateField(null=True, blank=True)
-    attribution = models.CharField(max_length=200, blank=True)
+    attribution = models.CharField(max_length=200, blank=True,
+                                   help_text=MARKDOWN_PROMPT)
     url = models.URLField(blank=True)
     file = models.FileField(null=True, blank=True, upload_to='research')
     text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
