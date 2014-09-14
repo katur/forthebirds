@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}articles{% endblock %}
+
+{% block page_title %}Laura's Articles{% endblock %}
+
+{% block content %}
+<ul>
+{% for article in articles %}
+  <li>
+    <a href="{% url 'article_url' id=article.id %}">
+      {{ article.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -41,6 +41,23 @@ class Book(Creation):
         return 'Book: ' + self.title
 
 
+class RadioProgram(Creation):
+    original_air_date = models.DateField(null=True, blank=True)
+    file = models.FileField(null=True, blank=True, upload_to='radio')
+    supplemental_content_url = models.CharField(max_length=500, blank=True)
+    transcript = models.TextField(blank=True,
+                                  help_text=MARKDOWN_PROMPT)
+
+    class Meta:
+        ordering = ['-original_air_date']
+
+    def get_absolute_url(self):
+        return reverse('creations.views.radio')
+
+    def __unicode__(self):
+        return 'Radio Program: ' + self.title
+
+
 class Article(Creation):
     published_by = models.CharField(max_length=100, blank=True)
     date_published = models.DateField(null=True, blank=True)
@@ -52,10 +69,7 @@ class Article(Creation):
         ordering = ['-date_published']
 
     def get_absolute_url(self):
-        if self.url:
-            return self.url
-        else:
-            return '#'
+        return reverse('creations.views.article', kwargs={'id': self.id})
 
     def __unicode__(self):
         return 'Article: ' + self.title
@@ -72,23 +86,6 @@ class BlogPost(Creation):
 
     def __unicode__(self):
         return 'Blog Post: ' + self.title
-
-
-class RadioProgram(Creation):
-    original_air_date = models.DateField(null=True, blank=True)
-    file = models.FileField(null=True, blank=True, upload_to='radio')
-    supplemental_content_url = models.CharField(max_length=500, blank=True)
-    transcript = models.TextField(blank=True,
-                                  help_text=MARKDOWN_PROMPT)
-
-    class Meta:
-        ordering = ['-original_air_date']
-
-    def get_absolute_url(self):
-        return reverse('creations.views.radio')
-
-    def __unicode__(self):
-        return 'Radio Program: ' + self.title
 
 
 class ResearchCategory(models.Model):
@@ -117,10 +114,7 @@ class Research(Creation):
         verbose_name_plural = 'Research'
 
     def get_absolute_url(self):
-        if self.url:
-            return self.url
-        else:
-            return '#'
+        return reverse('creations.views.research', kwargs={'id': self.id})
 
     def __unicode__(self):
         return 'Research: ' + self.title

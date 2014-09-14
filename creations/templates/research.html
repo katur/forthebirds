@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}research{% endblock %}
+
+{% block page_title %}{{ research_item.title }}{% endblock %}
+
+{% block content %}
+
+<div>
+  Category: {{ research_item.research_category }}
+</div>
+
+{% if research_item.description %}
+<div>
+  Description: {{ research_item.description }}
+</div>
+{% endif %}
+
+{% if research_item.date %}
+<div>
+  Date: {{ research_item.date }}
+</div>
+{% endif %}
+
+{% if research_item.attribution %}
+<div>
+  Date: {{ research_item.attribution }}
+</div>
+{% endif %}
+
+{% if research_item.url %}
+<div>
+  URL: <a href="{{ research_item.url }}">click here</a>
+</div>
+{% endif %}
+
+{% if research_item.file %}
+<div>
+  Download File: <a href="{{ research_item.file }}">click here</a>
+</div>
+{% endif %}
+
+{% if research_item.text %}
+<div>
+  Text: {{ research_item.text|markdown }}
+</div>
+{% endif %}
+
+{% endblock %}

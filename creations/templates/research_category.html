@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}research-category{% endblock %}
+
+{% block page_title %}Research Category: {{ category.name }}{% endblock %}
+
+{% block content %}
+<ul>
+{% for item in research_items %}
+  <li>
+    <a href="{% url 'research_url' id=item.id %}">
+      {{ item.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
