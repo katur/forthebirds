@@ -20,7 +20,6 @@ class BookAdmin(admin.ModelAdmin):
         ('Publishing Info', {
             'fields': ('publisher', 'isbn_10', 'isbn_13', 'date_published',
                        'purchase_url', 'photo',),
-            'classes': ('collapse',),
         }),
         ('Tagging', {
             'fields': creation_tagging_fields
