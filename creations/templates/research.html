@@ -47,4 +47,30 @@
 </div>
 {% endif %}
 
+{% if research_item.species.all|length %}
+<div>
+  Relevant species:<br>
+  <ul>
+  {% for bird in research_item.species.all %}
+    <li>
+      <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% if research_item.tags.all|length %}
+<div>
+  Other tags:<br>
+  <ul>
+  {% for bird in research_item.tags.all %}
+    <li>
+      <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
 {% endblock %}

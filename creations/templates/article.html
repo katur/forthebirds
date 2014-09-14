@@ -43,4 +43,29 @@
 </div>
 {% endif %}
 
+{% if article.species.all|length %}
+<div>
+  Relevant species:<br>
+  <ul>
+  {% for bird in article.species.all %}
+    <li>
+      <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% if article.tags.all|length %}
+<div>
+  Other tags:<br>
+  <ul>
+  {% for bird in article.tags.all %}
+    <li>
+      <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
 {% endblock %}
