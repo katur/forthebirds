@@ -51,7 +51,6 @@ class RadioProgramAdmin(admin.ModelAdmin):
         ('Program Details', {
             'fields': ('original_air_date', 'supplemental_content_url',
                        'transcript', 'file',),
-            'classes': ('collapse',),
         }),
         ('Tagging', {
             'fields': creation_tagging_fields
