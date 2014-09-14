@@ -1,4 +1,6 @@
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from creations.models import (Book, RadioProgram, Article,
                               ResearchCategory, Research)
@@ -41,6 +43,7 @@ def article(request, id):
     return render(request, 'article.html', context)
 
 
+@login_required
 def research_categories(request):
     categories = ResearchCategory.objects.all()
     context = {
@@ -50,6 +53,7 @@ def research_categories(request):
     return render(request, 'research_categories.html', context)
 
 
+@login_required
 def research_category(request, id):
     category = get_object_or_404(ResearchCategory, id=id)
     research_items = Research.objects.filter(research_category=category)
@@ -63,6 +67,9 @@ def research_category(request, id):
 
 def research(request, id):
     research_item = get_object_or_404(Research, id=id)
+
+    if not research_item.is_public and not request.user.is_authenticated():
+        raise Http404
 
     context = {
         'research_item': research_item,

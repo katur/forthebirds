@@ -50,5 +50,13 @@
 
   </div>
 
-  <a id="admin-link" href="{% url 'admin:index' %}">Admin</a>
+  <div id="upper-right-links">
+    {% if user.is_authenticated %}
+      <a href="{% url 'admin:index' %}">Admin</a>
+      <a id="research-link" href="{% url 'research_categories_url' %}">
+        Research</a>
+    {% else %}
+      <a href="{% url 'admin:index' %}">Log In</a>
+    {% endif %}
+  </div>
 </div>
