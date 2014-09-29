@@ -10,7 +10,7 @@
 {% for way in ways %}
   <li>
     <a href="{% url 'waytohelp_url' id=way.id %}">
-      {{ way.id }}{{ way.title }}</a>
+      {{ way.id }}. {{ way.title }}</a>
   </li>
 {% endfor %}
 </ul>
