@@ -2,31 +2,16 @@
 
 {% block body_id %}birds{% endblock %}
 
-{% block page_title %}Find Birds{% endblock %}
+{% block page_title %}Bird Search Results{% endblock %}
 
 {% block content %}
-<form action={% url 'birds_url' %} method="get">
-  <input type="text" name="query">
-  <input type="submit" value="Search">
-</form>
-
-{% if was_search %}
-  <ul id="search-results">
-  {% for bird in search_birds %}
-    <li><a href="{% url 'bird_url' id=bird.id %}">
-      {{ bird.common_name }} (<i>{{ bird.name }}</i>)
-    </a></li>
-  {% empty %}
-    <li>Sorry, no birds match that term</li>
-  {% endfor %}
-  </ul>
-{% endif %}
-
-<div id="alternate-search">
-  Or find birds:
-  <ul id="alternate-searches">
-    <li>by photo collage</li>
-    <li><a href="{% url 'birds_taxonomical_url' %}">by taxonomy</a></li>
-  </ul>
-</div>
+<ul id="search-results">
+{% for bird in search_birds %}
+  <li><a href="{% url 'bird_url' id=bird.id %}">
+    {{ bird.common_name }} (<i>{{ bird.name }}</i>)
+  </a></li>
+{% empty %}
+  <li>Sorry, no birds match that term</li>
+{% endfor %}
+</ul>
 {% endblock %}

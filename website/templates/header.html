@@ -1,5 +1,4 @@
 {% url 'home_url' as home_url %}
-{% url 'birds_url' as birds_url %}
 {% url 'about_url' as about_url %}
 {% url 'radio_url' as radio_url %}
 {% url 'waystohelp_url' as waystohelp_url %}
@@ -8,6 +7,24 @@
   <a href="{{ home_url }}">
     <h1>Laura Erickson's For the Birds</h1>
   </a>
+
+  <div id="privileged-links">
+    {% if user.is_authenticated %}
+      <a href="{% url 'admin:index' %}">Admin</a>
+      <a id="research-link" href="{% url 'research_categories_url' %}">
+        Research</a>
+    {% else %}
+      <a href="{% url 'admin:index' %}">Log In</a>
+    {% endif %}
+  </div>
+
+  <div id="bird-search">
+    <form action={% url 'birds_url' %} method="get">
+      <input type="text" name="query">
+      <input type="submit" value="Search for birds">
+    </form>
+    <a href="{% url 'birds_taxonomical_url' %}">Or, browse taxonomically</a>
+  </div>
 
   <div id="menu">
     <a href="{{ home_url }}"
@@ -22,13 +39,6 @@
         class="active"
         {% endifequal %}>
       About Laura
-    </a>
-
-    <a href="{{ birds_url }}"
-        {% ifequal request.path birds_url %}
-        class="active"
-        {% endifequal %}>
-      Birds
     </a>
 
     <a href="{{ waystohelp_url }}"
@@ -47,15 +57,5 @@
 
     <a href="http://lauraerickson.blogspot.com">Blog</a>
 
-  </div>
-
-  <div id="upper-right-links">
-    {% if user.is_authenticated %}
-      <a href="{% url 'admin:index' %}">Admin</a>
-      <a id="research-link" href="{% url 'research_categories_url' %}">
-        Research</a>
-    {% else %}
-      <a href="{% url 'admin:index' %}">Log In</a>
-    {% endif %}
   </div>
 </div>

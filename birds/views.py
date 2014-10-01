@@ -3,30 +3,31 @@ import re
 from django.shortcuts import render, get_object_or_404
 
 from birds.models import Species
-from creations.models import Creation, Research, ResearchCategory
 
 
 def birds(request):
-    was_search = False
     search_birds = []
     if 'query' in request.GET:
-        was_search = True
         terms = request.GET['query'].split()
         birds = Species.objects.filter(is_visible=True)
-        for bird in birds:
+        for b in birds:
             for term in terms:
-                if (term.lower() not in bird.name.lower() and
-                        term.lower() not in bird.common_name.lower()):
+                if (term.lower() not in b.name.lower() and
+                        term.lower() not in b.common_name.lower()):
                     break
             else:
-                search_birds.append(bird)
+                search_birds.append(b)
 
-    context = {
-        'was_search': was_search,
-        'search_birds': search_birds,
-    }
+    if len(search_birds) == 1:
+        bird_id = search_birds[0].id
+        return bird(request, bird_id)
 
-    return render(request, 'birds.html', context)
+    else:
+        context = {
+            'search_birds': search_birds,
+        }
+
+        return render(request, 'birds.html', context)
 
 
 def birds_taxonomical(request):
