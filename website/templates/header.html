@@ -41,12 +41,7 @@
       About Laura
     </a>
 
-    <a href="{{ waystohelp_url }}"
-        {% ifequal request.path waystohelp_url %}
-        class="active"
-        {% endifequal %}>
-      101 Ways To Help Birds
-    </a>
+    <a href="http://lauraerickson.blogspot.com">Blog</a>
 
     <a href="{{ radio_url }}"
         {% ifequal request.path radio_url %}
@@ -55,7 +50,11 @@
       Radio
     </a>
 
-    <a href="http://lauraerickson.blogspot.com">Blog</a>
-
+    <a href="{{ waystohelp_url }}"
+        {% ifequal request.path waystohelp_url %}
+        class="active"
+        {% endifequal %}>
+      101 Ways To Help Birds
+    </a>
   </div>
 </div>
