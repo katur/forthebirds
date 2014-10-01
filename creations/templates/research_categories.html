@@ -12,8 +12,9 @@
   <li>
   <a href="{% url 'research_category_url' id=category.id %}">
     {{ category.name }}</a>
-    <br>
-    {{ category.notes|markdown }}
+    {% if category.notes %}
+      ({{ category.notes|markdown }})
+    {% endif %}
   </li>
 {% endfor %}
 </ul>
