@@ -63,10 +63,8 @@
 <div>
   Other tags:<br>
   <ul>
-  {% for bird in research_item.tags.all %}
-    <li>
-      <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
-    </li>
+  {% for tag in research_item.tags.all %}
+    <li>{{ tag }}</li>
   {% endfor %}
   </ul>
 </div>
