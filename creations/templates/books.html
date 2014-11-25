@@ -42,7 +42,7 @@
       <ul class="scroll-box">
       {% for bird in book.species.all %}
         <li>
-          <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
+          <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
         </li>
       {% endfor %}
       </ul>

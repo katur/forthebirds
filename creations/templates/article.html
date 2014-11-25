@@ -21,7 +21,7 @@
 
 {% if article.date_published %}
 <div>
-  Publication Date: {{ areticle.date_published }}
+  Publication Date: {{ article.date_published }}
 </div>
 {% endif %}
 
@@ -49,7 +49,7 @@
   <ul>
   {% for bird in article.species.all %}
     <li>
-      <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
+      <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
     </li>
   {% endfor %}
   </ul>
@@ -62,7 +62,7 @@
   <ul>
   {% for bird in article.tags.all %}
     <li>
-      <a href="{% url 'bird_url' id=bird.id%}">{{ bird }}</a>
+      <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
     </li>
   {% endfor %}
   </ul>

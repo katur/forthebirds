@@ -51,7 +51,7 @@ class Species(models.Model):
         verbose_name_plural = 'bird species'
 
     def __unicode__(self):
-        return self.common_name
+        return self.common_name + ' (' + self.name + ')'
 
     def get_nacc_statuses(self):
         statuses = []
