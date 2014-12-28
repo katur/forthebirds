@@ -15,8 +15,6 @@ Package dependencies are listed in `requirements.txt`.
 [Here](https://www.lucidchart.com/documents/view/a75393ca-f3ce-45e0-8658-e901ae2e41a0)
 is the database schema on Lucidchart.
 
-[South](http://south.readthedocs.org/en/latest/) is used for database migrations.
-
 
 ## Code
 
