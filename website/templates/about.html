@@ -3,19 +3,29 @@
 
 {% block body_id %}about{% endblock %}
 
-{% block page_title %}About {{ laura.get_full_name }}{% endblock %}
+{% block page_title %}About Laura{% endblock %}
 
 {% block content %}
-  <div id="links">
-    <a href="http://flickr.com/lauraerickson">
-      Laura's Photos on Flickr</a>
-    <a href="{% url 'books_url' %}">Laura's Books</a>
-    <a href="{% url 'articles_url' %}">Laura's Articles</a>
-  </div>
-
+<div class="page-section">
   <img id="primary-photo"
        src="{{ MEDIA_URL }}{{ laura.userprofile.primary_photo }}" />
+
   <div id="blurb" class="markdown">
-    {{ laura.userprofile.about|markdown }}
+    {{ laura.userprofile.blurb|markdown }}
   </div>
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">Awards</h3>
+  <div id="awards" class="markdown">
+    {{ laura.userprofile.awards|markdown }}
+  </div>
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">Bio</h3>
+  <div id="bio" class="markdown">
+    {{ laura.userprofile.bio|markdown }}
+  </div>
+</div>
 {% endblock %}

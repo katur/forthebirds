@@ -6,8 +6,9 @@ from forthebirds.settings import MARKDOWN_PROMPT
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True)
-    about = models.TextField('Text for About page',
-                             help_text=MARKDOWN_PROMPT, blank=True)
+    blurb = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
+    bio = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
+    awards = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
     primary_photo = models.FileField(null=True, blank=True,
                                      upload_to='photos_of_laura')
 

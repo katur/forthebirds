@@ -6,15 +6,6 @@ from creations.models import (Book, RadioProgram, Article,
                               ResearchCategory, Research)
 
 
-def books(request):
-    books = Book.objects.all()
-    context = {
-        'books': books,
-    }
-
-    return render(request, 'books.html', context)
-
-
 def radio(request):
     programs = RadioProgram.objects.all()
     context = {
@@ -24,13 +15,15 @@ def radio(request):
     return render(request, 'radio.html', context)
 
 
-def articles(request):
+def writing(request):
+    books = Book.objects.all()
     articles = Article.objects.all()
     context = {
+        'books': books,
         'articles': articles,
     }
 
-    return render(request, 'articles.html', context)
+    return render(request, 'writing.html', context)
 
 
 def article(request, id):
@@ -41,6 +34,11 @@ def article(request, id):
     }
 
     return render(request, 'article.html', context)
+
+
+def miscellany(request):
+    context = {}
+    return render(request, 'miscellany.html', context)
 
 
 @login_required

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}writing{% endblock %}
+
+{% block page_title %}Laura's Writing{% endblock %}
+
+{% block content %}
+
+<div class="page-section">
+  <h3 class="page-subtitle">Books</h3>
+  <div id="books">
+    {% for book in books %}
+    <div class="book">
+      {% if book.photo %}
+      <img src="{{ MEDIA_URL }}{{ book.photo }}" />
+      {% endif %}
+
+      <div class="info">
+        <span class="title">{{ book.title }}</span>
+        <span class="date">{{ book.date_published|date:"Y" }}</span>
+
+        {% if book.publisher %}
+          <span class="publisher">Published by {{ book.publisher }}</span>
+        {% endif %}
+
+        {% if book.isbn_10 %}
+          <span>ISBN-10: {{ book.isbn_10 }}</span>
+        {% endif %}
+
+        {% if book.isbn_13 %}
+          <span>ISBN-13: {{ book.isbn_13 }}</span>
+        {% endif %}
+
+        <span class="description">{{ book.description|markdown }}</span>
+
+        {% if book.purchase_url %}
+        <span><a class="purchase-link" href="{{ book.purchase_url }}">
+            click to purchase</a></span>
+        {% endif %}
+
+        {% if book.species.all|length %}
+        <span>Relevant species:</span>
+        <ul class="scroll-box">
+        {% for bird in book.species.all %}
+          <li>
+            <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
+          </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if book.tags.all|length %}
+        <span>Tags:</span>
+        <ul class="scroll-box">
+        {% for tag in book.tags.all %}
+          <li>{{ tag }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">Published Articles</h3>
+  <ul>
+  {% for article in articles %}
+    <li>
+      <a href="{% url 'article_url' id=article.id %}">
+        {{ article.title }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

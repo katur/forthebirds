@@ -2,6 +2,8 @@
 {% url 'about_url' as about_url %}
 {% url 'radio_url' as radio_url %}
 {% url 'waystohelp_url' as waystohelp_url %}
+{% url 'writing_url' as writing_url %}
+{% url 'miscellany_url' as miscellany_url %}
 
 <div id="header">
   <a href="{{ home_url }}">
@@ -41,7 +43,12 @@
       About Laura
     </a>
 
-    <a href="http://lauraerickson.blogspot.com">Blog</a>
+    <a href="{{ waystohelp_url }}"
+        {% ifequal request.path waystohelp_url %}
+        class="active"
+        {% endifequal %}>
+      Ways To Help Birds
+    </a>
 
     <a href="{{ radio_url }}"
         {% ifequal request.path radio_url %}
@@ -50,11 +57,20 @@
       Radio
     </a>
 
-    <a href="{{ waystohelp_url }}"
-        {% ifequal request.path waystohelp_url %}
+    <a href="{{ writing_url }}"
+        {% ifequal request.path writing_url %}
         class="active"
         {% endifequal %}>
-      101 Ways To Help Birds
-    </a>
+      Writing</a>
+
+    <a href="http://lauraerickson.blogspot.com">Blog</a>
+
+    <a href="{{ miscellany_url }}"
+        {% ifequal request.path miscellany_url %}
+        class="active"
+        {% endifequal %}>
+      Miscellany</a>
+  </div>
+
   </div>
 </div>
