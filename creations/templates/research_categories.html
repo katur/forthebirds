@@ -3,11 +3,11 @@
 
 {% block body_id %}research-categories{% endblock %}
 
-{% block page_title %}All Defined Research Categories{% endblock %}
+{% block page_title %}All Research Categories{% endblock %}
 
 {% block content %}
 
-<ul id="research-categories">
+<ul>
 {% for category in categories %}
   <li>
   <a href="{% url 'research_category_url' id=category.id %}">
