@@ -4,6 +4,7 @@ html, body
   background: $chickadee-dark-gray
 
 #header, #content, #footer
+  @include clearfix
   margin: 0 $whitespace * 1.5
 
 #header
@@ -18,8 +19,8 @@ html, body
   height: auto
 
 #footer
-  margin-top: 20px
-  margin-bottom: 10px
+  margin-top: $whitespace
+  margin-bottom: $whitespace
 
 #page-title
   float: left
