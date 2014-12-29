@@ -1,0 +1,32 @@
+$admin-height: 28px
+$admin-padding: 10px
+
+#admin-bar
+  width: 100%
+  height: $admin-height
+  background: $chickadee-black
+
+  font-family: $header-font-family
+  color: $chickadee-light-gray
+  font-size: $base-font-size - 3
+  line-height: $admin-height
+  letter-spacing: 0.6px
+  text-align: left
+
+  span,
+  a
+    float: left
+    text-transform: lowercase
+
+  .user
+    margin: 0  $admin-padding
+
+  a
+    padding: 0 $admin-padding
+
+    &:hover
+      background: transparentize(#fff, 0.9)
+      color: $peach-pink
+
+  .logout
+    float: right
