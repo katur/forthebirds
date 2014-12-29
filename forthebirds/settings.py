@@ -23,7 +23,6 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,7 +57,6 @@ WSGI_APPLICATION = 'forthebirds.wsgi.application'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/New_York'
@@ -72,7 +70,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
@@ -87,6 +84,11 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 TEMPLATE_DIRS = (
     PROJECT_DIR + '/website/templates/',
 )
+
+# Authentication
+LOGIN_URL = 'login_url'
+LOGIN_REDIRECT_URL = 'home_url'
+
 
 MARKDOWN_PROMPT = (
     'Use Markdown syntax for italics, bullets, etc. See '
