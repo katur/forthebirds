@@ -10,18 +10,6 @@
     <h1>Laura Erickson's For the Birds</h1>
   </a>
 
-  <div id="privileged-links">
-    {% if user.is_authenticated %}
-    <a href="{% url 'admin:index' %}">Admin</a>
-    <a id="research-link" href="{% url 'research_categories_url' %}">
-      Research</a>
-
-    {% else %}
-    <a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>
-
-    {% endif %}
-  </div>
-
   <div id="bird-search">
     <form action={% url 'birds_url' %} method="get">
       <input type="text" name="query">

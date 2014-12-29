@@ -2,6 +2,11 @@
   <div id="content-copyright">
     All writing, images, videos, and sound recordings are
     copyrighted 1997-{% now "Y" %} by Laura L. Erickson.
+		<br>
+		{% if not user.is_authenticated %}
+			<a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>
+		{% endif %}
+
     <!--
     I love to share my work to promote bird conservation and education,
     and to help people enjoy and learn about the birds and other creatures
