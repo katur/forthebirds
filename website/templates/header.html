@@ -12,11 +12,13 @@
 
   <div id="privileged-links">
     {% if user.is_authenticated %}
-      <a href="{% url 'admin:index' %}">Admin</a>
-      <a id="research-link" href="{% url 'research_categories_url' %}">
-        Research</a>
+    <a href="{% url 'admin:index' %}">Admin</a>
+    <a id="research-link" href="{% url 'research_categories_url' %}">
+      Research</a>
+
     {% else %}
-      <a href="{% url 'admin:index' %}">Log In</a>
+    <a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>
+
     {% endif %}
   </div>
 
