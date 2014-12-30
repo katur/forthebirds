@@ -6,17 +6,9 @@
 {% url 'miscellany_url' as miscellany_url %}
 
 <div id="header">
-  <a href="{{ home_url }}">
+  <a id="page-title" href="{{ home_url }}">
     <h1>Laura Erickson's For the Birds</h1>
   </a>
-
-  <div id="bird-search">
-    <form action={% url 'birds_url' %} method="get">
-      <input type="text" name="query">
-      <input type="submit" value="Search for birds">
-    </form>
-    <a href="{% url 'birds_taxonomical_url' %}">Or, browse taxonomically</a>
-  </div>
 
   <div id="menu">
     <a href="{{ home_url }}"
@@ -60,5 +52,13 @@
         class="active"
         {% endifequal %}>
       Miscellany</a>
+  </div>
+
+  <div id="bird-search">
+    <form action={% url 'birds_url' %} method="get">
+      <input type="text" name="query">
+      <input type="submit" value="Search for birds">
+    </form>
+    Or, <a href="{% url 'birds_taxonomical_url' %}">browse taxonomically</a>
   </div>
 </div>

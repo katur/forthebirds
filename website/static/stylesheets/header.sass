@@ -1,19 +1,47 @@
+$max-header-breakpoint: 1430px
+
 #header
+  text-align: center
   color: $chickadee-white
   font-family: $header-font-family
-  font-size: 20px
-  font-weight: 200
-  letter-spacing: 1px
-  text-align: center
-  height: 130px
 
-  h1
+  #page-title
+    display: inline-block
     position: relative
-    top: -10px
-    height: 102px
-    font-size: 85px
-    letter-spacing: 8px
-    color: $chickadee-white
+    overflow: hidden
+    width: 71%
+    padding-top: 8.5%
+    margin: 0
+
+    @media (min-width: $max-header-breakpoint)
+      width: 961px
+
+    h1
+      position: absolute
+      top: -46%
+      left: 0
+      width: 100%
+      font-size: 10vw
+      letter-spacing: 0.2vw
+      color: $chickadee-white
+
+      @media (min-width: $max-header-breakpoint)
+        font-size: 144px
+
+  #menu
+    width: 100%
+    float: left
+    clear: both
+    font-weight: 200
+    letter-spacing: 1px
+    font-size: 22px
+
+    a
+      padding: 0 $whitespace / 2
+      color: lighten($peach-pink, 7%)
+
+      &:hover, &.active
+        color: lighten($peach-orange, 5%)
 
   #bird-search
     position: absolute
@@ -24,15 +52,3 @@
     a
       margin: none
       font-size: 16px
-
-  #menu
-    position: relative
-    top: -12px
-    font-size: 22px
-    height: 28px
-    a
-      padding: 0 20px
-      color: lighten($peach-pink, 7%)
-
-      &:hover, &.active
-        color: lighten($peach-orange, 5%)
