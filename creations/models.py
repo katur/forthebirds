@@ -35,7 +35,7 @@ class Book(Creation):
         ordering = ['-date_published']
 
     def get_absolute_url(self):
-        return reverse('creations.views.books')
+        return reverse('creations.views.writing')
 
     def __unicode__(self):
         return 'Book: ' + self.title
