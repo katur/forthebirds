@@ -1,7 +1,7 @@
 <div id="footer">
   <div id="content-copyright">
-    All writing, images, videos, and sound recordings are
-    copyrighted 1997-{% now "Y" %} by Laura L. Erickson.
+    All writing, images, videos, and sound recordings by
+    Laura Erickson, 1997-{% now "Y" %}.
     <br>
     {% if not user.is_authenticated %}
       <a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>

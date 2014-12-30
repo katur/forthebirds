@@ -9,7 +9,7 @@ from utils.models import RealInstanceProvider
 
 
 class Creation(models.Model, RealInstanceProvider):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=120)
     description = models.TextField(blank=True,
                                    help_text=MARKDOWN_PROMPT)
     species = models.ManyToManyField(Species, blank=True)
