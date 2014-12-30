@@ -71,13 +71,14 @@
 </div>
 
 <div class="page-section">
-  <h3 class="page-subtitle">Published Articles</h3>
+  <h3 class="page-subtitle">Articles</h3>
   <ul>
   {% for article in articles %}
     <li>
       <a href="{% url 'article_url' id=article.id %}">
-        {{ article.title }}</a>
-title    </li>
+        {{ article.title }}</a>{% if article.date_published %},
+        {{ article.date_published }}{% endif %}
+    </li>
   {% endfor %}
   </ul>
 </div>
