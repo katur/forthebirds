@@ -1,5 +1,3 @@
-$max-header-breakpoint: 1430px
-
 #header
   padding-top: 5px
   text-align: center
@@ -12,24 +10,31 @@ $max-header-breakpoint: 1430px
     display: inline-block
     position: relative
     overflow: hidden
-    width: 71%
-    padding-top: 8.5%
     margin: 0
-
-    @media (min-width: $max-header-breakpoint)
-      width: 961px
 
     h1
       position: absolute
+      width: 100%
       top: -46%
       left: 0
-      width: 100%
-      font-size: 10vw
-      letter-spacing: 0.2vw
       color: $chickadee-white
 
-      @media (min-width: $max-header-breakpoint)
-        font-size: 144px
+    @media (min-width: 797px)
+      width: 725px
+      padding-top: 87px
+
+      h1
+        font-size: 110px
+        letter-spacing: 3px
+
+
+    @media (max-width: 797px)
+      width: 100%
+      padding-top: 12%
+
+      h1
+        font-size: 14vw
+        letter-spacing: 0.2vw
 
   #menu
     float: left

@@ -1,10 +1,29 @@
 {% extends "base.html" %}
+{% load markdown_deux_tags %}
 
 {% block body_id %}home{% endblock %}
 
 {% block content %}
-  Welcome to Laura's new web page!
-  <br>
-  <a href="http://flickr.com/lauraerickson">
-    Laura's Photos on Flickr</a>
+<div class="page-section">
+  <img id="primary-photo"
+       src="{{ MEDIA_URL }}{{ laura.userprofile.primary_photo }}" />
+
+  <div id="blurb" class="markdown">
+    {{ laura.userprofile.blurb|markdown }}
+  </div>
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">Awards</h3>
+  <div id="awards" class="markdown">
+    {{ laura.userprofile.awards|markdown }}
+  </div>
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">Bio</h3>
+  <div id="bio" class="markdown">
+    {{ laura.userprofile.bio|markdown }}
+  </div>
+</div>
 {% endblock %}
