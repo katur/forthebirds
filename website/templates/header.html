@@ -1,4 +1,5 @@
 {% url 'home_url' as home_url %}
+{% url 'about_url' as about_url %}
 {% url 'radio_url' as radio_url %}
 {% url 'waystohelp_url' as waystohelp_url %}
 {% url 'writing_url' as writing_url %}
@@ -10,6 +11,13 @@
   </a>
 
   <div id="menu">
+    <a href="{{ about_url }}"
+        {% ifequal request.path about_url %}
+        class="active"
+        {% endifequal %}>
+      About Laura
+    </a>
+
     <a href="{{ waystohelp_url }}"
         {% ifequal request.path waystohelp_url %}
         class="active"
@@ -29,8 +37,6 @@
         class="active"
         {% endifequal %}>
       Writing</a>
-
-    <a href="http://lauraerickson.blogspot.com">Blog</a>
 
     <a href="{{ miscellany_url }}"
         {% ifequal request.path miscellany_url %}

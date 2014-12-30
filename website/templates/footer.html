@@ -1,7 +1,10 @@
 <div id="footer">
   <div id="content-copyright">
     All writing, images, videos, and sound recordings by
-    Laura Erickson, 1997-{% now "Y" %}.
+    Laura Erickson (unless otherwise noted), 1986-{% now "Y" %}.
+    All rights reserved.
+    For permissions,
+    <a href="mailto:chickadee@lauraerickson.com">email Laura</a>.
     <br>
     {% if not user.is_authenticated %}
       <a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>
@@ -18,7 +21,6 @@
     Please do not use any of my work in any for-profit projects without
     written permission from me.
     You can ask for permission by
-    <a href="mailto:chickadee@lauraerickson.com">emailing me</a>.
     -->
   </div>
 
