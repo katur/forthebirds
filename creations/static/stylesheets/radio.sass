@@ -1,20 +1,40 @@
 #radio
-  .year
+  #year-list
     float: left
-    width: 100%
-    text-align: center
-    font-size: 30px
-    margin-bottom: $whitespace / 2
+    width: 10%
+    font-size: 20px
+    font-family: $header-font-family
+    color: $chickadee-dark-gray
 
-  .program
-    float: left
-    margin-bottom: $whitespace
+  .year-programs
+    float: right
+    width: 85%
+    display: none
 
-    div
+    .program
       float: left
       width: 100%
-      margin-bottom: $whitespace / 4
+      padding: 5px
 
-      &#species-tags, &#other-tags
-        width: auto
-        margin-right: 30px
+      &:nth-child(even)
+        background: lighten($moss-light, 15)
+      &:nth-child(odd)
+        background: lighten($moss-light, 18)
+
+      a
+        color: darken($peach-pink, 10)
+
+        &:hover, &.active
+          color: darken($peach-orange, 10)
+
+      .program-info
+        display: none
+        padding-left: $whitespace
+
+        div
+          width: 100%
+          float: left
+          margin-bottom: $whitespace / 4
+
+          &.tags
+            width: 40%

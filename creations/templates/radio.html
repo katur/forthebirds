@@ -7,64 +7,72 @@
 
 {% block content %}
 
-<ul id="all-programs">
-{% regroup programs by original_air_date|date:"Y" as years %}
-{% for year in years %}
-  <li class="year">{{ year.grouper }}</li>
-  <ul class="year-programs">
-  {% for program in year.list %}
+<div id="all-programs">
+  <ul id="year-list">
+    {% for year in year_list %}
+    <li>
+      <a id="{{ year.year }}" class="year-button" href="#">
+        {{ year.year }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% regroup programs by original_air_date|date:"Y" as years %}
+  {% for year in years %}
+  <ul id="{{ year.grouper }}" class="year-programs">
+    {% for program in year.list %}
     <li class="program">
-      <div class="program-title">
-        <b>{{ program.title }}</b> ({{ program.original_air_date }})
-      </div>
+      <a class="program-info-button program-title-bar" href="#">
+        {{ program.title }}
+        ({{ program.original_air_date }})
+      </a>
 
-      <div>
-        {{ program.description|markdown }}
-
+      <div class="program-info">
+        <div>{{ program.description|markdown }}
         {% if program.supplemental_content_url %}
-          <a href="{{ program.supplemental_content_url }}">
-            See transcript and photos</a>
+        <a href="{{ program.supplemental_content_url }}">
+            See transcript and photos</a></div>
         {% endif %}
-      </div>
 
-      {% if program.species.all|length %}
-      <div id="species-tags">
-        <span>Relevant species:</span>
-        <ul>
-        {% for bird in program.species.all %}
-          <li>
-            <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
-          </li>
-        {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
+        {% if program.species.all|length %}
+        <div class="tags">
+          <span>Tagged species:</span>
+          <ul>
+          {% for bird in program.species.all %}
+            <li>
+              <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
 
-      {% if program.tags.all|length %}
-      <div id="other-tags">
-        <span>Tags:</span>
-        <ul>
-        {% for tag in program.tags.all %}
-          <li>{{ tag }}</li>
-        {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
+        {% if program.tags.all|length %}
+        <div class="tags">
+          <span>Other tags:</span>
+          <ul>
+          {% for tag in program.tags.all %}
+            <li>{{ tag }}</li>
+          {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
 
 
-      {% if program.file %}
-      <div>
-        <audio controls preload="none">
-          <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <a href="{{ MEDIA_URL }}{{ program.file }}">Download .mp3</a>
+        {% if program.file %}
+        <div>
+          <audio controls preload="none">
+            <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <a href="{{ MEDIA_URL }}{{ program.file }}">Download .mp3</a>
+        </div>
       </div>
       {% endif %}
     </li>
-  {% endfor %}
+    {% endfor %}
   </ul>
-{% endfor %}
-</ul>
+  {% endfor %}
+</div>
 
 {% endblock %}

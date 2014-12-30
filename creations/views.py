@@ -7,9 +7,13 @@ from creations.models import (Book, RadioProgram, Article,
 
 
 def radio(request):
+    year_list = RadioProgram.objects.all().dates('original_air_date',
+                                                 'year')
+    year_list = sorted(year_list, reverse=True)
     programs = RadioProgram.objects.all()
     context = {
         'programs': programs,
+        'year_list': year_list,
     }
 
     return render(request, 'radio.html', context)
