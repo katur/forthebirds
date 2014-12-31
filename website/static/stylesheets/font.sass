@@ -1,5 +1,29 @@
+@font-face
+  font-family: 'adelaidaregular'
+  src: url('../fonts/adelaida/adelaida-regular-webfont.eot')
+  src: url('../fonts/adelaida/adelaida-regular-webfont.eot?#iefix') format('embedded-opentype')
+  src: url('../fonts/adelaida/adelaida-regular-webfont.woff') format('woff')
+  src: url('../fonts/adelaida/adelaida-regular-webfont.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+
+@import url(http://fonts.googleapis.com/css?family=Dosis:200,500,600)
+
+$base-font-size: 17px
+$serif-font-family: Georgia, serif
+$sans-font-family: 'Dosis', sans-serif
+
+@mixin sans-font($weight: regular)
+  font-family: $sans-font-family
+  @if $weight==light
+    font-weight: 200
+    letter-spacing: 1px
+  @if $weight==bold
+    font-weight: 500
+    letter-spacing: 1px
+
 body
-  font-family: $base-font-family
+  font-family: $serif-font-family
   font-size: $base-font-size
   color: $chickadee-black
   line-height: 1.5
@@ -13,9 +37,7 @@ h1
   font-family: 'adelaidaregular', sans-serif
 
 h2, h3, h4
-  font-family: $header-font-family
-  font-weight: 500
-  letter-spacing: 1px
+  @include sans-font(bold)
   color: $chickadee-dark-gray
 
 h2

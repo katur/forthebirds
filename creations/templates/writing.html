@@ -8,8 +8,8 @@
 {% block content %}
 
 <div class="page-section">
-  <h3>Blog</h3>
-  <a href="http://lauraerickson.blogspot.com">Laura's Birding Blog</a>
+  Keep up to date with Laura's birding at
+  <a href="http://lauraerickson.blogspot.com">Laura's Birding Blog</a>!
 </div>
 
 <div class="page-section">
@@ -22,44 +22,42 @@
       {% endif %}
 
       <div class="info">
-        <span class="title">{{ book.title }}</span>
-        <span class="date">{{ book.date_published|date:"Y" }}</span>
+        <div class="title">{{ book.title }}</div>
+        <div class="date">{{ book.date_published|date:"Y" }}</div>
 
         {% if book.publisher %}
-          <span class="publisher">Published by {{ book.publisher }}</span>
+          <div class="publisher">Published by {{ book.publisher }}</div>
         {% endif %}
 
         {% if book.isbn_10 %}
-          <span>ISBN-10: {{ book.isbn_10 }}</span>
+          <div>ISBN-10: {{ book.isbn_10 }}</div>
         {% endif %}
 
         {% if book.isbn_13 %}
-          <span>ISBN-13: {{ book.isbn_13 }}</span>
+          <div>ISBN-13: {{ book.isbn_13 }}</div>
         {% endif %}
 
-        <span class="description">{{ book.description|markdown }}</span>
+        <div class="description">{{ book.description|markdown }}</div>
 
         {% if book.purchase_url %}
-        <span><a class="purchase-link" href="{{ book.purchase_url }}">
-            click to purchase</a></span>
+        <div><a class="purchase-link" href="{{ book.purchase_url }}">
+            click to purchase</a></div>
         {% endif %}
 
-        {% if book.species.all|length %}
-        <span>Relevant species:</span>
+        {% if book.species.all|length or  book.tags.all|length %}
+        <div>Tags:</div>
         <ul class="scroll-box">
         {% for bird in book.species.all %}
-          <li>
+          <li class="tag">
             <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
           </li>
         {% endfor %}
-        </ul>
-        {% endif %}
-
-        {% if book.tags.all|length %}
-        <span>Tags:</span>
-        <ul class="scroll-box">
         {% for tag in book.tags.all %}
-          <li>{{ tag }}</li>
+          <li class="tag">
+            <span>
+              {{ tag }}
+            </span<
+          </li>
         {% endfor %}
         </ul>
         {% endif %}

@@ -1,6 +1,6 @@
 .markdown
   h1, h2, h3, h4
-    font-family: $base-font-family
+    font-family: $serif-font-family
     letter-spacing: 0
     color: $chickadee-black
     font-weight: bold
@@ -56,3 +56,29 @@ b, strong
 
 i, em
   font-style: italic
+
+
+$tag-spacing: 3px
+.tag
+  position: relative
+  right: $tag-spacing
+  float: left
+  margin: $tag-spacing
+  @include sans-font(light)
+
+  a,
+  span
+    float: left
+    padding: 3px 8px
+    border-radius: 3px
+
+  a
+    background: $moss
+    color: $chickadee-white
+
+    &:hover
+      background: $moss-light
+
+  span
+    background: $chickadee-light-gray
+    color: $chickadee-dark-gray

@@ -2,9 +2,19 @@
   #year-list
     float: left
     width: 10%
-    font-size: 20px
-    font-family: $header-font-family
+    font-size: 36px
+    font-family: $sans-font-family
     color: $chickadee-dark-gray
+
+    a
+      &.active:after
+        display: inline-block
+        position: relative
+        bottom: 7px
+        padding-left: 7px
+        font-size: 18px
+        @include transform(scaleX(0.7))
+        content: "\27A4"
 
   .year-programs
     float: right
@@ -14,27 +24,64 @@
     .program
       float: left
       width: 100%
-      padding: 5px
 
       &:nth-child(even)
-        background: lighten($moss-light, 15)
+        background: lighten($moss, 40%)
       &:nth-child(odd)
-        background: lighten($moss-light, 18)
+        background: lighten($moss, 43%)
 
-      a
-        color: $dark-link-color
+      .program-title-bar
+        @include box-sizing(border-box)
+        display: block
+        width: 100%
+        height: 100%
+        padding: 8px 12px
 
-        &:hover, &.active
-          color: $dark-link-color-active
+        .title,
+        .description
+          width: 100%
+
+        .title
+          margin-top: 5px
+
+        .description
+          margin-top: 10px
+          font-size: $base-font-size - 2
+          color: $chickadee-dark-gray
+
+        a
+          color: $dark-link-color
+
+          &:hover
+            color: $dark-link-color-active
 
       .program-info
+        @include clearfix
         display: none
-        padding-left: $whitespace
+        padding: 0 0 $whitespace $whitespace
 
         div
           width: 100%
           float: left
-          margin-bottom: $whitespace / 4
+          margin-bottom: $whitespace / 3
+
+          &.audio
+            margin-top: $whitespace / 2
+            line-height: 15px
+
+            .download-link
+              font-size: $base-font-size - 4
+              color: $chickadee-dark-gray
+
+              &:hover
+                color: $chickadee-black
+
+          &.transcript
+            a
+              color: $dark-link-color
+
+              &:hover
+                color: $dark-link-color-active
 
           &.tags
-            width: 40%
+            max-width: 600px

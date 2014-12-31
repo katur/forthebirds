@@ -23,52 +23,54 @@
     {% for program in year.list %}
     <li class="program">
       <a class="program-info-button program-title-bar" href="#">
-        {{ program.title }}
-        ({{ program.original_air_date }})
+        <span class="title">
+          {{ program.title }}
+          ({{ program.original_air_date }})
+        </span>
+        <span class="description">
+          {{ program.description|markdown }}
+        </span>
       </a>
 
       <div class="program-info">
-        <div>{{ program.description|markdown }}
-        {% if program.supplemental_content_url %}
-        <a href="{{ program.supplemental_content_url }}">
-            See transcript and photos</a></div>
+        {% if program.file %}
+        <div class="audio">
+          <audio controls preload="none">
+            <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <br>
+          <a class="download-link"  href="{{ MEDIA_URL }}{{ program.file }}">
+            Download .mp3</a>
+        </div>
         {% endif %}
 
-        {% if program.species.all|length %}
+        {% if program.supplemental_content_url %}
+        <div class="transcript">
+          <a href="{{ program.supplemental_content_url }}">
+            Transcript and photos</a>
+        </div>
+        {% endif %}
+
+        {% if program.species.all|length or program.tags.all|length %}
         <div class="tags">
-          <span>Tagged species:</span>
+          <span>Tags:</span>
           <ul>
           {% for bird in program.species.all %}
-            <li>
+            <li class="tag">
               <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
+            </li>
+          {% endfor %}
+          {% for tag in program.tags.all %}
+            <li class="tag">
+              <span>
+                {{ tag }}
+              </span>
             </li>
           {% endfor %}
           </ul>
         </div>
         {% endif %}
-
-        {% if program.tags.all|length %}
-        <div class="tags">
-          <span>Other tags:</span>
-          <ul>
-          {% for tag in program.tags.all %}
-            <li>{{ tag }}</li>
-          {% endfor %}
-          </ul>
-        </div>
-        {% endif %}
-
-
-        {% if program.file %}
-        <div>
-          <audio controls preload="none">
-            <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a href="{{ MEDIA_URL }}{{ program.file }}">Download .mp3</a>
-        </div>
-      </div>
-      {% endif %}
     </li>
     {% endfor %}
   </ul>
