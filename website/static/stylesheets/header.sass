@@ -6,6 +6,12 @@
   font-weight: 200
   letter-spacing: 1px
 
+  a
+    color: $light-link-color
+
+    &:hover, &.active
+      color: $light-link-color-active
+
   #site-title
     display: inline-block
     position: relative
@@ -45,10 +51,6 @@
 
     a
       padding: 0 $whitespace / 2
-      color: lighten($peach-pink, 7%)
-
-      &:hover, &.active
-        color: lighten($peach-orange, 5%)
 
   #bird-search
     position: absolute
