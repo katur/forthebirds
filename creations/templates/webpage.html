@@ -7,6 +7,7 @@
 
 {% block content %}
 
+{% if webpage.date_published or webpage.species.all|length or webpage.tags.all|length %}
 <div class="page-section">
   {% if webpage.date_published %}
   <div>
@@ -32,6 +33,7 @@
   </ul>
   {% endif %}
 </div>
+{% endif %}
 
 <div class="page-section markdown">
   {{ webpage.content|markdown }}
