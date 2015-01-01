@@ -1,11 +1,31 @@
 from django.contrib import admin
 
-from creations.models import (Book, Article, BlogPost, RadioProgram,
+from creations.models import (RadioProgram, Book, Article, BlogPost,
+                              WebPage, ExternalProject,
                               Research, ResearchCategory)
 
 
 creation_id_fields = ('title', 'description',)
 creation_tagging_fields = ('species', 'tags',)
+
+
+class RadioProgramAdmin(admin.ModelAdmin):
+    list_display = ('title', 'original_air_date',)
+
+    filter_horizontal = ('species',)
+
+    fieldsets = (
+        (None, {
+            'fields': creation_id_fields
+        }),
+        ('Program Details', {
+            'fields': ('original_air_date', 'supplemental_content_url',
+                       'transcript', 'file',),
+        }),
+        ('Tagging', {
+            'fields': creation_tagging_fields
+        }),
+    )
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -39,23 +59,16 @@ class BlogPostAdmin(admin.ModelAdmin):
     filter_horizontal = ('species',)
 
 
-class RadioProgramAdmin(admin.ModelAdmin):
-    list_display = ('title', 'original_air_date',)
+class WebPageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug',)
 
     filter_horizontal = ('species',)
 
-    fieldsets = (
-        (None, {
-            'fields': creation_id_fields
-        }),
-        ('Program Details', {
-            'fields': ('original_air_date', 'supplemental_content_url',
-                       'transcript', 'file',),
-        }),
-        ('Tagging', {
-            'fields': creation_tagging_fields
-        }),
-    )
+
+class ExternalProjectAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url',)
+
+    filter_horizontal = ('species',)
 
 
 class ResearchCategoryAdmin(admin.ModelAdmin):
@@ -73,9 +86,11 @@ class ResearchAdmin(admin.ModelAdmin):
     search_fields = ('title', 'attribution', 'description',)
 
 
+admin.site.register(RadioProgram, RadioProgramAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
-admin.site.register(RadioProgram, RadioProgramAdmin)
+admin.site.register(WebPage, WebPageAdmin)
+admin.site.register(ExternalProject, ExternalProjectAdmin)
 admin.site.register(ResearchCategory, ResearchCategoryAdmin)
 admin.site.register(Research, ResearchAdmin)

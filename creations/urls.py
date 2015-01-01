@@ -6,6 +6,7 @@ urlpatterns = patterns(
     url(r'^radio$', 'radio', name='radio_url'),
     url(r'^writing$', 'writing', name='writing_url'),
     url(r'^article/(?P<id>.+)$', 'article', name='article_url'),
+    url(r'^page/(?P<slug>.+)$', 'webpage', name='webpage_url'),
     url(r'^miscellany$', 'miscellany', name='miscellany_url'),
     url(r'^research-categories', 'research_categories',
         name='research_categories_url'),

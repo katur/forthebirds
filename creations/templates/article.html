@@ -43,29 +43,23 @@
 </div>
 {% endif %}
 
-{% if article.species.all|length %}
+{% if article.species.all|length or article.tags.all|length %}
 <div>
-  Relevant species:<br>
+  Tags:
   <ul>
   {% for bird in article.species.all %}
-    <li>
+    <li class="tag">
       <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
+    </li>
+  {% endfor %}
+
+  {% for tag in article.tags.all %}
+    <li class="tag">
+      <span>{{ tag }}</span>
     </li>
   {% endfor %}
   </ul>
 </div>
 {% endif %}
 
-{% if article.tags.all|length %}
-<div>
-  Other tags:<br>
-  <ul>
-  {% for bird in article.tags.all %}
-    <li>
-      <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
-    </li>
-  {% endfor %}
-  </ul>
-</div>
-{% endif %}
 {% endblock %}

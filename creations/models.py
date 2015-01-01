@@ -23,6 +23,23 @@ class Creation(models.Model, RealInstanceProvider):
         return None
 
 
+class RadioProgram(Creation):
+    original_air_date = models.DateField(null=True, blank=True)
+    file = models.FileField(null=True, blank=True, upload_to='radio')
+    supplemental_content_url = models.CharField(max_length=500, blank=True)
+    transcript = models.TextField(blank=True,
+                                  help_text=MARKDOWN_PROMPT)
+
+    class Meta:
+        ordering = ['-original_air_date']
+
+    def get_absolute_url(self):
+        return reverse('creations.views.radio')
+
+    def __unicode__(self):
+        return 'Radio Program: ' + self.title
+
+
 class Book(Creation):
     purchase_url = models.CharField(max_length=500, blank=True)
     photo = models.ImageField(null=True, blank=True, upload_to='books')
@@ -39,23 +56,6 @@ class Book(Creation):
 
     def __unicode__(self):
         return 'Book: ' + self.title
-
-
-class RadioProgram(Creation):
-    original_air_date = models.DateField(null=True, blank=True)
-    file = models.FileField(null=True, blank=True, upload_to='radio')
-    supplemental_content_url = models.CharField(max_length=500, blank=True)
-    transcript = models.TextField(blank=True,
-                                  help_text=MARKDOWN_PROMPT)
-
-    class Meta:
-        ordering = ['-original_air_date']
-
-    def get_absolute_url(self):
-        return reverse('creations.views.radio')
-
-    def __unicode__(self):
-        return 'Radio Program: ' + self.title
 
 
 class Article(Creation):
@@ -86,6 +86,34 @@ class BlogPost(Creation):
 
     def __unicode__(self):
         return 'Blog Post: ' + self.title
+
+
+class WebPage(Creation):
+    slug = models.SlugField(max_length=255)
+    date_published = models.DateField(null=True, blank=True)
+    content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+
+    class Meta:
+        ordering = ['title']
+
+    def get_absolute_url(self):
+        return reverse('creations.views.webpage', kwargs={'slug': self.slug})
+
+    def __unicode__(self):
+        return 'Web Page: ' + self.title
+
+
+class ExternalProject(Creation):
+    url = models.URLField(blank=True)
+
+    class Meta:
+        ordering = ['title']
+
+    def get_absolute_url(self):
+        return self.url
+
+    def __unicode__(self):
+        return 'External Project: ' + self.title
 
 
 class ResearchCategory(models.Model):

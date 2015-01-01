@@ -6,13 +6,34 @@
 {% block page_title %}Miscellany{% endblock %}
 
 {% block content %}
-<ul>
-  <li><a href="http://flickr.com/lauraerickson">
-    Laura's Photos on Flickr</a>
-  </li>
+<div class="page-section">
+  <h3 class="page-subtitle">Web Pages</h3>
+  <ul>
+    {% for page in webpages %}
+    <li>
+      <a href="{% url 'webpage_url' slug=page.slug %}">
+        {{ page.title }}</a>
 
-  <li>
-    <a href="http://conservationbigyear.com">Conservation Big Year: 2013</a>
-  </li>
-</ul>
+      {% if page.description %}
+        <br>&nbsp;&nbsp;{{ page.description }}
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">External Links</h3>
+  <ul>
+    {% for project in externalprojects %}
+    <li>
+      <a href="{{ project.url }}">{{ project.title }}</a>
+
+      {% if project.description %}
+        <br>&nbsp;&nbsp;{{ project.description }}
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

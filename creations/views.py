@@ -2,7 +2,8 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from creations.models import (Book, RadioProgram, Article,
+from creations.models import (RadioProgram, Book, Article,
+                              WebPage, ExternalProject,
                               ResearchCategory, Research)
 
 
@@ -15,7 +16,6 @@ def radio(request):
         'programs': programs,
         'year_list': year_list,
     }
-
     return render(request, 'radio.html', context)
 
 
@@ -26,7 +26,6 @@ def writing(request):
         'books': books,
         'articles': articles,
     }
-
     return render(request, 'writing.html', context)
 
 
@@ -36,13 +35,25 @@ def article(request, id):
     context = {
         'article': article,
     }
-
     return render(request, 'article.html', context)
 
 
 def miscellany(request):
-    context = {}
+    webpages = WebPage.objects.all()
+    externalprojects = ExternalProject.objects.all()
+    context = {
+        'webpages': webpages,
+        'externalprojects': externalprojects,
+    }
     return render(request, 'miscellany.html', context)
+
+
+def webpage(request, slug):
+    webpage = get_object_or_404(WebPage, slug=slug)
+    context = {
+        'webpage': webpage,
+    }
+    return render(request, 'webpage.html', context)
 
 
 @login_required
@@ -51,7 +62,6 @@ def research_categories(request):
     context = {
         'categories': categories,
     }
-
     return render(request, 'research_categories.html', context)
 
 
@@ -63,7 +73,6 @@ def research_category(request, id):
         'category': category,
         'research_items': research_items,
     }
-
     return render(request, 'research_category.html', context)
 
 
@@ -76,5 +85,4 @@ def research(request, id):
     context = {
         'research_item': research_item,
     }
-
     return render(request, 'research.html', context)

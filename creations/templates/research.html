@@ -46,26 +46,22 @@
 </div>
 {% endif %}
 
-{% if research_item.species.all|length %}
+{% if research_item.species.all|length or research_item.tags.all|length %}
 <div>
-  Relevant species:<br>
+  Tags:
   <ul>
-  {% for bird in research_item.species.all %}
-    <li>
-      <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
+    {% for bird in research_item.species.all %}
+    <li class="tag">
+      <a href="{% url 'bird_url' id=bird.id %}">
+        {{ bird.common_name }}</a>
     </li>
-  {% endfor %}
-  </ul>
-</div>
-{% endif %}
+    {% endfor %}
 
-{% if research_item.tags.all|length %}
-<div>
-  Other tags:<br>
-  <ul>
-  {% for tag in research_item.tags.all %}
-    <li>{{ tag }}</li>
-  {% endfor %}
+    {% for tag in research_item.tags.all %}
+    <li>
+      <span>{{ tag }}</span>
+    </li>
+    {% endfor %}
   </ul>
 </div>
 {% endif %}

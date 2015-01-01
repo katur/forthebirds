@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}webpage{% endblock %}
+
+{% block page_title %}{{ webpage.title }}{% endblock %}
+
+{% block content %}
+
+<div class="page-section">
+  {% if webpage.date_published %}
+  <div>
+    Publication Date: {{ article.date_published }}
+  </div>
+  {% endif %}
+
+  {% if webpage.species.all|length or webpage.tags.all|length %}
+  Tags:
+  <ul>
+    {% for bird in webpage.species.all %}
+    <li class="tag">
+      <a href="{% url 'bird_url' id=bird.id %}">
+        {{ bird.common_name }}</a>
+    </li>
+    {% endfor %}
+
+    {% for tag in webpage.tags.all %}
+    <li class="tag">
+      <span>{{ tag }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="page-section markdown">
+  {{ webpage.content|markdown }}
+</div>
+
+{% endblock %}
