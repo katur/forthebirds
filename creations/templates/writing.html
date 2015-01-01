@@ -76,6 +76,10 @@
       <a href="{% url 'article_url' id=article.id %}">
         {{ article.title }}</a>{% if article.date_published %},
         {{ article.date_published }}{% endif %}
+
+      {% if project.description %}
+        <br>&nbsp;&nbsp;{{ project.description }}
+      {% endif %}
     </li>
   {% endfor %}
   </ul>

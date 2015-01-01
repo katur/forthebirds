@@ -7,39 +7,29 @@
 
 {% block content %}
 
-{% if article.description %}
-<div>
-  Description: {{ article.description }}
-</div>
-{% endif %}
-
-{% if article.published_by %}
-<div>
-  Published By: {{ article.published_by }}
-</div>
-{% endif %}
-
-{% if article.date_published %}
-<div>
-  Publication Date: {{ article.date_published }}
-</div>
+{% if article.published_by or article.date_published %}
+<b>
+  Published
+  {% if article.published_by %}by {{ article.published_by }}{% endif %}
+  {% if article.date_published %}on {{ article.date_published }}{% endif %}
+</b>
 {% endif %}
 
 {% if article.url %}
 <div>
-  URL: <a href="{{ article.url }}">click here</a>
+  <a href="{{ article.url }}">URL</a>
 </div>
 {% endif %}
 
 {% if article.file %}
 <div>
-  Download File: <a href="{{ article.file }}">click here</a>
+  <a href="{{ article.file }}">Download article</a>
 </div>
 {% endif %}
 
 {% if article.text %}
 <div class="markdown">
-  Text: {{ article.text|markdown }}
+  {{ article.text|markdown }}
 </div>
 {% endif %}
 
