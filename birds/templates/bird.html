@@ -75,11 +75,13 @@
 <div class="card">
   <h3>{{ category.grouper }}{{ category.list|pluralize }}</h3>
 
-  {% for creation in category.list %}
-  <span>
-    <a href="{{ creation.get_absolute_url }}">{{ creation.title }}</a>
-  </span>
-  {% endfor %}
+  <ul>
+    {% for creation in category.list %}
+    <li>
+      <a href="{{ creation.get_absolute_url }}">{{ creation.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
 
 </div>
 {% endfor %}
