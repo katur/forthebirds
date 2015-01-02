@@ -6,21 +6,6 @@ from django.db import models
 from forthebirds.settings import MARKDOWN_PROMPT
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, primary_key=True)
-    blurb = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
-    bio = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
-    awards = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
-    primary_photo = models.FileField(null=True, blank=True,
-                                     upload_to='photos_of_laura')
-
-    def __unicode__(self):
-        return self.user.get_full_name()
-
-    def __str__(self):
-        return unicode(self).encode('utf-8')
-
-
 def get_updated_filename(instance, filename):
     path = "images/{}_{}".format(uuid.uuid4(), filename)
     return path
@@ -42,6 +27,23 @@ class UploadedImage(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, primary_key=True)
+    blurb = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
+    bio = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
+    awards = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
+    main_photo = models.ForeignKey(UploadedImage, null=True, blank=True,
+                                   related_name='main_uploaded_photo')
+    publicity_photos = models.ManyToManyField(
+        UploadedImage, related_name='uploaded_publicity_photos', blank=True)
+
+    def __unicode__(self):
+        return self.user.get_full_name()
 
     def __str__(self):
         return unicode(self).encode('utf-8')

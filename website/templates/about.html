@@ -8,7 +8,7 @@
 {% block content %}
 <div class="page-section">
   <img id="primary-photo"
-       src="{{ MEDIA_URL }}{{ laura.userprofile.primary_photo }}" />
+       src="{{ MEDIA_URL }}{{ laura.userprofile.main_photo.image }}" />
 
   <div id="blurb" class="markdown">
     {{ laura.userprofile.blurb|markdown }}
@@ -26,6 +26,17 @@
   <h3 class="page-subtitle">Awards</h3>
   <div id="awards" class="markdown">
     {{ laura.userprofile.awards|markdown }}
+  </div>
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">Publicity Photos</h3>
+  <div id="publicity-photos">
+    {% for photo in laura.userprofile.publicity_photos.all %}
+    <a href="{{ MEDIA_URL }}{{ photo.image }}">
+      <img src="{{ MEDIA_URL }}{{ photo.image }}" />
+    </a>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
