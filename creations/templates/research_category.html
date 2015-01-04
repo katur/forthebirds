@@ -6,13 +6,34 @@
 {% block page_title %}Research Category: {{ category.name }}{% endblock %}
 
 {% block content %}
-<ul>
-{% for item in research_items %}
-  <li>
-    <a href="{% url 'research_url' id=item.id %}">
-      {{ item.title }}</a>
-  </li>
-{% endfor %}
-</ul>
+{% if children_categories %}
+<div class="page-section">
+  <h3>Nested Research Categories</h3>
+
+  <ul>
+  {% for category in children_categories %}
+    <li>
+      <a href="{% url 'research_category_url' id=category.id %}">
+        {{ category.name }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% if children_items %}
+<div class="page-section">
+  <h3>Research Items</h3>
+
+  <ul>
+  {% for item in children_items %}
+    <li>
+      <a href="{% url 'research_url' id=item.id %}">
+        {{ item.title }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
 
 {% endblock %}

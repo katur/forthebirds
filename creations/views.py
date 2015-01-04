@@ -58,7 +58,7 @@ def webpage(request, slug):
 
 @login_required
 def research_categories(request):
-    categories = ResearchCategory.objects.all()
+    categories = ResearchCategory.objects.filter(parent__isnull=True)
     context = {
         'categories': categories,
     }
@@ -68,10 +68,12 @@ def research_categories(request):
 @login_required
 def research_category(request, id):
     category = get_object_or_404(ResearchCategory, id=id)
-    research_items = Research.objects.filter(research_category=category)
+    children_categories = ResearchCategory.objects.filter(parent=category)
+    children_items = Research.objects.filter(research_category=category)
     context = {
         'category': category,
-        'research_items': research_items,
+        'children_categories': children_categories,
+        'children_items': children_items,
     }
     return render(request, 'research_category.html', context)
 
