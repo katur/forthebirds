@@ -119,6 +119,7 @@ class ExternalProject(Creation):
 class ResearchCategory(models.Model):
     name = models.CharField(max_length=100)
     notes = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    parent = models.ForeignKey('self', null=True, blank=True)
 
     class Meta:
         ordering = ['name']
