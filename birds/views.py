@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render, get_object_or_404
 
 from birds.models import Species
@@ -92,8 +94,12 @@ def bird(request, id):
             creation.ancestors = creation.get_ancestors()
             creation.card_name = creation.ancestors[0]
 
-        creations = sorted(creations, key=lambda x: x.get_display_date(),
-                           reverse=True)
+        mindate = datetime.date(datetime.MINYEAR, 1, 1)
+
+        def get_sorting_date(x):
+            return x.get_display_date() or mindate
+
+        creations = sorted(creations, key=get_sorting_date, reverse=True)
         creations = sorted(creations, key=lambda x: x.ancestors)
 
         return creations
