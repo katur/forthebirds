@@ -69,21 +69,18 @@
 </div>
 {% endif %}
 
-{% if actual_creations %}
-{% regroup actual_creations by category as category_list %}
-{% for category in category_list %}
-<div class="card">
-  <h3>{{ category.grouper }}{{ category.list|pluralize }}</h3>
+{% if public_creations %}
+{% regroup public_creations by ancestors as card_list %}
+{% for card in card_list %}
+  {% include "creation_card.html" %}
+{% endfor %}
+{% endif %}
 
-  <ul>
-    {% for creation in category.list %}
-    <li>
-      <a href="{{ creation.get_absolute_url }}">{{ creation.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-
-</div>
+{% if private_creations %}
+<hr style="float: left; width: 100%">
+{% regroup private_creations by ancestors as card_list %}
+{% for card in card_list %}
+  {% include "creation_card.html" %}
 {% endfor %}
 {% endif %}
 

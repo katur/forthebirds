@@ -69,7 +69,7 @@ def research_categories(request):
 def research_category(request, id):
     category = get_object_or_404(ResearchCategory, id=id)
     children_categories = ResearchCategory.objects.filter(parent=category)
-    children_items = Research.objects.filter(research_category=category)
+    children_items = Research.objects.filter(category=category)
     context = {
         'category': category,
         'children_categories': children_categories,

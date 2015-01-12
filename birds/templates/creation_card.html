@@ -1,0 +1,15 @@
+<div class="card">
+  <h3>
+    {% for level in card.grouper %}{{ level }}{% if not forloop.last %}->{% endif %}{% endfor %}{{ card.list|pluralize }}</h3>
+
+  <ul>
+    {% for creation in card.list %}
+    <li>
+      <a href="{{ creation.get_absolute_url }}">{{ creation.title }}</a>
+      {% if creation.get_display_date %}
+      <span class="year">{{ creation.get_display_date|date:"Y" }}</span>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>

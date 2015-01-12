@@ -1,3 +1,5 @@
+import re
+
 from django.db import models
 from django.core.urlresolvers import reverse
 
@@ -16,11 +18,42 @@ class Creation(models.Model, RealInstanceProvider):
     tags = TaggableManager(blank=True)
     is_public = True
 
+    def is_research(self):
+        class_name = self.__class__.__name__
+        if class_name.lower() == 'research':
+            return True
+        else:
+            return False
+
+    def get_ancestors(self):
+        ancestors = []
+
+        if hasattr(self, 'category'):
+            current = self.category
+            ancestors.append(current)
+            while current.parent:
+                current = current.parent
+                ancestors.append(current)
+
+        else:
+            class_name = self.__class__.__name__
+            words = re.findall('[A-Z][^A-Z]*', class_name)
+            ancestors.append(' '.join(words))
+
+        ancestors.reverse()
+        return ancestors
+
     def __unicode__(self):
         return self.title
 
     def get_absolute_url(self):
         return None
+
+    def get_display_date(self):
+        if hasattr(self, 'date_published'):
+            return self.date_published
+        else:
+            return None
 
 
 class RadioProgram(Creation):
@@ -33,11 +66,14 @@ class RadioProgram(Creation):
     class Meta:
         ordering = ['-original_air_date']
 
+    def __unicode__(self):
+        return 'Radio Program: ' + self.title
+
     def get_absolute_url(self):
         return reverse('creations.views.radio')
 
-    def __unicode__(self):
-        return 'Radio Program: ' + self.title
+    def get_display_date(self):
+        return self.original_air_date
 
 
 class Book(Creation):
@@ -130,7 +166,7 @@ class ResearchCategory(models.Model):
 
 
 class Research(Creation):
-    research_category = models.ForeignKey(ResearchCategory)
+    category = models.ForeignKey(ResearchCategory)
     date = models.DateField(null=True, blank=True)
     attribution = models.CharField(max_length=200, blank=True,
                                    help_text=MARKDOWN_PROMPT)

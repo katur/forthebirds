@@ -1,5 +1,3 @@
-import re
-
 from django.shortcuts import render, get_object_or_404
 
 from birds.models import Species
@@ -74,7 +72,9 @@ def bird(request, id):
     else:
         show_private = False
 
-    actual_creations = []
+    public_creations = []
+    private_creations = []
+
     for creation in bird.creation_set.all():
         # Get actual instances to take advantage of polymorphic fields
         actual_creation = creation.get_actual_instance()
@@ -82,24 +82,30 @@ def bird(request, id):
         if not actual_creation.is_public and not show_private:
             continue
 
-        # Format the title to display for this creation
-        class_name = actual_creation.__class__.__name__
-        words = re.findall('[A-Z][^A-Z]*', class_name)
-        actual_creation.category = ' '.join(words)
+        if actual_creation.is_public:
+            public_creations.append(actual_creation)
+        else:
+            private_creations.append(actual_creation)
 
-        # Split up Research instances by research subcategory
-        if actual_creation.category.lower() == 'research':
-            actual_creation.category = actual_creation.research_category
+    def organize(creations):
+        for creation in creations:
+            creation.ancestors = creation.get_ancestors()
+            creation.card_name = creation.ancestors[0]
 
-        actual_creations.append(actual_creation)
+        creations = sorted(creations, key=lambda x: x.get_display_date(),
+                           reverse=True)
+        creations = sorted(creations, key=lambda x: x.ancestors)
+
+        return creations
 
     # Sort by creation type in order to use template 'regroup'
-    actual_creations = sorted(actual_creations,
-                              key=lambda x: x.category)
+    public_creations = organize(public_creations)
+    private_creations = organize(private_creations)
 
     context = {
         'bird': bird,
-        'actual_creations': actual_creations,
+        'public_creations': public_creations,
+        'private_creations': private_creations,
     }
 
     return render(request, 'bird.html', context)

@@ -76,10 +76,10 @@ class ResearchCategoryAdmin(admin.ModelAdmin):
 
 
 class ResearchAdmin(admin.ModelAdmin):
-    list_display = ('title', 'research_category', 'attribution', 'date',
+    list_display = ('title', 'category', 'attribution', 'date',
                     'url',)
 
-    list_filter = ('research_category',)
+    list_filter = ('category',)
 
     filter_horizontal = ('species',)
 
