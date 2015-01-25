@@ -184,3 +184,17 @@ class Research(Creation):
 
     def __unicode__(self):
         return 'Research: ' + self.title
+
+
+class ABAFieldGuideImage(Creation):
+    image = models.ImageField(null=True, blank=True, upload_to='abafieldguide')
+    is_public = False
+
+    class Meta:
+        ordering = ['title']
+
+    def __unicode__(self):
+        return 'ABA Field Guide Image ' + self.title
+
+    def get_absolute_url(self):
+        return None

@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 
 from birds.models import Species
+from creations.models import ABAFieldGuideImage
 
 
 class Command(BaseCommand):
@@ -16,13 +17,13 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            path = args[0]
+            dropbox_path = args[0]
         except IndexError:
             print ('Incorrect usage. Correct usage: '
                    './manage.py add_field_guide_pics path_to_images')
             sys.exit(2)
 
-        image_filenames = os.listdir(path)
+        image_filenames = os.listdir(dropbox_path)
         for image_filename in image_filenames:
             common_name = image_filename.rpartition('.jpg')[0]
 
@@ -48,5 +49,21 @@ class Command(BaseCommand):
 
             try:
                 species = Species.objects.get(common_name=common_name)
+
             except ObjectDoesNotExist:
                 print(image_filename)
+                continue
+
+            try:
+                image = ABAFieldGuideImage.objects.get(
+                    title=image_filename)
+                image.title = image_filename
+
+            except ObjectDoesNotExist:
+                image = ABAFieldGuideImage(title=image_filename,
+                                           filename=image_filename)
+
+            image.save()
+
+            if species not in image.species.all():
+                image.species.add(species)
