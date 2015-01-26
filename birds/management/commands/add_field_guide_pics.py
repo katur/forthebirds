@@ -3,6 +3,7 @@ import re
 import sys
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files import File
 from django.core.management.base import BaseCommand
 
 from birds.models import Species
@@ -51,19 +52,19 @@ class Command(BaseCommand):
                 species = Species.objects.get(common_name=common_name)
 
             except ObjectDoesNotExist:
-                print(image_filename)
+                print('Skipping ' + image_filename + ' (no matching species)')
                 continue
 
             try:
                 image = ABAFieldGuideImage.objects.get(
                     title=image_filename)
-                image.title = image_filename
 
             except ObjectDoesNotExist:
-                image = ABAFieldGuideImage(title=image_filename,
-                                           filename=image_filename)
+                image = ABAFieldGuideImage(title=image_filename)
 
-            image.save()
+            if not image.image:
+                f = open(dropbox_path + '/' + image_filename)
+                image.image.save(image_filename, File(f), save=True)
 
             if species not in image.species.all():
                 image.species.add(species)

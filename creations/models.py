@@ -1,7 +1,8 @@
 import re
 
-from django.db import models
+from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.db import models
 
 from taggit.managers import TaggableManager
 
@@ -17,6 +18,7 @@ class Creation(models.Model, RealInstanceProvider):
     species = models.ManyToManyField(Species, blank=True)
     tags = TaggableManager(blank=True)
     is_public = True
+    is_image = False
 
     def is_research(self):
         class_name = self.__class__.__name__
@@ -189,6 +191,7 @@ class Research(Creation):
 class ABAFieldGuideImage(Creation):
     image = models.ImageField(null=True, blank=True, upload_to='abafieldguide')
     is_public = False
+    is_image = True
 
     class Meta:
         ordering = ['title']
@@ -197,4 +200,4 @@ class ABAFieldGuideImage(Creation):
         return 'ABA Field Guide Image ' + self.title
 
     def get_absolute_url(self):
-        return None
+        return self.image.url

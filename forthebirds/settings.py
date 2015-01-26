@@ -14,8 +14,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.join(SETTINGS_DIR, '..')
 
-from local_settings import (DEBUG, SECRET_KEY, DATABASES, STATIC_ROOT,
-                            MEDIA_ROOT)
+from local_settings import (DEBUG, SECRET_KEY, DATABASES,
+                            STATIC_ROOT, MEDIA_ROOT, MEDIA_URL,
+                            AWS_STORAGE_BUCKET_NAME,
+                            AWS_S3_ACCESS_KEY_ID,
+                            AWS_S3_SECRET_ACCESS_KEY)
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -71,7 +74,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+
+# Media files
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_S3_SECURE_URLS = False       # use http instead of https
+AWS_QUERYSTRING_AUTH = False     # skip some complicated shit re: AWS auth
 
 # For request object in templates
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
@@ -89,7 +96,7 @@ TEMPLATE_DIRS = (
 LOGIN_URL = 'login_url'
 LOGIN_REDIRECT_URL = 'home_url'
 
-
+# Constants
 MARKDOWN_PROMPT = (
     'Use Markdown syntax for italics, bullets, etc. See '
     '<a href="http://www.darkcoding.net/software/markdown-quick-reference">'

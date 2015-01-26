@@ -5,10 +5,16 @@
   <ul>
     {% for creation in card.list %}
     <li>
-      <a href="{{ creation.get_absolute_url }}">{{ creation.title }}</a>
-      {% if creation.get_display_date %}
-      <span class="year">{{ creation.get_display_date|date:"Y" }}</span>
+    <a href="{{ creation.get_absolute_url }}">
+      {% if creation.is_image %}
+      <img width=500 src="{{ creation.image.url }}" /><br>
       {% endif %}
+      {{ creation.title }}
+    </a>
+
+    {% if creation.get_display_date %}
+    <span class="year">{{ creation.get_display_date|date:"Y" }}</span>
+    {% endif %}
     </li>
     {% endfor %}
   </ul>
