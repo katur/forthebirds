@@ -15,10 +15,7 @@ SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.join(SETTINGS_DIR, '..')
 
 from local_settings import (DEBUG, SECRET_KEY, DATABASES,
-                            STATIC_ROOT, MEDIA_ROOT, MEDIA_URL,
-                            AWS_STORAGE_BUCKET_NAME,
-                            AWS_S3_ACCESS_KEY_ID,
-                            AWS_S3_SECRET_ACCESS_KEY)
+                            STATIC_ROOT, MEDIA_ROOT)
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -75,10 +72,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_URL = '/static/'
 
-# Media files
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_S3_SECURE_URLS = False       # use http instead of https
-AWS_QUERYSTRING_AUTH = False     # skip some complicated shit re: AWS auth
+# Media files (User-uploaded files)
+MEDIA_URL = '/media/'
 
 # For request object in templates
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
