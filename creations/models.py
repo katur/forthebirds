@@ -195,6 +195,8 @@ class ABAFieldGuideImage(Creation):
 
     class Meta:
         ordering = ['title']
+        verbose_name = 'ABA Field Guide Image'
+        verbose_name = 'ABA Field Guide Images'
 
     def __unicode__(self):
         return 'ABA Field Guide Image ' + self.title
