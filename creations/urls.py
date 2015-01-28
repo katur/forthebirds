@@ -4,6 +4,7 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns(
     'creations.views',
     url(r'^radio$', 'radio', name='radio_url'),
+    url(r'^radio/(?P<id>.+)$', 'radio_program', name='radio_program_url'),
     url(r'^writing$', 'writing', name='writing_url'),
     url(r'^book/(?P<id>.+)$', 'book', name='book_url'),
     url(r'^article/(?P<id>.+)$', 'article', name='article_url'),

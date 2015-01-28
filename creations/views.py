@@ -19,6 +19,15 @@ def radio(request):
     return render(request, 'radio.html', context)
 
 
+def radio_program(request, id):
+    program = get_object_or_404(RadioProgram, id=id)
+
+    context = {
+        'program': program,
+    }
+    return render(request, 'radio_program.html', context)
+
+
 def writing(request):
     books = Book.objects.all()
     articles = Article.objects.all()

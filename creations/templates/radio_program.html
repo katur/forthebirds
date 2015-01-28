@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}radio_program{% endblock %}
+
+{% block page_title %}
+  <i>For the Birds</i> Radio Program: {{ program.title }}
+{% endblock %}
+
+{% block content %}
+
+<span class="field">
+  {{ program.original_air_date }}
+</span>
+
+<span class="field">
+  {{ program.description|markdown }}
+</span>
+
+{% if program.file %}
+<div class="field">
+  <audio controls preload="none">
+    <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+<div class="field">
+  <a class="download-link"  href="{{ MEDIA_URL }}{{ program.file }}">
+    Download .mp3</a>
+</div>
+{% endif %}
+
+{% if program.supplemental_content_url %}
+<div class="field">
+  <a href="{{ program.supplemental_content_url }}">
+    Transcript and photos</a>
+</div>
+{% endif %}
+
+{% if program.species.all|length or program.tags.all|length %}
+<div class="field">
+  <span>Tags:</span>
+  <ul>
+  {% for bird in program.species.all %}
+    <li class="tag">
+      <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
+    </li>
+  {% endfor %}
+  {% for tag in program.tags.all %}
+    <li class="tag">
+      <span>
+        {{ tag }}
+      </span>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% endblock %}

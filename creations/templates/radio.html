@@ -52,6 +52,9 @@
         </div>
         {% endif %}
 
+        <div><a href="{% url 'radio_program_url' id=program.id %}">
+            Permalink</a></div>
+
         {% if program.species.all|length or program.tags.all|length %}
         <div class="tags">
           <span>Tags:</span>

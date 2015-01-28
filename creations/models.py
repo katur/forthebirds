@@ -72,7 +72,8 @@ class RadioProgram(Creation):
         return 'Radio Program: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.radio')
+        return reverse('creations.views.radio_program',
+                       kwargs={'id': self.id})
 
     def get_display_date(self):
         return self.original_air_date
