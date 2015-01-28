@@ -29,12 +29,11 @@
 - make links dead until more content
 
 ## Radio
-- permalink per program
+- slug for program permalink
 - better player that allows jumping
 
 ## Books
-- permalink per book
-- tags in permalink only (since too many)
+- slug for book permalink
 
 ## Articles
 - basic styling in article permalink
