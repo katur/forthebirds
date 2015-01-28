@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}book{% endblock %}
+
+{% block page_title %}<i>{{ book.title }}</i>{% endblock %}
+
+{% block content %}
+
+<div class="two-columns">
+  {% if book.photo %}
+  <div class="column">
+    <img src="{{ MEDIA_URL }}{{ book.photo }}" />
+  </div>
+  {% endif %}
+
+  <div class="column">
+    <span class="field">{{ book.date_published|date:"Y" }}</span>
+
+    {% if book.publisher %}
+      <span class="field">Published by {{ book.publisher }}</span>
+    {% endif %}
+
+    {% if book.isbn_10 %}
+      <span class="field">ISBN-10: {{ book.isbn_10 }}</span>
+    {% endif %}
+
+    {% if book.isbn_13 %}
+      <span class="field">ISBN-13: {{ book.isbn_13 }}</span>
+    {% endif %}
+
+    <span class="field">{{ book.description|markdown }}</span>
+
+    {% if book.purchase_url %}
+    <span class="field">
+      <a class="purchase-link" href="{{ book.purchase_url }}">
+        click to purchase</a>
+    </span>
+    {% endif %}
+  </div>
+</div>
+
+{% if book.species.all|length or  book.tags.all|length %}
+<div id="tags">
+  Tags:
+  <ul>
+  {% for bird in book.species.all %}
+    <li class="tag">
+    <a href="{% url 'bird_url' id=bird.id %}">
+      {{ bird.common_name }}</a>
+    </li>
+  {% endfor %}
+
+  {% for tag in book.tags.all %}
+    <li class="tag">
+      <span>
+        {{ tag }}
+      </span>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
+{% endblock %}

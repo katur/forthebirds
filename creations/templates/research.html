@@ -6,48 +6,48 @@
 {% block page_title %}{{ research_item.title }}{% endblock %}
 
 {% block content %}
-<div>
-  Category: {{ research_item.research_category }}
+<div class="field">
+  Category: {{ research_item.category }}
 </div>
 
 {% if research_item.description %}
-<div>
+<div class="field">
   Description: {{ research_item.description }}
 </div>
 {% endif %}
 
 {% if research_item.date %}
-<div>
+<div class="field">
   Date: {{ research_item.date }}
 </div>
 {% endif %}
 
 {% if research_item.attribution %}
-<div>
+<div class="field">
   Attribution: {{ research_item.attribution|markdown }}
 </div>
 {% endif %}
 
 {% if research_item.url %}
-<div>
-  URL: <a href="{{ research_item.url }}">click here</a>
+<div class="field">
+  <a href="{{ research_item.url }}">URL</a>
 </div>
 {% endif %}
 
 {% if research_item.file %}
-<div>
-  Download File: <a href="{{ research_item.file }}">click here</a>
+<div class="field">
+  <a href="{{ research_item.file }}">download</a>
 </div>
 {% endif %}
 
 {% if research_item.text %}
-<div>
+<div class="field">
   Text: {{ research_item.text|markdown }}
 </div>
 {% endif %}
 
 {% if research_item.species.all|length or research_item.tags.all|length %}
-<div>
+<div class="field">
   Tags:
   <ul>
     {% for bird in research_item.species.all %}

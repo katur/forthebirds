@@ -29,6 +29,15 @@ def writing(request):
     return render(request, 'writing.html', context)
 
 
+def book(request, id):
+    book = get_object_or_404(Book, id=id)
+
+    context = {
+        'book': book,
+    }
+    return render(request, 'book.html', context)
+
+
 def article(request, id):
     article = get_object_or_404(Article, id=id)
 

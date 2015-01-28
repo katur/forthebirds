@@ -29,14 +29,6 @@
           <div class="publisher">Published by {{ book.publisher }}</div>
         {% endif %}
 
-        {% if book.isbn_10 %}
-          <div>ISBN-10: {{ book.isbn_10 }}</div>
-        {% endif %}
-
-        {% if book.isbn_13 %}
-          <div>ISBN-13: {{ book.isbn_13 }}</div>
-        {% endif %}
-
         <div class="description">{{ book.description|markdown }}</div>
 
         {% if book.purchase_url %}
@@ -44,23 +36,7 @@
             click to purchase</a></div>
         {% endif %}
 
-        {% if book.species.all|length or  book.tags.all|length %}
-        <div>Tags:</div>
-        <ul class="scroll-box">
-        {% for bird in book.species.all %}
-          <li class="tag">
-            <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
-          </li>
-        {% endfor %}
-        {% for tag in book.tags.all %}
-          <li class="tag">
-            <span>
-              {{ tag }}
-            </span>
-          </li>
-        {% endfor %}
-        </ul>
-        {% endif %}
+        <a href="{% url 'book_url' id=book.id %}">More info</a>
       </div>
 
     </div>
