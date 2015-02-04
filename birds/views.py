@@ -2,7 +2,7 @@ import datetime
 
 from django.shortcuts import render, get_object_or_404
 
-from birds.models import Species
+from birds.models import Species, MinnesotaSpecies
 
 
 def birds(request):
@@ -28,6 +28,12 @@ def birds(request):
         }
 
         return render(request, 'birds.html', context)
+
+
+def minnesota_birds(request):
+    birds = MinnesotaSpecies.objects.filter(include_in_book=True)
+    context = {'birds': birds}
+    return render(request, 'minnesota_birds.html', context)
 
 
 def birds_taxonomical(request):
