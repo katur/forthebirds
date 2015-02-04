@@ -17,6 +17,7 @@
 - upcoming engagements (via Google calendar?)
 
 ## Species
+- bird.name -> bird.scientific_name
 - basic styling of cards (less random)
 - pluralization of research issues
 - better styling of private material
