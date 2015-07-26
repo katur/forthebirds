@@ -26,11 +26,8 @@
   <ul>
   {% for program in programs %}
     <li>
-      <h4>{{ program.title }}</h4>
-
-      <div>{{ program.description|markdown }}</div>
-
-      <a href="{% url 'speaking_program_url' program.id %}">Permalink</a>
+      <a href="{% url 'speaking_program_url' program.id %}">
+        {{ program.title }} </a>
     </li>
   {% endfor %}
   </div>
