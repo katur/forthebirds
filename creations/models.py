@@ -116,7 +116,7 @@ class Article(Creation):
 
 class SpeakingProgram(Creation):
     class Meta:
-        ordering = ['-title']
+        ordering = ['title']
 
     def get_absolute_url(self):
         return reverse('creations.views.speaking_program',
