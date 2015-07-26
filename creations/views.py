@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from creations.models import (RadioProgram, Book, Article,
+                              SpeakingProgram,
                               WebPage, ExternalProject,
                               ResearchCategory, Research)
 
@@ -54,6 +55,24 @@ def article(request, id):
         'article': article,
     }
     return render(request, 'article.html', context)
+
+
+def speaking(request):
+    programs = SpeakingProgram.objects.all()
+
+    context = {
+        'programs': programs,
+    }
+    return render(request, 'speaking.html', context)
+
+
+def speaking_program(request, id):
+    program = get_object_or_404(SpeakingProgram, id=id)
+
+    context = {
+        'program': program,
+    }
+    return render(request, 'speaking_program.html', context)
 
 
 def miscellany(request):

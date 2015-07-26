@@ -114,6 +114,18 @@ class Article(Creation):
         return 'Article: ' + self.title
 
 
+class SpeakingProgram(Creation):
+    class Meta:
+        ordering = ['-title']
+
+    def get_absolute_url(self):
+        return reverse('creations.views.speaking_program',
+                       kwargs={'id': self.id})
+
+    def __unicode__(self):
+        return 'Speaking Program: ' + self.title
+
+
 class BlogPost(Creation):
     url = models.URLField(blank=True)
 

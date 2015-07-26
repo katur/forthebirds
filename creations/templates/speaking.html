@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}speaking{% endblock %}
+
+{% block page_title %}Laura's Speaking Engagements{% endblock %}
+
+{% block content %}
+
+<div class="page-section">
+  Since her heart attack in 2015, Laura has cut back on travel and speaking
+  engagements. To accomplish that, and because she has so little saved for a
+  retirement that will be coming sooner rather than later as she'd expected
+  before the heart attack, she's raised her rates. Normally, she now charges
+  $600 per talk, plus travel expenses ($0.57.5 per mile plus lodging costs en
+  route, or reimbursement for flying and car rental) and lodging during the
+  event for herself and her plucky sidekick Pip the Birding Dog. She makes
+  exceptions in a few situations, for organizations that she wants to support
+  and/or for exceptional birding and bird photography opportunities or other
+  personal reasons. She truly can no longer afford the time and exhaustion of
+  most programs below her asking rate.
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">Topics</h3>
+  <ul>
+  {% for program in programs %}
+    <li>
+      <h4>{{ program.title }}</h4>
+
+      <div>{{ program.description|markdown }}</div>
+
+      <a href="{% url 'speaking_program_url' program.id %}">Permalink</a>
+    </li>
+  {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

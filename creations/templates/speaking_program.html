@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block body_id %}speaking_program{% endblock %}
+
+{% block page_title %}
+Speaking Program: <i>{{ program.title }}</i>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-section">
+  {{ program.description }}
+</div>
+
+{% endblock %}

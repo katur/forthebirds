@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from creations.models import (RadioProgram, Book, Article, BlogPost,
-                              WebPage, ExternalProject,
+from creations.models import (RadioProgram, Book, Article, SpeakingProgram,
+                              BlogPost, WebPage, ExternalProject,
                               Research, ResearchCategory)
 
 
@@ -53,6 +53,12 @@ class ArticleAdmin(admin.ModelAdmin):
     filter_horizontal = ('species',)
 
 
+class SpeakingProgramAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+
+    filter_horizontal = ('species',)
+
+
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ('title', 'url',)
 
@@ -89,6 +95,7 @@ class ResearchAdmin(admin.ModelAdmin):
 admin.site.register(RadioProgram, RadioProgramAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Article, ArticleAdmin)
+admin.site.register(SpeakingProgram, SpeakingProgramAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(WebPage, WebPageAdmin)
 admin.site.register(ExternalProject, ExternalProjectAdmin)
