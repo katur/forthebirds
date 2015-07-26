@@ -10,7 +10,7 @@ Speaking Program: <i>{{ program.title }}</i>
 {% block content %}
 
 <div class="page-section">
-  {{ program.description }}
+  {{ program.description|markdown }}
 </div>
 
 {% endblock %}
