@@ -30,6 +30,20 @@
         {{ program.title }} </a>
     </li>
   {% endfor %}
+  </ul>
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">Keynotes and other major presentations</h3>
+  <div class="markdown">
+    {{ laura.userprofile.speaking_keynotes|markdown }}
+  </div>
+</div>
+
+<div class="page-section">
+  <h3 class="page-subtitle">Testimonials</h3>
+  <div class="markdown">
+    {{ laura.userprofile.speaking_testimonials|markdown }}
   </div>
 </div>
 

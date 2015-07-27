@@ -2,6 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
+from website.models import User
 from creations.models import (RadioProgram, Book, Article,
                               SpeakingProgram,
                               WebPage, ExternalProject,
@@ -58,10 +59,12 @@ def article(request, id):
 
 
 def speaking(request):
+    laura = get_object_or_404(User, username='laura')
     programs = SpeakingProgram.objects.all()
 
     context = {
         'programs': programs,
+        'laura': laura,
     }
     return render(request, 'speaking.html', context)
 
