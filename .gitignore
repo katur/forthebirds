@@ -1,7 +1,12 @@
-*local_settings.*
-backups
-staticfiles
-mediafiles
+# Database connection and other secret settings
+*local_settings.py
+
+# Backups and offline materials
+backups/
+
+# Collected static files (can be re-collected with ./manage.py collectstatic)
+staticfiles/
+mediafiles/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
