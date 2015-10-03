@@ -3,6 +3,7 @@
 
 # Backups and offline materials
 backups/
+materials/
 
 # Collected static files (can be re-collected with ./manage.py collectstatic)
 staticfiles/
