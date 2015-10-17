@@ -79,7 +79,7 @@ class RadioProgram(Creation):
 
 
 class Book(Creation):
-    purchase_url = models.CharField(max_length=500, blank=True)
+    purchase_url = models.URLField(blank=True)
     photo = models.ImageField(null=True, blank=True, upload_to='books')
     publisher = models.CharField(max_length=100, blank=True)
     isbn_10 = models.CharField('ISBN 10', max_length=20, blank=True)

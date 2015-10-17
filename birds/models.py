@@ -35,7 +35,7 @@ class Species(models.Model):
     is_visible = models.BooleanField('Visible on website',
                                      default=True)
     blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-    main_photo_url = models.TextField(blank=True)
+    main_photo_url = models.URLField(blank=True)
     bird_of_the_week_name = models.CharField(max_length=50, blank=True)
     french_name = models.CharField(max_length=50)
     nacc_is_accidental = models.NullBooleanField()
