@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from creations.models import (RadioProgram, Book, Article,
-                              SpeakingProgram, SpeakingPresentation,
+                              SpeakingProgram, SpeakingProgramFile,
                               WebPage, ExternalProject,
                               ResearchCategory, Research)
 from website.models import User
@@ -72,13 +72,13 @@ def speaking(request):
 def speaking_program(request, id):
     program = get_object_or_404(SpeakingProgram, id=id)
     if request.user.is_authenticated() and request.user.is_staff:
-        presentations = SpeakingPresentation.objects.filter(program=program)
+        files = SpeakingProgramFile.objects.filter(program=program)
     else:
-        presentations = None
+        files = None
 
     context = {
         'program': program,
-        'presentations': presentations,
+        'files': files,
     }
     return render(request, 'speaking_program.html', context)
 

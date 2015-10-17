@@ -125,13 +125,12 @@ class SpeakingProgram(Creation):
         return 'Speaking Program: ' + self.title
 
 
-class SpeakingPresentation(models.Model):
+class SpeakingProgramFile(models.Model):
     program = models.ForeignKey(SpeakingProgram)
     title = models.CharField(max_length=120)
     date = models.DateField(null=True, blank=True)
     description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-    file = models.FileField(null=True, blank=True,
-                            upload_to='presentations',
+    file = models.FileField(null=True, blank=True, upload_to='speaking',
                             storage=PrivateMediaStorage())
 
     class Meta:

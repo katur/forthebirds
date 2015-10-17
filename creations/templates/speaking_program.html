@@ -17,15 +17,15 @@ Speaking Program: <i>{{ program.title }}</i>
 <h3 class="page-subtitle">Presentation Files</h3>
 <div class="page-section">
   <ul>
-    {% for presentation in presentations %}
+    {% for file in files %}
     <li>
-      <a href="{{ presentation.file.url }}">
-        {{ presentation.title }}
-        {% if presentation.date %}
-          ({{ presentation.date }})
+      <a href="{{ file.file.url }}">
+        {{ file.title }}
+        {% if file.date %}
+          ({{ file.date }})
         {% endif %}
       </a>
-      {{ presentation.description }}
+      {{ file.description }}
     </li>
     {% endfor %}
   </ul>
