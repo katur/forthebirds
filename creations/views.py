@@ -2,11 +2,11 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from website.models import User
 from creations.models import (RadioProgram, Book, Article,
-                              SpeakingProgram,
+                              SpeakingProgram, SpeakingPresentation,
                               WebPage, ExternalProject,
                               ResearchCategory, Research)
+from website.models import User
 
 
 def radio(request):
@@ -71,9 +71,14 @@ def speaking(request):
 
 def speaking_program(request, id):
     program = get_object_or_404(SpeakingProgram, id=id)
+    if request.user.is_authenticated() and request.user.is_staff:
+        presentations = SpeakingPresentation.objects.filter(program=program)
+    else:
+        presentations = None
 
     context = {
         'program': program,
+        'presentations': presentations,
     }
     return render(request, 'speaking_program.html', context)
 

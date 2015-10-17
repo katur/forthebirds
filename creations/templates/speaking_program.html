@@ -13,4 +13,13 @@ Speaking Program: <i>{{ program.title }}</i>
   {{ program.description|markdown }}
 </div>
 
+{% if presentations %}
+<div class="page-section">
+  {% for presentation in presentations %}
+  <a href="{{ presentation.file.url }}">
+    {{ presentation.title }}</a>
+  {% endfor %}
+</div>
+{% endif %}
+
 {% endblock %}

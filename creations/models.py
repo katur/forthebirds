@@ -134,6 +134,9 @@ class SpeakingPresentation(models.Model):
                             upload_to='presentations',
                             storage=PrivateMediaStorage())
 
+    class Meta:
+        ordering = ['date']
+
     def __unicode__(self):
         return 'Speaking Presentation File: ' + self.title
 
