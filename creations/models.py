@@ -1,6 +1,5 @@
 import re
 
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -61,7 +60,7 @@ class Creation(models.Model, RealInstanceProvider):
 class RadioProgram(Creation):
     original_air_date = models.DateField(null=True, blank=True)
     file = models.FileField(null=True, blank=True, upload_to='radio')
-    supplemental_content_url = models.CharField(max_length=500, blank=True)
+    supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=MARKDOWN_PROMPT)
 
