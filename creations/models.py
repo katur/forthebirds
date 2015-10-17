@@ -12,8 +12,7 @@ from utils.models import RealInstanceProvider
 
 class Creation(models.Model, RealInstanceProvider):
     title = models.CharField(max_length=120)
-    description = models.TextField(blank=True,
-                                   help_text=MARKDOWN_PROMPT)
+    description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     species = models.ManyToManyField(Species, blank=True)
     tags = TaggableManager(blank=True)
     is_public = True
@@ -123,6 +122,17 @@ class SpeakingProgram(Creation):
 
     def __unicode__(self):
         return 'Speaking Program: ' + self.title
+
+
+class SpeakingPresentationFile(models.Model):
+    program = models.ForeignKey(SpeakingProgram)
+    title = models.CharField(max_length=120)
+    date = models.DateField(null=True, blank=True)
+    description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    file = models.FileField(null=True, blank=True, upload_to='presentations')
+
+    def __unicode__(self):
+        return 'Speaking Presentation File: ' + self.title
 
 
 class BlogPost(Creation):
