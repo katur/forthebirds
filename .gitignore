@@ -8,6 +8,7 @@ materials/
 # Collected static files (can be re-collected with ./manage.py collectstatic)
 staticfiles/
 mediafiles/
+privatemediafiles/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
