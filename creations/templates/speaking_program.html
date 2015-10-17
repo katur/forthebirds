@@ -20,7 +20,12 @@ Speaking Program: <i>{{ program.title }}</i>
     {% for presentation in presentations %}
     <li>
       <a href="{{ presentation.file.url }}">
-        {{ presentation.title }}</a>
+        {{ presentation.title }}
+        {% if presentation.date %}
+          ({{ presentation.date }})
+        {% endif %}
+      </a>
+      {{ presentation.description }}
     </li>
     {% endfor %}
   </ul>
