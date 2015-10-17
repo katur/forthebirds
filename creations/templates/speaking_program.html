@@ -14,11 +14,16 @@ Speaking Program: <i>{{ program.title }}</i>
 </div>
 
 {% if presentations %}
+<h3 class="page-subtitle">Presentation Files</h3>
 <div class="page-section">
-  {% for presentation in presentations %}
-  <a href="{{ presentation.file.url }}">
-    {{ presentation.title }}</a>
-  {% endfor %}
+  <ul>
+    {% for presentation in presentations %}
+    <li>
+      <a href="{{ presentation.file.url }}">
+        {{ presentation.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
 </div>
 {% endif %}
 
