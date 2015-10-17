@@ -125,7 +125,7 @@ class SpeakingProgram(Creation):
         return 'Speaking Program: ' + self.title
 
 
-class SpeakingPresentationFile(models.Model):
+class SpeakingPresentation(models.Model):
     program = models.ForeignKey(SpeakingProgram)
     title = models.CharField(max_length=120)
     date = models.DateField(null=True, blank=True)
