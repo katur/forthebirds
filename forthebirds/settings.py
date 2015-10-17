@@ -11,11 +11,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
-PROJECT_DIR = os.path.join(SETTINGS_DIR, '..')
 
 from local_settings import (DEBUG, SECRET_KEY, DATABASES,
-                            STATIC_ROOT, MEDIA_ROOT)
+                            STATIC_ROOT, MEDIA_ROOT,
+                            PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_SERVER)
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -33,6 +32,7 @@ INSTALLED_APPS = (
 
     'markdown_deux',
     'taggit',
+    'private_media',
 
     'website',
     'utils',
@@ -75,6 +75,9 @@ STATIC_URL = '/static/'
 # Media files (User-uploaded files)
 MEDIA_URL = '/media/'
 
+# Private media files
+PRIVATE_MEDIA_URL = '/private-media/'
+
 # For request object in templates
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
@@ -84,7 +87,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 
 # Needed so overridden admin templates take precedence
 TEMPLATE_DIRS = (
-    PROJECT_DIR + '/website/templates/',
+    BASE_DIR + '/website/templates/',
 )
 
 # Authentication

@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 from taggit.managers import TaggableManager
+from private_media.storages import PrivateMediaStorage
 
 from forthebirds.settings import MARKDOWN_PROMPT
 from birds.models import Species
@@ -129,7 +130,9 @@ class SpeakingPresentationFile(models.Model):
     title = models.CharField(max_length=120)
     date = models.DateField(null=True, blank=True)
     description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-    file = models.FileField(null=True, blank=True, upload_to='presentations')
+    file = models.FileField(null=True, blank=True,
+                            upload_to='presentations',
+                            storage=PrivateMediaStorage())
 
     def __unicode__(self):
         return 'Speaking Presentation File: ' + self.title

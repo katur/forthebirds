@@ -9,5 +9,6 @@ urlpatterns = patterns(
     url(r'', include('birds.urls')),
     url(r'', include('creations.urls')),
     url(r'', include('waystohelp.urls')),
+    url(r'^', include('private_media.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
