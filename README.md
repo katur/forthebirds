@@ -24,7 +24,9 @@ CSS is in [SASS](http://sass-lang.com/). Run
 `sass -wc --style compressed website/static/stylesheets/styles.sass`
 to compile.
 
-Javascript in [jQuery](http://jquery.com/).
+Javascript is in [CoffeeScript](http://coffeescript.org/). Run
+`coffee --compile website/static/js/*.coffee`
+to compile (assuming coffee is installed).
 
 
 ## Migration from old sources
