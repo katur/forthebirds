@@ -6,13 +6,13 @@
 
 {% block content %}
 
-<ul>
-{% for way in ways %}
-  <li>
+<div id="all-ways-to-help">
+  {% for way in ways %}
+  <div class="way-to-help card">
     <a href="{% url 'waytohelp_url' id=way.id %}">
       {{ way.id }}. {{ way.title }}</a>
-  </li>
-{% endfor %}
-</ul>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}

@@ -1,0 +1,40 @@
+#ways-to-help
+  #all-ways-to-help
+    width: 105%
+    padding: 0 2.5%
+    position: relative
+    left: -5%
+
+    .way-to-help
+      box-sizing: border-box
+      padding: 20px
+      float: left
+      margin: 0 2.5% 50px 2.5%
+      width: 20%
+
+      &:nth-child(4n+1)
+        clear: left
+
+    @media (max-width: 1000px)
+      .way-to-help
+        width: 28.3%
+
+        &:nth-child(4n+1)
+          clear: none
+        &:nth-child(3n+1)
+          clear: left
+
+    @media (max-width: 750px)
+      .way-to-help
+        width: 45%
+
+        &:nth-child(4n+1)
+          clear: none
+        &:nth-child(3n+1)
+          clear: none
+        &:nth-child(2n+1)
+          clear: left
+
+    @media (max-width: 500px)
+      .way-to-help
+        width: 95%
