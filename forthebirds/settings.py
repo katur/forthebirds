@@ -31,8 +31,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'markdown_deux',
-    'taggit',
     'private_media',
+    'sorl.thumbnail',
+    'taggit',
 
     'website',
     'utils',

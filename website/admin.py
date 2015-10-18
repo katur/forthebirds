@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
+from sorl.thumbnail.admin import AdminImageMixin
 
 from website.models import UserProfile, UploadedImage
 
@@ -18,9 +19,10 @@ class MyUserAdmin(UserAdmin):
     inlines = (UserProfileInline,)
 
 
-class UploadedImageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'attribution', 'url',)
-    readonly_fields = ('url', 'image_tag',)
+class UploadedImageAdmin(AdminImageMixin, admin.ModelAdmin):
+    list_display = ('get_thumbnail_img_tag', 'title', 'attribution',
+                    'get_url')
+    readonly_fields = ('get_url',)
 
 
 admin.site.unregister(User)

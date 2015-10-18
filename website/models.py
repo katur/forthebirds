@@ -2,6 +2,7 @@ import uuid
 
 from django.contrib.auth.models import User
 from django.db import models
+from sorl.thumbnail import ImageField, get_thumbnail
 
 from forthebirds.settings import MARKDOWN_PROMPT
 
@@ -15,16 +16,7 @@ class UploadedImage(models.Model):
     time_uploaded = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100, blank=True)
     attribution = models.CharField(max_length=255, blank=True)
-    image = models.ImageField(upload_to=get_updated_filename)
-
-    def image_tag(self):
-        return u'<img style="max-width: 500px" src="%s" />' % self.image.url
-
-    def url(self):
-        return self.image.url
-
-    image_tag.short_description = 'Image'
-    image_tag.allow_tags = True
+    image = ImageField(upload_to=get_updated_filename)
 
     def __unicode__(self):
         x = self.title
@@ -34,6 +26,19 @@ class UploadedImage(models.Model):
 
     def __str__(self):
         return unicode(self).encode('utf-8')
+
+    def get_url(self):
+        return self.image.url
+
+    get_url.short_description = 'Path to fullsize image'
+
+    def get_thumbnail_img_tag(self):
+        thumbnail = get_thumbnail(self.image, '90')
+        return u'<img src="{}" />'.format(thumbnail.url)
+
+    # Allow get_thumbnail_img_tag to render in Admin
+    get_thumbnail_img_tag.allow_tags = True
+    get_thumbnail_img_tag.short_description = 'Preview'
 
 
 class UserProfile(models.Model):
