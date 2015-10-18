@@ -40,7 +40,7 @@ class BookAdmin(admin.ModelAdmin):
         }),
         ('Publishing Info', {
             'fields': ('publisher', 'isbn_10', 'isbn_13', 'date_published',
-                       'purchase_url', 'photo', 'cover_photo'),
+                       'purchase_url', 'cover_photo'),
         }),
         ('Tagging', {
             'fields': creation_tagging_fields
