@@ -8,6 +8,7 @@ from private_media.storages import PrivateMediaStorage
 
 from forthebirds.settings import MARKDOWN_PROMPT
 from birds.models import Species
+from website.models import UploadedImage
 from utils.models import RealInstanceProvider
 
 
@@ -80,7 +81,7 @@ class RadioProgram(Creation):
 
 class Book(Creation):
     purchase_url = models.URLField(blank=True)
-    photo = models.ImageField(null=True, blank=True, upload_to='books')
+    cover_photo = models.ForeignKey(UploadedImage, null=True, blank=True)
     publisher = models.CharField(max_length=100, blank=True)
     isbn_10 = models.CharField('ISBN 10', max_length=20, blank=True)
     isbn_13 = models.CharField('ISBN 13', max_length=20, blank=True)

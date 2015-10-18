@@ -17,8 +17,8 @@
   <div id="books">
     {% for book in books %}
     <div class="book">
-      {% if book.photo %}
-      <img src="{{ MEDIA_URL }}{{ book.photo }}" />
+      {% if book.cover_photo %}
+      <img src="{{ MEDIA_URL }}{{ book.cover_photo.image }}" />
       {% endif %}
 
       <div class="info">

@@ -8,9 +8,9 @@
 {% block content %}
 
 <div class="two-columns">
-  {% if book.photo %}
+  {% if book.cover_photo %}
   <div class="column">
-    <img src="{{ MEDIA_URL }}{{ book.photo }}" />
+    <img src="{{ MEDIA_URL }}{{ book.cover_photo.image }}" />
   </div>
   {% endif %}
 
