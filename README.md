@@ -28,6 +28,19 @@ Javascript is in [CoffeeScript](http://coffeescript.org/). Run
 `coffee --compile website/static/js/*.coffee`
 to compile (assuming coffee is installed).
 
+To set up the project for gulping (assuming [Gulp.js](http://gulpjs.com/)
+is installed on the system), run the following in the project root
+to install project-specific gulp packages in a git-ignored directory called
+`node_modules`:
+
+```
+npm install --dev-save gulp
+npm install --dev-save gulp-util
+npm install --dev-save gulp-plumber
+npm install --dev-save gulp-ruby-sass
+npm install --dev-save gulp-coffee
+```
+
 
 ## Migration from old sources
 Query to extract Bird-Of-The-Week name from url:

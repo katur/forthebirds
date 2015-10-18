@@ -5,10 +5,13 @@
 backups/
 materials/
 
-# Collected static files (can be re-collected with ./manage.py collectstatic)
+# Collected static/media files (re-collect with ./manage.py collectstatic)
 staticfiles/
 mediafiles/
 privatemediafiles/
+
+# Project-specific Node.js packages (e.g. gulp)
+node_modules/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
