@@ -9,14 +9,14 @@
       display: block
       position: relative
       float: left
-      width: 28.3%
+      width: 20%
       margin: 0 2.5% 50px 2.5%
       padding: 20px
       border-radius: 2px
       box-sizing: border-box
       box-shadow: 0px 1px 1px $chickadee-gray
 
-      &:nth-child(3n+1)
+      &:nth-child(4n+1)
         clear: left
 
       &:after
@@ -51,10 +51,21 @@
           font-size: $base-font-size * 7
           color: rgba($chickadee-black, 0.6)
 
+    @media (max-width: 1300px)
+      .way-to-help
+        width: 28.3%
+
+        &:nth-child(4n+1)
+          clear: none
+        &:nth-child(3n+1)
+          clear: left
+
     @media (max-width: 1000px)
       .way-to-help
         width: 45%
 
+        &:nth-child(4n+1)
+          clear: none
         &:nth-child(3n+1)
           clear: none
         &:nth-child(2n+1)
