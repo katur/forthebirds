@@ -2,7 +2,9 @@
   var generateBackgroundColorsForWays, getHashCode, getHexableHash, numHexColors;
 
   $(document).ready(function() {
-    return generateBackgroundColorsForWays();
+    if ($("body").attr("id") === "ways-to-help") {
+      return generateBackgroundColorsForWays();
+    }
   });
 
   getHashCode = function(str) {

@@ -1,6 +1,7 @@
 $(document).ready ->
-  initializeRadioYearButtons()
-  initializeProgramInfoButtons()
+  if $("body").attr("id") == "radio"
+    initializeRadioYearButtons()
+    initializeProgramInfoButtons()
 
 
 initializeRadioYearButtons = ->

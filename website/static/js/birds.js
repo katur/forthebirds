@@ -2,8 +2,10 @@
   var createExpandButtons, expandNoSubfamilies;
 
   $(document).ready(function() {
-    expandNoSubfamilies();
-    return createExpandButtons();
+    if ($("body").attr("id") === "birds-taxonomical") {
+      expandNoSubfamilies();
+      return createExpandButtons();
+    }
   });
 
   expandNoSubfamilies = function() {

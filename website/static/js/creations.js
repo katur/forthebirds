@@ -2,8 +2,10 @@
   var initializeProgramInfoButtons, initializeRadioYearButtons;
 
   $(document).ready(function() {
-    initializeRadioYearButtons();
-    return initializeProgramInfoButtons();
+    if ($("body").attr("id") === "radio") {
+      initializeRadioYearButtons();
+      return initializeProgramInfoButtons();
+    }
   });
 
   initializeRadioYearButtons = function() {

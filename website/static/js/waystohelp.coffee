@@ -1,5 +1,6 @@
 $(document).ready ->
-  generateBackgroundColorsForWays()
+  if $("body").attr("id") == "ways-to-help"
+    generateBackgroundColorsForWays()
 
 
 getHashCode = (str) ->

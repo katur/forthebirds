@@ -1,6 +1,7 @@
 $(document).ready ->
-  expandNoSubfamilies()
-  createExpandButtons()
+  if $("body").attr("id") == "birds-taxonomical"
+    expandNoSubfamilies()
+    createExpandButtons()
 
 
 expandNoSubfamilies = ->
