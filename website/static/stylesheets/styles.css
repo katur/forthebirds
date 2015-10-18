@@ -607,21 +607,21 @@ html, body {
         font-size: 119px;
         color: rgba(60, 58, 71, 0.6); }
   @media (max-width: 1400px) {
-    #ways-to-help #all-ways-to-help .way-to-help {
+    #ways-to-help #all-ways-to-help .way-to-help-card {
       width: 28.3%; }
-      #ways-to-help #all-ways-to-help .way-to-help:nth-child(4n+1) {
+      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(4n+1) {
         clear: none; }
-      #ways-to-help #all-ways-to-help .way-to-help:nth-child(3n+1) {
+      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(3n+1) {
         clear: left; } }
   @media (max-width: 1050px) {
-    #ways-to-help #all-ways-to-help .way-to-help {
+    #ways-to-help #all-ways-to-help .way-to-help-card {
       width: 45%; }
-      #ways-to-help #all-ways-to-help .way-to-help:nth-child(4n+1) {
+      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(4n+1) {
         clear: none; }
-      #ways-to-help #all-ways-to-help .way-to-help:nth-child(3n+1) {
+      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(3n+1) {
         clear: none; }
-      #ways-to-help #all-ways-to-help .way-to-help:nth-child(2n+1) {
+      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(2n+1) {
         clear: left; } }
   @media (max-width: 700px) {
-    #ways-to-help #all-ways-to-help .way-to-help {
+    #ways-to-help #all-ways-to-help .way-to-help-card {
       width: 95%; } }
