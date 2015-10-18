@@ -40,13 +40,12 @@
 
   generateBackgroundColorsForWays = function() {
     var hash, hexString, text, way, ways, _i, _len, _results;
-    ways = $(".way-to-help");
+    ways = $(".way-to-help-card");
     _results = [];
     for (_i = 0, _len = ways.length; _i < _len; _i++) {
       way = ways[_i];
       way = $(way);
       text = way.text();
-      console.log(text);
       hash = getHexableHash(text);
       hexString = hash.toString(16);
       _results.push(way.css("background-color", "#" + hexString));

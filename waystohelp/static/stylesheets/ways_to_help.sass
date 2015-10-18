@@ -5,14 +5,14 @@
     position: relative
     left: -5%
 
-    .way-to-help
+    .way-to-help-card
       display: block
       position: relative
       float: left
       width: 20%
       margin: 0 2.5% 50px 2.5%
       padding: 20px
-      border-radius: 2px
+      border-radius: $card-border-radius
       box-sizing: border-box
       box-shadow: 0px 1px 1px $chickadee-gray
 
@@ -30,6 +30,7 @@
         z-index: 1
         @include transition(background, 100ms, linear)
         background: rgba($chickadee-dark-gray, .8)
+        border-radius: $card-border-radius
 
       &:hover, &.active
         &:after

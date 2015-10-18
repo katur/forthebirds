@@ -31,11 +31,10 @@ getHexableHash = (str) ->
 
 
 generateBackgroundColorsForWays = ->
-  ways = $(".way-to-help")
+  ways = $(".way-to-help-card")
   for way in ways
     way = $(way)
     text = way.text()
-    console.log(text)
     hash = getHexableHash(text)
     hexString = hash.toString(16)
     way.css("background-color", "#" + hexString)
