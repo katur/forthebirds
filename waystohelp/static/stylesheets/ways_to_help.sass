@@ -6,35 +6,60 @@
     left: -5%
 
     .way-to-help
-      box-sizing: border-box
-      padding: 20px
+      display: block
+      position: relative
       float: left
+      width: 28.3%
       margin: 0 2.5% 50px 2.5%
-      width: 20%
+      padding: 20px
+      border-radius: 2px
+      box-sizing: border-box
+      box-shadow: 0px 1px 1px $chickadee-gray
 
-      &:nth-child(4n+1)
+      &:nth-child(3n+1)
         clear: left
+
+      &:after
+        content: ''
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: 1
+        @include transition(background, 100ms, linear)
+        background: rgba($chickadee-dark-gray, .8)
+
+      &:hover, &.active
+        &:after
+          background: rgba($chickadee-gray, .8)
+
+      span
+        position: relative
+        z-index: 2
+        @include sans-font(light)
+        font-size: $base-font-size + 5
+        color: $chickadee-cream
+
+        &.number
+          float: left
+          line-height: 70%
+          margin-right: 10px
+          margin-bottom: 8px
+          font-family: 'adelaidaregular'
+          font-size: $base-font-size * 7
+          color: rgba($chickadee-black, 0.6)
 
     @media (max-width: 1000px)
       .way-to-help
-        width: 28.3%
-
-        &:nth-child(4n+1)
-          clear: none
-        &:nth-child(3n+1)
-          clear: left
-
-    @media (max-width: 750px)
-      .way-to-help
         width: 45%
 
-        &:nth-child(4n+1)
-          clear: none
         &:nth-child(3n+1)
           clear: none
         &:nth-child(2n+1)
           clear: left
 
-    @media (max-width: 500px)
+    @media (max-width: 700px)
       .way-to-help
         width: 95%

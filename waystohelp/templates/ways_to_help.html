@@ -8,10 +8,10 @@
 
 <div id="all-ways-to-help">
   {% for way in ways %}
-  <div class="way-to-help card">
-    <a href="{% url 'waytohelp_url' id=way.id %}">
-      {{ way.id }}. {{ way.title }}</a>
-  </div>
+  <a href="{% url 'waytohelp_url' id=way.id %}" class="way-to-help">
+    <span class="number">{{ way.id }}</span>
+    <span>{{ way.title }}</span>
+  </a>
   {% endfor %}
 </div>
 
