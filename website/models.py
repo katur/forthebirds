@@ -14,6 +14,7 @@ def get_updated_filename(instance, filename):
 class UploadedImage(models.Model):
     time_uploaded = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100, blank=True)
+    attribution = models.CharField(max_length=255, blank=True)
     image = models.ImageField(upload_to=get_updated_filename)
 
     def image_tag(self):
@@ -26,7 +27,10 @@ class UploadedImage(models.Model):
     image_tag.allow_tags = True
 
     def __unicode__(self):
-        return self.title
+        x = self.title
+        if self.attribution:
+            x = '{} ({})'.format(x, self.attribution)
+        return x
 
     def __str__(self):
         return unicode(self).encode('utf-8')

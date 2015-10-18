@@ -19,7 +19,7 @@ class MyUserAdmin(UserAdmin):
 
 
 class UploadedImageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url',)
+    list_display = ('title', 'attribution', 'url',)
     readonly_fields = ('url', 'image_tag',)
 
 
