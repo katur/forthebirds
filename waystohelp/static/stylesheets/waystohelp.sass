@@ -29,12 +29,12 @@
         height: 100%
         z-index: 1
         @include transition(background, 100ms, linear)
-        background: rgba($chickadee-dark-gray, .8)
+        background: rgba($chickadee-dark-gray, .7)
         border-radius: $card-border-radius
 
       &:hover, &.active
         &:after
-          background: rgba($chickadee-gray, .8)
+          background: rgba($chickadee-black, .6)
 
       span
         position: relative
@@ -50,7 +50,7 @@
           margin-bottom: 8px
           font-family: 'adelaidaregular'
           font-size: $base-font-size * 7
-          color: rgba($chickadee-black, 0.6)
+          color: rgba($chickadee-light-gray, 0.65)
 
     @media (max-width: 1400px)
       .way-to-help-card
