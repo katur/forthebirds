@@ -1,6 +1,16 @@
 $(document).ready ->
   if $("body").attr("id") == "ways-to-help"
-    generateBackgroundColorsForWays()
+    generateRandomBackgroundColors()
+    generateBackgroundImagesForWays()
+
+
+generateBackgroundImagesForWays = ->
+  ways = $(".way-to-help-card")
+  for way in ways
+    way = $(way)
+    backgroundImage = way.attr("data-background")
+    way.css("background-image", "url(" + backgroundImage + ")")
+    way.css("background-size", "cover")
 
 
 getHashCode = (str) ->
@@ -31,11 +41,11 @@ getHexableHash = (str) ->
   return i
 
 
-generateBackgroundColorsForWays = ->
-  ways = $(".way-to-help-card")
-  for way in ways
-    way = $(way)
-    text = way.text()
+generateRandomBackgroundColors = ->
+  elements = $(".random-background-color")
+  for element in elements
+    element = $(element)
+    text = element.text()
     hash = getHexableHash(text)
     hexString = hash.toString(16)
-    way.css("background-color", "#" + hexString)
+    element.css("background-color", "#" + hexString)

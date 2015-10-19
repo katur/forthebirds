@@ -2,12 +2,15 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 from forthebirds.settings import MARKDOWN_PROMPT
+from website.models import UploadedImage
 
 
 class WayToHelp(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     title = models.CharField(max_length=200)
     text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    background_image = models.ForeignKey(UploadedImage, null=True,
+                                         blank=True)
 
     class Meta:
         ordering = ['id']

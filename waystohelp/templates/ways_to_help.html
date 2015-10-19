@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {% block body_id %}ways-to-help{% endblock %}
 
@@ -8,7 +9,14 @@
 
 <div id="all-ways-to-help">
   {% for way in ways %}
-  <a href="{{ way.get_absolute_url }}" class="way-to-help-card">
+  <a href="{{ way.get_absolute_url }}"
+      class="way-to-help-card random-background-color"
+      data-background="
+      {% if way.background_image %}
+      {% thumbnail way.background_image.image "500" as im %}
+      {{ im.url }}
+      {% endthumbnail %}
+      {% endif %}">
     <span class="number">{{ way.id }}</span>
     <span>{{ way.title }}</span>
   </a>

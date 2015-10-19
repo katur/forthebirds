@@ -1,11 +1,26 @@
 (function() {
-  var generateBackgroundColorsForWays, getHashCode, getHexableHash, numHexColors;
+  var generateBackgroundImagesForWays, generateRandomBackgroundColors, getHashCode, getHexableHash, numHexColors;
 
   $(document).ready(function() {
     if ($("body").attr("id") === "ways-to-help") {
-      return generateBackgroundColorsForWays();
+      generateRandomBackgroundColors();
+      return generateBackgroundImagesForWays();
     }
   });
+
+  generateBackgroundImagesForWays = function() {
+    var backgroundImage, j, len1, results, way, ways;
+    ways = $(".way-to-help-card");
+    results = [];
+    for (j = 0, len1 = ways.length; j < len1; j++) {
+      way = ways[j];
+      way = $(way);
+      backgroundImage = way.attr("data-background");
+      way.css("background-image", "url(" + backgroundImage + ")");
+      results.push(way.css("background-size", "cover"));
+    }
+    return results;
+  };
 
   getHashCode = function(str) {
     var char, code, hash, hashPrev, j, len, len1;
@@ -39,17 +54,17 @@
     return i;
   };
 
-  generateBackgroundColorsForWays = function() {
-    var hash, hexString, j, len1, results, text, way, ways;
-    ways = $(".way-to-help-card");
+  generateRandomBackgroundColors = function() {
+    var element, elements, hash, hexString, j, len1, results, text;
+    elements = $(".random-background-color");
     results = [];
-    for (j = 0, len1 = ways.length; j < len1; j++) {
-      way = ways[j];
-      way = $(way);
-      text = way.text();
+    for (j = 0, len1 = elements.length; j < len1; j++) {
+      element = elements[j];
+      element = $(element);
+      text = element.text();
       hash = getHexableHash(text);
       hexString = hash.toString(16);
-      results.push(way.css("background-color", "#" + hexString));
+      results.push(element.css("background-color", "#" + hexString));
     }
     return results;
   };
