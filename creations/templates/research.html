@@ -11,10 +11,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="field">
-  Category: {{ research_item.category }}
-</div>
-
 {% if research_item.description %}
 <div class="field">
   Description: {{ research_item.description }}
@@ -41,7 +37,7 @@
 
 {% if research_item.file %}
 <div class="field">
-  <a href="{{ research_item.file }}">download</a>
+  <a href="{{ research_item.file }}">File</a>
 </div>
 {% endif %}
 
