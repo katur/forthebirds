@@ -20,6 +20,18 @@ class Creation(models.Model, RealInstanceProvider):
     is_public = True
     is_image = False
 
+    def __unicode__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return None
+
+    def get_display_date(self):
+        if hasattr(self, 'date_published'):
+            return self.date_published
+        else:
+            return None
+
     def is_research(self):
         class_name = self.__class__.__name__
         if class_name.lower() == 'research':
@@ -44,18 +56,6 @@ class Creation(models.Model, RealInstanceProvider):
 
         ancestors.reverse()
         return ancestors
-
-    def __unicode__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return None
-
-    def get_display_date(self):
-        if hasattr(self, 'date_published'):
-            return self.date_published
-        else:
-            return None
 
 
 class RadioProgram(Creation):
@@ -90,11 +90,11 @@ class Book(Creation):
     class Meta:
         ordering = ['-date_published']
 
-    def get_absolute_url(self):
-        return reverse('creations.views.book', kwargs={'id': self.id})
-
     def __unicode__(self):
         return 'Book: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.book', kwargs={'id': self.id})
 
 
 class Article(Creation):
@@ -107,23 +107,23 @@ class Article(Creation):
     class Meta:
         ordering = ['-date_published']
 
-    def get_absolute_url(self):
-        return reverse('creations.views.article', kwargs={'id': self.id})
-
     def __unicode__(self):
         return 'Article: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.article', kwargs={'id': self.id})
 
 
 class SpeakingProgram(Creation):
     class Meta:
         ordering = ['title']
 
+    def __unicode__(self):
+        return 'Speaking Program: ' + self.title
+
     def get_absolute_url(self):
         return reverse('creations.views.speaking_program',
                        kwargs={'id': self.id})
-
-    def __unicode__(self):
-        return 'Speaking Program: ' + self.title
 
 
 class SpeakingProgramFile(models.Model):
@@ -147,11 +147,11 @@ class BlogPost(Creation):
     class Meta:
         ordering = ['title']
 
-    def get_absolute_url(self):
-        return self.url
-
     def __unicode__(self):
         return 'Blog Post: ' + self.title
+
+    def get_absolute_url(self):
+        return self.url
 
 
 class WebPage(Creation):
@@ -162,11 +162,11 @@ class WebPage(Creation):
     class Meta:
         ordering = ['title']
 
-    def get_absolute_url(self):
-        return reverse('creations.views.webpage', kwargs={'slug': self.slug})
-
     def __unicode__(self):
         return 'Web Page: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.webpage', kwargs={'slug': self.slug})
 
 
 class ExternalProject(Creation):
@@ -175,11 +175,11 @@ class ExternalProject(Creation):
     class Meta:
         ordering = ['title']
 
-    def get_absolute_url(self):
-        return self.url
-
     def __unicode__(self):
         return 'External Project: ' + self.title
+
+    def get_absolute_url(self):
+        return self.url
 
 
 class ResearchCategory(models.Model):
@@ -209,11 +209,11 @@ class Research(Creation):
         ordering = ['-date']
         verbose_name_plural = 'Research'
 
-    def get_absolute_url(self):
-        return reverse('creations.views.research', kwargs={'id': self.id})
-
     def __unicode__(self):
         return 'Research: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.research', kwargs={'id': self.id})
 
 
 class ABAFieldGuideImage(Creation):
