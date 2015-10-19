@@ -54,14 +54,16 @@ class ArticleAdmin(admin.ModelAdmin):
     filter_horizontal = ('species',)
 
 
+class SpeakingProgramFileInline(admin.TabularInline):
+    model = SpeakingProgramFile
+
+
 class SpeakingProgramAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
     filter_horizontal = ('species',)
 
-
-class SpeakingProgramFileAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date')
+    inlines = [SpeakingProgramFileInline]
 
 
 class BlogPostAdmin(admin.ModelAdmin):
@@ -101,7 +103,6 @@ admin.site.register(RadioProgram, RadioProgramAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(SpeakingProgram, SpeakingProgramAdmin)
-admin.site.register(SpeakingProgramFile, SpeakingProgramFileAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(WebPage, WebPageAdmin)
 admin.site.register(ExternalProject, ExternalProjectAdmin)
