@@ -29,24 +29,7 @@
   </span>
   {% endif %}
 
-  {% if article.species.all|length or article.tags.all|length %}
-  <span class="field">
-    Tags:
-    <ul>
-    {% for bird in article.species.all %}
-      <li class="tag">
-        <a href="{% url 'bird_url' id=bird.id%}">{{ bird.common_name }}</a>
-      </li>
-    {% endfor %}
-
-    {% for tag in article.tags.all %}
-      <li class="tag">
-        <span>{{ tag }}</span>
-      </li>
-    {% endfor %}
-    </ul>
-  </span>
-  {% endif %}
+  {% include "tags.html" with item=article field=True %}
 </div>
 
 {% if article.text %}

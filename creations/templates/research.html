@@ -47,24 +47,6 @@
 </div>
 {% endif %}
 
-{% if research_item.species.all|length or research_item.tags.all|length %}
-<div class="field">
-  Tags:
-  <ul>
-    {% for bird in research_item.species.all %}
-    <li class="tag">
-      <a href="{% url 'bird_url' id=bird.id %}">
-        {{ bird.common_name }}</a>
-    </li>
-    {% endfor %}
-
-    {% for tag in research_item.tags.all %}
-    <li>
-      <span>{{ tag }}</span>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
-{% endif %}
+{% include "tags.html" with item=research_item field=True %}
 
 {% endblock %}

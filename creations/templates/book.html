@@ -40,25 +40,6 @@
   </div>
 </div>
 
-{% if book.species.all|length or  book.tags.all|length %}
-<div id="tags">
-  Tags:
-  <ul>
-  {% for bird in book.species.all %}
-    <li class="tag">
-    <a href="{% url 'bird_url' id=bird.id %}">
-      {{ bird.common_name }}</a>
-    </li>
-  {% endfor %}
+{% include "tags.html" with item=book %}
 
-  {% for tag in book.tags.all %}
-    <li class="tag">
-      <span>
-        {{ tag }}
-      </span>
-    </li>
-  {% endfor %}
-  </ul>
-</div>
-{% endif %}
 {% endblock %}

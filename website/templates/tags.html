@@ -1,0 +1,19 @@
+{% if item.species.all|length or item.tags.all|length %}
+<div class="tags {% if field %}field{% endif %}">
+  <ul>
+    {% for bird in item.species.all %}
+    <li class="tag">
+      <a href="{{ bird.get_absolute_url }}">{{ bird.common_name }}</a>
+    </li>
+    {% endfor %}
+
+    {% for tag in item.tags.all %}
+    <li class="tag">
+      <span>
+        {{ tag }}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
