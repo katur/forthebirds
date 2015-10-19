@@ -40,7 +40,7 @@ class Creation(models.Model, RealInstanceProvider):
             return False
 
     def has_tags(self):
-        return self.species or self.tags
+        return self.species or self.tags.names()
 
     def get_ancestors(self):
         ancestors = []
