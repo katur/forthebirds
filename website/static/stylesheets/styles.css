@@ -534,18 +534,29 @@ html, body {
   clear: both;
   margin-top: 36px; }
 
-#speaking #files, #speaking-program #files {
+#speaking ul {
   list-style-position: inside;
   list-style-type: disc; }
-  #speaking #files li, #speaking #files ul, #speaking-program #files li, #speaking-program #files ul {
+  #speaking ul li, #speaking ul ul {
     padding-left: 30px; }
-  #speaking #files ul, #speaking-program #files ul {
+  #speaking ul ul {
     list-style-type: circle; }
-    #speaking #files ul ul, #speaking-program #files ul ul {
+    #speaking ul ul ul {
       list-style-type: square; }
-      #speaking #files ul ul ul, #speaking-program #files ul ul ul {
+      #speaking ul ul ul ul {
         list-style-type: disc; }
 
+#speaking-program #files {
+  list-style-position: inside;
+  list-style-type: disc; }
+  #speaking-program #files li, #speaking-program #files ul {
+    padding-left: 30px; }
+  #speaking-program #files ul {
+    list-style-type: circle; }
+    #speaking-program #files ul ul {
+      list-style-type: square; }
+      #speaking-program #files ul ul ul {
+        list-style-type: disc; }
 #speaking-program img {
   position: relative;
   width: 50%;

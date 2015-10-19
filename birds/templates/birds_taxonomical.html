@@ -44,9 +44,10 @@
 
       <ul class="species collapsed">
       {% for species in subfamily.list %}
-        <li><a href="{% url 'bird_url' id=species.id %}">
-          <i>{{ species.name }}</i> ({{ species.common_name }})
-        </a></li>
+        <li>
+          <a href="{{ species.get_absolute_url }}">
+            <i>{{ species.name }}</i> ({{ species.common_name }})</a>
+        </li>
       {% endfor %}
       </ul>
 

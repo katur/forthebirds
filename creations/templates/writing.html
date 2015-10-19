@@ -36,7 +36,7 @@
             click to purchase</a></div>
         {% endif %}
 
-        <a href="{% url 'book_url' id=book.id %}">More info</a>
+        <a href="{{ book.get_absolute_url }}">More info</a>
       </div>
 
     </div>
@@ -49,7 +49,7 @@
   <ul>
   {% for article in articles %}
     <li>
-      <a href="{% url 'article_url' id=article.id %}">
+      <a href="{{ article.get_absolute_url }}">
         {{ article.title }}</a>{% if article.date_published %},
         {{ article.date_published }}{% endif %}
 

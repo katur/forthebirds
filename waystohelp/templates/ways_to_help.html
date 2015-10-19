@@ -8,7 +8,7 @@
 
 <div id="all-ways-to-help">
   {% for way in ways %}
-  <a href="{% url 'waytohelp_url' id=way.id %}" class="way-to-help-card">
+  <a href="{{ way.get_absolute_url }}" class="way-to-help-card">
     <span class="number">{{ way.id }}</span>
     <span>{{ way.title }}</span>
   </a>

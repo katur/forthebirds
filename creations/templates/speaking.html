@@ -18,7 +18,7 @@
   <ul>
   {% for program in programs %}
     <li>
-      <a href="{% url 'speaking_program_url' program.id %}">
+      <a href="{{ program.get_absolute_url }}">
         {{ program.title }} </a>
     </li>
   {% endfor %}

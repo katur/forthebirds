@@ -53,7 +53,7 @@
         {% endif %}
 
         <div>
-          <a href="{% url 'radio_program_url' id=program.id %}">
+          <a href="{{ program.get_absolute_url }}">
             Permalink</a>
         </div>
 

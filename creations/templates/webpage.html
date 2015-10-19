@@ -7,7 +7,7 @@
 
 {% block content %}
 
-{% if webpage.date_published or webpage.species.all|length or webpage.tags.all|length %}
+{% if webpage.date_published or webpage.has_tags %}
 <div class="page-section">
   {% if webpage.date_published %}
   <div>
@@ -15,23 +15,7 @@
   </div>
   {% endif %}
 
-  {% if webpage.species.all|length or webpage.tags.all|length %}
-  Tags:
-  <ul>
-    {% for bird in webpage.species.all %}
-    <li class="tag">
-      <a href="{% url 'bird_url' id=bird.id %}">
-        {{ bird.common_name }}</a>
-    </li>
-    {% endfor %}
-
-    {% for tag in webpage.tags.all %}
-    <li class="tag">
-      <span>{{ tag }}</span>
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+  {% include "tags.html" with item=webpage field=True %}
 </div>
 {% endif %}
 

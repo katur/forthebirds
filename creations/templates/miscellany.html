@@ -11,7 +11,7 @@
   <ul>
     {% for page in webpages %}
     <li>
-      <a href="{% url 'webpage_url' slug=page.slug %}">
+      <a href="{{ page.get_absolute_url }}">
         {{ page.title }}</a>
 
       {% if page.description %}

@@ -15,7 +15,7 @@
   <ul>
   {% for category in children_categories %}
     <li>
-      <a href="{% url 'research_category_url' id=category.id %}">
+      <a href="{{ category.get_absolute_url }}">
         {{ category.name }}</a>
     </li>
   {% endfor %}
@@ -30,7 +30,7 @@
   <ul>
   {% for item in children_items %}
     <li>
-      <a href="{% url 'research_url' id=item.id %}">
+      <a href="{{ item.get_absolute_url }}">
         {{ item.title }}</a>
     </li>
   {% endfor %}

@@ -39,6 +39,9 @@ class Creation(models.Model, RealInstanceProvider):
         else:
             return False
 
+    def has_tags(self):
+        return self.species or self.tags
+
     def get_ancestors(self):
         ancestors = []
 

@@ -6,12 +6,14 @@
 
 {% block content %}
 <ul id="search-results">
-{% for bird in search_birds %}
-  <li><a href="{% url 'bird_url' id=bird.id %}">
+  {% for bird in search_birds %}
+  <li><a href="{{ bird.get_absolute_url }}">
     {{ bird.common_name }} (<i>{{ bird.name }}</i>)
   </a></li>
-{% empty %}
+
+  {% empty %}
   <li>Sorry, no birds match that term</li>
-{% endfor %}
+
+  {% endfor %}
 </ul>
 {% endblock %}
