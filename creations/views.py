@@ -102,12 +102,12 @@ def webpage(request, slug):
 
 
 @login_required
-def research_categories(request):
+def all_research(request):
     categories = ResearchCategory.objects.filter(parent__isnull=True)
     context = {
         'categories': categories,
     }
-    return render(request, 'research_categories.html', context)
+    return render(request, 'all_research.html', context)
 
 
 @login_required

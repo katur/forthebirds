@@ -3,7 +3,9 @@
 
 {% block body_id %}research-category{% endblock %}
 
-{% block page_title %}Research Category: {{ category.name }}{% endblock %}
+{% block page_title %}
+{% include 'research_ancestry.html' %}
+{% endblock %}
 
 {% block content %}
 {% if children_categories %}

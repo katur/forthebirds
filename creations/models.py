@@ -198,6 +198,14 @@ class ResearchCategory(models.Model):
     def get_absolute_url(self):
         return reverse('creations.views.research_category', args=[self.id])
 
+    def get_ancestors(self):
+        ancestors = []
+        parent = self.parent
+        while parent:
+            ancestors.append(parent)
+            parent = parent.parent
+        return ancestors
+
 
 class Research(Creation):
     category = models.ForeignKey(ResearchCategory)

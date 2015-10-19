@@ -3,7 +3,12 @@
 
 {% block body_id %}research{% endblock %}
 
-{% block page_title %}{{ research_item.title }}{% endblock %}
+{% block page_title %}
+{% with category=research_item.category %}
+{% include 'research_ancestry.html' with final_link=True %}
+{% endwith %}
+{{ research_item.title }}
+{% endblock %}
 
 {% block content %}
 <div class="field">
