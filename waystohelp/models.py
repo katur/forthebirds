@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from forthebirds.settings import MARKDOWN_PROMPT
@@ -14,3 +15,6 @@ class WayToHelp(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('waystohelp.views.way_to_help', args=[self.id])

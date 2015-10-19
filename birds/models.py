@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from forthebirds.settings import MARKDOWN_PROMPT
@@ -52,6 +53,9 @@ class Species(models.Model):
 
     def __unicode__(self):
         return self.common_name + ' (' + self.name + ')'
+
+    def get_absolute_url(self):
+        return reverse('birds.views.bird', args=[self.id])
 
     def get_nacc_statuses(self):
         statuses = []

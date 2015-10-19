@@ -72,8 +72,7 @@ class RadioProgram(Creation):
         return 'Radio Program: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.radio_program',
-                       kwargs={'id': self.id})
+        return reverse('creations.views.radio_program', args=[self.id])
 
     def get_display_date(self):
         return self.original_air_date
@@ -94,7 +93,7 @@ class Book(Creation):
         return 'Book: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.book', kwargs={'id': self.id})
+        return reverse('creations.views.book', args=[self.id])
 
 
 class Article(Creation):
@@ -111,7 +110,7 @@ class Article(Creation):
         return 'Article: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.article', kwargs={'id': self.id})
+        return reverse('creations.views.article', args=[self.id])
 
 
 class SpeakingProgram(Creation):
@@ -122,8 +121,7 @@ class SpeakingProgram(Creation):
         return 'Speaking Program: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.speaking_program',
-                       kwargs={'id': self.id})
+        return reverse('creations.views.speaking_program', args=[self.id])
 
 
 class SpeakingProgramFile(models.Model):
@@ -139,6 +137,9 @@ class SpeakingProgramFile(models.Model):
 
     def __unicode__(self):
         return 'Speaking Presentation File: ' + self.title
+
+    def get_absolute_url(self):
+        return self.file.url
 
 
 class BlogPost(Creation):
@@ -166,7 +167,7 @@ class WebPage(Creation):
         return 'Web Page: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.webpage', kwargs={'slug': self.slug})
+        return reverse('creations.views.webpage', args=[self.slug])
 
 
 class ExternalProject(Creation):
@@ -194,6 +195,9 @@ class ResearchCategory(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('creations.views.research_category', args=[self.id])
+
 
 class Research(Creation):
     category = models.ForeignKey(ResearchCategory)
@@ -213,7 +217,7 @@ class Research(Creation):
         return 'Research: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.research', kwargs={'id': self.id})
+        return reverse('creations.views.research', args=[self.id])
 
 
 class ABAFieldGuideImage(Creation):
