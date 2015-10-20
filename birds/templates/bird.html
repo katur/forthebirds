@@ -7,102 +7,108 @@
 
 {% block content %}
 
-{% if bird.main_photo_url %}
-  <div id="main-photo">
-    <img src="{{ bird.main_photo_url }}"/>
-  </div>
-{% endif %}
-
-<div id="taxonomy" class="card">
-  <h3>Taxonomy</h3>
-  {% for ancestor in bird.get_ancestors reversed %}
-    <span>
-      {{ ancestor.level|capfirst }}:
-      {{ ancestor.name }}
-      {% if ancestor.common_name %}
-        ({{ ancestor.common_name }})
-      {% endif %}
-    </span>
-  {% endfor %}
-  <span>Scientific name: <i>{{ bird.name }}</i></span>
-  <span>French name: {{ bird.french_name }}</span>
-</div>
-
-{% if bird.nacc_annotation or bird.get_nacc_statuses %}
-<div id="nacc" class="card">
-  <h3>NACC Information</h3>
-  {% if bird.nacc_annotation %}
-    <span>Annotation: {{ bird.nacc_annotation }}</span>
+<div class="page-section">
+  {% if bird.main_photo_url %}
+    <div id="main-photo">
+      <img src="{{ bird.main_photo_url }}"/>
+    </div>
   {% endif %}
 
-  {% if bird.get_nacc_statuses %}
-    {% for status in bird.get_nacc_statuses %}
-      <span>Status: {{ status }}</span>
+  <div id="taxonomy" class="card">
+    <h3>Taxonomy</h3>
+    {% for ancestor in bird.get_ancestors reversed %}
+      <span>
+        {{ ancestor.level|capfirst }}:
+        {{ ancestor.name }}
+        {% if ancestor.common_name %}
+          ({{ ancestor.common_name }})
+        {% endif %}
+      </span>
     {% endfor %}
+    <span>Scientific name: <i>{{ bird.name }}</i></span>
+    <span>French name: {{ bird.french_name }}</span>
+  </div>
+
+  {% if bird.nacc_annotation or bird.get_nacc_statuses %}
+  <div id="nacc" class="card">
+    <h3>NACC Information</h3>
+    {% if bird.nacc_annotation %}
+      <span>Annotation: {{ bird.nacc_annotation }}</span>
+    {% endif %}
+
+    {% if bird.get_nacc_statuses %}
+      {% for status in bird.get_nacc_statuses %}
+        <span>Status: {{ status }}</span>
+      {% endfor %}
+    {% endif %}
+  </div>
   {% endif %}
-</div>
-{% endif %}
 
-{% if bird.bird_of_the_week_name or bird.links %}
-<div id="links" class="card">
-  <h3>ABC Bird of the Week</h3>
+  {% if bird.bird_of_the_week_name or bird.links %}
+  <div id="links" class="card">
+    <h3>ABC Bird of the Week</h3>
 
-  {% if bird.bird_of_the_week_name %}
-  <span>
-    <a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
-      ABC Bird of the Week</a>
-  </span>
+    {% if bird.bird_of_the_week_name %}
+    <span>
+      <a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
+        ABC Bird of the Week</a>
+    </span>
+    {% endif %}
+
+    {% for link in bird.links %}
+    <span>
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    </span>
+    {% endfor %}
+
+  </div>
   {% endif %}
 
-  {% for link in bird.links %}
-  <span>
-    <a href="{{ link.url }}">{{ link.title }}</a>
-  </span>
+  {% if bird.blurb %}
+  <div id="blurb" class="card markdown-section">
+    {{ bird.blurb|markdown }}
+  </div>
+  {% endif %}
+
+  {% if public_creations %}
+  {% regroup public_creations by ancestors as card_list %}
+  {% for card in card_list %}
+    {% include "creation_card.html" %}
   {% endfor %}
-
-</div>
-{% endif %}
-
-{% if bird.blurb %}
-<div id="blurb" class="card markdown-section">
-  {{ bird.blurb|markdown }}
-</div>
-{% endif %}
-
-{% if public_creations %}
-{% regroup public_creations by ancestors as card_list %}
-{% for card in card_list %}
-  {% include "creation_card.html" %}
-{% endfor %}
-{% endif %}
-
-{% if private_creations %}
-<hr style="float: left; width: 100%">
-{% regroup private_creations by ancestors as card_list %}
-{% for card in card_list %}
-  {% include "creation_card.html" %}
-{% endfor %}
-{% endif %}
-
-{% if user.is_authenticated and bird.is_minnesotan %}
-<div class="card">
-  <h3>MOU Checklist Info</h3>
-  Status: {{ bird.minnesotaspecies.mou_status }}
-  <br>
-  Breeding status: {{ bird.minnesotaspecies.mou_breeding_status }}
-  <br>
-  Annotation: {{ bird.minnesotaspecies.mou_annotation }}
+  {% endif %}
 </div>
 
-<div class="card">
-  <h3>Other Minnesota Field Guide Info</h3>
-  Include in book: {{ bird.minnesotaspecies.include_in_book }}
-  <br>
-  Range in MN: {{ bird.minnesotaspecies.range_in_minnesota }}
-  <br>
-  Miscellanous notes: {{ bird.minnesotaspecies.miscellaneous_notes }}
-</div>
 
+{% if private_creations or user.is_authenticated and bird.is_minnesotan %}
+<div class="page-section">
+  <h3 class="page-subtitle">Private Information</h3>
+  {% if private_creations %}
+  {% regroup private_creations by ancestors as card_list %}
+  {% for card in card_list %}
+    {% include "creation_card.html" %}
+  {% endfor %}
+  {% endif %}
+
+  {% if user.is_authenticated and bird.is_minnesotan %}
+  <div class="card">
+    <h3>MOU Checklist Info</h3>
+    Status: {{ bird.minnesotaspecies.mou_status }}
+    <br>
+    Breeding status: {{ bird.minnesotaspecies.mou_breeding_status }}
+    <br>
+    Annotation: {{ bird.minnesotaspecies.mou_annotation }}
+  </div>
+
+  <div class="card">
+    <h3>Other Minnesota Field Guide Info</h3>
+    Include in book: {{ bird.minnesotaspecies.include_in_book }}
+    <br>
+    Range in MN: {{ bird.minnesotaspecies.range_in_minnesota }}
+    <br>
+    Miscellanous notes: {{ bird.minnesotaspecies.miscellaneous_notes }}
+  </div>
+  {% endif %}
+</div>
 {% endif %}
 
 {% endblock %}
