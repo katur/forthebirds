@@ -1,6 +1,7 @@
 <div class="card">
-  <h3>
-    {% for level in card.grouper %}{{ level }}{% if not forloop.last %}->{% endif %}{% endfor %}{{ card.list|pluralize }}</h3>
+  <h4>
+    {% for level in card.grouper %}{{ level }}{% if not forloop.last %}&rarr;{% endif %}{% endfor %}{{ card.list|pluralize }}
+  </h4>
 
   <ul>
     {% for creation in card.list %}

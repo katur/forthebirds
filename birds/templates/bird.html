@@ -15,7 +15,7 @@
   {% endif %}
 
   <div id="taxonomy" class="card">
-    <h3>Taxonomy</h3>
+    <h4>Taxonomy</h4>
     {% for ancestor in bird.get_ancestors reversed %}
       <span>
         {{ ancestor.level|capfirst }}:
@@ -31,7 +31,7 @@
 
   {% if bird.nacc_annotation or bird.get_nacc_statuses %}
   <div id="nacc" class="card">
-    <h3>NACC Information</h3>
+    <h4>NACC Information</h4>
     {% if bird.nacc_annotation %}
       <span>Annotation: {{ bird.nacc_annotation }}</span>
     {% endif %}
@@ -46,7 +46,7 @@
 
   {% if bird.bird_of_the_week_name or bird.links %}
   <div id="links" class="card">
-    <h3>ABC Bird of the Week</h3>
+    <h4>ABC Bird of the Week</h4>
 
     {% if bird.bird_of_the_week_name %}
     <span>
@@ -91,7 +91,7 @@
 
   {% if user.is_authenticated and bird.is_minnesotan %}
   <div class="card">
-    <h3>MOU Checklist Info</h3>
+    <h4>MOU Checklist Info</h4>
     Status: {{ bird.minnesotaspecies.mou_status }}
     <br>
     Breeding status: {{ bird.minnesotaspecies.mou_breeding_status }}
@@ -100,7 +100,7 @@
   </div>
 
   <div class="card">
-    <h3>Other Minnesota Field Guide Info</h3>
+    <h4>Other Minnesota Field Guide Info</h4>
     Include in book: {{ bird.minnesotaspecies.include_in_book }}
     <br>
     Range in MN: {{ bird.minnesotaspecies.range_in_minnesota }}

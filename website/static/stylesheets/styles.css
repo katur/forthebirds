@@ -345,7 +345,7 @@ html, body {
   max-width: 500px;
   border: 1px solid #cfd3cf;
   border-radius: 2px; }
-  #bird .card h3 {
+  #bird .card h4 {
     margin-bottom: 10px;
     text-align: center; }
   #bird .card span {
