@@ -16,8 +16,7 @@
       way = ways[j];
       way = $(way);
       backgroundImage = way.attr("data-background");
-      way.css("background-image", "url(" + backgroundImage + ")");
-      results.push(way.css("background-size", "cover"));
+      results.push(way.css("background-image", "url(" + backgroundImage + ")"));
     }
     return results;
   };

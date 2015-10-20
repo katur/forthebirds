@@ -10,7 +10,6 @@ generateBackgroundImagesForWays = ->
     way = $(way)
     backgroundImage = way.attr("data-background")
     way.css("background-image", "url(" + backgroundImage + ")")
-    way.css("background-size", "cover")
 
 
 getHashCode = (str) ->
