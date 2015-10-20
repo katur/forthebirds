@@ -12,38 +12,44 @@
 
 {% block content %}
 {% if research_item.description %}
-<div class="field">
-  Description: {{ research_item.description }}
-</div>
-{% endif %}
-
-{% if research_item.date %}
-<div class="field">
-  Date: {{ research_item.date }}
+<div class="page-section">
+  <h3 class="page-subtitle">Description</h3>
+  {{ research_item.description }}
 </div>
 {% endif %}
 
 {% if research_item.attribution %}
-<div class="field">
-  Attribution: {{ research_item.attribution|markdown }}
+<div class="page-section">
+  <h3 class="page-subtitle">Attribution</h3>
+  {{ research_item.attribution|markdown }}
+</div>
+{% endif %}
+
+{% if research_item.date %}
+<div class="page-section">
+  <h3 class="page-subtitle">Date</h3>
+  {{ research_item.date }}
 </div>
 {% endif %}
 
 {% if research_item.url %}
-<div class="field">
-  <a href="{{ research_item.url }}">URL</a>
+<div class="page-section">
+  <h3 class="page-subtitle">External URL</h3>
+  <a href="{{ research_item.url }}">{{ research_item.url }}</a>
 </div>
 {% endif %}
 
 {% if research_item.file %}
-<div class="field">
-  <a href="{{ research_item.file.url }}">File</a>
+<div class="page-section">
+  <h3 class="page-subtitle">Internal File</h3>
+  <a href="{{ research_item.file.url }}">{{ research_item.file.url }}</a>
 </div>
 {% endif %}
 
 {% if research_item.text %}
-<div class="field">
-  Text: {{ research_item.text|markdown }}
+<div class="page-section">
+  <h3 class="page-subtitle">Text</h3>
+  {{ research_item.text|markdown }}
 </div>
 {% endif %}
 
