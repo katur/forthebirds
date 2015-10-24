@@ -1,9 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
+
 
 {% block body_id %}radio{% endblock %}
 
-{% block page_title %}<i>For the Birds</i> Radio Program{% endblock %}
+
+{% block page_title %}
+<i>For the Birds</i> Radio Program
+{% endblock %}
+
 
 {% block content %}
 
@@ -57,7 +62,7 @@
             Permalink</a>
         </div>
 
-        {% include "tags.html" with item=program %}
+        {% include 'tags.html' with item=program %}
     </li>
     {% endfor %}
   </ul>

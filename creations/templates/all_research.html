@@ -1,12 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
+
 
 {% block body_id %}research-categories{% endblock %}
 
+
 {% block page_title %}All Research{% endblock %}
 
-{% block content %}
 
+{% block content %}
 <ul>
 {% for category in categories %}
   <li>
@@ -16,5 +18,4 @@
   </li>
 {% endfor %}
 </ul>
-
 {% endblock %}

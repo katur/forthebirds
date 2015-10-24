@@ -3,7 +3,8 @@
   <ul>
     {% for bird in item.species.all %}
     <li class="tag">
-      <a href="{{ bird.get_absolute_url }}">{{ bird.common_name }}</a>
+      <a href="{{ bird.get_absolute_url }}">
+        {{ bird.common_name }}</a>
     </li>
     {% endfor %}
 

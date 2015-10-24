@@ -1,22 +1,29 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
 
+
 {% block body_id %}speaking-program{% endblock %}
+
 
 {% block page_title %}
 Speaking Program: <i>{{ program.title }}</i>
 {% endblock %}
 
+
 {% block content %}
 
 <div class="page-section">
   {{ program.description|markdown }}
-  {% include "tags.html" with item=program field=True %}
+
+  {% include 'tags.html' with item=program field=True %}
 </div>
 
 
 {% if files %}
-<h3 class="page-subtitle">Presentation Files</h3>
+<h3 class="page-subtitle">
+  Presentation Files
+</h3>
+
 <div class="page-section">
   <ul id="files">
     {% for file in files %}

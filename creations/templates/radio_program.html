@@ -1,11 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
+
 
 {% block body_id %}radio_program{% endblock %}
 
+
 {% block page_title %}
-  <i>For the Birds</i> Radio Program: {{ program.title }}
+<i>For the Birds</i> Radio Program: {{ program.title }}
 {% endblock %}
+
 
 {% block content %}
 
@@ -38,6 +41,6 @@
 </div>
 {% endif %}
 
-{% include "tags.html" with item=program field=True %}
+{% include 'tags.html' with item=program field=True %}
 
 {% endblock %}

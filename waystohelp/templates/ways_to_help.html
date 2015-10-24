@@ -1,26 +1,27 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load thumbnail %}
+
 
 {% block body_id %}ways-to-help{% endblock %}
 
+
 {% block page_title %}101 Ways To Help Birds{% endblock %}
 
-{% block content %}
 
+{% block content %}
 <div id="all-ways-to-help">
   {% for way in ways %}
   <a href="{{ way.get_absolute_url }}"
       class="way-to-help-card random-background-color"
       data-background="
-      {% if way.background_image %}
-      {% thumbnail way.background_image.image "500" as im %}
-      {{ im.url }}
-      {% endthumbnail %}
-      {% endif %}">
+        {% if way.background_image %}
+        {% thumbnail way.background_image.image "500" as im %}
+        {{ im.url }}
+        {% endthumbnail %}
+        {% endif %}">
     <span class="number">{{ way.id }}</span>
     <span>{{ way.title }}</span>
   </a>
   {% endfor %}
 </div>
-
 {% endblock %}

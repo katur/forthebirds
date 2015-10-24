@@ -1,10 +1,14 @@
 {% if user.is_authenticated %}
-  <div id="admin-bar">
-    <span class="user">{{ user.get_short_name }}</span>
-    <a href="{% url 'admin:index' %}">Admin</a>
-    <a id="research-link" href="{% url 'all_research_url' %}">
-      Research</a>
-    <a class="logout" href="{% url 'logout_url' %}?next={{ request.path }}">
-      Log Out</a>
-  </div>
+<div id="admin-bar">
+  <span class="user">{{ user.get_short_name }}</span>
+
+  <a href="{% url 'admin:index' %}">
+    Admin</a>
+
+  <a id="research-link" href="{% url 'all_research_url' %}">
+    Research</a>
+
+  <a class="logout" href="{% url 'logout_url' %}?next={{ request.path }}">
+    Log Out</a>
+</div>
 {% endif %}

@@ -1,7 +1,9 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
 
+
 {% block body_id %}research{% endblock %}
+
 
 {% block page_title %}
 {% with category=research_item.category %}
@@ -10,7 +12,9 @@
 {{ research_item.title }}
 {% endblock %}
 
+
 {% block content %}
+
 {% if research_item.description %}
 <div class="page-section">
   <h3 class="page-subtitle">Description</h3>
@@ -53,6 +57,6 @@
 </div>
 {% endif %}
 
-{% include "tags.html" with item=research_item field=True %}
+{% include 'tags.html' with item=research_item field=True %}
 
 {% endblock %}

@@ -1,9 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
+
 
 {% block body_id %}book{% endblock %}
 
+
 {% block page_title %}<i>{{ book.title }}</i>{% endblock %}
+
 
 {% block content %}
 
@@ -40,6 +43,6 @@
   </div>
 </div>
 
-{% include "tags.html" with item=book %}
+{% include 'tags.html' with item=book %}
 
 {% endblock %}

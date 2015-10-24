@@ -1,9 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
+
 
 {% block body_id %}webpage{% endblock %}
 
+
 {% block page_title %}{{ webpage.title }}{% endblock %}
+
 
 {% block content %}
 
@@ -15,7 +18,7 @@
   </div>
   {% endif %}
 
-  {% include "tags.html" with item=webpage field=True %}
+  {% include 'tags.html' with item=webpage field=True %}
 </div>
 {% endif %}
 

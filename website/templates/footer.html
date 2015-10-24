@@ -4,10 +4,13 @@
     Laura Erickson (unless otherwise noted), 1986-{% now "Y" %}.
     All rights reserved.
     For permissions,
-    <a href="mailto:chickadee@lauraerickson.com">email Laura</a>.
+    <a href="mailto:chickadee@lauraerickson.com">
+      email Laura</a>.
+
     <br>
+
     {% if not user.is_authenticated %}
-      <a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>
+    <a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>
     {% endif %}
 
     <!--
@@ -25,7 +28,9 @@
   </div>
 
   <div id="website-copyright">
-    Website by <a href="http://katherineerickson.com/">Katherine Erickson</a>,
-    code on <a href="https://github.com/katur/forthebirds">Github</a>.
+    Website by
+    <a href="http://katherineerickson.com/">Katherine Erickson</a>,
+    code on
+    <a href="https://github.com/katur/forthebirds">Github</a>.
   </div>
 </div>

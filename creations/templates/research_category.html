@@ -1,13 +1,17 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
 
+
 {% block body_id %}research-category{% endblock %}
+
 
 {% block page_title %}
 {% include 'research_ancestry.html' %}
 {% endblock %}
 
+
 {% block content %}
+
 {% if children_categories %}
 <div class="page-section">
   <h3>Nested Research Categories</h3>

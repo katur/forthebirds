@@ -1,9 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
+
 
 {% block body_id %}bird{% endblock %}
 
+
 {% block page_title %}{{ bird.common_name }}{% endblock %}
+
 
 {% block content %}
 
@@ -85,7 +88,7 @@
   {% if private_creations %}
   {% regroup private_creations by ancestors as card_list %}
   {% for card in card_list %}
-    {% include "creation_card.html" %}
+    {% include 'creation_card.html' %}
   {% endfor %}
   {% endif %}
 

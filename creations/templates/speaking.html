@@ -1,9 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
+
 
 {% block body_id %}speaking{% endblock %}
 
-{% block page_title %}Laura's Speaking Engagements{% endblock %}
+
+{% block page_title %}
+Laura's Speaking Engagements
+{% endblock %}
+
 
 {% block content %}
 
@@ -14,7 +19,10 @@
 </div>
 
 <div class="page-section">
-  <h3 class="page-subtitle">Topics</h3>
+  <h3 class="page-subtitle">
+    Topics
+  </h3>
+
   <ul>
   {% for program in programs %}
     <li>
@@ -26,14 +34,20 @@
 </div>
 
 <div class="page-section">
-  <h3 class="page-subtitle">Past Keynotes and Other Major Presentations</h3>
+  <h3 class="page-subtitle">
+    Past Keynotes and Other Major Presentations
+  </h3>
+
   <div class="markdown">
     {{ laura.userprofile.speaking_keynotes|markdown }}
   </div>
 </div>
 
 <div class="page-section">
-  <h3 class="page-subtitle">Testimonials</h3>
+  <h3 class="page-subtitle">
+    Testimonials
+  </h3>
+
   <div class="markdown">
     {{ laura.userprofile.speaking_testimonials|markdown }}
   </div>

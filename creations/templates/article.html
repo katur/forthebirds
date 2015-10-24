@@ -1,9 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
+
 
 {% block body_id %}article{% endblock %}
 
+
 {% block page_title %}{{ article.title }}{% endblock %}
+
 
 {% block content %}
 
@@ -29,7 +32,7 @@
   </span>
   {% endif %}
 
-  {% include "tags.html" with item=article field=True %}
+  {% include 'tags.html' with item=article field=True %}
 </div>
 
 {% if article.text %}

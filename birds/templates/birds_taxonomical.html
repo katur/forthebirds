@@ -1,10 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
 
 {% block body_id %}birds-taxonomical{% endblock %}
 
+
 {% block page_title %}Find Birds By Taxonomy{% endblock %}
 
+
 {% block content %}
+
 <ul class="orders">
 {% regroup birds by order_name as orders %}
 {% for order in orders %}
@@ -57,4 +61,5 @@
   </ul>
 {% endfor %}
 </ul>
+
 {% endblock %}
