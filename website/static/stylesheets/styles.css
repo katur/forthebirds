@@ -432,18 +432,20 @@ html, body {
   font-size: 36px;
   font-family: "Dosis", sans-serif;
   color: #777e86; }
-  #radio #year-list a.active:after {
-    display: inline-block;
-    position: relative;
-    bottom: 7px;
-    padding-left: 7px;
-    font-size: 18px;
-    -webkit-transform: scaleX(0.7);
-    -moz-transform: scaleX(0.7);
-    -ms-transform: scaleX(0.7);
-    -o-transform: scaleX(0.7);
-    transform: scaleX(0.7);
-    content: "➤"; }
+  #radio #year-list a {
+    white-space: nowrap; }
+    #radio #year-list a.active:after {
+      display: inline-block;
+      position: relative;
+      bottom: 7px;
+      padding-left: 7px;
+      font-size: 18px;
+      -webkit-transform: scaleX(0.7);
+      -moz-transform: scaleX(0.7);
+      -ms-transform: scaleX(0.7);
+      -o-transform: scaleX(0.7);
+      transform: scaleX(0.7);
+      content: "➤"; }
 #radio .year-programs {
   float: right;
   width: 85%;
