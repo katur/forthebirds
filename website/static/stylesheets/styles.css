@@ -116,6 +116,11 @@ a {
 .markdown ol {
   list-style-type: decimal;
   list-style-position: inside; }
+.markdown img {
+  display: block;
+  max-width: 700px;
+  width: 100%;
+  margin: 36px auto; }
 
 .scroll-box {
   overflow: scroll; }
@@ -557,13 +562,6 @@ html, body {
       list-style-type: square; }
       #speaking-program #files ul ul ul {
         list-style-type: disc; }
-#speaking-program img {
-  position: relative;
-  width: 50%;
-  left: 50%;
-  margin-left: -25%;
-  margin-top: 36px;
-  margin-bottom: 36px; }
 
 #research-categories #content p {
   display: inline; }

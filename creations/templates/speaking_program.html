@@ -12,7 +12,7 @@ Speaking Program: <i>{{ program.title }}</i>
 
 {% block content %}
 
-<div class="page-section">
+<div class="page-section markdown">
   {{ program.description|markdown }}
 
   {% include 'tags.html' with item=program field=True %}
