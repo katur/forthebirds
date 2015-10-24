@@ -1,19 +1,26 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load markdown_deux_tags %}
+
 
 {% block body_id %}writing{% endblock %}
 
+
 {% block page_title %}Laura's Writing{% endblock %}
+
 
 {% block content %}
 
 <div class="page-section">
   Keep up to date with
-  <a href="http://lauraerickson.blogspot.com">Laura's Birding Blog</a>!
+  <a href="http://blog.lauraerickson.com">
+    Laura's Birding Blog</a>!
 </div>
 
 <div class="page-section">
-  <h3 class="page-subtitle">Books</h3>
+  <h3 class="page-subtitle">
+    Books
+  </h3>
+
   <div id="books">
     {% for book in books %}
     <div class="book">
