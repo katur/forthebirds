@@ -50,7 +50,7 @@
 
     {% if bird.bird_of_the_week_name %}
     <span>
-      <a href="http://www.abcbirds.org/newsandreports/botw/{{ bird.bird_of_the_week_name }}.html">
+      <a href="{{ bird.get_bird_of_the_week_url }}">
         ABC Bird of the Week</a>
     </span>
     {% endif %}
