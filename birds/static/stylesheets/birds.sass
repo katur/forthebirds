@@ -4,9 +4,17 @@
 
 #bird
   #main-photo
+    display: block
+    width: 500px
+    max-width: 100%
     float: left
-    margin-right: 50px
-    margin-bottom: 50px
+    margin-right: $whitespace + 10
+    margin-bottom: $whitespace
+
+    @media (max-width: 600px)
+      #main-photo
+        margin-right: 0
+        margin-bottom: 0
 
   .card
     float: left

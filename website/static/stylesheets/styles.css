@@ -349,9 +349,16 @@ html, body {
         list-style-type: disc; }
 
 #bird #main-photo {
+  display: block;
+  width: 500px;
+  max-width: 100%;
   float: left;
-  margin-right: 50px;
-  margin-bottom: 50px; }
+  margin-right: 46px;
+  margin-bottom: 36px; }
+  @media (max-width: 600px) {
+    #bird #main-photo #main-photo {
+      margin-right: 0;
+      margin-bottom: 0; } }
 #bird .card {
   float: left;
   padding: 10px;
