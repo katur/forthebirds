@@ -34,10 +34,7 @@ class Creation(models.Model, RealInstanceProvider):
 
     def is_research(self):
         class_name = self.__class__.__name__
-        if class_name.lower() == 'research':
-            return True
-        else:
-            return False
+        return class_name.lower() == 'research'
 
     def has_tags(self):
         return len(self.species) or len(self.tags.names())
