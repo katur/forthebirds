@@ -1,15 +1,24 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
 
 {% block body_id %}minnesota_birds{% endblock %}
 
+
 {% block page_title %}Birds for Minnesota Field Guide{% endblock %}
+
 
 {% block content %}
 <b>{{ birds|length }} total species</b>
-<br></br>
+
+<br><br>
+
 <ul>
-{% for bird in birds %}
-<li>{{ bird.species.common_name }} <i>{{ bird.species.name}}</i></li>
-{% endfor %}
+  {% for bird in birds %}
+  <li>
+    <a href="{{ bird.species.get_absolute_url }}">
+      {{ bird.species.common_name }}</a>
+    <i>{{ bird.species.name}}</i>
+  </li>
+  {% endfor %}
 </ul>
 {% endblock %}
