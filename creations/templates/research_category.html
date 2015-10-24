@@ -6,7 +6,8 @@
 
 
 {% block page_title %}
-{% include 'research_ancestry.html' %}
+{% include 'research_ancestry.html' with item=category %}
+{{ category.name }}
 {% endblock %}
 
 

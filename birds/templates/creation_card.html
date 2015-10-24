@@ -1,21 +1,23 @@
 <div class="card">
   <h4>
-    {% for level in card.grouper %}{{ level }}{% if not forloop.last %}&rarr;{% endif %}{% endfor %}{{ card.list|pluralize }}
+    {{ category }}{{ creations|pluralize }}
   </h4>
 
   <ul>
-    {% for creation in card.list %}
+    {% for creation in creations %}
     <li>
-    <a href="{{ creation.get_absolute_url }}">
-      {% if creation.is_image %}
-      <img width=500 src="{{ creation.image.url }}" /><br>
-      {% endif %}
-      {{ creation.title }}
-    </a>
+      <a href="{{ creation.get_absolute_url }}">
+        {% if creation.is_image %}
+        <img width=500 src="{{ creation.image.url }}" /><br>
+        {% endif %}
+        {{ creation.title }}
+      </a>
 
-    {% if creation.get_display_date %}
-    <span class="year">{{ creation.get_display_date|date:"Y" }}</span>
-    {% endif %}
+      {% if creation.get_display_date %}
+      <span class="year">
+        {{ creation.get_display_date|date:"Y" }}
+      </span>
+      {% endif %}
     </li>
     {% endfor %}
   </ul>

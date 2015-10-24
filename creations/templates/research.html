@@ -6,9 +6,7 @@
 
 
 {% block page_title %}
-{% with category=research_item.category %}
-{% include 'research_ancestry.html' with final_link=True %}
-{% endwith %}
+{% include 'research_ancestry.html' with item=research_item %}
 {{ research_item.title }}
 {% endblock %}
 

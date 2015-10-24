@@ -74,9 +74,11 @@
   {% endif %}
 
   {% if public_creations %}
-  {% regroup public_creations by ancestors as card_list %}
+  {% regroup public_creations by get_class_display_name as card_list %}
   {% for card in card_list %}
+    {% with category=card.grouper creations=card.list %}
     {% include "creation_card.html" %}
+    {% endwith %}
   {% endfor %}
   {% endif %}
 </div>
@@ -84,17 +86,25 @@
 
 {% if private_creations or user.is_authenticated and bird.is_minnesotan %}
 <div class="page-section">
-  <h3 class="page-subtitle">Private Information</h3>
+  <h3 class="page-subtitle">
+    Private Information
+  </h3>
+
   {% if private_creations %}
-  {% regroup private_creations by ancestors as card_list %}
+  {% regroup private_creations by get_class_display_name as card_list %}
   {% for card in card_list %}
+    {% with category=card.grouper creations=card.list %}
     {% include 'creation_card.html' %}
+    {% endwith %}
   {% endfor %}
   {% endif %}
 
   {% if user.is_authenticated and bird.is_minnesotan %}
   <div class="card">
-    <h4>MOU Checklist Info</h4>
+    <h4>
+      MOU Checklist Info
+    </h4>
+
     Status: {{ bird.minnesotaspecies.mou_status }}
     <br>
     Breeding status: {{ bird.minnesotaspecies.mou_breeding_status }}
@@ -103,7 +113,10 @@
   </div>
 
   <div class="card">
-    <h4>Other Minnesota Field Guide Info</h4>
+    <h4>
+      Other Minnesota Field Guide Info
+    </h4>
+
     Include in book: {{ bird.minnesotaspecies.include_in_book }}
     <br>
     Range in MN: {{ bird.minnesotaspecies.range_in_minnesota }}

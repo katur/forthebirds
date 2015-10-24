@@ -26,6 +26,17 @@ class Creation(models.Model, RealInstanceProvider):
     def get_absolute_url(self):
         return None
 
+    def get_class_display_name(self):
+        if self.is_research():
+            ancestors = list(reversed(self.get_ancestors()))
+            ancestors.append(self.title)
+            return u'\u2192'.join((unicode(a) for a in ancestors))
+
+        else:
+            class_name = self.__class__.__name__
+            words = re.findall('[A-Z][^A-Z]*', class_name)
+            return ' '.join(words)
+
     def get_display_date(self):
         if hasattr(self, 'date_published'):
             return self.date_published
@@ -38,24 +49,6 @@ class Creation(models.Model, RealInstanceProvider):
 
     def has_tags(self):
         return len(self.species) or len(self.tags.names())
-
-    def get_ancestors(self):
-        ancestors = []
-
-        if hasattr(self, 'category'):
-            current = self.category
-            ancestors.append(current)
-            while current.parent:
-                current = current.parent
-                ancestors.append(current)
-
-        else:
-            class_name = self.__class__.__name__
-            words = re.findall('[A-Z][^A-Z]*', class_name)
-            ancestors.append(' '.join(words))
-
-        ancestors.reverse()
-        return ancestors
 
 
 class RadioProgram(Creation):
@@ -226,6 +219,11 @@ class Research(Creation):
 
     def get_absolute_url(self):
         return reverse('creations.views.research', args=[self.id])
+
+    def get_ancestors(self):
+        ancestors = [self.category]
+        ancestors.extend(self.category.get_ancestors())
+        return ancestors
 
 
 class ABAFieldGuideImage(Creation):

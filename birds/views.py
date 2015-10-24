@@ -67,18 +67,22 @@ def birds_taxonomical(request):
 
 
 def bird(request, id):
+    def organize_creations(creations):
+        mindate = datetime.date(datetime.MINYEAR, 1, 1)
+
+        def get_sorting_date(x):
+            return x.get_display_date() or mindate
+
+        def get_name(x):
+            return x.get_class_display_name()
+
+        creations = sorted(creations, key=get_sorting_date, reverse=True)
+        creations = sorted(creations, key=get_name)
+        return creations
+
     bird = get_object_or_404(Species, id=id)
 
-    try:
-        bird.minnesotaspecies
-        bird.is_minnesotan = True
-    except AttributeError:
-        bird.is_minnesotan = False
-
-    if request.user.is_authenticated():
-        show_private = True
-    else:
-        show_private = False
+    bird.is_minnesotan = hasattr(bird, 'minnesotaspecies')
 
     public_creations = []
     private_creations = []
@@ -87,32 +91,15 @@ def bird(request, id):
         # Get actual instances to take advantage of polymorphic fields
         actual_creation = creation.get_actual_instance()
 
-        if not actual_creation.is_public and not show_private:
-            continue
-
         if actual_creation.is_public:
             public_creations.append(actual_creation)
-        else:
+        elif request.user.is_authenticated():
             private_creations.append(actual_creation)
+        else:
+            continue
 
-    def organize(creations):
-        for creation in creations:
-            creation.ancestors = creation.get_ancestors()
-            creation.card_name = creation.ancestors[0]
-
-        mindate = datetime.date(datetime.MINYEAR, 1, 1)
-
-        def get_sorting_date(x):
-            return x.get_display_date() or mindate
-
-        creations = sorted(creations, key=get_sorting_date, reverse=True)
-        creations = sorted(creations, key=lambda x: x.ancestors)
-
-        return creations
-
-    # Sort by creation type in order to use template 'regroup'
-    public_creations = organize(public_creations)
-    private_creations = organize(private_creations)
+    public_creations = organize_creations(public_creations)
+    private_creations = organize_creations(private_creations)
 
     context = {
         'bird': bird,
