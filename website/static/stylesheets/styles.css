@@ -325,6 +325,16 @@ html, body {
   width: 50%;
   margin-left: 5%;
   margin-right: 5%; }
+@media (max-width: 900px) {
+  #about #primary-photo {
+    float: none;
+    width: 100%; }
+  #about #blurb {
+    float: none;
+    width: 100%;
+    margin-top: 36px;
+    margin-left: 0px;
+    margin-right: 0px; } }
 
 #birds ul {
   list-style-position: inside;
