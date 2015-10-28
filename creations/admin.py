@@ -1,8 +1,9 @@
 from django.contrib import admin
 
-from creations.models import (RadioProgram, Book, Article,
+from creations.models import (RadioProgram, RadioProgramAirDate,
+                              Book, Article, BlogPost,
+                              WebPage, ExternalProject,
                               SpeakingProgram, SpeakingProgramFile,
-                              BlogPost, WebPage, ExternalProject,
                               Research, ResearchCategory)
 
 
@@ -27,6 +28,10 @@ class RadioProgramAdmin(admin.ModelAdmin):
             'fields': creation_tagging_fields
         }),
     )
+
+
+class RadioProgramAirDateAdmin(admin.ModelAdmin):
+    list_display = ('date', 'program')
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -100,6 +105,7 @@ class ResearchAdmin(admin.ModelAdmin):
 
 
 admin.site.register(RadioProgram, RadioProgramAdmin)
+admin.site.register(RadioProgramAirDate, RadioProgramAirDateAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(SpeakingProgram, SpeakingProgramAdmin)

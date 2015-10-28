@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load markdown_deux_tags %}
+
+
+{% block body_id %}radio_calendar{% endblock %}
+
+
+{% block page_title %}
+<i>For the Birds</i> Radio Program Calendar for {{ month }}, {{ year }}
+{% endblock %}
+
+
+{% block content %}
+{% for program_air_date in program_air_dates %}
+  {{ program_air_date.date }}: {{ program_air_date.program }}
+{% endfor %}
+{% endblock %}

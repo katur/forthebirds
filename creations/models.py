@@ -71,6 +71,18 @@ class RadioProgram(Creation):
         return self.original_air_date
 
 
+class RadioProgramAirDate(models.Model):
+    program = models.ForeignKey(RadioProgram)
+    date = models.DateField()
+
+    class Meta:
+        ordering = ['date']
+
+    def __unicode__(self):
+        return 'Radio Program: {}, Air Date: {}'.format(
+            self.program, self.date)
+
+
 class Book(Creation):
     purchase_url = models.URLField(blank=True)
     cover_photo = models.ForeignKey(UploadedImage, null=True, blank=True)

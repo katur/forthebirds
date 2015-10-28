@@ -1,10 +1,14 @@
-from django.http import Http404
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
+import datetime
 
-from creations.models import (RadioProgram, Book, Article,
-                              SpeakingProgram, SpeakingProgramFile,
+from django.contrib.auth.decorators import login_required
+from django.db.models import Max
+from django.http import Http404
+from django.shortcuts import redirect, render, get_object_or_404
+
+from creations.models import (RadioProgram, RadioProgramAirDate,
+                              Book, Article,
                               WebPage, ExternalProject,
+                              SpeakingProgram, SpeakingProgramFile,
                               ResearchCategory, Research)
 from website.models import User
 
@@ -28,6 +32,28 @@ def radio_program(request, id):
         'program': program,
     }
     return render(request, 'radio_program.html', context)
+
+
+def radio_calendar(request, year, month):
+    program_air_dates = RadioProgramAirDate.objects.filter(
+        date__year=year, date__month=month)
+
+    context = {
+        'year': year,
+        'month': month,
+        'program_air_dates': program_air_dates,
+    }
+
+    return render(request, 'radio_calendar.html', context)
+
+
+def radio_current_calendar(request):
+    today = datetime.datetime.now().date()
+    current = (RadioProgramAirDate.objects.filter(
+        date__lte=today)
+        .aggregate(Max('date')))['date__max']
+    print current
+    return redirect(radio_calendar, current.year, current.month)
 
 
 def writing(request):
