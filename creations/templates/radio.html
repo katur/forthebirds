@@ -12,9 +12,6 @@
 
 {% block content %}
 
-<a href="{% url 'radio_current_calendar_url' %}">
-  Click here</a> to view monthly program calendars.
-
 <div id="all-programs">
   <ul id="year-list">
     {% for year in year_list %}
@@ -25,7 +22,7 @@
     {% endfor %}
   </ul>
 
-  {% regroup programs by original_air_date|date:"Y" as years %}
+  {% regroup programs by old_air_date|date:"Y" as years %}
   {% for year in years %}
   <ul id="{{ year.grouper }}" class="year-programs">
     {% for program in year.list %}
@@ -33,7 +30,7 @@
       <a class="program-info-button program-title-bar" href="#">
         <span class="title">
           {{ program.title }}
-          ({{ program.original_air_date }})
+          ({{ program.old_air_date }})
         </span>
         <span class="description">
           {{ program.description|markdown }}

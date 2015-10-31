@@ -12,7 +12,7 @@ creation_tagging_fields = ('species', 'tags',)
 
 
 class RadioProgramAdmin(admin.ModelAdmin):
-    list_display = ('title', 'original_air_date',)
+    list_display = ('title', 'old_air_date',)
 
     filter_horizontal = ('species',)
 
@@ -21,7 +21,7 @@ class RadioProgramAdmin(admin.ModelAdmin):
             'fields': creation_id_fields
         }),
         ('Program Details', {
-            'fields': ('original_air_date', 'supplemental_content_url',
+            'fields': ('old_air_date', 'supplemental_content_url',
                        'transcript', 'file',),
         }),
         ('Tagging', {

@@ -52,14 +52,16 @@ class Creation(models.Model, RealInstanceProvider):
 
 
 class RadioProgram(Creation):
-    original_air_date = models.DateField(null=True, blank=True)
+    old_air_date = models.DateField(null=True, blank=True)
+    original_air_date = models.OneToOneField(
+        'creations.RadioProgramAirDate', null=True, blank=True)
     file = models.FileField(null=True, blank=True, upload_to='radio')
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=MARKDOWN_PROMPT)
 
     class Meta:
-        ordering = ['-original_air_date']
+        ordering = ['-old_air_date']
 
     def __unicode__(self):
         return 'Radio Program: ' + self.title
@@ -68,7 +70,7 @@ class RadioProgram(Creation):
         return reverse('creations.views.radio_program', args=[self.id])
 
     def get_display_date(self):
-        return self.original_air_date
+        return self.old_air_date
 
 
 class RadioProgramAirDate(models.Model):
