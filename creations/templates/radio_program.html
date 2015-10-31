@@ -16,12 +16,16 @@
   Original Air Date: {{ program.original_air_date.date }}
 </span>
 
-<span class="field">
-  Rerun Dates:
-  {% for d in program.get_rerun_air_dates %}
-    {{ d.date }}{% if not forloop.last %}; {% endif %}
-  {% endfor %}
-</span>
+{% with program.get_rerun_air_dates as reruns %}
+{% if reruns %}
+  <span class="field">
+    Rerun Dates:
+    {% for rerun in reruns %}
+      {{ rerun.date }}{% if not forloop.last %}; {% endif %}
+    {% endfor %}
+  </span>
+{% endif %}
+{% endwith %}
 
 <span class="field">
   {{ program.description|markdown }}
