@@ -20,6 +20,8 @@ class RadioProgramAdmin(admin.ModelAdmin):
 
     list_filter = ('original_air_date__date',)
 
+    search_fields = ('title',)
+
     filter_horizontal = ('species',)
 
     fieldsets = (
