@@ -2,6 +2,7 @@ import re
 
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import Min
 
 from taggit.managers import TaggableManager
 from private_media.storages import PrivateMediaStorage
@@ -51,17 +52,37 @@ class Creation(models.Model, RealInstanceProvider):
         return len(self.species) or len(self.tags.names())
 
 
+class RadioProgramAirDate(models.Model):
+    program = models.ForeignKey('creations.RadioProgram')
+    date = models.DateField()
+
+    class Meta:
+        ordering = ['date']
+
+    def __unicode__(self):
+        return '{} aired {}'.format(self.program, self.date)
+
+    def save(self, *args, **kwargs):
+        super(RadioProgramAirDate, self).save(*args, **kwargs)
+
+        min_date_for_this_program = RadioProgramAirDate.objects.filter(
+            program=self.program).aggregate(Min('date'))['date__min']
+
+        if min_date_for_this_program == self.date:
+            self.program.original_air_date = self
+            self.program.save()
+
+
 class RadioProgram(Creation):
-    old_air_date = models.DateField(null=True, blank=True)
     original_air_date = models.OneToOneField(
-        'creations.RadioProgramAirDate', null=True, blank=True)
+        RadioProgramAirDate, null=True, blank=True)
     file = models.FileField(null=True, blank=True, upload_to='radio')
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=MARKDOWN_PROMPT)
 
     class Meta:
-        ordering = ['-old_air_date']
+        ordering = ['-original_air_date__date']
 
     def __unicode__(self):
         return 'Radio Program: ' + self.title
@@ -70,19 +91,11 @@ class RadioProgram(Creation):
         return reverse('creations.views.radio_program', args=[self.id])
 
     def get_display_date(self):
-        return self.old_air_date
+        return self.original_air_date.date
 
-
-class RadioProgramAirDate(models.Model):
-    program = models.ForeignKey(RadioProgram)
-    date = models.DateField()
-
-    class Meta:
-        ordering = ['date']
-
-    def __unicode__(self):
-        return 'Radio Program: {}, Air Date: {}'.format(
-            self.program, self.date)
+    def get_rerun_air_dates(self):
+        return RadioProgramAirDate.objects.filter(
+            program=self).exclude(date=self.original_air_date.date)
 
 
 class Book(Creation):

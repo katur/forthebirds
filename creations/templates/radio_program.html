@@ -13,7 +13,14 @@
 {% block content %}
 
 <span class="field">
-  {{ program.old_air_date }}
+  Original Air Date: {{ program.original_air_date.date }}
+</span>
+
+<span class="field">
+  Rerun Dates:
+  {% for d in program.get_rerun_air_dates %}
+    {{ d.date }}{% if not forloop.last %}; {% endif %}
+  {% endfor %}
 </span>
 
 <span class="field">

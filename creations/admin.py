@@ -11,8 +11,14 @@ creation_id_fields = ('title', 'description',)
 creation_tagging_fields = ('species', 'tags',)
 
 
+class RadioProgramAirDateInline(admin.TabularInline):
+    model = RadioProgramAirDate
+
+
 class RadioProgramAdmin(admin.ModelAdmin):
-    list_display = ('title', 'old_air_date',)
+    list_display = ('title', 'get_display_date',)
+
+    list_filter = ('original_air_date__date',)
 
     filter_horizontal = ('species',)
 
@@ -21,17 +27,14 @@ class RadioProgramAdmin(admin.ModelAdmin):
             'fields': creation_id_fields
         }),
         ('Program Details', {
-            'fields': ('old_air_date', 'supplemental_content_url',
-                       'transcript', 'file',),
+            'fields': ('supplemental_content_url', 'transcript', 'file',),
         }),
         ('Tagging', {
             'fields': creation_tagging_fields
         }),
     )
 
-
-class RadioProgramAirDateAdmin(admin.ModelAdmin):
-    list_display = ('date', 'program')
+    inlines = [RadioProgramAirDateInline]
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -105,7 +108,6 @@ class ResearchAdmin(admin.ModelAdmin):
 
 
 admin.site.register(RadioProgram, RadioProgramAdmin)
-admin.site.register(RadioProgramAirDate, RadioProgramAirDateAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(SpeakingProgram, SpeakingProgramAdmin)

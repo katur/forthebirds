@@ -22,7 +22,7 @@
     {% endfor %}
   </ul>
 
-  {% regroup programs by old_air_date|date:"Y" as years %}
+  {% regroup programs by original_air_date.date|date:"Y" as years %}
   {% for year in years %}
   <ul id="{{ year.grouper }}" class="year-programs">
     {% for program in year.list %}
@@ -30,7 +30,7 @@
       <a class="program-info-button program-title-bar" href="#">
         <span class="title">
           {{ program.title }}
-          ({{ program.old_air_date }})
+          ({{ program.original_air_date.date }})
         </span>
         <span class="description">
           {{ program.description|markdown }}
