@@ -12,7 +12,7 @@ Package dependencies are listed in `requirements.txt`.
 
 ## Database
 
-[Here](https://www.lucidchart.com/documents/view/a75393ca-f3ce-45e0-8658-e901ae2e41a0)
+[Here](https://www.lucidchart.com/documents/view/49ce06b3-0dbd-4cee-8b7c-758e195b583a)
 is the database schema on Lucidchart.
 
 
