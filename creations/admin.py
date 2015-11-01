@@ -16,9 +16,9 @@ class RadioProgramAirDateInline(admin.TabularInline):
 
 
 class RadioProgramAdmin(admin.ModelAdmin):
-    list_display = ('title', 'get_display_date',)
+    list_display = ('title', 'original_air_date',)
 
-    list_filter = ('orig_air_date__date',)
+    list_filter = ('original_air_date',)
 
     search_fields = ('title',)
 
@@ -29,7 +29,8 @@ class RadioProgramAdmin(admin.ModelAdmin):
             'fields': creation_id_fields
         }),
         ('Program Details', {
-            'fields': ('supplemental_content_url', 'transcript', 'file',),
+            'fields': ('original_air_date', 'file',
+                       'supplemental_content_url', 'transcript',),
         }),
         ('Tagging', {
             'fields': creation_tagging_fields

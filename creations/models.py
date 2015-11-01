@@ -75,16 +75,13 @@ class RadioProgramAirDate(models.Model):
 
 class RadioProgram(Creation):
     original_air_date = models.DateField(null=True, blank=True)
-    orig_air_date = models.OneToOneField(
-        RadioProgramAirDate, null=True, blank=True,
-        on_delete=models.SET_NULL)
     file = models.FileField(null=True, blank=True, upload_to='radio')
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=MARKDOWN_PROMPT)
 
     class Meta:
-        ordering = ['-orig_air_date__date']
+        ordering = ['-original_air_date']
 
     def __unicode__(self):
         return 'Radio Program: ' + self.title
@@ -93,14 +90,10 @@ class RadioProgram(Creation):
         return reverse('creations.views.radio_program', args=[self.id])
 
     def get_display_date(self):
-        return self.orig_air_date.date
+        return self.original_air_date
 
     def get_reruns(self):
-        reruns = self.radioprogramairdate_set
-        if self.orig_air_date:
-            reruns = reruns.exclude(date=self.orig_air_date.date)
-
-        return reruns
+        return self.radioprogramairdate_set
 
 
 class Book(Creation):
