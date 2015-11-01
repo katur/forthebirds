@@ -76,13 +76,14 @@ class RadioProgram(Creation):
         return self.radioprogramrerun_set
 
     def get_duration(self):
-        '''Get program duration in min:sec'''
+        '''Get program duration as string in format min:sec'''
         try:
             program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
             duration = int(math.ceil(MP3(program_path).info.length))
             minutes = duration // 60
             seconds = duration % 60
             return '{}:{:02d}'.format(minutes, seconds)
+
         except Exception:
             return None
 
@@ -262,7 +263,6 @@ class ABAFieldGuideImage(Creation):
 
     class Meta:
         ordering = ['title']
-        verbose_name = 'ABA Field Guide Image'
         verbose_name = 'ABA Field Guide Images'
 
     def __unicode__(self):
