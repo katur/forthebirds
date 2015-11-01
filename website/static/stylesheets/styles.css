@@ -534,7 +534,8 @@ html, body {
       font-weight: bold; }
     #radio-calendar table td .program-type {
       font-family: "Dosis", sans-serif;
-      color: #9ba5a9;
+      color: #777e86;
+      font-size: 15px;
       margin-left: 3px; }
 
 #writing #books {
