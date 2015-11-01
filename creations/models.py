@@ -94,9 +94,12 @@ class RadioProgram(Creation):
     def get_display_date(self):
         return self.original_air_date.date
 
-    def get_rerun_air_dates(self):
-        return self.radioprogramairdate_set.exclude(
-            date=self.original_air_date.date)
+    def get_reruns(self):
+        reruns = self.radioprogramairdate_set
+        if self.original_air_date:
+            reruns = reruns.exclude(date=self.original_air_date.date)
+
+        return reruns
 
 
 class Book(Creation):
@@ -208,7 +211,8 @@ class ExternalProject(Creation):
 class ResearchCategory(models.Model):
     name = models.CharField(max_length=100)
     notes = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-    parent = models.ForeignKey('self', null=True, blank=True)
+    parent = models.ForeignKey('self', null=True, blank=True,
+                               on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ['name']

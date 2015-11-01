@@ -47,7 +47,8 @@ class UserProfile(models.Model):
     bio = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
     awards = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
     main_photo = models.ForeignKey(UploadedImage, null=True, blank=True,
-                                   related_name='main_uploaded_photo')
+                                   related_name='main_uploaded_photo',
+                                   on_delete=models.SET_NULL)
     publicity_photos = models.ManyToManyField(
         UploadedImage, related_name='uploaded_publicity_photos', blank=True)
     speaking_overview = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)

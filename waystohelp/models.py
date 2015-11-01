@@ -10,7 +10,8 @@ class WayToHelp(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     background_image = models.ForeignKey(UploadedImage, null=True,
-                                         blank=True)
+                                         blank=True,
+                                         on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ['id']

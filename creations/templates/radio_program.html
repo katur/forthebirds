@@ -12,11 +12,13 @@
 
 {% block content %}
 
+{% if program.original_air_date %}
 <span class="field">
   Original Air Date: {{ program.original_air_date.date }}
 </span>
+{% endif %}
 
-{% with program.get_rerun_air_dates as reruns %}
+{% with program.get_reruns.all as reruns %}
 {% if reruns %}
   <span class="field">
     Rerun Dates:
