@@ -8,7 +8,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 from private_media.storages import PrivateMediaStorage
 
-from forthebirds.settings import MARKDOWN_PROMPT, BASE_DIR, MEDIA_ROOT
+from forthebirds.settings import MARKDOWN_PROMPT, MEDIA_ROOT
 from birds.models import Species
 from website.models import UploadedImage
 from utils.models import RealInstanceProvider
@@ -77,15 +77,14 @@ class RadioProgram(Creation):
 
     def get_duration(self):
         '''Get program duration in min:sec'''
-	try:
+        try:
             program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
-	except Error:
+            duration = int(math.ceil(MP3(program_path).info.length))
+            minutes = duration // 60
+            seconds = duration % 60
+            return '{}:{:02d}'.format(minutes, seconds)
+        except Exception:
             return None
-
-        duration = int(math.ceil(MP3(program_path).info.length))
-        minutes = duration // 60
-        seconds = duration % 60
-        return '{}:{:02d}'.format(minutes, seconds)
 
 
 class RadioProgramRerun(models.Model):
