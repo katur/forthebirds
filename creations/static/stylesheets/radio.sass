@@ -1,4 +1,8 @@
 #radio
+  #calendar-link
+    display: block
+    margin-bottom: $whitespace / 2
+
   #year-list
     float: left
     width: 10%
@@ -87,3 +91,20 @@
 
           &.tags
             max-width: 600px
+
+
+#radio-calendar
+  table, td
+    border: 1px solid black
+
+  table
+    width: 100%
+    table-layout: fixed
+    border-collapse: collapse
+
+    td
+      padding: 5px
+      height: 50px
+
+      .day
+        font-weight: bold

@@ -12,6 +12,9 @@
 
 {% block content %}
 
+<a id="calendar-link" href="{% url 'radio_current_calendar_url' %}">
+  Click here for calendar</a>
+
 <div id="all-programs">
   <ul id="year-list">
     {% for year in year_list %}

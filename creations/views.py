@@ -1,3 +1,4 @@
+import calendar
 import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -35,13 +36,45 @@ def radio_program(request, id):
 
 
 def radio_calendar(request, year, month):
-    program_air_dates = RadioProgramRerun.objects.filter(
+    year = int(year)
+    month = int(month)
+
+    new_programs = RadioProgram.objects.filter(
+        original_air_date__year=year, original_air_date__month=month)
+
+    reruns = RadioProgramRerun.objects.filter(
         date__year=year, date__month=month)
+
+    day_to_program = {}
+
+    for program in new_programs:
+        program.is_rerun = False
+        day = program.original_air_date.day
+        if day not in day_to_program:
+            day_to_program[day] = []
+        day_to_program[day].append(program)
+
+    for rerun in reruns:
+        rerun.program.is_rerun = True
+        day = rerun.date.day
+        if day not in day_to_program:
+            day_to_program[day] = []
+        day_to_program[day].append(rerun.program)
+
+    cal = []
+    ref_cal = calendar.Calendar(6).monthdayscalendar(year, month)
+
+    for ref_week in ref_cal:
+        week = []
+        for ref_day in ref_week:
+            week.append((ref_day, day_to_program.get(ref_day)))
+        cal.append(week)
 
     context = {
         'year': year,
-        'month': month,
-        'program_air_dates': program_air_dates,
+        'month': calendar.month_name[month],
+        'day_to_program': day_to_program,
+        'calendar': cal,
     }
 
     return render(request, 'radio_calendar.html', context)

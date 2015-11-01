@@ -433,6 +433,9 @@ html, body {
   #birds-taxonomical .plus-sign.minus::before {
     display: none; }
 
+#radio #calendar-link {
+  display: block;
+  margin-bottom: 18px; }
 #radio #year-list {
   float: left;
   width: 10%;
@@ -510,6 +513,18 @@ html, body {
             color: #d3a060; }
         #radio .year-programs .program .program-info div.tags {
           max-width: 600px; }
+
+#radio-calendar table, #radio-calendar td {
+  border: 1px solid black; }
+#radio-calendar table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse; }
+  #radio-calendar table td {
+    padding: 5px;
+    height: 50px; }
+    #radio-calendar table td .day {
+      font-weight: bold; }
 
 #writing #books {
   width: 105%;

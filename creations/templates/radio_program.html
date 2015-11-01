@@ -19,7 +19,7 @@
 {% with program.get_reruns.all as reruns %}
 {% if reruns %}
   <span class="field">
-    Rerun Dates:
+    Reruns:
     {% for rerun in reruns %}
       {{ rerun.date }}{% if not forloop.last %}; {% endif %}
     {% endfor %}

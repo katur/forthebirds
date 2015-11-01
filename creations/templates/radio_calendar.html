@@ -2,7 +2,7 @@
 {% load markdown_deux_tags %}
 
 
-{% block body_id %}radio_calendar{% endblock %}
+{% block body_id %}radio-calendar{% endblock %}
 
 
 {% block page_title %}
@@ -11,7 +11,35 @@
 
 
 {% block content %}
-{% for program_air_date in program_air_dates %}
-  {{ program_air_date.date }}: {{ program_air_date.program }}
-{% endfor %}
+
+<table>
+  {% for week in calendar %}
+  <tr>
+    {% for day, programs in week %}
+    <td>
+      {% if day %}
+      <span class="day">
+        {{ day }}.
+      </span>
+
+      {% for program in programs %}
+      <span class="program">
+        <a href="{{ MEDIA_URL }}{{ program.file }}">
+          {{ program.title }}</a>
+
+        {% if program.is_rerun %}
+          (rerun)
+        {% else %}
+          (new!)
+        {% endif %}
+      </span>
+      {% endfor %}
+
+      {% endif %}
+    </td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+
 {% endblock %}
