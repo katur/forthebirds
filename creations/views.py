@@ -14,7 +14,7 @@ from website.models import User
 
 
 def radio(request):
-    year_list = RadioProgram.objects.all().dates('original_air_date__date',
+    year_list = RadioProgram.objects.all().dates('orig_air_date__date',
                                                  'year')
     year_list = sorted(year_list, reverse=True)
     programs = RadioProgram.objects.all()

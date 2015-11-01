@@ -18,7 +18,7 @@ class RadioProgramAirDateInline(admin.TabularInline):
 class RadioProgramAdmin(admin.ModelAdmin):
     list_display = ('title', 'get_display_date',)
 
-    list_filter = ('original_air_date__date',)
+    list_filter = ('orig_air_date__date',)
 
     search_fields = ('title',)
 

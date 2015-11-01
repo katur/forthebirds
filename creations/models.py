@@ -69,12 +69,13 @@ class RadioProgramAirDate(models.Model):
             program=self.program).aggregate(Min('date'))['date__min']
 
         if min_date_for_this_program == self.date:
-            self.program.original_air_date = self
+            self.program.orig_air_date = self
             self.program.save()
 
 
 class RadioProgram(Creation):
-    original_air_date = models.OneToOneField(
+    original_air_date = models.DateField(null=True, blank=True)
+    orig_air_date = models.OneToOneField(
         RadioProgramAirDate, null=True, blank=True,
         on_delete=models.SET_NULL)
     file = models.FileField(null=True, blank=True, upload_to='radio')
@@ -83,7 +84,7 @@ class RadioProgram(Creation):
                                   help_text=MARKDOWN_PROMPT)
 
     class Meta:
-        ordering = ['-original_air_date__date']
+        ordering = ['-orig_air_date__date']
 
     def __unicode__(self):
         return 'Radio Program: ' + self.title
@@ -92,12 +93,12 @@ class RadioProgram(Creation):
         return reverse('creations.views.radio_program', args=[self.id])
 
     def get_display_date(self):
-        return self.original_air_date.date
+        return self.orig_air_date.date
 
     def get_reruns(self):
         reruns = self.radioprogramairdate_set
-        if self.original_air_date:
-            reruns = reruns.exclude(date=self.original_air_date.date)
+        if self.orig_air_date:
+            reruns = reruns.exclude(date=self.orig_air_date.date)
 
         return reruns
 
