@@ -94,7 +94,7 @@
 
 
 #radio-calendar
-  table, td
+  table, th, td
     border: 1px solid black
 
   table
@@ -102,9 +102,15 @@
     table-layout: fixed
     border-collapse: collapse
 
+    th
+      background: $moss
+      color: $chickadee-cream
+      font-family: $sans-font-family
+
     td
       padding: 5px
       height: 50px
 
       .day
+        font-family: $sans-font-family
         font-weight: bold

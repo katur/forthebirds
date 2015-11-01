@@ -61,20 +61,25 @@ def radio_calendar(request, year, month):
             day_to_program[day] = []
         day_to_program[day].append(rerun.program)
 
-    cal = []
-    ref_cal = calendar.Calendar(6).monthdayscalendar(year, month)
+    sunday_start = calendar.Calendar(6)
+    weekdays = (calendar.day_name[x] for x in sunday_start.iterweekdays())
 
-    for ref_week in ref_cal:
-        week = []
+    # Iterate over reference calendar for this month (ref_month),
+    # populating radio calendar for this month (cal_month) along the way
+    ref_month = sunday_start.monthdayscalendar(year, month)
+    cal_month = []
+
+    for ref_week in ref_month:
+        cal_week = []
         for ref_day in ref_week:
-            week.append((ref_day, day_to_program.get(ref_day)))
-        cal.append(week)
+            cal_week.append((ref_day, day_to_program.get(ref_day)))
+        cal_month.append(cal_week)
 
     context = {
         'year': year,
         'month': calendar.month_name[month],
-        'day_to_program': day_to_program,
-        'calendar': cal,
+        'weekdays': weekdays,
+        'calendar': cal_month,
     }
 
     return render(request, 'radio_calendar.html', context)

@@ -13,6 +13,12 @@
 {% block content %}
 
 <table>
+  <tr>
+  {% for weekday in weekdays %}
+    <th>{{ weekday }}</th>
+  {% endfor %}
+  </tr>
+
   {% for week in calendar %}
   <tr>
     {% for day, programs in week %}

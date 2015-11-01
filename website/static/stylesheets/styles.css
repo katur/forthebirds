@@ -514,16 +514,21 @@ html, body {
         #radio .year-programs .program .program-info div.tags {
           max-width: 600px; }
 
-#radio-calendar table, #radio-calendar td {
+#radio-calendar table, #radio-calendar th, #radio-calendar td {
   border: 1px solid black; }
 #radio-calendar table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse; }
+  #radio-calendar table th {
+    background: #788c6d;
+    color: #f5f4ee;
+    font-family: "Dosis", sans-serif; }
   #radio-calendar table td {
     padding: 5px;
     height: 50px; }
     #radio-calendar table td .day {
+      font-family: "Dosis", sans-serif;
       font-weight: bold; }
 
 #writing #books {
