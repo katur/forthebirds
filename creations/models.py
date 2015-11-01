@@ -95,13 +95,14 @@ class RadioProgram(Creation):
         return self.original_air_date.date
 
     def get_rerun_air_dates(self):
-        return RadioProgramAirDate.objects.filter(
-            program=self).exclude(date=self.original_air_date.date)
+        return self.radioprogramairdate_set.exclude(
+            date=self.original_air_date.date)
 
 
 class Book(Creation):
     purchase_url = models.URLField(blank=True)
-    cover_photo = models.ForeignKey(UploadedImage, null=True, blank=True)
+    cover_photo = models.ForeignKey(UploadedImage, null=True, blank=True,
+                                    on_delete=models.SET_NULL)
     publisher = models.CharField(max_length=100, blank=True)
     isbn_10 = models.CharField('ISBN 10', max_length=20, blank=True)
     isbn_13 = models.CharField('ISBN 13', max_length=20, blank=True)
