@@ -5,7 +5,7 @@ from django.db.models import Max
 from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404
 
-from creations.models import (RadioProgram, RadioProgramAirDate,
+from creations.models import (RadioProgram, RadioProgramRerun,
                               Book, Article,
                               WebPage, ExternalProject,
                               SpeakingProgram, SpeakingProgramFile,
@@ -35,7 +35,7 @@ def radio_program(request, id):
 
 
 def radio_calendar(request, year, month):
-    program_air_dates = RadioProgramAirDate.objects.filter(
+    program_air_dates = RadioProgramRerun.objects.filter(
         date__year=year, date__month=month)
 
     context = {
@@ -49,7 +49,7 @@ def radio_calendar(request, year, month):
 
 def radio_current_calendar(request):
     today = datetime.datetime.now().date()
-    current = (RadioProgramAirDate.objects.filter(
+    current = (RadioProgramRerun.objects.filter(
         date__lte=today)
         .aggregate(Max('date')))['date__max']
     print current

@@ -2,7 +2,6 @@ import re
 
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import Min
 
 from taggit.managers import TaggableManager
 from private_media.storages import PrivateMediaStorage
@@ -52,27 +51,6 @@ class Creation(models.Model, RealInstanceProvider):
         return len(self.species) or len(self.tags.names())
 
 
-class RadioProgramAirDate(models.Model):
-    program = models.ForeignKey('creations.RadioProgram')
-    date = models.DateField()
-
-    class Meta:
-        ordering = ['date']
-
-    def __unicode__(self):
-        return '{} aired {}'.format(self.program, self.date)
-
-    def save(self, *args, **kwargs):
-        super(RadioProgramAirDate, self).save(*args, **kwargs)
-
-        min_date_for_this_program = RadioProgramAirDate.objects.filter(
-            program=self.program).aggregate(Min('date'))['date__min']
-
-        if min_date_for_this_program == self.date:
-            self.program.orig_air_date = self
-            self.program.save()
-
-
 class RadioProgram(Creation):
     original_air_date = models.DateField(null=True, blank=True)
     file = models.FileField(null=True, blank=True, upload_to='radio')
@@ -93,7 +71,18 @@ class RadioProgram(Creation):
         return self.original_air_date
 
     def get_reruns(self):
-        return self.radioprogramairdate_set
+        return self.radioprogramrerun_set
+
+
+class RadioProgramRerun(models.Model):
+    program = models.ForeignKey(RadioProgram)
+    date = models.DateField()
+
+    class Meta:
+        ordering = ['-date']
+
+    def __unicode__(self):
+        return '{} aired {}'.format(self.program, self.date)
 
 
 class Book(Creation):

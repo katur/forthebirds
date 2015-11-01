@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from creations.models import (RadioProgram, RadioProgramAirDate,
+from creations.models import (RadioProgram, RadioProgramRerun,
                               Book, Article, BlogPost,
                               WebPage, ExternalProject,
                               SpeakingProgram, SpeakingProgramFile,
@@ -11,8 +11,8 @@ creation_id_fields = ('title', 'description',)
 creation_tagging_fields = ('species', 'tags',)
 
 
-class RadioProgramAirDateInline(admin.TabularInline):
-    model = RadioProgramAirDate
+class RadioProgramRerunInline(admin.TabularInline):
+    model = RadioProgramRerun
 
 
 class RadioProgramAdmin(admin.ModelAdmin):
@@ -37,7 +37,7 @@ class RadioProgramAdmin(admin.ModelAdmin):
         }),
     )
 
-    inlines = [RadioProgramAirDateInline]
+    inlines = [RadioProgramRerunInline]
 
 
 class BookAdmin(admin.ModelAdmin):
