@@ -16,7 +16,7 @@ class RadioProgramRerunInline(admin.TabularInline):
 
 
 class RadioProgramAdmin(admin.ModelAdmin):
-    list_display = ('title', 'original_air_date',)
+    list_display = ('title', 'original_air_date', 'file',)
 
     list_filter = ('original_air_date',)
 
