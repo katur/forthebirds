@@ -77,8 +77,10 @@ class RadioProgram(Creation):
 
     def get_duration(self):
         '''Get program duration in min:sec'''
-        program_path = '{}/{}/{}'.format(BASE_DIR, MEDIA_ROOT,
-                                         self.file.name)
+	try:
+            program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
+	except Error:
+            return None
 
         duration = int(math.ceil(MP3(program_path).info.length))
         minutes = duration // 60
