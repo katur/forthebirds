@@ -520,16 +520,22 @@ html, body {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse; }
+  #radio-calendar table th, #radio-calendar table td {
+    padding: 5px; }
   #radio-calendar table th {
     background: #788c6d;
     color: #f5f4ee;
-    font-family: "Dosis", sans-serif; }
+    font-family: "Dosis", sans-serif;
+    letter-spacing: 1px; }
   #radio-calendar table td {
-    padding: 5px;
     height: 50px; }
     #radio-calendar table td .day {
       font-family: "Dosis", sans-serif;
       font-weight: bold; }
+    #radio-calendar table td .program-type {
+      font-family: "Dosis", sans-serif;
+      color: #9ba5a9;
+      margin-left: 3px; }
 
 #writing #books {
   width: 105%;

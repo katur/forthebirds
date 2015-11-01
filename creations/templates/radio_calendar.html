@@ -33,11 +33,13 @@
         <a href="{{ MEDIA_URL }}{{ program.file }}">
           {{ program.title }}</a>
 
-        {% if program.is_rerun %}
-          (rerun)
-        {% else %}
-          (new!)
-        {% endif %}
+        <span class="program-type">
+          {% if program.is_rerun %}
+          rerun
+          {% else %}
+          new!
+          {% endif %}
+        </span>
       </span>
       {% endfor %}
 
