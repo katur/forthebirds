@@ -75,7 +75,8 @@ class RadioProgramAirDate(models.Model):
 
 class RadioProgram(Creation):
     original_air_date = models.OneToOneField(
-        RadioProgramAirDate, null=True, blank=True)
+        RadioProgramAirDate, null=True, blank=True,
+        on_delete=models.SET_NULL)
     file = models.FileField(null=True, blank=True, upload_to='radio')
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
