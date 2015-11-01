@@ -528,15 +528,17 @@ html, body {
     font-family: "Dosis", sans-serif;
     letter-spacing: 1px; }
   #radio-calendar table td {
-    height: 50px; }
+    height: 50px;
+    font-size: 16px; }
+    #radio-calendar table td a, #radio-calendar table td span {
+      display: block; }
     #radio-calendar table td .day {
       font-family: "Dosis", sans-serif;
       font-weight: bold; }
     #radio-calendar table td .program-type {
-      font-family: "Dosis", sans-serif;
-      color: #777e86;
       font-size: 15px;
-      margin-left: 3px; }
+      font-family: "Dosis", sans-serif;
+      color: #777e86; }
 
 #writing #books {
   width: 105%;

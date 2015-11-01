@@ -28,18 +28,22 @@
         {{ day }}.
       </span>
 
-      {% for program in programs %}
+      {% for program, is_rerun in programs %}
       <span class="program">
-        <a href="{{ MEDIA_URL }}{{ program.file }}">
+        <a href="{{ program.get_absolute_url }}">
           {{ program.title }}</a>
 
         <span class="program-type">
-          {% if program.is_rerun %}
+          {% if is_rerun %}
           rerun
           {% else %}
           new!
           {% endif %}
         </span>
+
+        <a href="{{ MEDIA_URL }}{{ program.file }}">
+          mp3 ({{ program.get_duration }})</a>
+
       </span>
       {% endfor %}
 

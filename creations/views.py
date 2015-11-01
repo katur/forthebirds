@@ -15,10 +15,11 @@ from website.models import User
 
 
 def radio(request):
-    year_list = RadioProgram.objects.all().dates('original_air_date',
-                                                 'year')
-    year_list = sorted(year_list, reverse=True)
     programs = RadioProgram.objects.all()
+
+    year_list = programs.dates('original_air_date', 'year')
+    year_list = sorted(year_list, reverse=True)
+
     context = {
         'programs': programs,
         'year_list': year_list,
@@ -47,19 +48,18 @@ def radio_calendar(request, year, month):
 
     day_to_program = {}
 
-    for program in new_programs:
-        program.is_rerun = False
-        day = program.original_air_date.day
+    def process_program(program, day, is_rerun):
         if day not in day_to_program:
             day_to_program[day] = []
-        day_to_program[day].append(program)
+        day_to_program[day].append((program, is_rerun))
+
+    for program in new_programs:
+        day = program.original_air_date.day
+        process_program(program, day, False)
 
     for rerun in reruns:
-        rerun.program.is_rerun = True
         day = rerun.date.day
-        if day not in day_to_program:
-            day_to_program[day] = []
-        day_to_program[day].append(rerun.program)
+        process_program(rerun.program, day, True)
 
     sunday_start = calendar.Calendar(6)
     weekdays = (calendar.day_name[x] for x in sunday_start.iterweekdays())

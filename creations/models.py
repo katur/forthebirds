@@ -1,3 +1,5 @@
+import math
+from mutagen.mp3 import MP3
 import re
 
 from django.core.urlresolvers import reverse
@@ -6,7 +8,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 from private_media.storages import PrivateMediaStorage
 
-from forthebirds.settings import MARKDOWN_PROMPT
+from forthebirds.settings import MARKDOWN_PROMPT, BASE_DIR, MEDIA_ROOT
 from birds.models import Species
 from website.models import UploadedImage
 from utils.models import RealInstanceProvider
@@ -52,8 +54,8 @@ class Creation(models.Model, RealInstanceProvider):
 
 
 class RadioProgram(Creation):
-    original_air_date = models.DateField(null=True, blank=True)
-    file = models.FileField(null=True, blank=True, upload_to='radio')
+    original_air_date = models.DateField()
+    file = models.FileField(upload_to='radio')
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=MARKDOWN_PROMPT)
@@ -72,6 +74,16 @@ class RadioProgram(Creation):
 
     def get_reruns(self):
         return self.radioprogramrerun_set
+
+    def get_duration(self):
+        '''Get program duration in min:sec'''
+        program_path = '{}/{}/{}'.format(BASE_DIR, MEDIA_ROOT,
+                                         self.file.name)
+
+        duration = int(math.ceil(MP3(program_path).info.length))
+        minutes = duration // 60
+        seconds = duration % 60
+        return '{}:{:02d}'.format(minutes, seconds)
 
 
 class RadioProgramRerun(models.Model):
