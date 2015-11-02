@@ -502,17 +502,18 @@ html, body {
         #radio .year-programs .program .program-info div.audio {
           margin-top: 18px;
           line-height: 15px; }
-          #radio .year-programs .program .program-info div.audio .download-link {
-            font-size: 13px;
-            color: #777e86; }
-            #radio .year-programs .program .program-info div.audio .download-link:hover {
-              color: #3c3a47; }
         #radio .year-programs .program .program-info div.transcript a {
           color: #d36760; }
           #radio .year-programs .program .program-info div.transcript a:hover {
             color: #d3a060; }
         #radio .year-programs .program .program-info div.tags {
           max-width: 600px; }
+
+#radio .download-link, #radio-program .download-link, #radio-calendar .download-link {
+  font-size: 13px;
+  color: #777e86; }
+  #radio .download-link:hover, #radio-program .download-link:hover, #radio-calendar .download-link:hover {
+    color: #3c3a47; }
 
 #radio-calendar table, #radio-calendar th, #radio-calendar td {
   border: 1px solid black; }

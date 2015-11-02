@@ -34,15 +34,18 @@
           {{ program.title }}</a>
 
         <span class="program-type">
+          {{ program.get_duration}},
+
           {% if is_rerun %}
           rerun
           {% else %}
           new!
           {% endif %}
+
         </span>
 
-        <a href="{{ MEDIA_URL }}{{ program.file }}">
-          mp3 ({{ program.get_duration }})</a>
+        <a class="download-link" href="{{ MEDIA_URL }}{{ program.file }}">
+          Download .mp3</a>
 
       </span>
       {% endfor %}

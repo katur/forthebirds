@@ -82,7 +82,8 @@ class RadioProgram(Creation):
             duration = int(math.ceil(MP3(program_path).info.length))
             minutes = duration // 60
             seconds = duration % 60
-            return '{}:{:02d}'.format(minutes, seconds)
+            return u'{0}{1}{2:02d}{3}'.format(minutes, u'\u2032', seconds,
+                                              u'\u2033')
 
         except Exception:
             return None
