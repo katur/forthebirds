@@ -10,10 +10,13 @@ Python version is listed in `runtime.txt`.
 Package dependencies are listed in `requirements.txt`.
 
 
-## Database
+## Database Schema
 
 [Click here](https://www.lucidchart.com/documents/view/a75393ca-f3ce-45e0-8658-e901ae2e41a0)
 to view the database schema on Lucidchart.
+
+[Click here](https://www.lucidchart.com/publicSegments/view/a3c5059c-139e-40a8-ad5c-bdfdad791a14/image.pdf) 
+to download as a PDF.
 
 
 ## Code
