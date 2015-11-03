@@ -44,9 +44,7 @@
 
         </span>
 
-        <a class="download-link" href="{{ MEDIA_URL }}{{ program.file }}">
-          Download .mp3</a>
-
+        {% include 'download.html' with file=program.file %}
       </span>
       {% endfor %}
 

@@ -37,13 +37,7 @@
 
 {% if program.file %}
 <div class="field">
-  <audio controls preload="none">
-    <source src="{{ MEDIA_URL }}{{ program.file }}" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  <br>
-  <a class="download-link"  href="{{ MEDIA_URL }}{{ program.file }}">
-    Download .mp3</a>
+  {% include 'audio_with_download.html' with file=program.file %}
 </div>
 
 {% endif %}

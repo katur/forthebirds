@@ -509,11 +509,13 @@ html, body {
         #radio .year-programs .program .program-info div.tags {
           max-width: 600px; }
 
-#radio .download-link, #radio-program .download-link, #radio-calendar .download-link {
-  font-size: 13px;
-  color: #777e86; }
-  #radio .download-link:hover, #radio-program .download-link:hover, #radio-calendar .download-link:hover {
-    color: #3c3a47; }
+#radio .download-link img, #radio-program .download-link img {
+  width: 30px;
+  height: 30px; }
+
+#radio-calendar .download-link img {
+  width: 20px;
+  height: 20px; }
 
 #radio-calendar table, #radio-calendar th, #radio-calendar td {
   border: 1px solid black; }
