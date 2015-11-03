@@ -32,7 +32,8 @@ class Creation(models.Model, RealInstanceProvider):
         if self.is_research():
             ancestors = list(reversed(self.get_ancestors()))
             ancestors.append(self.title)
-            return u'\u2192'.join((unicode(a) for a in ancestors))
+            return u'\N{RIGHTWARDS ARROW}'.join(
+                (unicode(a) for a in ancestors))
 
         else:
             class_name = self.__class__.__name__
@@ -82,8 +83,8 @@ class RadioProgram(Creation):
             duration = int(math.ceil(MP3(program_path).info.length))
             minutes = duration // 60
             seconds = duration % 60
-            return u'{0}{1}{2:02d}{3}'.format(minutes, u'\u2032', seconds,
-                                              u'\u2033')
+            return u'{0}{1}{2:02d}{3}'.format(minutes, u'\N{PRIME}',
+                                              seconds, u'\N{DOUBLE PRIME}')
 
         except Exception:
             return None
