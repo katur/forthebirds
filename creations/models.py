@@ -54,9 +54,86 @@ class Creation(models.Model, RealInstanceProvider):
         return len(self.species) or len(self.tags.names())
 
 
+class Book(Creation):
+    publisher = models.CharField(max_length=100, blank=True)
+    date_published = models.DateField(null=True, blank=True)
+    purchase_url = models.URLField(blank=True)
+    cover_photo = models.ForeignKey(UploadedImage, null=True, blank=True,
+                                    on_delete=models.SET_NULL)
+    isbn_10 = models.CharField('ISBN 10', max_length=20, blank=True)
+    isbn_13 = models.CharField('ISBN 13', max_length=20, blank=True)
+
+    class Meta:
+        ordering = ['-date_published']
+
+    def __unicode__(self):
+        return 'Book: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.book', args=[self.id])
+
+
+class Article(Creation):
+    published_by = models.CharField(max_length=100, blank=True)
+    date_published = models.DateField(null=True, blank=True)
+    url = models.URLField(blank=True)
+    file = models.FileField(null=True, blank=True, upload_to='articles')
+    text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+
+    class Meta:
+        ordering = ['-date_published']
+
+    def __unicode__(self):
+        return 'Article: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.article', args=[self.id])
+
+
+class WebPage(Creation):
+    slug = models.SlugField(max_length=255)
+    date_published = models.DateField(null=True, blank=True)
+    content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+
+    class Meta:
+        ordering = ['title']
+
+    def __unicode__(self):
+        return 'Web Page: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.webpage', args=[self.slug])
+
+
+class ExternalProject(Creation):
+    url = models.URLField()
+
+    class Meta:
+        ordering = ['title']
+
+    def __unicode__(self):
+        return 'External Project: ' + self.title
+
+    def get_absolute_url(self):
+        return self.url
+
+
+class BlogPost(Creation):
+    url = models.URLField()
+
+    class Meta:
+        ordering = ['title']
+
+    def __unicode__(self):
+        return 'Blog Post: ' + self.title
+
+    def get_absolute_url(self):
+        return self.url
+
+
 class RadioProgram(Creation):
-    original_air_date = models.DateField()
     file = models.FileField(upload_to='radio')
+    original_air_date = models.DateField()
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=MARKDOWN_PROMPT)
@@ -101,42 +178,6 @@ class RadioProgramRerun(models.Model):
         return '{} aired {}'.format(self.program, self.date)
 
 
-class Book(Creation):
-    purchase_url = models.URLField(blank=True)
-    cover_photo = models.ForeignKey(UploadedImage, null=True, blank=True,
-                                    on_delete=models.SET_NULL)
-    publisher = models.CharField(max_length=100, blank=True)
-    isbn_10 = models.CharField('ISBN 10', max_length=20, blank=True)
-    isbn_13 = models.CharField('ISBN 13', max_length=20, blank=True)
-    date_published = models.DateField(null=True, blank=True)
-
-    class Meta:
-        ordering = ['-date_published']
-
-    def __unicode__(self):
-        return 'Book: ' + self.title
-
-    def get_absolute_url(self):
-        return reverse('creations.views.book', args=[self.id])
-
-
-class Article(Creation):
-    published_by = models.CharField(max_length=100, blank=True)
-    date_published = models.DateField(null=True, blank=True)
-    url = models.URLField(blank=True)
-    file = models.FileField(null=True, blank=True, upload_to='articles')
-    text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-
-    class Meta:
-        ordering = ['-date_published']
-
-    def __unicode__(self):
-        return 'Article: ' + self.title
-
-    def get_absolute_url(self):
-        return reverse('creations.views.article', args=[self.id])
-
-
 class SpeakingProgram(Creation):
     class Meta:
         ordering = ['title']
@@ -151,10 +192,10 @@ class SpeakingProgram(Creation):
 class SpeakingProgramFile(models.Model):
     program = models.ForeignKey(SpeakingProgram)
     title = models.CharField(max_length=120)
+    file = models.FileField(upload_to='speaking',
+                            storage=PrivateMediaStorage())
     date = models.DateField(null=True, blank=True)
     description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-    file = models.FileField(null=True, blank=True, upload_to='speaking',
-                            storage=PrivateMediaStorage())
 
     class Meta:
         ordering = ['date']
@@ -164,47 +205,6 @@ class SpeakingProgramFile(models.Model):
 
     def get_absolute_url(self):
         return self.file.url
-
-
-class BlogPost(Creation):
-    url = models.URLField(blank=True)
-
-    class Meta:
-        ordering = ['title']
-
-    def __unicode__(self):
-        return 'Blog Post: ' + self.title
-
-    def get_absolute_url(self):
-        return self.url
-
-
-class WebPage(Creation):
-    slug = models.SlugField(max_length=255)
-    date_published = models.DateField(null=True, blank=True)
-    content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-
-    class Meta:
-        ordering = ['title']
-
-    def __unicode__(self):
-        return 'Web Page: ' + self.title
-
-    def get_absolute_url(self):
-        return reverse('creations.views.webpage', args=[self.slug])
-
-
-class ExternalProject(Creation):
-    url = models.URLField(blank=True)
-
-    class Meta:
-        ordering = ['title']
-
-    def __unicode__(self):
-        return 'External Project: ' + self.title
-
-    def get_absolute_url(self):
-        return self.url
 
 
 class ResearchCategory(models.Model):
@@ -234,13 +234,13 @@ class ResearchCategory(models.Model):
 
 class Research(Creation):
     category = models.ForeignKey(ResearchCategory)
+    is_public = models.BooleanField(default=False)
     date = models.DateField(null=True, blank=True)
     attribution = models.CharField(max_length=200, blank=True,
                                    help_text=MARKDOWN_PROMPT)
     url = models.URLField(blank=True)
     file = models.FileField(null=True, blank=True, upload_to='research')
     text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-    is_public = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-date']

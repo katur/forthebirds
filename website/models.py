@@ -13,10 +13,10 @@ def get_updated_filename(instance, filename):
 
 
 class UploadedImage(models.Model):
+    image = ImageField(upload_to=get_updated_filename)
     time_uploaded = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100, blank=True)
     attribution = models.CharField(max_length=255, blank=True)
-    image = ImageField(upload_to=get_updated_filename)
 
     def __unicode__(self):
         x = self.title

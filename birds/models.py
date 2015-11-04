@@ -17,7 +17,8 @@ class TaxonomicGroup(models.Model):
     common_name = models.CharField(max_length=50, blank=True)
     level = models.ForeignKey(TaxonomicLevel)
     parent = models.ForeignKey('self', null=True, blank=True)
-    relative_position = models.PositiveSmallIntegerField(null=True)
+    relative_position = models.PositiveSmallIntegerField(null=True,
+                                                         blank=True)
 
     class Meta:
         ordering = ['level__depth', 'relative_position']
@@ -29,16 +30,15 @@ class TaxonomicGroup(models.Model):
 class Species(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     absolute_position = models.PositiveSmallIntegerField(
-        'Taxonomic position', null=True)
-    name = models.CharField(max_length=50, unique=True)
+        'Taxonomic position', null=True, blank=True)
     parent = models.ForeignKey(TaxonomicGroup)
+    name = models.CharField(max_length=50, unique=True)
     common_name = models.CharField(max_length=50)
-    is_visible = models.BooleanField('Visible on website',
-                                     default=True)
+    french_name = models.CharField(max_length=50)
+    is_visible = models.BooleanField('Visible on website', default=True)
     blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     main_photo_url = models.URLField(blank=True)
     bird_of_the_week_name = models.CharField(max_length=50, blank=True)
-    french_name = models.CharField(max_length=50)
     nacc_is_accidental = models.NullBooleanField()
     nacc_is_hawaiian = models.NullBooleanField()
     nacc_is_introduced = models.NullBooleanField()
