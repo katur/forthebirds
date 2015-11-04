@@ -16,7 +16,7 @@ Package dependencies are listed in `requirements.txt`.
 to view on Lucidchart.
 
 [Click here](https://www.lucidchart.com/publicSegments/view/a3c5059c-139e-40a8-ad5c-bdfdad791a14/image.pdf) 
-to download as a PDF.
+to download PDF.
 
 
 ## Code
