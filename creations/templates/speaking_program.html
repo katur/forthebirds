@@ -14,9 +14,12 @@ Speaking Program: <i>{{ program.title }}</i>
 
 <div class="page-section markdown">
   {{ program.description|markdown }}
-
-  {% include 'tags.html' with item=program field=True %}
 </div>
+
+
+{% if program.species or program.tags %}
+{% include 'tags.html' with item=program field=True %}
+{% endif %}
 
 
 {% if files %}
