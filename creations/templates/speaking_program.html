@@ -12,22 +12,23 @@ Speaking Program: <i>{{ program.title }}</i>
 
 {% block content %}
 
-<div class="page-section markdown">
-  {{ program.description|markdown }}
+<div class="page-section">
+  <div class="markdown">
+    {{ program.description|markdown }}
+  </div>
+
+  {% if program.species or program.tags %}
+  {% include 'tags.html' with item=program field=True %}
+  {% endif %}
 </div>
 
 
-{% if program.species or program.tags %}
-{% include 'tags.html' with item=program field=True %}
-{% endif %}
-
-
 {% if files %}
-<h3 class="page-subtitle">
-  Presentation Files
-</h3>
-
 <div class="page-section">
+  <h3 class="page-subtitle">
+    Presentation Files
+  </h3>
+
   <ul id="files">
     {% for file in files %}
     <li>
