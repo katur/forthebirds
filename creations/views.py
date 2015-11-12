@@ -90,11 +90,18 @@ def radio_calendar(request, year, month):
 
 def radio_current_calendar(request):
     today = datetime.datetime.now().date()
-    current = (RadioProgramRerun.objects.filter(
-        date__lte=today)
-        .aggregate(Max('date')))['date__max']
-    print current
-    return redirect(radio_calendar, current.year, current.month)
+
+    most_recent_rerun = (RadioProgramRerun.objects
+                         .filter(date__lte=today)
+                         .aggregate(Max('date')))['date__max']
+
+    most_recent_original = (RadioProgram.objects
+                            .filter(original_air_date__lte=today)
+                            .aggregate(Max('original_air_date'))
+                            )['original_air_date__max']
+
+    most_recent = max(most_recent_rerun, most_recent_original)
+    return redirect(radio_calendar, most_recent.year, most_recent.month)
 
 
 def writing(request):
