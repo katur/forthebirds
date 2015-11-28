@@ -6,7 +6,10 @@
 
 
 {% block page_title %}
-<i>For the Birds</i> Radio Program Calendar for {{ month }}, {{ year }}
+<a href="{{ previous_month_url }}">&larr;</a>
+<i>For the Birds</i> Radio Program Calendar
+for {{ month }}, {{ year }}
+<a href="{{ next_month_url }}">&rarr;</a>
 {% endblock %}
 
 

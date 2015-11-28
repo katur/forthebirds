@@ -2,6 +2,7 @@ import calendar
 import datetime
 
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.db.models import Max
 from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404
@@ -78,11 +79,29 @@ def radio_calendar(request, year, month):
             radio_week.append((ref_day, day_to_programs.get(ref_day)))
         radio_month.append(radio_week)
 
+    if month == 1:
+        previous_month = 12
+        previous_year = year - 1
+    else:
+        previous_month = month - 1
+        previous_year = year
+
+    if month == 12:
+        next_month = 1
+        next_year = year + 1
+    else:
+        next_month = month + 1
+        next_year = year
+
     context = {
         'year': year,
         'month': calendar.month_name[month],
         'weekdays': weekdays,
         'calendar': radio_month,
+        'previous_month_url': reverse('radio_calendar_url',
+            args=(previous_year, previous_month)),
+        'next_month_url': reverse('radio_calendar_url',
+            args=(next_year, next_month)),
     }
 
     return render(request, 'radio_calendar.html', context)
