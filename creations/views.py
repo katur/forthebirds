@@ -18,7 +18,7 @@ from website.models import User
 def radio(request):
     programs = RadioProgram.objects.all()
 
-    year_list = programs.dates('original_air_date', 'year')
+    year_list = programs.dates('air_date', 'year')
     year_list = sorted(year_list, reverse=True)
 
     context = {
@@ -42,10 +42,10 @@ def radio_calendar(request, year, month):
     month = int(month)
 
     new_programs = RadioProgram.objects.filter(
-        original_air_date__year=year, original_air_date__month=month)
+        air_date__year=year, air_date__month=month)
 
     reruns = RadioProgramRerun.objects.filter(
-        date__year=year, date__month=month)
+        air_date__year=year, air_date__month=month)
 
     day_to_programs = {}
 
@@ -55,11 +55,11 @@ def radio_calendar(request, year, month):
         day_to_programs[day].append((program, is_rerun))
 
     for program in new_programs:
-        day = program.original_air_date.day
+        day = program.air_date.day
         process_program(program, day, False)
 
     for rerun in reruns:
-        day = rerun.date.day
+        day = rerun.air_date.day
         process_program(rerun.program, day, True)
 
     # Get a calendar that considers Sunday the first day of the week
@@ -111,13 +111,12 @@ def radio_current_calendar(request):
     today = datetime.datetime.now().date()
 
     most_recent_rerun = (RadioProgramRerun.objects
-                         .filter(date__lte=today)
-                         .aggregate(Max('date')))['date__max']
+                         .filter(air_date__lte=today)
+                         .aggregate(Max('air_date')))['air_date__max']
 
     most_recent_original = (RadioProgram.objects
-                            .filter(original_air_date__lte=today)
-                            .aggregate(Max('original_air_date'))
-                            )['original_air_date__max']
+                            .filter(air_date__lte=today)
+                            .aggregate(Max('air_date')))['air_date__max']
 
     most_recent = max(most_recent_rerun, most_recent_original)
     return redirect(radio_calendar, most_recent.year, most_recent.month)

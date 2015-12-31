@@ -133,49 +133,80 @@ class BlogPost(Creation):
 
 class RadioProgram(Creation):
     file = models.FileField(upload_to='radio')
-    original_air_date = models.DateField()
+    air_date = models.DateField()
+
+    # Duration in seconds
+    duration = models.PositiveIntegerField(null=True, blank=True, default=None)
+
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=MARKDOWN_PROMPT)
 
     class Meta:
-        ordering = ['-original_air_date']
+        ordering = ['-air_date']
 
     def __unicode__(self):
         return 'Radio Program: ' + self.title
+
+    def clean(self):
+        if not self.duration:
+            try:
+                program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
+                self.duration = int(math.ceil(MP3(program_path).info.length))
+
+            except Exception:
+                self.duration = None
 
     def get_absolute_url(self):
         return reverse('creations.views.radio_program', args=[self.id])
 
     def get_display_date(self):
-        return self.original_air_date
+        return self.air_date
 
     def get_reruns(self):
         return self.radioprogramrerun_set
 
-    def get_duration(self):
-        '''Get program duration as string in format min:sec'''
-        try:
-            program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
-            duration = int(math.ceil(MP3(program_path).info.length))
-            minutes = duration // 60
-            seconds = duration % 60
-            return u'{0}{1}{2:02d}{3}'.format(minutes, u'\N{PRIME}',
-                                              seconds, u'\N{DOUBLE PRIME}')
+    def get_minutes_and_seconds(self):
+        '''Get program duration as tuple (minutes, seconds).
 
-        except Exception:
-            return None
+        Minutes and seconds are both integers.
+        '''
+        if self.duration:
+            minutes = self.duration // 60
+            seconds = self.duration % 60
+        else:
+            minutes = None
+            seconds = None
+
+        return (minutes, seconds)
+
+    def get_itunes_duration(self):
+        '''Get program duration as string in format min:sec'''
+        if self.duration:
+            minutes, seconds = self.get_minutes_and_seconds()
+            return '{}:{:02d}'.format(minutes, seconds)
+        else:
+            return '0:00'
+
+    def get_printable_duration(self):
+        '''Get program duration as string in format min'sec"'''
+        if self.duration:
+            minutes, seconds = self.get_minutes_and_seconds()
+            return u'{0}{1}{2:02d}{3}'.format(
+                minutes, u'\N{PRIME}', seconds, u'\N{DOUBLE PRIME}')
+        else:
+            return 'N/A'
 
 
 class RadioProgramRerun(models.Model):
     program = models.ForeignKey(RadioProgram)
-    date = models.DateField()
+    air_date = models.DateField()
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['-air_date']
 
     def __unicode__(self):
-        return '{} aired {}'.format(self.program, self.date)
+        return '{} aired {}'.format(self.program, self.air_date)
 
 
 class SpeakingProgram(Creation):

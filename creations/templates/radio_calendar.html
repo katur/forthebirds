@@ -37,7 +37,7 @@ for {{ month }}, {{ year }}
           {{ program.title }}</a>
 
         <span class="program-type">
-          {{ program.get_duration}},
+          {{ program.get_printable_duration}},
 
           {% if is_rerun %}
           rerun

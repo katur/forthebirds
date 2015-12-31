@@ -12,8 +12,20 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+
+# Note: I hard-coded the site domain in local_settings in order to
+# use it in the podcast feed. For some reason, while Django does prefix
+# the feed-wide url and feed item page urls with the domain name,
+# it is does not add this prefix to the enclosure mp3 url. Since
+# iTunes requires the domain name in the enclosure url, I need to add
+# it myself. And since the request object is not accessible when
+# extending a Feed object, I have it in this settings file.
+#
+# I opted not to use the Sites framework for this since it does not
+# seem to be the intention of the Sites framework.
+#
 from local_settings import (DEBUG, SECRET_KEY, DATABASES,
-                            STATIC_ROOT, MEDIA_ROOT,
+                            SITE_DOMAIN, STATIC_ROOT, MEDIA_ROOT,
                             PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_SERVER)
 
 TEMPLATE_DEBUG = DEBUG
@@ -57,7 +69,6 @@ WSGI_APPLICATION = 'forthebirds.wsgi.application'
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/New_York'
@@ -70,7 +81,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_URL = '/static/'
 
 # Media files (User-uploaded files)
