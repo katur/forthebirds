@@ -50,6 +50,10 @@
         </div>
         {% endif %}
 
+        <div>
+          Duration: {{ program.get_printable_duration }}
+        </div>
+
         {% if program.supplemental_content_url %}
         <div class="transcript">
           <a href="{{ program.supplemental_content_url }}">
