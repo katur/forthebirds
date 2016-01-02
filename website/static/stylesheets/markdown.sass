@@ -1,0 +1,23 @@
+.markdown
+  h1, h2, h3, h4
+    margin-top: $whitespace
+
+  p, ul, ol, img, h1, h2, h3, h4
+    margin-bottom: $whitespace / 2
+
+    &:last-child
+      margin-bottom: none
+
+  ul
+    list-style-type: disc
+    list-style-position: inside
+
+  ol
+    list-style-type: decimal
+    list-style-position: inside
+
+  img
+    display: block
+    max-width: 700px
+    width: 100%
+    margin: $whitespace auto

@@ -36,7 +36,7 @@ h1, h2, h3, h4
 h1
   font-family: 'adelaidaregular', sans-serif
 
-h2, h3, h4
+h2, h3, h4, .markdown h1
   @include sans-font(bold)
   color: $chickadee-dark-gray
 
@@ -44,12 +44,15 @@ h2
   font-size: 30px
   margin-top: -10px
 
-h3
+h3, .markdown h1
   font-size: 26px
   margin-top: -10px
 
-h4
+h4, .markdown h2
   font-size: 22px
+
+.markdown h3, .markdown h4
+  font-size: 18px
 
 a
   text-decoration: none
@@ -61,3 +64,9 @@ a
 .help-message
   color: $chickadee-gray
   font-style: oblique
+
+b, strong
+  font-weight: bold
+
+i, em
+  font-style: italic
