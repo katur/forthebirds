@@ -4,7 +4,9 @@ from birds.models import Species
 
 
 class BirdSearchForm(forms.Form):
-    query = forms.CharField(required=False, label='Search term')
+    query = forms.CharField(required=False, label='',
+                            widget=forms.TextInput(
+                                attrs={'placeholder': 'e.g. chickadee'}))
 
     def clean(self):
         cleaned_data = super(BirdSearchForm, self).clean()

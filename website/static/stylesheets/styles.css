@@ -353,6 +353,10 @@ html, body {
         list-style-type: disc; }
 #birds #bird-search form {
   margin-bottom: 18px; }
+  #birds #bird-search form p {
+    display: inline-block; }
+  #birds #bird-search form .submit {
+    margin-left: 9px; }
 
 #bird #main-photo {
   display: block;
