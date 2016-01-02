@@ -1,38 +1,18 @@
 $(document).ready ->
   if $("body").attr("id") == "radio"
-    initializeRadioYearButtons()
     initializeProgramInfoButtons()
 
 
-initializeRadioYearButtons = ->
-  yearButtons = $(".year-button")
-  yearPrograms = $(".year-programs")
-
-  yearButtons.click (e) ->
-    e.preventDefault()
-    yearButtons.removeClass("active")
-    yearPrograms.hide()
-    $(".program-info").hide()
-
-    year = $(this).attr("id")
-    $(this).addClass("active")
-    $("#" + year + ".year-programs").show()
-
-
-  $(".year-button:first").click()
-
-
 initializeProgramInfoButtons = ->
-  programInfoButtons = $(".program-info-button")
-  programInfoBoxes = $(".program-info")
+  programIntros = $(".program-intro")
 
-  programInfoButtons.click (e) ->
+  programIntros.click (e) ->
     e.preventDefault()
 
     program = $(this).closest(".program")
-    programInfo = program.find(".program-info")
+    programMore = program.find(".program-more")
 
-    if (programInfo.is(":visible"))
-      programInfo.hide()
+    if (programMore.is(":visible"))
+      programMore.hide()
     else
-      programInfo.show()
+      programMore.show()

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}radio{% endblock %}
@@ -12,65 +13,64 @@
 
 {% block content %}
 
-<a id="calendar-link" href="{% url 'radio_current_calendar_url' %}">
-  Click here for calendar</a>
+<div id="links">
+  <a href="{% url 'radio_current_calendar_url' %}">
+    Air Calendar</a>
 
-<a id="calendar-link" href="{% url 'podcast_url' %}">
-  Click here for podcast</a>
-
-<div id="all-programs">
-  <ul id="year-list">
-    {% for year in year_list %}
-    <li>
-      <a id="{{ year.year }}" class="year-button" href="#">
-        {{ year.year }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-
-  {% regroup programs by air_date|date:"Y" as years %}
-  {% for year in years %}
-  <ul id="{{ year.grouper }}" class="year-programs">
-    {% for program in year.list %}
-    <li class="program">
-      <a class="program-info-button program-title-bar" href="#">
-        <span class="title">
-          {{ program.title }}
-          ({{ program.air_date }})
-        </span>
-        <span class="description">
-          {{ program.description|markdown }}
-        </span>
-      </a>
-
-      <div class="program-info">
-        {% if program.file %}
-        <div class="audio">
-          {% include 'audio_with_download.html' with file=program.file %}
-        </div>
-        {% endif %}
-
-        <div>
-          Duration: {{ program.get_printable_duration }}
-        </div>
-
-        {% if program.supplemental_content_url %}
-        <div class="transcript">
-          <a href="{{ program.supplemental_content_url }}">
-            Transcript and photos</a>
-        </div>
-        {% endif %}
-
-        <div>
-          <a href="{{ program.get_absolute_url }}">
-            Permalink</a>
-        </div>
-
-        {% include 'tags.html' with item=program %}
-    </li>
-    {% endfor %}
-  </ul>
-  {% endfor %}
+  <a href="{% url 'podcast_url' %}">
+    Podcast</a>
 </div>
+
+<ul id="year-list">
+  {% for y in all_years %}
+  <li>
+    <a href="?year={{ y.year }}" class="year-button
+        {% if year|is_string_equal:y.year %}active{% endif %}">
+        {{ y.year }}</a>
+  </li>
+  {% endfor %}
+</ul>
+
+<ul id="programs">
+  {% for program in programs %}
+  <li class="program">
+    <a class="program-intro" href="#">
+      <span class="title">
+        {{ program.title }}
+        ({{ program.air_date }})
+      </span>
+
+      <span class="description">
+        {{ program.description|markdown }}
+      </span>
+    </a>
+
+    <div class="program-more">
+      {% if program.file %}
+      <div class="audio">
+        {% include 'audio_with_download.html' with file=program.file %}
+      </div>
+      {% endif %}
+
+      <div>
+        Duration: {{ program.get_printable_duration }}
+      </div>
+
+      {% if program.supplemental_content_url %}
+      <div class="transcript">
+        <a href="{{ program.supplemental_content_url }}">
+          Transcript and photos</a>
+      </div>
+      {% endif %}
+
+      <div>
+        <a href="{{ program.get_absolute_url }}">
+          Permalink</a>
+      </div>
+
+      {% include 'tags.html' with item=program %}
+  </li>
+  {% endfor %}
+</ul>
 
 {% endblock %}

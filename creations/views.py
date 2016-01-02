@@ -16,14 +16,19 @@ from website.models import User
 
 
 def radio(request):
-    programs = RadioProgram.objects.all()
+    all_years = RadioProgram.objects.dates('air_date', 'year')
+    all_years = sorted(all_years, reverse=True)
 
-    year_list = programs.dates('air_date', 'year')
-    year_list = sorted(year_list, reverse=True)
+    year = request.GET.get('year')
+    if not year:
+        year = all_years[0].year
+
+    programs = RadioProgram.objects.filter(air_date__year=year)
 
     context = {
+        'year': year,
         'programs': programs,
-        'year_list': year_list,
+        'all_years': all_years,
     }
     return render(request, 'radio.html', context)
 
