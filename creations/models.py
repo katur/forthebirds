@@ -51,7 +51,7 @@ class Creation(models.Model, RealInstanceProvider):
         return class_name.lower() == 'research'
 
     def has_tags(self):
-        return len(self.species) or len(self.tags.names())
+        return len(self.species.all()) or len(self.tags.names())
 
 
 class Book(Creation):

@@ -11,18 +11,18 @@
 {% block content %}
 
 {% if webpage.date_published or webpage.has_tags %}
-<div class="page-section">
+<div id="webpage-info">
   {% if webpage.date_published %}
   <div>
     Publication Date: {{ article.date_published }}
   </div>
   {% endif %}
 
-  {% include 'tags.html' with item=webpage field=True %}
+  {% include 'tags.html' with item=webpage %}
 </div>
 {% endif %}
 
-<div class="page-section markdown">
+<div id="webpage-content" class="markdown">
   {{ webpage.content|markdown }}
 </div>
 
