@@ -90,6 +90,10 @@ a {
   a:hover, a.active {
     color: #d8ac74; }
 
+.help-message {
+  color: #9ba5a9;
+  font-style: oblique; }
+
 .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
   font-family: Georgia, serif;
   letter-spacing: 0;

@@ -13,9 +13,8 @@
     Search For a Species
   </h3>
 
-  <form action={% url 'birds_url' %} method="get">
-    <input type="text" name="query" value="{{ query }}">
-    <input type="submit" value="Search">
+  <form action="" method="get">
+    <p>{{ form.as_p }}</p>
   </form>
 
   {% ifnotequal search_birds None %}
@@ -31,7 +30,9 @@
 
   {% else %}
 
-  Sorry, no birds match that term
+  <span class="help-message">
+    Sorry, no bird species match that term.
+  </span>
 
   {% endif %}
   {% endifnotequal %}

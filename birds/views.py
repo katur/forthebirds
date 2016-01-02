@@ -2,30 +2,25 @@ import datetime
 
 from django.shortcuts import render, get_object_or_404
 
+from birds.forms import BirdSearchForm
 from birds.models import Species, MinnesotaSpecies
 
 
 def birds(request):
-    if 'query' in request.GET and request.GET['query']:
-        query = request.GET['query']
-        terms = query.split()
+    if request.GET.get('query'):
         search_birds = []
-        all_birds = Species.objects.filter(is_visible=True)
-        for b in all_birds:
-            for term in terms:
-                if (term.lower() not in b.name.lower() and
-                        term.lower() not in b.common_name.lower()):
-                    break
-            else:
-                search_birds.append(b)
+        form = BirdSearchForm(request.GET)
+
+        if form.is_valid():
+            search_birds = form.cleaned_data['search_birds']
+
+            if len(search_birds) == 1:
+                bird_id = search_birds[0].id
+                return bird(request, bird_id)
 
     else:
-        query = ''
+        form = BirdSearchForm()
         search_birds = None
-
-    if search_birds and len(search_birds) == 1:
-        bird_id = search_birds[0].id
-        return bird(request, bird_id)
 
     taxonomical_birds = Species.objects.raw(
         'SELECT species.id, species.name, species.common_name, '
@@ -50,7 +45,7 @@ def birds(request):
     )
 
     context = {
-        'query': query,
+        'form': form,
         'search_birds': search_birds,
         'taxonomical_birds': taxonomical_birds,
     }
