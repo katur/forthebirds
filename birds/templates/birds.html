@@ -4,19 +4,96 @@
 {% block body_id %}birds{% endblock %}
 
 
-{% block page_title %}Bird Search Results{% endblock %}
+{% block page_title %}Find Birds{% endblock %}
 
 
 {% block content %}
-<ul id="search-results">
-  {% for bird in search_birds %}
-  <li><a href="{{ bird.get_absolute_url }}">
-    {{ bird.common_name }} (<i>{{ bird.name }}</i>)
-  </a></li>
+<div id="bird-search" class="page-section">
+  <h3 class="page-subtitle">
+    Search For a Species
+  </h3>
 
-  {% empty %}
-  <li>Sorry, no birds match that term</li>
+  <form action={% url 'birds_url' %} method="get">
+    <input type="text" name="query" value="{{ query }}">
+    <input type="submit" value="Search">
+  </form>
 
+  {% ifnotequal search_birds None %}
+  {% if search_birds %}
+
+  <ul id="search-results">
+    {% for bird in search_birds %}
+    <li><a href="{{ bird.get_absolute_url }}">
+      {{ bird.common_name }} (<i>{{ bird.name }}</i>)
+    </a></li>
+    {% endfor %}
+  </ul>
+
+  {% else %}
+
+  Sorry, no birds match that term
+
+  {% endif %}
+  {% endifnotequal %}
+</div>
+
+<div id="birds-taxonomical" class="page-section">
+  <h3 class="page-subtitle">
+    Browse All Species Taxonomically
+  </h3>
+
+  <ul class="orders">
+  {% regroup taxonomical_birds by order_name as orders %}
+  {% for order in orders %}
+    <li><a href="#">
+      {{ order.grouper }}
+      {% if order.list.0.order_common %}
+        ({{ order.list.0.order_common }})
+      {% endif %}
+      <div class="plus-sign"></div>
+    </a></li>
+
+    <ul class="families collapsed">
+    {% regroup order.list by family_name as families %}
+    {% for family in families %}
+      <li><a href="#">
+        {{ family.grouper }}
+        {% if family.list.0.family_common %}
+          ({{ family.list.0.family_common }})
+        {% endif %}
+        <div class="plus-sign"></div>
+      </a></li>
+
+      <ul class="subfamilies collapsed">
+      {% regroup family.list by subfamily_name as subfamilies %}
+      {% for subfamily in subfamilies %}
+        {% if subfamily.grouper %}
+          <li><a href="#">
+            {{ subfamily.grouper }}
+            {% if subfamily.list.0.subfamily_common %}
+              ({{ subfamily.list.0.subfamily_common }})
+            {% endif %}
+            <div class="plus-sign"></div>
+          </a></li>
+        {% else %}
+          <li class="no-subfamily">No subfamily</li>
+        {% endif%}
+
+        <ul class="species collapsed">
+        {% for species in subfamily.list %}
+          <li>
+            <a href="{{ species.get_absolute_url }}">
+              <i>{{ species.name }}</i> ({{ species.common_name }})</a>
+          </li>
+        {% endfor %}
+        </ul>
+
+      {% endfor %}
+      </ul>
+    {% endfor %}
+    </ul>
   {% endfor %}
-</ul>
+  </ul>
+</div>
+
 {% endblock %}

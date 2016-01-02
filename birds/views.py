@@ -6,11 +6,12 @@ from birds.models import Species, MinnesotaSpecies
 
 
 def birds(request):
-    search_birds = []
-    if 'query' in request.GET:
-        terms = request.GET['query'].split()
-        birds = Species.objects.filter(is_visible=True)
-        for b in birds:
+    if 'query' in request.GET and request.GET['query']:
+        query = request.GET['query']
+        terms = query.split()
+        search_birds = []
+        all_birds = Species.objects.filter(is_visible=True)
+        for b in all_birds:
             for term in terms:
                 if (term.lower() not in b.name.lower() and
                         term.lower() not in b.common_name.lower()):
@@ -18,26 +19,15 @@ def birds(request):
             else:
                 search_birds.append(b)
 
-    if len(search_birds) == 1:
+    else:
+        query = ''
+        search_birds = None
+
+    if search_birds and len(search_birds) == 1:
         bird_id = search_birds[0].id
         return bird(request, bird_id)
 
-    else:
-        context = {
-            'search_birds': search_birds,
-        }
-
-        return render(request, 'birds.html', context)
-
-
-def minnesota_birds(request):
-    birds = MinnesotaSpecies.objects.filter(include_in_book=True)
-    context = {'birds': birds}
-    return render(request, 'minnesota_birds.html', context)
-
-
-def birds_taxonomical(request):
-    birds = Species.objects.raw(
+    taxonomical_birds = Species.objects.raw(
         'SELECT species.id, species.name, species.common_name, '
         'G.name AS genus_name, '
         'S.name AS subfamily_name, '
@@ -60,10 +50,18 @@ def birds_taxonomical(request):
     )
 
     context = {
-        'birds': birds,
+        'query': query,
+        'search_birds': search_birds,
+        'taxonomical_birds': taxonomical_birds,
     }
 
-    return render(request, 'birds_taxonomical.html', context)
+    return render(request, 'birds.html', context)
+
+
+def minnesota_birds(request):
+    birds = MinnesotaSpecies.objects.filter(include_in_book=True)
+    context = {'birds': birds}
+    return render(request, 'minnesota_birds.html', context)
 
 
 def bird(request, id):
