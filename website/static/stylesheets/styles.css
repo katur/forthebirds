@@ -243,6 +243,7 @@ html, body {
     margin: 9px 0;
     font-size: 22px; }
     #header #menu a {
+      white-space: nowrap;
       padding: 0 18px; }
   #header #bird-search {
     position: absolute;
