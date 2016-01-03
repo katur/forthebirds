@@ -124,7 +124,7 @@ class RadioProgram(Creation):
     air_date = models.DateField()
 
     # Duration in seconds
-    duration = models.PositiveIntegerField(null=True, blank=True)
+    duration = models.PositiveIntegerField()
 
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
@@ -136,14 +136,15 @@ class RadioProgram(Creation):
     def __unicode__(self):
         return 'Radio Program: ' + self.title
 
-    def clean(self):
-        if not self.duration:
-            try:
-                program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
-                self.duration = int(math.ceil(MP3(program_path).info.length))
+    def clean(self, *args, **kwargs):
+        super(RadioProgram, self).clean(*args, **kwargs)
 
-            except Exception:
-                self.duration = 0
+        try:
+            program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
+            self.duration = int(math.ceil(MP3(program_path).info.length))
+
+        except Exception:
+            self.duration = 0
 
     def get_absolute_url(self):
         return reverse('creations.views.radio_program',
