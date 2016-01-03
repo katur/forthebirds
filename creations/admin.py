@@ -7,8 +7,49 @@ from creations.models import (RadioProgram, RadioProgramRerun,
                               Research, ResearchCategory)
 
 
-creation_id_fields = ('title', 'description',)
-creation_tagging_fields = ('species', 'tags',)
+BASIC_FIELDSET = (None, {'fields': ('title', 'slug', 'description',)})
+BASIC_FIELDSET_NO_SLUG = (None, {'fields': ('title', 'description',)})
+TAGGING_FIELDSET = ('Tagging', {'fields': ('species', 'tags',)})
+
+
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_published', 'published_by')
+    filter_horizontal = ('species',)
+    prepopulated_fields = {'slug': ('title',)}
+
+    fieldsets = (
+        BASIC_FIELDSET,
+        ('Details', {'fields':
+            ('published_by', 'date_published', 'url', 'file', 'text'),
+        }),
+        TAGGING_FIELDSET,
+    )
+
+
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url',)
+    filter_horizontal = ('species',)
+
+    fieldsets = (
+        BASIC_FIELDSET_NO_SLUG,
+        ('Details', {'fields': ('url',),}),
+        TAGGING_FIELDSET,
+    )
+
+
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_published',)
+    filter_horizontal = ('species',)
+    prepopulated_fields = {'slug': ('title',)}
+
+    fieldsets = (
+        BASIC_FIELDSET,
+        ('Details', {'fields':
+            ('publisher', 'isbn_10', 'isbn_13', 'date_published',
+             'purchase_url', 'cover_photo'),
+        }),
+        TAGGING_FIELDSET,
+    )
 
 
 class RadioProgramRerunInline(admin.TabularInline):
@@ -17,54 +58,21 @@ class RadioProgramRerunInline(admin.TabularInline):
 
 class RadioProgramAdmin(admin.ModelAdmin):
     list_display = ('title', 'air_date', 'file',)
-
     list_filter = ('air_date',)
-
     search_fields = ('title',)
-
     filter_horizontal = ('species',)
-
-    fieldsets = (
-        (None, {
-            'fields': creation_id_fields
-        }),
-        ('Program Details', {
-            'fields': ('air_date', 'file',
-                       'supplemental_content_url', 'transcript',),
-        }),
-        ('Tagging', {
-            'fields': creation_tagging_fields
-        }),
-    )
+    prepopulated_fields = {'slug': ('title',)}
 
     inlines = [RadioProgramRerunInline]
 
-
-class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_published',)
-
-    filter_horizontal = ('species',)
-
-    # prepopulated_fields = {'slug': ('title',)}
-
     fieldsets = (
-        (None, {
-            'fields': creation_id_fields
+        BASIC_FIELDSET,
+        ('Details', {'fields':
+            ('air_date', 'file', 'supplemental_content_url',
+             'transcript',),
         }),
-        ('Publishing Info', {
-            'fields': ('publisher', 'isbn_10', 'isbn_13', 'date_published',
-                       'purchase_url', 'cover_photo'),
-        }),
-        ('Tagging', {
-            'fields': creation_tagging_fields
-        }),
+        TAGGING_FIELDSET,
     )
-
-
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_published', 'published_by')
-
-    filter_horizontal = ('species',)
 
 
 class SpeakingProgramFileInline(admin.TabularInline):
@@ -73,43 +81,62 @@ class SpeakingProgramFileInline(admin.TabularInline):
 
 class SpeakingProgramAdmin(admin.ModelAdmin):
     list_display = ('title',)
-
     filter_horizontal = ('species',)
+    prepopulated_fields = {'slug': ('title',)}
 
     inlines = [SpeakingProgramFileInline]
 
-
-class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url',)
-
-    filter_horizontal = ('species',)
+    fieldsets = (
+        BASIC_FIELDSET,
+        TAGGING_FIELDSET,
+    )
 
 
 class WebPageAdmin(admin.ModelAdmin):
     list_display = ('title',)
-
     filter_horizontal = ('species',)
+    prepopulated_fields = {'slug': ('title',)}
+
+    fieldsets = (
+        BASIC_FIELDSET,
+        ('Details', {'fields':
+            ('date_published', 'content',),
+        }),
+        TAGGING_FIELDSET,
+    )
 
 
 class ExternalProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'url',)
-
     filter_horizontal = ('species',)
+
+    fieldsets = (
+        BASIC_FIELDSET_NO_SLUG,
+        ('Details', {'fields': ('url',),}),
+        TAGGING_FIELDSET,
+    )
 
 
 class ResearchCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 
 
 class ResearchAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'attribution', 'date',
-                    'url',)
-
+    list_display = ('title', 'category', 'attribution', 'date', 'url',)
     list_filter = ('category',)
-
-    filter_horizontal = ('species',)
-
     search_fields = ('title', 'attribution', 'description',)
+    filter_horizontal = ('species',)
+    prepopulated_fields = {'slug': ('title',)}
+
+    fieldsets = (
+        BASIC_FIELDSET,
+        ('Details', {'fields':
+            ('category', 'is_public', 'date', 'attribution',
+             'url', 'file', 'text'),
+        }),
+        TAGGING_FIELDSET,
+    )
 
 
 admin.site.register(RadioProgram, RadioProgramAdmin)

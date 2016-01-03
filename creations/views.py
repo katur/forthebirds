@@ -33,8 +33,8 @@ def radio(request):
     return render(request, 'radio.html', context)
 
 
-def radio_program(request, id):
-    program = get_object_or_404(RadioProgram, id=id)
+def radio_program(request, slug):
+    program = get_object_or_404(RadioProgram, slug=slug)
 
     context = {
         'program': program,
@@ -137,8 +137,8 @@ def writing(request):
     return render(request, 'writing.html', context)
 
 
-def book(request, id):
-    book = get_object_or_404(Book, id=id)
+def book(request, slug):
+    book = get_object_or_404(Book, slug=slug)
 
     context = {
         'book': book,
@@ -146,8 +146,8 @@ def book(request, id):
     return render(request, 'book.html', context)
 
 
-def article(request, id):
-    article = get_object_or_404(Article, id=id)
+def article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
 
     context = {
         'article': article,
@@ -166,8 +166,8 @@ def speaking(request):
     return render(request, 'speaking.html', context)
 
 
-def speaking_program(request, id):
-    program = get_object_or_404(SpeakingProgram, id=id)
+def speaking_program(request, slug):
+    program = get_object_or_404(SpeakingProgram, slug=slug)
     if request.user.is_authenticated() and request.user.is_staff:
         files = SpeakingProgramFile.objects.filter(program=program)
     else:
@@ -190,8 +190,8 @@ def miscellany(request):
     return render(request, 'miscellany.html', context)
 
 
-def webpage(request, id):
-    webpage = get_object_or_404(WebPage, id=id)
+def webpage(request, slug):
+    webpage = get_object_or_404(WebPage, slug=slug)
     context = {
         'webpage': webpage,
     }
@@ -208,8 +208,8 @@ def all_research(request):
 
 
 @login_required
-def research_category(request, id):
-    category = get_object_or_404(ResearchCategory, id=id)
+def research_category(request, slug):
+    category = get_object_or_404(ResearchCategory, slug=slug)
     children_categories = ResearchCategory.objects.filter(parent=category)
     children_items = Research.objects.filter(category=category)
     context = {
@@ -220,8 +220,9 @@ def research_category(request, id):
     return render(request, 'research_category.html', context)
 
 
-def research(request, id):
-    research_item = get_object_or_404(Research, id=id)
+def research(request, category_slug, slug):
+    research_item = get_object_or_404(
+        Research, category__slug=category_slug, slug=slug)
 
     if not research_item.is_public and not request.user.is_authenticated():
         raise Http404
