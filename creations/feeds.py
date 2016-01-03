@@ -70,8 +70,8 @@ class ForTheBirdsPodcastFeed(Feed):
         '"For the Birds" began airing on KUMD in Duluth, MN, in May, 1986, '
         'and is the longest continually-running radio '
         'program about birds in the U.S.')
-    # link = reverse_lazy('radio_url')
-    link = 'http://podcast.lauraerickson.com'
+    link = reverse_lazy('radio_url')
+
     author_name = 'Laura Erickson'
     author_email = 'chickadee@lauraerickson.com'
     author_link = 'http://lauraerickson.com'
@@ -82,8 +82,9 @@ class ForTheBirdsPodcastFeed(Feed):
         extras = {}
         extras['itunes_name'] = 'Laura Erickson'
         extras['itunes_email'] = 'chickadee@lauraerickson.com'
+        # TODO: upload this image to new website
         extras['itunes_image_url'] = (
-            'http://podcast.lauraerickson.com/images/itunes_image.jpg')
+            'http://www.lauraerickson.com/media/images/itunes_image.jpg')
         extras['itunes_explicit'] = 'clean'
         extras['itunes_categories'] = {
             'Science &amp; Medicine': ['Natural Sciences'],
