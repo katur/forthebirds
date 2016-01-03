@@ -1,15 +1,8 @@
 ## General
-- Add word count and character count to text boxes in Admin
-- Create smaller version of all uploaded images
-- Sort tagged birds taxonomically
+- add word count and character count to text boxes in Admin
 
 ## Header
 - add chickadees
-- media query stuff
-- move the search bar
-
-## Home
-- more content (linking to various other parts of website)
 
 ## About
 - media query stuff
@@ -20,18 +13,13 @@
 - bird.name -> bird.scientific_name
 - basic styling of cards (less random)
 - pluralization of research issues
-- better styling of private material
-- nested research category style
-- (maybe) hardcode img size in database
 - allow additional photos (slideshow, with captions in database)
-
-## 101 ways
-- tile layout
-- make links dead until more content
 
 ## Radio
 - slug for program permalink
 - better player that allows jumping
+- research whether podcast should be .xml, .rss, or no extension
+- item.clean() not being run on save; research how to do this
 
 ## Books
 - slug for book permalink
@@ -43,12 +31,8 @@
 - tile layout
 - rebuild existing static pages
 - markdown image styling (LCR, wrap/nowrap, etc)
-- add captions from Markdown title
+- add captions from Markdown alt text
 - basic styling in project permalink
-
-## Research
-- better word than "research"
-- teach mom how to use it properly
 
 ## Stuff regarding old lauraerickson.com
 - hardcode request redirects for popular pages
