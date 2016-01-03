@@ -18,20 +18,17 @@
 
 ## Webpage
 - add image captions from img alt text (with javascript)
-- tile layout
-- markdown image styling (LCR, wrap/nowrap, etc)
-- rebuild existing static pages
+- minimal markdown image styling (center everything, min height, min width)
+- advanced markdown image styling (LCR, wrap/nowrap, etc)
+- show all miscellany as tiles with background image
+- rebuild existing static pages (tribute pages, iraq birds, etc)
 
-## Research
-- BUG: slugs not working nested under categories
-- add unique_together constraint to category and slug
-
-## Add highly managed slugs to:
+## Add highly curated slugs to:
 - Book
 - SpeakingProgram
 - WebPage
 
-## Add less managed slugs to:
+## Add URL-only slugs to:
 - Article
 - RadioProgram
 
