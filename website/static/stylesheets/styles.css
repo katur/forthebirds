@@ -333,7 +333,7 @@ html, body {
 #birds ul {
   list-style-position: inside;
   list-style-type: disc; }
-  #birds ul li, #birds ul ul {
+  #birds ul ul li, #birds ul ul ul {
     padding-left: 30px; }
   #birds ul ul {
     list-style-type: circle; }
@@ -390,7 +390,7 @@ html, body {
   list-style-position: inside;
   list-style-type: disc;
   line-height: 150%; }
-  #birds-taxonomical ul li, #birds-taxonomical ul ul {
+  #birds-taxonomical ul ul li, #birds-taxonomical ul ul ul {
     padding-left: 30px; }
   #birds-taxonomical ul ul {
     list-style-type: circle; }
@@ -552,7 +552,7 @@ html, body {
 #speaking ul {
   list-style-position: inside;
   list-style-type: disc; }
-  #speaking ul li, #speaking ul ul {
+  #speaking ul ul li, #speaking ul ul ul {
     padding-left: 30px; }
   #speaking ul ul {
     list-style-type: circle; }
@@ -564,7 +564,7 @@ html, body {
 #speaking-program #files {
   list-style-position: inside;
   list-style-type: disc; }
-  #speaking-program #files li, #speaking-program #files ul {
+  #speaking-program #files ul li, #speaking-program #files ul ul {
     padding-left: 30px; }
   #speaking-program #files ul {
     list-style-type: circle; }
