@@ -4,7 +4,7 @@ import re
 
 from django.core.urlresolvers import reverse
 from django.db import models
-# from django.template.defaultfilters import slugify
+from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
 from private_media.storages import PrivateMediaStorage
@@ -56,7 +56,6 @@ class Creation(models.Model, RealInstanceProvider):
 
 
 class Article(Creation):
-    slug = models.SlugField(max_length=120, unique=True)
     published_by = models.CharField(max_length=100, blank=True)
     date_published = models.DateField(null=True, blank=True)
     url = models.URLField(blank=True)
@@ -70,7 +69,8 @@ class Article(Creation):
         return 'Article: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.article', args=[self.slug])
+        return reverse('creations.views.article',
+                       args=[self.id, slugify(self.title)])
 
 
 class BlogPost(Creation):
@@ -120,13 +120,11 @@ class ExternalProject(Creation):
 
 
 class RadioProgram(Creation):
-    slug = models.SlugField(max_length=120, unique=True)
     file = models.FileField(upload_to='radio')
     air_date = models.DateField()
 
     # Duration in seconds
-    duration = models.PositiveIntegerField(null=True, blank=True,
-                                           default=None)
+    duration = models.PositiveIntegerField(null=True, blank=True)
 
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
@@ -145,10 +143,11 @@ class RadioProgram(Creation):
                 self.duration = int(math.ceil(MP3(program_path).info.length))
 
             except Exception:
-                self.duration = None
+                self.duration = 0
 
     def get_absolute_url(self):
-        return reverse('creations.views.radio_program', args=[self.slug])
+        return reverse('creations.views.radio_program',
+                       args=[self.id, slugify(self.title)])
 
     def get_display_date(self):
         return self.air_date
@@ -200,7 +199,6 @@ class RadioProgramRerun(models.Model):
 
 
 class ResearchCategory(models.Model):
-    slug = models.SlugField(max_length=100, unique=True)
     name = models.CharField(max_length=100)
     notes = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     parent = models.ForeignKey('self', null=True, blank=True,
@@ -214,7 +212,8 @@ class ResearchCategory(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('creations.views.research_category', args=[self.slug])
+        return reverse('creations.views.research_category',
+                       args=[self.id])
 
     def get_ancestors(self):
         ancestors = []
@@ -226,7 +225,6 @@ class ResearchCategory(models.Model):
 
 
 class Research(Creation):
-    slug = models.SlugField(max_length=120)
     category = models.ForeignKey(ResearchCategory)
     is_public = models.BooleanField(default=False)
     date = models.DateField(null=True, blank=True)
@@ -244,8 +242,7 @@ class Research(Creation):
         return 'Research: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.research',
-                       args=[self.category.slug, self.slug])
+        return reverse('creations.views.research_item', args=[self.id])
 
     def get_ancestors(self):
         ancestors = [self.category]

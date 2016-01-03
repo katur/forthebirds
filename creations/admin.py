@@ -7,15 +7,15 @@ from creations.models import (RadioProgram, RadioProgramRerun,
                               Research, ResearchCategory)
 
 
-BASIC_FIELDSET = (None, {'fields': ('title', 'slug', 'description',)})
-BASIC_FIELDSET_NO_SLUG = (None, {'fields': ('title', 'description',)})
+BASIC_FIELDSET = (None, {'fields': ('title', 'description',)})
+BASIC_FIELDSET_WITH_SLUG = (None, {'fields':
+    ('title', 'slug', 'description',)})
 TAGGING_FIELDSET = ('Tagging', {'fields': ('species', 'tags',)})
 
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_published', 'published_by')
     filter_horizontal = ('species',)
-    prepopulated_fields = {'slug': ('title',)}
 
     fieldsets = (
         BASIC_FIELDSET,
@@ -31,7 +31,7 @@ class BlogPostAdmin(admin.ModelAdmin):
     filter_horizontal = ('species',)
 
     fieldsets = (
-        BASIC_FIELDSET_NO_SLUG,
+        BASIC_FIELDSET,
         ('Details', {'fields': ('url',),}),
         TAGGING_FIELDSET,
     )
@@ -43,7 +43,7 @@ class BookAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
     fieldsets = (
-        BASIC_FIELDSET,
+        BASIC_FIELDSET_WITH_SLUG,
         ('Details', {'fields':
             ('publisher', 'isbn_10', 'isbn_13', 'date_published',
              'purchase_url', 'cover_photo'),
@@ -61,7 +61,6 @@ class RadioProgramAdmin(admin.ModelAdmin):
     list_filter = ('air_date',)
     search_fields = ('title',)
     filter_horizontal = ('species',)
-    prepopulated_fields = {'slug': ('title',)}
 
     inlines = [RadioProgramRerunInline]
 
@@ -87,7 +86,7 @@ class SpeakingProgramAdmin(admin.ModelAdmin):
     inlines = [SpeakingProgramFileInline]
 
     fieldsets = (
-        BASIC_FIELDSET,
+        BASIC_FIELDSET_WITH_SLUG,
         TAGGING_FIELDSET,
     )
 
@@ -98,7 +97,7 @@ class WebPageAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
     fieldsets = (
-        BASIC_FIELDSET,
+        BASIC_FIELDSET_WITH_SLUG,
         ('Details', {'fields':
             ('date_published', 'content',),
         }),
@@ -111,7 +110,7 @@ class ExternalProjectAdmin(admin.ModelAdmin):
     filter_horizontal = ('species',)
 
     fieldsets = (
-        BASIC_FIELDSET_NO_SLUG,
+        BASIC_FIELDSET,
         ('Details', {'fields': ('url',),}),
         TAGGING_FIELDSET,
     )
@@ -119,7 +118,6 @@ class ExternalProjectAdmin(admin.ModelAdmin):
 
 class ResearchCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
-    prepopulated_fields = {'slug': ('name',)}
 
 
 class ResearchAdmin(admin.ModelAdmin):
@@ -127,7 +125,6 @@ class ResearchAdmin(admin.ModelAdmin):
     list_filter = ('category',)
     search_fields = ('title', 'attribution', 'description',)
     filter_horizontal = ('species',)
-    prepopulated_fields = {'slug': ('title',)}
 
     fieldsets = (
         BASIC_FIELDSET,

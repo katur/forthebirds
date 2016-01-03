@@ -15,6 +15,34 @@ from creations.models import (RadioProgram, RadioProgramRerun,
 from website.models import User
 
 
+def article(request, id, slug=None):
+    article = get_object_or_404(Article, id=id)
+
+    context = {
+        'article': article,
+    }
+    return render(request, 'article.html', context)
+
+
+def book(request, slug):
+    book = get_object_or_404(Book, slug=slug)
+
+    context = {
+        'book': book,
+    }
+    return render(request, 'book.html', context)
+
+
+def miscellany(request):
+    webpages = WebPage.objects.all()
+    externalprojects = ExternalProject.objects.all()
+    context = {
+        'webpages': webpages,
+        'externalprojects': externalprojects,
+    }
+    return render(request, 'miscellany.html', context)
+
+
 def radio(request):
     all_years = RadioProgram.objects.dates('air_date', 'year')
     all_years = sorted(all_years, reverse=True)
@@ -33,8 +61,8 @@ def radio(request):
     return render(request, 'radio.html', context)
 
 
-def radio_program(request, slug):
-    program = get_object_or_404(RadioProgram, slug=slug)
+def radio_program(request, id, slug=None):
+    program = get_object_or_404(RadioProgram, id=id)
 
     context = {
         'program': program,
@@ -127,32 +155,38 @@ def radio_current_calendar(request):
     return redirect(radio_calendar, most_recent.year, most_recent.month)
 
 
-def writing(request):
-    books = Book.objects.all()
-    articles = Article.objects.all()
+@login_required
+def research(request):
+    categories = ResearchCategory.objects.filter(parent__isnull=True)
     context = {
-        'books': books,
-        'articles': articles,
+        'categories': categories,
     }
-    return render(request, 'writing.html', context)
+    return render(request, 'research.html', context)
 
 
-def book(request, slug):
-    book = get_object_or_404(Book, slug=slug)
+@login_required
+def research_category(request, id):
+    category = get_object_or_404(ResearchCategory, id=id)
+    children_categories = ResearchCategory.objects.filter(parent=category)
+    children_items = Research.objects.filter(category=category)
+    context = {
+        'category': category,
+        'children_categories': children_categories,
+        'children_items': children_items,
+    }
+    return render(request, 'research_category.html', context)
+
+
+def research_item(request, id):
+    research_item = get_object_or_404(Research, id=id)
+
+    if not research_item.is_public and not request.user.is_authenticated():
+        raise Http404
 
     context = {
-        'book': book,
+        'research_item': research_item,
     }
-    return render(request, 'book.html', context)
-
-
-def article(request, slug):
-    article = get_object_or_404(Article, slug=slug)
-
-    context = {
-        'article': article,
-    }
-    return render(request, 'article.html', context)
+    return render(request, 'research_item.html', context)
 
 
 def speaking(request):
@@ -180,16 +214,6 @@ def speaking_program(request, slug):
     return render(request, 'speaking_program.html', context)
 
 
-def miscellany(request):
-    webpages = WebPage.objects.all()
-    externalprojects = ExternalProject.objects.all()
-    context = {
-        'webpages': webpages,
-        'externalprojects': externalprojects,
-    }
-    return render(request, 'miscellany.html', context)
-
-
 def webpage(request, slug):
     webpage = get_object_or_404(WebPage, slug=slug)
     context = {
@@ -198,36 +222,11 @@ def webpage(request, slug):
     return render(request, 'webpage.html', context)
 
 
-@login_required
-def all_research(request):
-    categories = ResearchCategory.objects.filter(parent__isnull=True)
+def writing(request):
+    books = Book.objects.all()
+    articles = Article.objects.all()
     context = {
-        'categories': categories,
+        'books': books,
+        'articles': articles,
     }
-    return render(request, 'all_research.html', context)
-
-
-@login_required
-def research_category(request, slug):
-    category = get_object_or_404(ResearchCategory, slug=slug)
-    children_categories = ResearchCategory.objects.filter(parent=category)
-    children_items = Research.objects.filter(category=category)
-    context = {
-        'category': category,
-        'children_categories': children_categories,
-        'children_items': children_items,
-    }
-    return render(request, 'research_category.html', context)
-
-
-def research(request, category_slug, slug):
-    research_item = get_object_or_404(
-        Research, category__slug=category_slug, slug=slug)
-
-    if not research_item.is_public and not request.user.is_authenticated():
-        raise Http404
-
-    context = {
-        'research_item': research_item,
-    }
-    return render(request, 'research.html', context)
+    return render(request, 'writing.html', context)

@@ -9,10 +9,10 @@
 - ament main photo url to be flickr ID, and use flickr API to access
 
 ## Book
-- publisher -> published_by
+- rename publisher to published_by
 
 ## Radio
-- item.clean() not being run on save; research how to do this
+- BUG: item.clean() throwing exception on initial save; research how to do this better
 - research whether podcast should be .xml, .rss, or no extension
 - better player that allows jumping
 
@@ -23,18 +23,17 @@
 - rebuild existing static pages
 
 ## Research
+- BUG: slugs not working nested under categories
 - add unique_together constraint to category and slug
 
-## Add very managed slugs to:
+## Add highly managed slugs to:
 - Book
-- Research Category
 - SpeakingProgram
 - WebPage
 
 ## Add less managed slugs to:
 - Article
 - RadioProgram
-- Research Item
 
 ## Stuff regarding old lauraerickson.com
 - hardcode request redirects for popular pages

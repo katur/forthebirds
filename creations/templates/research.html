@@ -5,56 +5,17 @@
 {% block body_id %}research{% endblock %}
 
 
-{% block page_title %}
-{% include 'research_ancestry.html' with item=research_item %}
-{{ research_item.title }}
-{% endblock %}
+{% block page_title %}Laura's Research{% endblock %}
 
 
 {% block content %}
-
-{% if research_item.description %}
-<div class="page-section">
-  <h3 class="page-subtitle">Description</h3>
-  {{ research_item.description }}
-</div>
-{% endif %}
-
-{% if research_item.attribution %}
-<div class="page-section">
-  <h3 class="page-subtitle">Attribution</h3>
-  {{ research_item.attribution|markdown }}
-</div>
-{% endif %}
-
-{% if research_item.date %}
-<div class="page-section">
-  <h3 class="page-subtitle">Date</h3>
-  {{ research_item.date }}
-</div>
-{% endif %}
-
-{% if research_item.url %}
-<div class="page-section">
-  <h3 class="page-subtitle">External URL</h3>
-  <a href="{{ research_item.url }}">{{ research_item.url }}</a>
-</div>
-{% endif %}
-
-{% if research_item.file %}
-<div class="page-section">
-  <h3 class="page-subtitle">Internal File</h3>
-  <a href="{{ research_item.file.url }}">{{ research_item.file.url }}</a>
-</div>
-{% endif %}
-
-{% if research_item.text %}
-<div class="page-section">
-  <h3 class="page-subtitle">Text</h3>
-  {{ research_item.text|markdown }}
-</div>
-{% endif %}
-
-{% include 'tags.html' with item=research_item field=True %}
-
+<ul>
+{% for category in categories %}
+  <li>
+  <a href="{{ category.get_absolute_url }}">
+    {{ category.name }}</a>
+    {% if category.notes %}({{ category.notes|markdown }}){% endif %}
+  </li>
+{% endfor %}
+</ul>
 {% endblock %}
