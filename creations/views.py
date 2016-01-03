@@ -190,8 +190,8 @@ def miscellany(request):
     return render(request, 'miscellany.html', context)
 
 
-def webpage(request, slug):
-    webpage = get_object_or_404(WebPage, slug=slug)
+def webpage(request, id):
+    webpage = get_object_or_404(WebPage, id=id)
     context = {
         'webpage': webpage,
     }

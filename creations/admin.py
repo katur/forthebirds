@@ -45,6 +45,8 @@ class BookAdmin(admin.ModelAdmin):
 
     filter_horizontal = ('species',)
 
+    # prepopulated_fields = {'slug': ('title',)}
+
     fieldsets = (
         (None, {
             'fields': creation_id_fields
@@ -84,7 +86,7 @@ class BlogPostAdmin(admin.ModelAdmin):
 
 
 class WebPageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug',)
+    list_display = ('title',)
 
     filter_horizontal = ('species',)
 

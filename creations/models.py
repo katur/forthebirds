@@ -4,6 +4,7 @@ import re
 
 from django.core.urlresolvers import reverse
 from django.db import models
+# from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
 from private_media.storages import PrivateMediaStorage
@@ -91,7 +92,6 @@ class Article(Creation):
 
 
 class WebPage(Creation):
-    slug = models.SlugField(max_length=255)
     date_published = models.DateField(null=True, blank=True)
     content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
 
@@ -102,7 +102,7 @@ class WebPage(Creation):
         return 'Web Page: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.webpage', args=[self.slug])
+        return reverse('creations.views.webpage', args=[self.id])
 
 
 class ExternalProject(Creation):
