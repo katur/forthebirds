@@ -20,8 +20,8 @@
   <div class="column">
     <span class="field">{{ book.date_published|date:"Y" }}</span>
 
-    {% if book.publisher %}
-      <span class="field">Published by {{ book.publisher }}</span>
+    {% if book.published_by %}
+      <span class="field">Published by {{ book.published_by }}</span>
     {% endif %}
 
     {% if book.isbn_10 %}

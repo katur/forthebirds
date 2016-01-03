@@ -45,7 +45,7 @@ class BookAdmin(admin.ModelAdmin):
     fieldsets = (
         BASIC_FIELDSET_WITH_SLUG,
         ('Details', {'fields':
-            ('publisher', 'isbn_10', 'isbn_13', 'date_published',
+            ('published_by', 'date_published', 'isbn_10', 'isbn_13',
              'purchase_url', 'cover_photo'),
         }),
         TAGGING_FIELDSET,

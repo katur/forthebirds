@@ -88,7 +88,7 @@ class BlogPost(Creation):
 
 class Book(Creation):
     slug = models.SlugField(max_length=120, unique=True)
-    publisher = models.CharField(max_length=100, blank=True)
+    published_by = models.CharField(max_length=100, blank=True)
     date_published = models.DateField(null=True, blank=True)
     purchase_url = models.URLField(blank=True)
     cover_photo = models.ForeignKey(UploadedImage, null=True, blank=True,

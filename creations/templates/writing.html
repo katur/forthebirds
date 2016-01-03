@@ -32,8 +32,10 @@
         <div class="title">{{ book.title }}</div>
         <div class="date">{{ book.date_published|date:"Y" }}</div>
 
-        {% if book.publisher %}
-          <div class="publisher">Published by {{ book.publisher }}</div>
+        {% if book.published_by %}
+        <div class="published_by">
+          Published by {{ book.published_by }}
+        </div>
         {% endif %}
 
         <div class="description">{{ book.description|markdown }}</div>
