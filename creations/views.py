@@ -5,13 +5,13 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.db.models import Max
 from django.http import Http404
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 
-from creations.models import (RadioProgram, RadioProgramRerun,
-                              Book, Article,
-                              WebPage, ExternalProject,
+from creations.models import (Article, Book, ExternalProject,
+                              RadioProgram, RadioProgramRerun,
+                              ResearchCategory, Research
                               SpeakingProgram, SpeakingProgramFile,
-                              ResearchCategory, Research)
+                              WebPage)
 from website.models import User
 
 
