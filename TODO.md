@@ -1,11 +1,11 @@
-# TODO BEFORE FLIP SWITCH
+# TODO BEFORE FLIPPING SWITCH
 
 ## Header
 - add chickadee drawings
 
 ## Radio
-- BUG: item.clean() throwing exception on initial save; research how to do
-  this better (with item.save() instead?)
+- BUG: item.clean() throwing exception on initial save, since audio file is not
+  yet saved. research how to do this better (with item.save() instead?)
 - research whether podcast should be .xml, .rss, or no extension
 
 ## Webpage
@@ -31,7 +31,7 @@
 - for other requests, catchall to v0.lauraerickson.com
 
 
-# TODO LATER
+# TODO AFTER FLIPPING SWITCH
 
 ## General
 - add word count and character count to text boxes in Admin
@@ -50,3 +50,7 @@
 
 ## Research
 - rename Research to ResearchItem
+
+## Images
+- Standardize image model scheme (ABAFieldGuideImage vs UploadedImage vs
+  Creation)
