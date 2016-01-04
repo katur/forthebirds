@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from creations.models import (Article, Book, ExternalProject,
                               RadioProgram, RadioProgramRerun,
-                              ResearchCategory, Research
+                              ResearchCategory, Research,
                               SpeakingProgram, SpeakingProgramFile,
                               WebPage)
 from website.models import User
