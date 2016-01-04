@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from creations.models import (RadioProgram, RadioProgramRerun,
-                              Book, Article, BlogPost,
-                              WebPage, ExternalProject,
+from creations.models import (Article, BlogPost, Book, ExternalProject,
+                              RadioProgram, RadioProgramRerun,
+                              ResearchCategory, Research,
                               SpeakingProgram, SpeakingProgramFile,
-                              Research, ResearchCategory)
+                              WebPage)
 
 
 BASIC_FIELDSET = (None, {'fields': ('title', 'description',)})
@@ -52,6 +52,17 @@ class BookAdmin(admin.ModelAdmin):
     )
 
 
+class ExternalProjectAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url',)
+    filter_horizontal = ('species',)
+
+    fieldsets = (
+        BASIC_FIELDSET,
+        ('Details', {'fields': ('url',),}),
+        TAGGING_FIELDSET,
+    )
+
+
 class RadioProgramRerunInline(admin.TabularInline):
     model = RadioProgramRerun
 
@@ -69,6 +80,26 @@ class RadioProgramAdmin(admin.ModelAdmin):
         ('Details', {'fields':
             ('air_date', 'file', 'supplemental_content_url',
              'transcript',),
+        }),
+        TAGGING_FIELDSET,
+    )
+
+
+class ResearchCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+class ResearchAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'attribution', 'date', 'url',)
+    list_filter = ('category',)
+    search_fields = ('title', 'attribution', 'description',)
+    filter_horizontal = ('species',)
+
+    fieldsets = (
+        BASIC_FIELDSET,
+        ('Details', {'fields':
+            ('category', 'is_public', 'date', 'attribution',
+             'url', 'file', 'text'),
         }),
         TAGGING_FIELDSET,
     )
@@ -105,43 +136,12 @@ class WebPageAdmin(admin.ModelAdmin):
     )
 
 
-class ExternalProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url',)
-    filter_horizontal = ('species',)
-
-    fieldsets = (
-        BASIC_FIELDSET,
-        ('Details', {'fields': ('url',),}),
-        TAGGING_FIELDSET,
-    )
-
-
-class ResearchCategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-
-
-class ResearchAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'attribution', 'date', 'url',)
-    list_filter = ('category',)
-    search_fields = ('title', 'attribution', 'description',)
-    filter_horizontal = ('species',)
-
-    fieldsets = (
-        BASIC_FIELDSET,
-        ('Details', {'fields':
-            ('category', 'is_public', 'date', 'attribution',
-             'url', 'file', 'text'),
-        }),
-        TAGGING_FIELDSET,
-    )
-
-
-admin.site.register(RadioProgram, RadioProgramAdmin)
-admin.site.register(Book, BookAdmin)
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(SpeakingProgram, SpeakingProgramAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
-admin.site.register(WebPage, WebPageAdmin)
+admin.site.register(Book, BookAdmin)
 admin.site.register(ExternalProject, ExternalProjectAdmin)
+admin.site.register(RadioProgram, RadioProgramAdmin)
 admin.site.register(ResearchCategory, ResearchCategoryAdmin)
 admin.site.register(Research, ResearchAdmin)
+admin.site.register(SpeakingProgram, SpeakingProgramAdmin)
+admin.site.register(WebPage, WebPageAdmin)
