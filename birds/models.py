@@ -58,7 +58,7 @@ class Species(models.Model):
         return reverse('birds.views.bird', args=[self.id])
 
     def get_bird_of_the_week_url(self):
-        return ('http://www.abcbirds.org/newsandreports/botw/{}.html'
+        return ('http://abcbirds.org/bird/{}/'
                 .format(self.bird_of_the_week_name))
 
     def get_nacc_statuses(self):
