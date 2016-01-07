@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'jquery',
     'markdown_deux',
     'private_media',
     'sorl.thumbnail',
