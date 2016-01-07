@@ -45,25 +45,29 @@
   </div>
   {% endif %}
 
-  {% if bird.bird_of_the_week_name or bird.links %}
   <div id="links" class="card">
-    <h4>ABC Bird of the Week</h4>
+    <h4>External Resources</h4>
 
-    {% if bird.bird_of_the_week_name %}
-    <span>
-      <a href="{{ bird.get_bird_of_the_week_url }}">
-        ABC Bird of the Week</a>
-    </span>
-    {% endif %}
+    <ul>
+      <li>
+        <a href="{{ bird.get_all_about_birds_url }}">
+          Cornell Lab's All About Birds</a>
+      </li>
 
-    {% for link in bird.links %}
-    <span>
-      <a href="{{ link.url }}">{{ link.title }}</a>
-    </span>
-    {% endfor %}
+      {% if bird.bird_of_the_week_name %}
+      <li>
+        <a href="{{ bird.get_bird_of_the_week_url }}">
+          ABC's Bird of the Week</a>
+      </li>
+      {% endif %}
 
+      {% for link in bird.links %}
+      <li>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
-  {% endif %}
 
   {% if bird.blurb %}
   <div id="blurb" class="card markdown-section">
