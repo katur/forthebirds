@@ -2,8 +2,8 @@
   h1, h2, h3, h4
     margin-top: $whitespace
 
-  p, ul, ol, img, h1, h2, h3, h4
-    margin-bottom: $whitespace / 2
+  p, ul, ol, h1, h2, h3, h4, .image-wrapper
+    margin-bottom: $whitespace / 1.5
 
     &:last-child
       margin-bottom: none
@@ -16,8 +16,10 @@
     list-style-type: decimal
     list-style-position: inside
 
-  img
+  img, .image-caption
     display: block
     width: 100%
-    max-width: 700px
-    margin: $whitespace auto
+    max-height: 400px
+    max-width: 400px
+    margin-left: auto
+    margin-right: auto
