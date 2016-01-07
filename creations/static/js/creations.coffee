@@ -2,6 +2,8 @@ $(document).ready ->
   if $("body").attr("id") == "radio"
     initializeProgramInfoButtons()
 
+  initializeImageCaptions()
+
 
 initializeProgramInfoButtons = ->
   programIntros = $(".program-intro")
@@ -16,3 +18,12 @@ initializeProgramInfoButtons = ->
       programMore.hide()
     else
       programMore.show()
+
+
+initializeImageCaptions = ->
+  markdownImages = $(".markdown img")
+
+  for image in markdownImages
+    altText = $(image).attr("alt")
+    $(image).wrap('<div class="image-wrapper">')
+    $(image).after("""<span class="image-caption">#{altText}</span>""")

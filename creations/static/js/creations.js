@@ -1,10 +1,11 @@
 (function() {
-  var initializeProgramInfoButtons;
+  var initializeImageCaptions, initializeProgramInfoButtons;
 
   $(document).ready(function() {
     if ($("body").attr("id") === "radio") {
-      return initializeProgramInfoButtons();
+      initializeProgramInfoButtons();
     }
+    return initializeImageCaptions();
   });
 
   initializeProgramInfoButtons = function() {
@@ -21,6 +22,19 @@
         return programMore.show();
       }
     });
+  };
+
+  initializeImageCaptions = function() {
+    var altText, i, image, len, markdownImages, results;
+    markdownImages = $(".markdown img");
+    results = [];
+    for (i = 0, len = markdownImages.length; i < len; i++) {
+      image = markdownImages[i];
+      altText = $(image).attr("alt");
+      $(image).wrap('<div class="image-wrapper">');
+      results.push($(image).after("<span class=\"image-caption\">" + altText + "</span>"));
+    }
+    return results;
   };
 
 }).call(this);
