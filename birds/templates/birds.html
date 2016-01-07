@@ -85,7 +85,7 @@
         {% for species in subfamily.list %}
           <li>
             <a href="{{ species.get_absolute_url }}">
-              <i>{{ species.name }}</i> ({{ species.common_name }})</a>
+              {{ species.common_name }} (<i>{{ species.name }}</i>)
           </li>
         {% endfor %}
         </ul>
