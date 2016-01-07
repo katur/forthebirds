@@ -24,8 +24,8 @@
   <ul id="search-results">
     {% for bird in search_birds %}
     <li><a href="{{ bird.get_absolute_url }}">
-      {{ bird.common_name }} (<i>{{ bird.name }}</i>)
-    </a></li>
+      {{ bird.common_name }} (<i>{{ bird.name }}</i>)</a>
+    </li>
     {% endfor %}
   </ul>
 
@@ -85,7 +85,7 @@
         {% for species in subfamily.list %}
           <li>
             <a href="{{ species.get_absolute_url }}">
-              {{ species.common_name }} (<i>{{ species.name }}</i>)
+              {{ species.common_name }} (<i>{{ species.name }}</i>)</a>
           </li>
         {% endfor %}
         </ul>
