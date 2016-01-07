@@ -1,6 +1,6 @@
 import datetime
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 
 from birds.forms import BirdSearchForm
 from birds.models import Species, MinnesotaSpecies
@@ -16,7 +16,7 @@ def birds(request):
 
             if len(search_birds) == 1:
                 bird_id = search_birds[0].id
-                return bird(request, bird_id)
+                return redirect(bird, bird_id)
 
     else:
         form = BirdSearchForm()
