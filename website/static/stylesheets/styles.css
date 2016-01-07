@@ -67,7 +67,7 @@ h1, h2, h3, h4 {
 h1 {
   font-family: "adelaidaregular", sans-serif; }
 
-h2, h3, h4 {
+h2, h3, h4, .markdown h1 {
   font-family: "Dosis", sans-serif;
   font-weight: 500;
   letter-spacing: 1px;
@@ -77,12 +77,15 @@ h2 {
   font-size: 30px;
   margin-top: -10px; }
 
-h3 {
+h3, .markdown h1 {
   font-size: 26px;
   margin-top: -10px; }
 
-h4 {
+h4, .markdown h2 {
   font-size: 22px; }
+
+.markdown h3, .markdown h4 {
+  font-size: 19px; }
 
 a {
   text-decoration: none;
@@ -90,46 +93,22 @@ a {
   a:hover, a.active {
     color: #d8ac74; }
 
-.markdown h1, .markdown h2, .markdown h3, .markdown h4 {
-  font-family: Georgia, serif;
-  letter-spacing: 0;
-  color: #3c3a47;
-  font-weight: bold;
-  font-variant: normal;
-  margin-top: 36px;
-  margin-bottom: 18px; }
-.markdown h1 {
-  font-size: 29px; }
-.markdown h2 {
-  font-size: 25px; }
-.markdown h3 {
-  font-size: 22px; }
-.markdown h4 {
-  font-size: 20px; }
-.markdown p {
-  margin-bottom: 18px; }
-  .markdown p:last-child {
-    margin-bottom: none; }
-.markdown ul {
-  list-style-type: disc;
-  list-style-position: inside; }
-.markdown ol {
-  list-style-type: decimal;
-  list-style-position: inside; }
-.markdown img {
-  display: block;
-  max-width: 700px;
-  width: 100%;
-  margin: 36px auto; }
+.help-message {
+  color: #9ba5a9;
+  font-style: oblique; }
 
-.scroll-box {
-  overflow: scroll; }
+.image-caption {
+  color: #777e86;
+  font-size: 15px; }
 
 b, strong {
   font-weight: bold; }
 
 i, em {
   font-style: italic; }
+
+.scroll-box {
+  overflow: scroll; }
 
 .tag {
   position: relative;
@@ -152,6 +131,26 @@ i, em {
   .tag span {
     background: #cfd3cf;
     color: #777e86; }
+
+.markdown h1, .markdown h2, .markdown h3, .markdown h4 {
+  margin-top: 36px; }
+.markdown p, .markdown ul, .markdown ol, .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown .image-wrapper {
+  margin-bottom: 24px; }
+  .markdown p:last-child, .markdown ul:last-child, .markdown ol:last-child, .markdown h1:last-child, .markdown h2:last-child, .markdown h3:last-child, .markdown h4:last-child, .markdown .image-wrapper:last-child {
+    margin-bottom: none; }
+.markdown ul {
+  list-style-type: disc;
+  list-style-position: inside; }
+.markdown ol {
+  list-style-type: decimal;
+  list-style-position: inside; }
+.markdown img, .markdown .image-caption {
+  display: block;
+  width: 100%;
+  max-height: 700px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto; }
 
 html, body {
   min-width: 100%;
@@ -207,30 +206,6 @@ html, body {
   clear: both;
   margin-bottom: 18px; }
 
-#admin-bar {
-  width: 100%;
-  height: 28px;
-  background: #3c3a47;
-  font-family: "Dosis", sans-serif;
-  color: #cfd3cf;
-  font-size: 14px;
-  line-height: 28px;
-  letter-spacing: 0.6px;
-  text-align: left; }
-  #admin-bar span,
-  #admin-bar a {
-    float: left;
-    text-transform: lowercase; }
-  #admin-bar .user {
-    margin: 0 10px; }
-  #admin-bar a {
-    padding: 0 10px; }
-    #admin-bar a:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #de8d88; }
-  #admin-bar .logout {
-    float: right; }
-
 #header {
   padding-top: 5px;
   text-align: center;
@@ -274,6 +249,7 @@ html, body {
     margin: 9px 0;
     font-size: 22px; }
     #header #menu a {
+      white-space: nowrap;
       padding: 0 18px; }
   #header #bird-search {
     position: absolute;
@@ -300,6 +276,30 @@ html, body {
     color: #e6a8a4; }
     #footer a:hover, #footer a.active {
       color: #e6c9a4; }
+
+#admin-bar {
+  width: 100%;
+  height: 28px;
+  background: #3c3a47;
+  font-family: "Dosis", sans-serif;
+  color: #cfd3cf;
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.6px;
+  text-align: left; }
+  #admin-bar span,
+  #admin-bar a {
+    float: left;
+    text-transform: lowercase; }
+  #admin-bar .user {
+    margin: 0 10px; }
+  #admin-bar a {
+    padding: 0 10px; }
+    #admin-bar a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #de8d88; }
+  #admin-bar .logout {
+    float: right; }
 
 #home #page-title {
   display: none; }
@@ -339,7 +339,7 @@ html, body {
 #birds ul {
   list-style-position: inside;
   list-style-type: disc; }
-  #birds ul li, #birds ul ul {
+  #birds ul ul li, #birds ul ul ul {
     padding-left: 30px; }
   #birds ul ul {
     list-style-type: circle; }
@@ -347,6 +347,12 @@ html, body {
       list-style-type: square; }
       #birds ul ul ul ul {
         list-style-type: disc; }
+#birds #bird-search form {
+  margin-bottom: 18px; }
+  #birds #bird-search form p {
+    display: inline-block; }
+  #birds #bird-search form .submit {
+    margin-left: 9px; }
 
 #bird #main-photo {
   display: block;
@@ -390,7 +396,7 @@ html, body {
   list-style-position: inside;
   list-style-type: disc;
   line-height: 150%; }
-  #birds-taxonomical ul li, #birds-taxonomical ul ul {
+  #birds-taxonomical ul ul li, #birds-taxonomical ul ul ul {
     padding-left: 30px; }
   #birds-taxonomical ul ul {
     list-style-type: circle; }
@@ -433,9 +439,13 @@ html, body {
   #birds-taxonomical .plus-sign.minus::before {
     display: none; }
 
-#radio #calendar-link {
-  display: block;
-  margin-bottom: 18px; }
+#radio #links {
+  width: 100%;
+  float: left;
+  margin-bottom: 36px; }
+  #radio #links a {
+    display: inline-block;
+    margin-right: 18px; }
 #radio #year-list {
   float: left;
   width: 10%;
@@ -456,18 +466,17 @@ html, body {
       -o-transform: scaleX(0.7);
       transform: scaleX(0.7);
       content: "➤"; }
-#radio .year-programs {
+#radio #programs {
   float: right;
-  width: 85%;
-  display: none; }
-  #radio .year-programs .program {
+  width: 85%; }
+  #radio #programs .program {
     float: left;
     width: 100%; }
-    #radio .year-programs .program:nth-child(even) {
+    #radio #programs .program:nth-child(even) {
       background: #e1e6df; }
-    #radio .year-programs .program:nth-child(odd) {
+    #radio #programs .program:nth-child(odd) {
       background: #e9ede8; }
-    #radio .year-programs .program .program-title-bar {
+    #radio #programs .program .program-intro {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
@@ -475,38 +484,38 @@ html, body {
       width: 100%;
       height: 100%;
       padding: 8px 12px; }
-      #radio .year-programs .program .program-title-bar .title,
-      #radio .year-programs .program .program-title-bar .description {
+      #radio #programs .program .program-intro .title,
+      #radio #programs .program .program-intro .description {
         width: 100%; }
-      #radio .year-programs .program .program-title-bar .title {
+      #radio #programs .program .program-intro .title {
         margin-top: 5px; }
-      #radio .year-programs .program .program-title-bar .description {
+      #radio #programs .program .program-intro .description {
         margin-top: 10px;
         font-size: 15px;
         color: #777e86; }
-      #radio .year-programs .program .program-title-bar a {
+      #radio #programs .program .program-intro a {
         color: #d36760; }
-        #radio .year-programs .program .program-title-bar a:hover {
+        #radio #programs .program .program-intro a:hover {
           color: #d3a060; }
-    #radio .year-programs .program .program-info {
+    #radio #programs .program .program-more {
       display: none;
       padding: 0 0 36px 36px; }
-      #radio .year-programs .program .program-info:after {
+      #radio #programs .program .program-more:after {
         content: "";
         display: table;
         clear: both; }
-      #radio .year-programs .program .program-info div {
+      #radio #programs .program .program-more div {
         width: 100%;
         float: left;
         margin-bottom: 12px; }
-        #radio .year-programs .program .program-info div.audio {
+        #radio #programs .program .program-more div.audio {
           margin-top: 18px;
           line-height: 15px; }
-        #radio .year-programs .program .program-info div.transcript a {
+        #radio #programs .program .program-more div.transcript a {
           color: #d36760; }
-          #radio .year-programs .program .program-info div.transcript a:hover {
+          #radio #programs .program .program-more div.transcript a:hover {
             color: #d3a060; }
-        #radio .year-programs .program .program-info div.tags {
+        #radio #programs .program .program-more div.tags {
           max-width: 600px; }
 
 #radio .download-link img, #radio-program .download-link img {
@@ -542,6 +551,45 @@ html, body {
       font-size: 15px;
       font-family: "Dosis", sans-serif;
       color: #777e86; }
+
+#research #content p {
+  display: inline; }
+
+#speaking ul {
+  list-style-position: inside;
+  list-style-type: disc; }
+  #speaking ul ul li, #speaking ul ul ul {
+    padding-left: 30px; }
+  #speaking ul ul {
+    list-style-type: circle; }
+    #speaking ul ul ul {
+      list-style-type: square; }
+      #speaking ul ul ul ul {
+        list-style-type: disc; }
+
+#speaking-program #files {
+  list-style-position: inside;
+  list-style-type: disc; }
+  #speaking-program #files ul li, #speaking-program #files ul ul {
+    padding-left: 30px; }
+  #speaking-program #files ul {
+    list-style-type: circle; }
+    #speaking-program #files ul ul {
+      list-style-type: square; }
+      #speaking-program #files ul ul ul {
+        list-style-type: disc; }
+
+#webpage #webpage-info {
+  float: left;
+  width: 100%;
+  margin-bottom: 36px; }
+#webpage #webpage-content {
+  float: left;
+  max-width: 750px;
+  width: 100%; }
+#webpage .markdown img, #webpage .markdown .image-caption {
+  max-height: 400px;
+  max-width: 400px; }
 
 #writing #books {
   width: 105%;
@@ -589,33 +637,6 @@ html, body {
   width: 100%;
   clear: both;
   margin-top: 36px; }
-
-#speaking ul {
-  list-style-position: inside;
-  list-style-type: disc; }
-  #speaking ul li, #speaking ul ul {
-    padding-left: 30px; }
-  #speaking ul ul {
-    list-style-type: circle; }
-    #speaking ul ul ul {
-      list-style-type: square; }
-      #speaking ul ul ul ul {
-        list-style-type: disc; }
-
-#speaking-program #files {
-  list-style-position: inside;
-  list-style-type: disc; }
-  #speaking-program #files li, #speaking-program #files ul {
-    padding-left: 30px; }
-  #speaking-program #files ul {
-    list-style-type: circle; }
-    #speaking-program #files ul ul {
-      list-style-type: square; }
-      #speaking-program #files ul ul ul {
-        list-style-type: disc; }
-
-#research-categories #content p {
-  display: inline; }
 
 #ways-to-help #all-ways-to-help {
   width: 105%;

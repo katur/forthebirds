@@ -1,7 +1,12 @@
 #radio
-  #calendar-link
-    display: block
-    margin-bottom: $whitespace / 2
+  #links
+    width: 100%
+    float: left
+    margin-bottom: $whitespace
+
+    a
+      display: inline-block
+      margin-right: $whitespace / 2
 
   #year-list
     float: left
@@ -22,10 +27,9 @@
         @include transform(scaleX(0.7))
         content: "\27A4"
 
-  .year-programs
+  #programs
     float: right
     width: 85%
-    display: none
 
     .program
       float: left
@@ -36,7 +40,7 @@
       &:nth-child(odd)
         background: lighten($moss, 43%)
 
-      .program-title-bar
+      .program-intro
         @include box-sizing(border-box)
         display: block
         width: 100%
@@ -61,7 +65,7 @@
           &:hover
             color: $dark-link-color-active
 
-      .program-info
+      .program-more
         @include clearfix
         display: none
         padding: 0 0 $whitespace $whitespace

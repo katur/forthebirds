@@ -4,6 +4,7 @@ import re
 
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
 from private_media.storages import PrivateMediaStorage
@@ -51,26 +52,7 @@ class Creation(models.Model, RealInstanceProvider):
         return class_name.lower() == 'research'
 
     def has_tags(self):
-        return len(self.species) or len(self.tags.names())
-
-
-class Book(Creation):
-    publisher = models.CharField(max_length=100, blank=True)
-    date_published = models.DateField(null=True, blank=True)
-    purchase_url = models.URLField(blank=True)
-    cover_photo = models.ForeignKey(UploadedImage, null=True, blank=True,
-                                    on_delete=models.SET_NULL)
-    isbn_10 = models.CharField('ISBN 10', max_length=20, blank=True)
-    isbn_13 = models.CharField('ISBN 13', max_length=20, blank=True)
-
-    class Meta:
-        ordering = ['-date_published']
-
-    def __unicode__(self):
-        return 'Book: ' + self.title
-
-    def get_absolute_url(self):
-        return reverse('creations.views.book', args=[self.id])
+        return len(self.species.all()) or len(self.tags.names())
 
 
 class Article(Creation):
@@ -87,35 +69,8 @@ class Article(Creation):
         return 'Article: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.article', args=[self.id])
-
-
-class WebPage(Creation):
-    slug = models.SlugField(max_length=255)
-    date_published = models.DateField(null=True, blank=True)
-    content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-
-    class Meta:
-        ordering = ['title']
-
-    def __unicode__(self):
-        return 'Web Page: ' + self.title
-
-    def get_absolute_url(self):
-        return reverse('creations.views.webpage', args=[self.slug])
-
-
-class ExternalProject(Creation):
-    url = models.URLField()
-
-    class Meta:
-        ordering = ['title']
-
-    def __unicode__(self):
-        return 'External Project: ' + self.title
-
-    def get_absolute_url(self):
-        return self.url
+        return reverse('creations.views.article',
+                       args=[self.id, slugify(self.title)])
 
 
 class BlogPost(Creation):
@@ -131,12 +86,45 @@ class BlogPost(Creation):
         return self.url
 
 
+class Book(Creation):
+    slug = models.SlugField(max_length=120, unique=True)
+    published_by = models.CharField(max_length=100, blank=True)
+    date_published = models.DateField(null=True, blank=True)
+    purchase_url = models.URLField(blank=True)
+    cover_photo = models.ForeignKey(UploadedImage, null=True, blank=True,
+                                    on_delete=models.SET_NULL)
+    isbn_10 = models.CharField('ISBN 10', max_length=20, blank=True)
+    isbn_13 = models.CharField('ISBN 13', max_length=20, blank=True)
+
+    class Meta:
+        ordering = ['-date_published']
+
+    def __unicode__(self):
+        return 'Book: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.book', args=[self.slug])
+
+
+class ExternalProject(Creation):
+    url = models.URLField()
+
+    class Meta:
+        ordering = ['title']
+
+    def __unicode__(self):
+        return 'External Project: ' + self.title
+
+    def get_absolute_url(self):
+        return self.url
+
+
 class RadioProgram(Creation):
     file = models.FileField(upload_to='radio')
     air_date = models.DateField()
 
     # Duration in seconds
-    duration = models.PositiveIntegerField(null=True, blank=True, default=None)
+    duration = models.PositiveIntegerField()
 
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
@@ -148,17 +136,19 @@ class RadioProgram(Creation):
     def __unicode__(self):
         return 'Radio Program: ' + self.title
 
-    def clean(self):
-        if not self.duration:
-            try:
-                program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
-                self.duration = int(math.ceil(MP3(program_path).info.length))
+    def clean(self, *args, **kwargs):
+        super(RadioProgram, self).clean(*args, **kwargs)
 
-            except Exception:
-                self.duration = None
+        try:
+            program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
+            self.duration = int(math.ceil(MP3(program_path).info.length))
+
+        except Exception:
+            self.duration = 0
 
     def get_absolute_url(self):
-        return reverse('creations.views.radio_program', args=[self.id])
+        return reverse('creations.views.radio_program',
+                       args=[self.id, slugify(self.title)])
 
     def get_display_date(self):
         return self.air_date
@@ -209,35 +199,6 @@ class RadioProgramRerun(models.Model):
         return '{} aired {}'.format(self.program, self.air_date)
 
 
-class SpeakingProgram(Creation):
-    class Meta:
-        ordering = ['title']
-
-    def __unicode__(self):
-        return 'Speaking Program: ' + self.title
-
-    def get_absolute_url(self):
-        return reverse('creations.views.speaking_program', args=[self.id])
-
-
-class SpeakingProgramFile(models.Model):
-    program = models.ForeignKey(SpeakingProgram)
-    title = models.CharField(max_length=120)
-    file = models.FileField(upload_to='speaking',
-                            storage=PrivateMediaStorage())
-    date = models.DateField(null=True, blank=True)
-    description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-
-    class Meta:
-        ordering = ['date']
-
-    def __unicode__(self):
-        return 'Speaking Presentation File: ' + self.title
-
-    def get_absolute_url(self):
-        return self.file.url
-
-
 class ResearchCategory(models.Model):
     name = models.CharField(max_length=100)
     notes = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
@@ -252,7 +213,8 @@ class ResearchCategory(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('creations.views.research_category', args=[self.id])
+        return reverse('creations.views.research_category',
+                       args=[self.id])
 
     def get_ancestors(self):
         ancestors = []
@@ -281,12 +243,58 @@ class Research(Creation):
         return 'Research: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.research', args=[self.id])
+        return reverse('creations.views.research_item', args=[self.id])
 
     def get_ancestors(self):
         ancestors = [self.category]
         ancestors.extend(self.category.get_ancestors())
         return ancestors
+
+
+class SpeakingProgram(Creation):
+    slug = models.SlugField(max_length=120, unique=True)
+
+    class Meta:
+        ordering = ['title']
+
+    def __unicode__(self):
+        return 'Speaking Program: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.speaking_program', args=[self.slug])
+
+
+class SpeakingProgramFile(models.Model):
+    program = models.ForeignKey(SpeakingProgram)
+    title = models.CharField(max_length=120)
+    file = models.FileField(upload_to='speaking',
+                            storage=PrivateMediaStorage())
+    date = models.DateField(null=True, blank=True)
+    description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+
+    class Meta:
+        ordering = ['date']
+
+    def __unicode__(self):
+        return 'Speaking Presentation File: ' + self.title
+
+    def get_absolute_url(self):
+        return self.file.url
+
+
+class WebPage(Creation):
+    slug = models.SlugField(max_length=120, unique=True)
+    date_published = models.DateField(null=True, blank=True)
+    content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+
+    class Meta:
+        ordering = ['title']
+
+    def __unicode__(self):
+        return 'Web Page: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('creations.views.webpage', args=[self.slug])
 
 
 class ABAFieldGuideImage(Creation):

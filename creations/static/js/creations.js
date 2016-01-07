@@ -1,45 +1,40 @@
 (function() {
-  var initializeProgramInfoButtons, initializeRadioYearButtons;
+  var initializeImageCaptions, initializeProgramInfoButtons;
 
   $(document).ready(function() {
     if ($("body").attr("id") === "radio") {
-      initializeRadioYearButtons();
-      return initializeProgramInfoButtons();
+      initializeProgramInfoButtons();
     }
+    return initializeImageCaptions();
   });
 
-  initializeRadioYearButtons = function() {
-    var yearButtons, yearPrograms;
-    yearButtons = $(".year-button");
-    yearPrograms = $(".year-programs");
-    yearButtons.click(function(e) {
-      var year;
-      e.preventDefault();
-      yearButtons.removeClass("active");
-      yearPrograms.hide();
-      $(".program-info").hide();
-      year = $(this).attr("id");
-      $(this).addClass("active");
-      return $("#" + year + ".year-programs").show();
-    });
-    return $(".year-button:first").click();
-  };
-
   initializeProgramInfoButtons = function() {
-    var programInfoBoxes, programInfoButtons;
-    programInfoButtons = $(".program-info-button");
-    programInfoBoxes = $(".program-info");
-    return programInfoButtons.click(function(e) {
-      var program, programInfo;
+    var programIntros;
+    programIntros = $(".program-intro");
+    return programIntros.click(function(e) {
+      var program, programMore;
       e.preventDefault();
       program = $(this).closest(".program");
-      programInfo = program.find(".program-info");
-      if (programInfo.is(":visible")) {
-        return programInfo.hide();
+      programMore = program.find(".program-more");
+      if (programMore.is(":visible")) {
+        return programMore.hide();
       } else {
-        return programInfo.show();
+        return programMore.show();
       }
     });
+  };
+
+  initializeImageCaptions = function() {
+    var altText, i, image, len, markdownImages, results;
+    markdownImages = $(".markdown img");
+    results = [];
+    for (i = 0, len = markdownImages.length; i < len; i++) {
+      image = markdownImages[i];
+      altText = $(image).attr("alt");
+      $(image).wrap('<div class="image-wrapper">');
+      results.push($(image).after("<span class=\"image-caption\">" + altText + "</span>"));
+    }
+    return results;
   };
 
 }).call(this);

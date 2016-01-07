@@ -5,30 +5,63 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.db.models import Max
 from django.http import Http404
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 
-from creations.models import (RadioProgram, RadioProgramRerun,
-                              Book, Article,
-                              WebPage, ExternalProject,
+from creations.models import (Article, Book, ExternalProject,
+                              RadioProgram, RadioProgramRerun,
+                              ResearchCategory, Research,
                               SpeakingProgram, SpeakingProgramFile,
-                              ResearchCategory, Research)
+                              WebPage)
 from website.models import User
 
 
-def radio(request):
-    programs = RadioProgram.objects.all()
-
-    year_list = programs.dates('air_date', 'year')
-    year_list = sorted(year_list, reverse=True)
+def article(request, id, slug=None):
+    article = get_object_or_404(Article, id=id)
 
     context = {
+        'article': article,
+    }
+    return render(request, 'article.html', context)
+
+
+def book(request, slug):
+    book = get_object_or_404(Book, slug=slug)
+
+    context = {
+        'book': book,
+    }
+    return render(request, 'book.html', context)
+
+
+def miscellany(request):
+    webpages = WebPage.objects.all()
+    externalprojects = ExternalProject.objects.all()
+    context = {
+        'webpages': webpages,
+        'externalprojects': externalprojects,
+    }
+    return render(request, 'miscellany.html', context)
+
+
+def radio(request):
+    all_years = RadioProgram.objects.dates('air_date', 'year')
+    all_years = sorted(all_years, reverse=True)
+
+    year = request.GET.get('year')
+    if not year:
+        year = all_years[0].year
+
+    programs = RadioProgram.objects.filter(air_date__year=year)
+
+    context = {
+        'year': year,
         'programs': programs,
-        'year_list': year_list,
+        'all_years': all_years,
     }
     return render(request, 'radio.html', context)
 
 
-def radio_program(request, id):
+def radio_program(request, id, slug=None):
     program = get_object_or_404(RadioProgram, id=id)
 
     context = {
@@ -122,84 +155,13 @@ def radio_current_calendar(request):
     return redirect(radio_calendar, most_recent.year, most_recent.month)
 
 
-def writing(request):
-    books = Book.objects.all()
-    articles = Article.objects.all()
-    context = {
-        'books': books,
-        'articles': articles,
-    }
-    return render(request, 'writing.html', context)
-
-
-def book(request, id):
-    book = get_object_or_404(Book, id=id)
-
-    context = {
-        'book': book,
-    }
-    return render(request, 'book.html', context)
-
-
-def article(request, id):
-    article = get_object_or_404(Article, id=id)
-
-    context = {
-        'article': article,
-    }
-    return render(request, 'article.html', context)
-
-
-def speaking(request):
-    laura = get_object_or_404(User, username='laura')
-    programs = SpeakingProgram.objects.all()
-
-    context = {
-        'programs': programs,
-        'laura': laura,
-    }
-    return render(request, 'speaking.html', context)
-
-
-def speaking_program(request, id):
-    program = get_object_or_404(SpeakingProgram, id=id)
-    if request.user.is_authenticated() and request.user.is_staff:
-        files = SpeakingProgramFile.objects.filter(program=program)
-    else:
-        files = None
-
-    context = {
-        'program': program,
-        'files': files,
-    }
-    return render(request, 'speaking_program.html', context)
-
-
-def miscellany(request):
-    webpages = WebPage.objects.all()
-    externalprojects = ExternalProject.objects.all()
-    context = {
-        'webpages': webpages,
-        'externalprojects': externalprojects,
-    }
-    return render(request, 'miscellany.html', context)
-
-
-def webpage(request, slug):
-    webpage = get_object_or_404(WebPage, slug=slug)
-    context = {
-        'webpage': webpage,
-    }
-    return render(request, 'webpage.html', context)
-
-
 @login_required
-def all_research(request):
+def research(request):
     categories = ResearchCategory.objects.filter(parent__isnull=True)
     context = {
         'categories': categories,
     }
-    return render(request, 'all_research.html', context)
+    return render(request, 'research.html', context)
 
 
 @login_required
@@ -215,7 +177,7 @@ def research_category(request, id):
     return render(request, 'research_category.html', context)
 
 
-def research(request, id):
+def research_item(request, id):
     research_item = get_object_or_404(Research, id=id)
 
     if not research_item.is_public and not request.user.is_authenticated():
@@ -224,4 +186,47 @@ def research(request, id):
     context = {
         'research_item': research_item,
     }
-    return render(request, 'research.html', context)
+    return render(request, 'research_item.html', context)
+
+
+def speaking(request):
+    laura = get_object_or_404(User, username='laura')
+    programs = SpeakingProgram.objects.all()
+
+    context = {
+        'programs': programs,
+        'laura': laura,
+    }
+    return render(request, 'speaking.html', context)
+
+
+def speaking_program(request, slug):
+    program = get_object_or_404(SpeakingProgram, slug=slug)
+    if request.user.is_authenticated() and request.user.is_staff:
+        files = SpeakingProgramFile.objects.filter(program=program)
+    else:
+        files = None
+
+    context = {
+        'program': program,
+        'files': files,
+    }
+    return render(request, 'speaking_program.html', context)
+
+
+def webpage(request, slug):
+    webpage = get_object_or_404(WebPage, slug=slug)
+    context = {
+        'webpage': webpage,
+    }
+    return render(request, 'webpage.html', context)
+
+
+def writing(request):
+    books = Book.objects.all()
+    articles = Article.objects.all()
+    context = {
+        'books': books,
+        'articles': articles,
+    }
+    return render(request, 'writing.html', context)

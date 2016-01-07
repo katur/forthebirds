@@ -36,20 +36,23 @@ h1, h2, h3, h4
 h1
   font-family: 'adelaidaregular', sans-serif
 
-h2, h3, h4
+h2, h3, h4, .markdown h1
   @include sans-font(bold)
   color: $chickadee-dark-gray
 
 h2
-  font-size: 30px
+  font-size: $base-font-size + 13
   margin-top: -10px
 
-h3
-  font-size: 26px
+h3, .markdown h1
+  font-size: $base-font-size + 9
   margin-top: -10px
 
-h4
-  font-size: 22px
+h4, .markdown h2
+  font-size: $base-font-size + 5
+
+.markdown h3, .markdown h4
+  font-size: $base-font-size + 2
 
 a
   text-decoration: none
@@ -57,3 +60,17 @@ a
 
   &:hover, &.active
     color: $link-color-active
+
+.help-message
+  color: $chickadee-gray
+  font-style: oblique
+
+.image-caption
+  color: $chickadee-dark-gray
+  font-size: $base-font-size - 2
+
+b, strong
+  font-weight: bold
+
+i, em
+  font-style: italic

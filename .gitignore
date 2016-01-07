@@ -1,12 +1,10 @@
 # Database connection and other secret settings
 *local_settings.py
 
-# Backups and offline materials
-backups/
-materials/
-
-# Collected static/media files (re-collect with ./manage.py collectstatic)
+# Collected static files (re-collect with ./manage.py collectstatic)
 staticfiles/
+
+# User-uploaded media files
 mediafiles/
 privatemediafiles/
 

@@ -4,6 +4,7 @@
 {% url 'waystohelp_url' as waystohelp_url %}
 {% url 'writing_url' as writing_url %}
 {% url 'miscellany_url' as miscellany_url %}
+{% url 'birds_url' as birds_url %}
 
 <div id="header">
   <a id="site-title" href="{{ home_url }}">
@@ -22,7 +23,7 @@
         {% ifequal request.path waystohelp_url %}
         class="active"
         {% endifequal %}>
-      Ways To Help Birds
+      Ways To Help
     </a>
 
     <a href="http://blog.lauraerickson.com">
@@ -46,15 +47,12 @@
         class="active"
         {% endifequal %}>
       Miscellany</a>
+
+    <a href="{{ birds_url }}"
+        {% ifequal request.path birds_url %}
+        class="active"
+        {% endifequal %}>
+      Find Birds</a>
   </div>
 
-  <div id="bird-search">
-    <form action={% url 'birds_url' %} method="get">
-      <input type="text" name="query">
-      <input type="submit" value="Search for birds">
-    </form>
-
-    Or, <a href="{% url 'birds_taxonomical_url' %}">
-      browse taxonomically</a>
-  </div>
 </div>
