@@ -4,6 +4,8 @@ import re
 
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
@@ -124,7 +126,7 @@ class RadioProgram(Creation):
     air_date = models.DateField()
 
     # Duration in seconds
-    duration = models.PositiveIntegerField()
+    duration = models.PositiveIntegerField(blank=True, null=True)
 
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
@@ -136,16 +138,6 @@ class RadioProgram(Creation):
     def __unicode__(self):
         return 'Radio Program: ' + self.title
 
-    def clean(self, *args, **kwargs):
-        super(RadioProgram, self).clean(*args, **kwargs)
-
-        try:
-            program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
-            self.duration = int(math.ceil(MP3(program_path).info.length))
-
-        except Exception:
-            self.duration = 0
-
     def get_absolute_url(self):
         return reverse('creations.views.radio_program',
                        args=[self.id, slugify(self.title)])
@@ -155,6 +147,14 @@ class RadioProgram(Creation):
 
     def get_reruns(self):
         return self.radioprogramrerun_set
+
+    def calculate_duration(self):
+        try:
+            program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
+            return int(math.ceil(MP3(program_path).info.length))
+
+        except Exception:
+            return None
 
     def get_minutes_and_seconds(self):
         '''Get program duration as tuple (minutes, seconds).
@@ -186,6 +186,15 @@ class RadioProgram(Creation):
                 minutes, u'\N{PRIME}', seconds, u'\N{DOUBLE PRIME}')
         else:
             return 'N/A'
+
+
+@receiver(post_save, sender=RadioProgram)
+def add_radio_program_duration(sender, instance, **kwargs):
+    if not instance.duration:
+        post_save.disconnect(add_radio_program_duration, sender=sender)
+        instance.duration = instance.calculate_duration()
+        instance.save()
+        post_save.connect(add_radio_program_duration, sender=sender)
 
 
 class RadioProgramRerun(models.Model):
