@@ -84,7 +84,8 @@ class ForTheBirdsPodcastFeed(Feed):
         extras['itunes_email'] = 'chickadee@lauraerickson.com'
         # TODO: upload this image to new website
         extras['itunes_image_url'] = (
-            'http://www.lauraerickson.com/media/images/itunes_image.jpg')
+            'http://new.lauraerickson.com/media/images/'
+            'a588d7c7-cb24-487b-bf3e-b8e94b61fb72_laura_erickson_itunes.jpg')
         extras['itunes_explicit'] = 'clean'
         extras['itunes_categories'] = {
             'Science &amp; Medicine': ['Natural Sciences'],
