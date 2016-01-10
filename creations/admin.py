@@ -38,7 +38,7 @@ class BlogPostAdmin(admin.ModelAdmin):
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_published',)
+    list_display = ('title', 'slug', 'date_published',)
     filter_horizontal = ('species',)
     prepopulated_fields = {'slug': ('title',)}
 
@@ -110,7 +110,7 @@ class SpeakingProgramFileInline(admin.TabularInline):
 
 
 class SpeakingProgramAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ('title', 'slug',)
     filter_horizontal = ('species',)
     prepopulated_fields = {'slug': ('title',)}
 
@@ -123,7 +123,7 @@ class SpeakingProgramAdmin(admin.ModelAdmin):
 
 
 class WebPageAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ('title', 'slug',)
     filter_horizontal = ('species',)
     prepopulated_fields = {'slug': ('title',)}
 
