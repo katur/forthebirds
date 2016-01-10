@@ -49,7 +49,6 @@ INSTALLED_APPS = (
     'taggit',
 
     'website',
-    'utils',
     'birds',
     'creations',
     'waystohelp',
