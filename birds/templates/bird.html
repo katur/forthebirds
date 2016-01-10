@@ -49,18 +49,22 @@
     <h4>External Resources</h4>
 
     <ul>
+      {% if bird.has_cornell_all_about_birds_url %}
       <li>
-        <a href="{{ bird.get_all_about_birds_url }}">
+        <a href="{{ bird.get_cornell_all_about_birds_url }}">
           Cornell Lab's All About Birds</a>
       </li>
+      {% endif %}
 
+      {% if bird.has_abc_bird_of_the_week_url %}
       <li>
-        <a href="{{ bird.get_bird_of_the_week_url }}">
+        <a href="{{ bird.get_abc_bird_of_the_week_url }}">
           ABC's Bird of the Week</a>
       </li>
+      {% endif %}
 
       <li>
-        <a href="{{ bird.get_flickr_url }}">
+        <a href="{{ bird.get_flickr_search_url }}">
           Search Laura's Flickr photos</a>
       </li>
 
