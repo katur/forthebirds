@@ -5,7 +5,8 @@ from creations.feeds import ForTheBirdsPodcastFeed
 urlpatterns = patterns(
     'creations.views',
     url(r'^radio$', 'radio', name='radio_url'),
-    url(r'^radio/podcast$', ForTheBirdsPodcastFeed(), name='podcast_url'),
+    url(r'^radio/feed\.xml$', ForTheBirdsPodcastFeed(),
+        name='radio_podcast_feed_url'),
     url(r'^radio/calendar/current$', 'radio_current_calendar',
         name='radio_current_calendar_url'),
     url(r'^radio/calendar/(?P<year>\d\d\d\d)/(?P<month>\d+)$',
