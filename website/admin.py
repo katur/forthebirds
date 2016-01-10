@@ -23,6 +23,7 @@ class UploadedImageAdmin(AdminImageMixin, admin.ModelAdmin):
     list_display = ('get_thumbnail_img_tag', 'title', 'attribution',
                     'get_url')
     readonly_fields = ('get_url',)
+    search_fields = ('title', 'attribution',)
 
 
 admin.site.unregister(User)
