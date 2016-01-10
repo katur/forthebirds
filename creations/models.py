@@ -18,6 +18,7 @@ from utils.models import RealInstanceProvider
 
 
 class Creation(models.Model, RealInstanceProvider):
+    """Superclass for one of Laura's creations."""
     title = models.CharField(max_length=120)
     description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     species = models.ManyToManyField(Species, blank=True)
@@ -58,6 +59,7 @@ class Creation(models.Model, RealInstanceProvider):
 
 
 class Article(Creation):
+    """An article written by Laura."""
     published_by = models.CharField(max_length=100, blank=True)
     date_published = models.DateField(null=True, blank=True)
     url = models.URLField(blank=True)
@@ -76,6 +78,7 @@ class Article(Creation):
 
 
 class BlogPost(Creation):
+    """A blog post, written on another domain, written by Laura."""
     url = models.URLField()
 
     class Meta:
@@ -89,6 +92,7 @@ class BlogPost(Creation):
 
 
 class Book(Creation):
+    """A book written by Laura."""
     slug = models.SlugField(max_length=120, unique=True)
     published_by = models.CharField(max_length=100, blank=True)
     date_published = models.DateField(null=True, blank=True)
@@ -109,6 +113,7 @@ class Book(Creation):
 
 
 class ExternalProject(Creation):
+    """One of Laura's projects hosted on an external domain."""
     url = models.URLField()
 
     class Meta:
@@ -122,6 +127,7 @@ class ExternalProject(Creation):
 
 
 class RadioProgram(Creation):
+    """A For the Birds radio program."""
     file = models.FileField(upload_to='radio')
     air_date = models.DateField()
 
@@ -149,6 +155,9 @@ class RadioProgram(Creation):
         return self.radioprogramrerun_set
 
     def calculate_duration(self):
+        """
+        Caculate this program's duration by reading the mp3 file.
+        """
         try:
             program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
             return int(math.ceil(MP3(program_path).info.length))
@@ -157,10 +166,11 @@ class RadioProgram(Creation):
             return None
 
     def get_minutes_and_seconds(self):
-        '''Get program duration as tuple (minutes, seconds).
+        """
+        Get program duration as tuple (minutes, seconds).
 
         Minutes and seconds are both integers.
-        '''
+        """
         if self.duration:
             minutes = self.duration // 60
             seconds = self.duration % 60
@@ -171,7 +181,9 @@ class RadioProgram(Creation):
         return (minutes, seconds)
 
     def get_itunes_duration(self):
-        '''Get program duration as string in format min:sec'''
+        """
+        Get program duration as string in format min:sec
+        """
         if self.duration:
             minutes, seconds = self.get_minutes_and_seconds()
             return '{}:{:02d}'.format(minutes, seconds)
@@ -179,7 +191,9 @@ class RadioProgram(Creation):
             return '0:00'
 
     def get_printable_duration(self):
-        '''Get program duration as string in format min'sec"'''
+        """
+        Get program duration as string in format min'sec"
+        """
         if self.duration:
             minutes, seconds = self.get_minutes_and_seconds()
             return u'{0}{1}{2:02d}{3}'.format(
@@ -190,6 +204,16 @@ class RadioProgram(Creation):
 
 @receiver(post_save, sender=RadioProgram)
 def add_radio_program_duration(sender, instance, **kwargs):
+    """
+    Signal handler to set the program duration after it is saved.
+
+    Using a post_save signal because the file is not saved to its
+    eventual disk location until the end of the save method,
+    and the MP3 library takes a disk location arg for the file.
+
+    Need to disconnect this signal handler during function execution,
+    so that the post_save handler is not sent recursively.
+    """
     if not instance.duration:
         post_save.disconnect(add_radio_program_duration, sender=sender)
         instance.duration = instance.calculate_duration()
@@ -198,6 +222,7 @@ def add_radio_program_duration(sender, instance, **kwargs):
 
 
 class RadioProgramRerun(models.Model):
+    """A rerun airing of a RadioProgram."""
     program = models.ForeignKey(RadioProgram)
     air_date = models.DateField()
 
@@ -209,6 +234,7 @@ class RadioProgramRerun(models.Model):
 
 
 class ResearchCategory(models.Model):
+    """A category of Laura's private research."""
     name = models.CharField(max_length=100)
     notes = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     parent = models.ForeignKey('self', null=True, blank=True,
@@ -235,6 +261,7 @@ class ResearchCategory(models.Model):
 
 
 class Research(Creation):
+    """A typically-private research item of Laura's."""
     category = models.ForeignKey(ResearchCategory)
     is_public = models.BooleanField(default=False)
     date = models.DateField(null=True, blank=True)
@@ -261,6 +288,7 @@ class Research(Creation):
 
 
 class SpeakingProgram(Creation):
+    """A public speaking program."""
     slug = models.SlugField(max_length=120, unique=True)
 
     class Meta:
@@ -274,6 +302,7 @@ class SpeakingProgram(Creation):
 
 
 class SpeakingProgramFile(models.Model):
+    """A file (typically a Powerpoint) to use during a SpeakingProgram."""
     program = models.ForeignKey(SpeakingProgram)
     title = models.CharField(max_length=120)
     file = models.FileField(upload_to='speaking',
@@ -292,6 +321,7 @@ class SpeakingProgramFile(models.Model):
 
 
 class WebPage(Creation):
+    """A static web page of Laura's to be displayed within this website."""
     slug = models.SlugField(max_length=120, unique=True)
     date_published = models.DateField(null=True, blank=True)
     content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
