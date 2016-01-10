@@ -61,6 +61,11 @@
       </li>
       {% endif %}
 
+      <li>
+        <a href="{{ bird.get_flickr_url }}">
+          Search Laura's Flickr photos</a>
+      </li>
+
       {% for link in bird.links %}
       <li>
         <a href="{{ link.url }}">{{ link.title }}</a>

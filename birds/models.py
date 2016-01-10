@@ -1,3 +1,5 @@
+import urllib
+
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -66,6 +68,15 @@ class Species(models.Model):
         url_name = url_name.replace("'", '')
         return ('https://www.allaboutbirds.org/guide/{}'
                 .format(url_name))
+
+    def get_flickr_url(self):
+        url = 'https://www.flickr.com/search?'
+        get_params = {
+            'user_id': '48014585@N00',
+            'sort': 'date-taken-desc',
+            'text': self.common_name,
+        }
+        return url + urllib.urlencode(get_params)
 
     def get_nacc_statuses(self):
         statuses = []
