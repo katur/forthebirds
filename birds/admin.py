@@ -17,9 +17,8 @@ add_to_minnesota_species.short_description = ('Add this bird to MN list if '
 
 
 class SpeciesAdmin(admin.ModelAdmin):
-    list_display = ('common_name', 'name', 'bird_of_the_week_name',
-                    'main_photo_url', 'absolute_position', 'is_visible',
-                    'is_in_minnesota_list',)
+    list_display = ('common_name', 'name', 'main_photo_url',
+                    'absolute_position', 'is_visible', 'is_in_minnesota_list',)
 
     list_filter = ('is_visible', 'nacc_is_accidental', 'nacc_is_hawaiian',
                    'nacc_is_introduced', 'nacc_is_nonbreeding',
@@ -40,8 +39,7 @@ class SpeciesAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('is_visible', 'main_photo_url',
-                       'blurb', 'bird_of_the_week_name',),
+            'fields': ('is_visible', 'main_photo_url', 'blurb',),
         }),
         ('From AOU checklist', {
             'fields': aou_fields,

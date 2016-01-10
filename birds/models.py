@@ -40,7 +40,6 @@ class Species(models.Model):
     is_visible = models.BooleanField('Visible on website', default=True)
     blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     main_photo_url = models.URLField(blank=True)
-    bird_of_the_week_name = models.CharField(max_length=50, blank=True)
     nacc_is_accidental = models.NullBooleanField()
     nacc_is_hawaiian = models.NullBooleanField()
     nacc_is_introduced = models.NullBooleanField()
@@ -60,8 +59,10 @@ class Species(models.Model):
         return reverse('birds.views.bird', args=[self.id])
 
     def get_bird_of_the_week_url(self):
+        url_name = self.common_name.replace(' ', '-')
+        url_name = url_name.replace("'", '')
         return ('http://abcbirds.org/bird/{}/'
-                .format(self.bird_of_the_week_name))
+                .format(url_name))
 
     def get_all_about_birds_url(self):
         url_name = self.common_name.replace(' ', '_')

@@ -54,12 +54,10 @@
           Cornell Lab's All About Birds</a>
       </li>
 
-      {% if bird.bird_of_the_week_name %}
       <li>
         <a href="{{ bird.get_bird_of_the_week_url }}">
           ABC's Bird of the Week</a>
       </li>
-      {% endif %}
 
       <li>
         <a href="{{ bird.get_flickr_url }}">
