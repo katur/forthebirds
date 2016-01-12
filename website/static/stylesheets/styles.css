@@ -146,6 +146,7 @@ i, em {
   list-style-position: inside; }
 .markdown img, .markdown .image-caption {
   display: block;
+  width: 100%;
   max-width: 700px;
   height: auto;
   margin-left: auto;
