@@ -25,7 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # seem to be the intention of the Sites framework.
 #
 from local_settings import (DEBUG, SECRET_KEY, DATABASES,
-                            SITE_DOMAIN, STATIC_ROOT, MEDIA_ROOT,
+                            SITE_DOMAIN, OLD_SITE_DOMAIN, REDIRECTS,
+                            STATIC_ROOT, MEDIA_ROOT,
                             PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_SERVER)
 
 TEMPLATE_DEBUG = DEBUG

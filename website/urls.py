@@ -6,13 +6,3 @@ urlpatterns = patterns(
     url(r'^$', 'home', name='home_url'),
     url(r'^about-laura/$', 'about', name='about_url'),
 )
-
-urlpatterns += patterns(
-    '',
-    url(
-        r'^login/$', 'django.contrib.auth.views.login',
-        {'template_name': 'login.html'}, name='login_url'),
-    url(
-        r'^logout/$', 'django.contrib.auth.views.logout',
-        {'next_page': '/'}, name='logout_url'),
-)
