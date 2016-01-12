@@ -59,7 +59,7 @@ def minnesota_birds(request):
     return render(request, 'minnesota_birds.html', context)
 
 
-def bird(request, id):
+def bird(request, slug):
     def organize_creations(creations):
         mindate = datetime.date(datetime.MINYEAR, 1, 1)
 
@@ -73,7 +73,7 @@ def bird(request, id):
         creations = sorted(creations, key=get_name)
         return creations
 
-    bird = get_object_or_404(Species, id=id)
+    bird = get_object_or_404(Species, slug=slug)
 
     bird.is_minnesotan = hasattr(bird, 'minnesotaspecies')
 

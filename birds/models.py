@@ -60,7 +60,7 @@ class Species(models.Model):
         return self.common_name + ' (' + self.scientific_name + ')'
 
     def get_absolute_url(self):
-        return reverse('birds.views.bird', args=[self.id])
+        return reverse('birds.views.bird', args=[self.slug])
 
     def get_abc_bird_of_the_week_url(self):
         url_name = self.common_name.replace(' ', '-')
