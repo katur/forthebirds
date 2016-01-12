@@ -25,5 +25,8 @@ initializeImageCaptions = ->
 
   for image in markdownImages
     altText = $(image).attr("alt")
-    $(image).wrap('<div class="image-wrapper">')
-    $(image).after("""<span class="image-caption">#{altText}</span>""")
+    if "BANNER" in altText
+      $(image).wrap('<div class="image-wrapper banner">')
+    else
+      $(image).wrap('<div class="image-wrapper">')
+      $(image).after("""<span class="image-caption">#{altText}</span>""")
