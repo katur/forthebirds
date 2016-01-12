@@ -151,6 +151,8 @@ i, em {
   height: auto;
   margin-left: auto;
   margin-right: auto; }
+.markdown blockquote {
+  padding-left: 40px; }
 
 html, body {
   min-width: 100%;
