@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django import forms
 
 from creations.models import (Article, BlogPost, Book, ExternalProject,
                               RadioProgram, RadioProgramRerun,
@@ -122,10 +123,19 @@ class SpeakingProgramAdmin(admin.ModelAdmin):
     )
 
 
+class WebPageAdminForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(WebPageAdminForm, self).__init__(*args, **kwargs)
+        self.fields['content'].widget = admin.widgets.AdminTextareaWidget(
+            attrs={'cols': 100, 'rows': 100, 'style': 'font-size: 14px;'})
+
+
 class WebPageAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug',)
     filter_horizontal = ('species',)
     prepopulated_fields = {'slug': ('title',)}
+
+    form = WebPageAdminForm
 
     fieldsets = (
         BASIC_FIELDSET_WITH_SLUG,
