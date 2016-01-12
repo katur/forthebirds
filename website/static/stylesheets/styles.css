@@ -594,6 +594,9 @@ html, body {
   #webpage .markdown .image-wrapper .image-caption {
     display: table-caption;
     caption-side: bottom; }
+  #webpage .markdown .image-wrapper.banner img {
+    max-width: 100%;
+    height: auto; }
 
 #writing #books {
   width: 105%;

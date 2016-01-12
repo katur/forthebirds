@@ -1,6 +1,5 @@
 (function() {
-  var initializeImageCaptions, initializeProgramInfoButtons,
-    indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+  var initializeImageCaptions, initializeProgramInfoButtons;
 
   $(document).ready(function() {
     if ($("body").attr("id") === "radio") {
@@ -32,7 +31,8 @@
     for (i = 0, len = markdownImages.length; i < len; i++) {
       image = markdownImages[i];
       altText = $(image).attr("alt");
-      if ((indexOf.call(altText, "BANNER") >= 0)) {
+      console.log(altText);
+      if (altText.indexOf("BANNER" !== -1)) {
         results.push($(image).wrap('<div class="image-wrapper banner">'));
       } else {
         $(image).wrap('<div class="image-wrapper">');
