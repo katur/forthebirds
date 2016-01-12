@@ -31,5 +31,5 @@ urlpatterns += [
         {'next_page': '/'}, name='logout_url'),
 
     # Catchall to try old website before returning 404
-    url(r'^(?P<path>.+)$', 'website.views.try_old_website'),
+    url(r'^(?P<path>.+)/$', 'website.views.try_old_website'),
 ]
