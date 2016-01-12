@@ -21,3 +21,12 @@ def http_response_url(url):
         return r.url
     else:
         return None
+
+
+def http_response_ok(url):
+    try:
+        r = urllib2.urlopen(url)
+    except urllib2.URLError:
+        return False
+
+    return r.code == 200
