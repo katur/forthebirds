@@ -37,7 +37,7 @@ class Species(models.Model):
     parent = models.ForeignKey(TaxonomicGroup)
     scientific_name = models.CharField(max_length=50, unique=True)
     common_name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50, unique=False, blank=True)
+    slug = models.SlugField(max_length=50, unique=True)
     french_name = models.CharField(max_length=50)
     is_visible = models.BooleanField('Visible on website', default=True)
     has_abc_bird_of_the_week_url = models.BooleanField(default=False)
