@@ -32,7 +32,7 @@
     for (i = 0, len = markdownImages.length; i < len; i++) {
       image = markdownImages[i];
       altText = $(image).attr("alt");
-      if (indexOf.call(altText, "BANNER") >= 0) {
+      if ((indexOf.call(altText, "BANNER") >= 0)) {
         results.push($(image).wrap('<div class="image-wrapper banner">'));
       } else {
         $(image).wrap('<div class="image-wrapper">');
