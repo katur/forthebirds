@@ -23,7 +23,7 @@ def birds(request):
         search_birds = None
 
     taxonomical_birds = Species.objects.raw(
-        'SELECT species.id, species.name, species.common_name, '
+        'SELECT species.id, species.scientific_name, species.common_name, '
         'G.name AS genus_name, '
         'S.name AS subfamily_name, '
         'S.common_name AS subfamily_common, '

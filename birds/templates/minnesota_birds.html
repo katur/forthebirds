@@ -16,8 +16,8 @@
   {% for bird in birds %}
   <li>
     <a href="{{ bird.species.get_absolute_url }}">
-      {{ bird.species.common_name }}</a>
-    <i>{{ bird.species.name}}</i>
+      {{ bird.species.common_name }}
+      (<i>{{ bird.species.scientific_name}}</i>)</a>
   </li>
   {% endfor %}
 </ul>

@@ -17,7 +17,7 @@ class BirdSearchForm(forms.Form):
 
         for b in all_birds:
             for term in terms:
-                if (term.lower() not in b.name.lower() and
+                if (term.lower() not in b.scientific_name.lower() and
                         term.lower() not in b.common_name.lower()):
                     break
             else:

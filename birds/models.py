@@ -35,7 +35,7 @@ class Species(models.Model):
     absolute_position = models.PositiveSmallIntegerField(
         'Taxonomic position', null=True, blank=True)
     parent = models.ForeignKey(TaxonomicGroup)
-    name = models.CharField(max_length=50, unique=True)
+    scientific_name = models.CharField(max_length=50, unique=True)
     common_name = models.CharField(max_length=50)
     french_name = models.CharField(max_length=50)
     is_visible = models.BooleanField('Visible on website', default=True)
@@ -56,7 +56,7 @@ class Species(models.Model):
         verbose_name_plural = 'bird species'
 
     def __unicode__(self):
-        return self.common_name + ' (' + self.name + ')'
+        return self.common_name + ' (' + self.scientific_name + ')'
 
     def get_absolute_url(self):
         return reverse('birds.views.bird', args=[self.id])
@@ -117,7 +117,7 @@ class Species(models.Model):
 
     def important_field_differs(self, other):
         return (
-            self.name != other.name or
+            self.scientific_name != other.scientific_name or
             self.parent != other.parent or
             self.common_name != other.common_name or
             self.nacc_is_accidental != other.nacc_is_accidental or
@@ -129,7 +129,7 @@ class Species(models.Model):
         )
 
     def update_aou_fields(self, other):
-        self.name = other.name
+        self.scientific_name = other.scientific_name
         self.parent = other.parent
         self.common_name = other.common_name
         self.french_name = other.french_name

@@ -17,19 +17,20 @@ add_to_minnesota_species.short_description = ('Add this bird to MN list if '
 
 
 class SpeciesAdmin(admin.ModelAdmin):
-    list_display = ('common_name', 'name', 'main_photo_url',
-                    'absolute_position', 'is_visible', 'is_in_minnesota_list',)
+    list_display = ('common_name', 'scientific_name',
+                    'main_photo_url', 'absolute_position',
+                    'is_visible', 'is_in_minnesota_list',)
 
     list_filter = ('is_visible', 'nacc_is_accidental', 'nacc_is_hawaiian',
                    'nacc_is_introduced', 'nacc_is_nonbreeding',
                    'nacc_is_extinct', 'nacc_is_misplaced',)
 
-    search_fields = ('name', 'common_name',)
+    search_fields = ('scientific_name', 'common_name',)
 
     actions = [add_to_minnesota_species]
 
-    aou_fields = ('common_name', 'name', 'parent',
-                  'id', 'absolute_position',
+    aou_fields = ('common_name', 'scientific_name',
+                  'parent', 'id', 'absolute_position',
                   'french_name', 'nacc_is_accidental',
                   'nacc_is_hawaiian', 'nacc_is_introduced',
                   'nacc_is_nonbreeding', 'nacc_is_extinct',
@@ -61,7 +62,7 @@ class MinnesotaSpeciesAdmin(admin.ModelAdmin):
 
     list_filter = ('include_in_book', 'mou_status', 'mou_breeding_status',)
 
-    search_fields = ('species__common_name', 'species__name',)
+    search_fields = ('species__common_name', 'species__scientific_name',)
 
     mou_fields = ('mou_status', 'mou_breeding_status', 'mou_annotation',)
 
