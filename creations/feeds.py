@@ -82,7 +82,6 @@ class ForTheBirdsPodcastFeed(Feed):
         extras = {}
         extras['itunes_name'] = 'Laura Erickson'
         extras['itunes_email'] = 'chickadee@lauraerickson.com'
-        # TODO: upload this image to new website
         extras['itunes_image_url'] = (
             'http://new.lauraerickson.com/media/images/'
             'a588d7c7-cb24-487b-bf3e-b8e94b61fb72_laura_erickson_itunes.jpg')

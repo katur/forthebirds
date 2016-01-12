@@ -36,7 +36,6 @@ def try_old_website(request, path):
     url = OLD_SITE_DOMAIN + '/' + path
 
     if http_response_ok(url):
-        # TODO: change to HttpResponsePermanentRedirect
         return HttpResponseRedirect(url)
     else:
         raise Http404
