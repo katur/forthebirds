@@ -20,6 +20,8 @@ for old, new in PERMANENT_REDIRECTS:
 
 urlpatterns += [
     url(r'^', include('website.urls')),
+    url(r'^(?P<path>bird\/Species\/.+)$', 'website.views.try_old_website'),
+    url(r'^(?P<path>bird\/Places\/.+)$', 'website.views.try_old_website'),
     url(r'^', include('birds.urls')),
     url(r'^', include('creations.urls')),
     url(r'^', include('waystohelp.urls')),
