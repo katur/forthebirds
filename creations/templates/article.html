@@ -27,7 +27,7 @@
 
   {% if article.file %}
   <span class="field">
-    <a href="{{ article.file }}">
+    <a href="{{ MEDIA_URL }}{{ article.file }}">
       Download article</a>
   </span>
   {% endif %}
