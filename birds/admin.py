@@ -17,7 +17,7 @@ add_to_minnesota_species.short_description = ('Add this bird to MN list if '
 
 
 class SpeciesAdmin(admin.ModelAdmin):
-    list_display = ('common_name', 'scientific_name',
+    list_display = ('common_name', 'slug', 'scientific_name',
                     'main_photo_url', 'absolute_position',
                     'is_visible', 'is_in_minnesota_list',)
 
@@ -29,7 +29,7 @@ class SpeciesAdmin(admin.ModelAdmin):
 
     actions = [add_to_minnesota_species]
 
-    aou_fields = ('common_name', 'scientific_name',
+    aou_fields = ('common_name', 'slug', 'scientific_name',
                   'parent', 'id', 'absolute_position',
                   'french_name', 'nacc_is_accidental',
                   'nacc_is_hawaiian', 'nacc_is_introduced',
