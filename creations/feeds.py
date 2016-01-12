@@ -25,6 +25,8 @@ class iTunesFeed(Rss201rev2Feed):
     def add_root_elements(self, handler):
         super(iTunesFeed, self).add_root_elements(handler)
 
+        handler.addQuickElement('itunes:new-feed-url',
+                                self.feed['itunes_new_feed_url'])
         handler.addQuickElement('itunes:image', '',
                                 {'href': self.feed['itunes_image_url']})
         handler.addQuickElement('itunes:summary',
@@ -82,9 +84,10 @@ class ForTheBirdsPodcastFeed(Feed):
         extras = {}
         extras['itunes_name'] = 'Laura Erickson'
         extras['itunes_email'] = 'chickadee@lauraerickson.com'
-        extras['itunes_image_url'] = (
-            'http://new.lauraerickson.com/media/images/'
-            'a588d7c7-cb24-487b-bf3e-b8e94b61fb72_laura_erickson_itunes.jpg')
+        extras['itunes_new_feed_url'] = SITE_DOMAIN + '/radio/feed.xml'
+        extras['itunes_image_url'] = SITE_DOMAIN + (
+            '/media/images/a588d7c7-cb24-487b-bf3e-b8e94b61fb72_'
+            'laura_erickson_itunes.jpg')
         extras['itunes_explicit'] = 'clean'
         extras['itunes_categories'] = {
             'Science &amp; Medicine': ['Natural Sciences'],
