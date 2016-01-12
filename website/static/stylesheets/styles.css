@@ -146,9 +146,8 @@ i, em {
   list-style-position: inside; }
 .markdown img, .markdown .image-caption {
   display: block;
-  width: 100%;
-  max-height: 700px;
   max-width: 700px;
+  height: auto;
   margin-left: auto;
   margin-right: auto; }
 
@@ -585,9 +584,16 @@ html, body {
   width: 100%; }
 #webpage #webpage-content {
   max-width: 750px; }
-#webpage .markdown img, #webpage .markdown .image-caption {
-  max-height: 400px;
-  max-width: 400px; }
+#webpage .markdown .image-wrapper {
+  display: table;
+  margin-left: auto;
+  margin-right: auto; }
+  #webpage .markdown .image-wrapper img {
+    max-width: 500px;
+    height: auto; }
+  #webpage .markdown .image-wrapper .image-caption {
+    display: table-caption;
+    caption-side: bottom; }
 
 #writing #books {
   width: 105%;
