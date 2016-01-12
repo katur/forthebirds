@@ -2,6 +2,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.views.generic import RedirectView
+
 from forthebirds.settings import PERMANENT_REDIRECTS
 
 
