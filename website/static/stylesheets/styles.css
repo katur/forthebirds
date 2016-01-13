@@ -632,12 +632,12 @@ html, body {
   #writing #books .book {
     float: left;
     margin: 0 2.5% 50px 2.5%;
-    width: 20%; }
-    #writing #books .book img, #writing #books .book ul, #writing #books .book div {
+    width: 20%;
+    line-height: 130%; }
+    #writing #books .book img, #writing #books .book span {
       float: left;
       width: 100%;
-      margin-bottom: 12px;
-      line-height: 130%; }
+      margin-bottom: 12px; }
     #writing #books .book .title {
       font-style: italic;
       font-weight: bold; }

@@ -25,29 +25,23 @@
     {% for book in books %}
     <div class="book">
       {% if book.cover_photo %}
-      <img src="{{ MEDIA_URL }}{{ book.cover_photo.image }}" />
+      <a href="{{ book.get_absolute_url}}">
+        <img src="{{ MEDIA_URL }}{{ book.cover_photo.image }}" />
+      </a>
       {% endif %}
 
-      <div class="info">
-        <div class="title">{{ book.title }}</div>
-        <div class="date">{{ book.date_published|date:'Y' }}</div>
+      <span class="title">{{ book.title }}</span>
+      <span class="date">{{ book.date_published|date:'Y' }}</span>
 
-        {% if book.published_by %}
-        <div class="published_by">
-          Published by {{ book.published_by }}
-        </div>
-        {% endif %}
+      {% if book.published_by %}
+      <span class="published_by">
+        Published by {{ book.published_by }}
+      </span>
+      {% endif %}
 
-        <div class="description">{{ book.description|markdown }}</div>
+      <span class="description">{{ book.description|markdown }}</span>
 
-        {% if book.purchase_url %}
-        <div><a class="purchase-link" href="{{ book.purchase_url }}">
-            click to purchase</a></div>
-        {% endif %}
-
-        <a href="{{ book.get_absolute_url }}">More info</a>
-      </div>
-
+      <a href="{{ book.get_absolute_url }}">More info</a>
     </div>
     {% endfor %}
   </div>

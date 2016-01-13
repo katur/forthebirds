@@ -21,15 +21,15 @@
     <span class="field">{{ book.date_published|date:"Y" }}</span>
 
     {% if book.published_by %}
-      <span class="field">Published by {{ book.published_by }}</span>
+    <span class="field">Published by {{ book.published_by }}</span>
     {% endif %}
 
     {% if book.isbn_10 %}
-      <span class="field">ISBN-10: {{ book.isbn_10 }}</span>
+    <span class="field">ISBN-10: {{ book.isbn_10 }}</span>
     {% endif %}
 
     {% if book.isbn_13 %}
-      <span class="field">ISBN-13: {{ book.isbn_13 }}</span>
+    <span class="field">ISBN-13: {{ book.isbn_13 }}</span>
     {% endif %}
 
     <span class="field">{{ book.description|markdown }}</span>
@@ -37,7 +37,7 @@
     {% if book.purchase_url %}
     <span class="field">
       <a class="purchase-link" href="{{ book.purchase_url }}">
-        click to purchase</a>
+        Click here to purchase</a>
     </span>
     {% endif %}
   </div>
