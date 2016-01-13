@@ -15,8 +15,8 @@ def birds(request):
             search_birds = form.cleaned_data['search_birds']
 
             if len(search_birds) == 1:
-                bird_id = search_birds[0].id
-                return redirect(bird, bird_id)
+                this_bird = search_birds[0]
+                return redirect(bird, this_bird.slug)
 
     else:
         form = BirdSearchForm()
