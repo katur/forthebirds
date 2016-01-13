@@ -11,6 +11,7 @@ initializeProgramInfoButtons = ->
   programIntros.click (e) ->
     e.preventDefault()
 
+    $(this).toggleClass("active")
     program = $(this).closest(".program")
     programMore = program.find(".program-more")
 

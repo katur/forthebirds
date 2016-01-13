@@ -14,6 +14,7 @@
     return programIntros.click(function(e) {
       var program, programMore;
       e.preventDefault();
+      $(this).toggleClass("active");
       program = $(this).closest(".program");
       programMore = program.find(".program-more");
       if (programMore.is(":visible")) {

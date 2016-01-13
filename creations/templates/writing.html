@@ -63,6 +63,7 @@
       <li>
         <a href="{{ article.get_absolute_url }}">
           {{ article.title }}</a>
+
         {% if article.date_published %}
         <span class="year">
           {{ article.date_published|date:'M Y' }}
