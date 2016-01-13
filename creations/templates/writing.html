@@ -30,7 +30,7 @@
 
       <div class="info">
         <div class="title">{{ book.title }}</div>
-        <div class="date">{{ book.date_published|date:"Y" }}</div>
+        <div class="date">{{ book.date_published|date:'Y' }}</div>
 
         {% if book.published_by %}
         <div class="published_by">
@@ -71,7 +71,7 @@
           {{ article.title }}</a>
         {% if article.date_published %}
         <span class="year">
-          {{ article.date_published|date:"Y" }}
+          {{ article.date_published|date:'M Y' }}
         </span>
         {% endif %}
       </li>
