@@ -1,4 +1,18 @@
 #writing
+  #articles
+    ul
+      @include bulleted-list
+      line-height: 175%
+
+      .publisher
+        margin-top: $whitespace
+
+        &:first-child
+          margin-top: None
+
+      .year
+        @include following-text
+
   #books
     width: 105%
     padding: 0 2.5%

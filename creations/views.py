@@ -224,7 +224,8 @@ def webpage(request, slug):
 
 def writing(request):
     books = Book.objects.all()
-    articles = Article.objects.all()
+    articles = Article.objects.all().order_by('published_by',
+                                              '-date_published')
     context = {
         'books': books,
         'articles': articles,

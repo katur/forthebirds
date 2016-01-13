@@ -16,7 +16,7 @@
     Laura's Birding Blog</a>!
 </div>
 
-<div class="page-section">
+<div id="books-section" class="page-section">
   <h3 class="page-subtitle">
     Books
   </h3>
@@ -53,23 +53,31 @@
   </div>
 </div>
 
-<div class="page-section">
+<div id="articles" class="page-section">
   <h3 class="page-subtitle">
     Articles
   </h3>
 
   <ul>
-  {% for article in articles %}
-    <li>
-      <a href="{{ article.get_absolute_url }}">
-        {{ article.title }}</a>{% if article.date_published %},
-        {{ article.date_published }}{% endif %}
+    {% regroup articles by published_by as publishers %}
 
-      {% if project.description %}
-        <br>&nbsp;&nbsp;{{ project.description }}
-      {% endif %}
-    </li>
-  {% endfor %}
+    {% for publisher in publishers %}
+    <li class="publisher">{{ publisher.grouper }}</li>
+
+    <ul>
+      {% for article in publisher.list %}
+      <li>
+        <a href="{{ article.get_absolute_url }}">
+          {{ article.title }}</a>
+        {% if article.date_published %}
+        <span class="year">
+          {{ article.date_published|date:"Y" }}
+        </span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
   </ul>
 </div>
 

@@ -73,8 +73,11 @@ class Article(Creation):
         return 'Article: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.article',
-                       args=[self.id, slugify(self.title)])
+        if self.url:
+            return self.url
+        else:
+            return reverse('creations.views.article',
+                           args=[self.id, slugify(self.title)])
 
 
 class BlogPost(Creation):
