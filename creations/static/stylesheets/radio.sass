@@ -42,6 +42,7 @@
 
       .program-intro
         @include box-sizing(border-box)
+        @include dark-links
         display: block
         width: 100%
         height: 100%
@@ -59,12 +60,6 @@
           font-size: $base-font-size - 2
           color: $chickadee-dark-gray
 
-        a
-          color: $dark-link-color
-
-          &:hover
-            color: $dark-link-color-active
-
       .program-more
         @include clearfix
         display: none
@@ -79,12 +74,9 @@
             margin-top: $whitespace / 2
             line-height: 15px
 
-          &.transcript
+          &.permalink, &.transcript
             a
-              color: $dark-link-color
-
-              &:hover
-                color: $dark-link-color-active
+              @include dark-links
 
           &.tags
             max-width: 600px

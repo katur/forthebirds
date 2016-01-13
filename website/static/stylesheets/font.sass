@@ -22,6 +22,12 @@ $sans-font-family: 'Dosis', sans-serif
     font-weight: 500
     letter-spacing: 1px
 
+@mixin dark-links()
+  color: $dark-link-color
+
+  &:hover, &.active
+    color: $dark-link-color-active
+
 body
   font-family: $serif-font-family
   font-size: $base-font-size

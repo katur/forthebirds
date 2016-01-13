@@ -63,9 +63,8 @@
       </div>
       {% endif %}
 
-      <div>
-        <a href="{{ program.get_absolute_url }}">
-          Permalink</a>
+      <div class="permalink">
+        <a href="{{ program.get_absolute_url }}">Permalink</a>
       </div>
 
       {% include 'tags.html' with item=program %}
