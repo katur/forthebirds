@@ -26,19 +26,22 @@
   };
 
   initializeImageCaptions = function() {
-    var altText, i, image, len, markdownImages, results;
+    var altText, i, image, len, markdownImages, results, title;
     markdownImages = $(".markdown img");
     results = [];
     for (i = 0, len = markdownImages.length; i < len; i++) {
       image = markdownImages[i];
       altText = $(image).attr("alt");
-      console.log(altText);
-      console.log(altText.indexOf("BANNER"));
       if ((altText.indexOf("BANNER")) !== -1) {
-        results.push($(image).wrap('<div class="image-wrapper banner">'));
+        $(image).wrap('<div class="image-wrapper banner">');
       } else {
         $(image).wrap('<div class="image-wrapper">');
-        results.push($(image).after("<span class=\"image-caption\">" + altText + "</span>"));
+      }
+      title = $(image).attr("title");
+      if (title) {
+        results.push($(image).after("<span class=\"image-caption\">" + title + "</span>"));
+      } else {
+        results.push(void 0);
       }
     }
     return results;
