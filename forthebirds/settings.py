@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 #
 from local_settings import (DEBUG, SECRET_KEY, DATABASES,
                             SITE_DOMAIN, OLD_SITE_DOMAIN,
-                            PERMANENT_REDIRECTS,
+                            ITUNES_SUBSCRIBE_LINK, PERMANENT_REDIRECTS,
                             STATIC_ROOT, MEDIA_ROOT,
                             PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_SERVER)
 

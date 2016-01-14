@@ -441,6 +441,20 @@ html, body {
   #birds-taxonomical .plus-sign.minus::before {
     display: none; }
 
+.itunes-badge-large {
+  display: inline-block;
+  overflow: hidden;
+  background: url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;
+  width: 110px;
+  height: 40px; }
+
+.itunes-badge-small {
+  display: inline-block;
+  overflow: hidden;
+  background: url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-sm.svg) no-repeat;
+  width: 80px;
+  height: 15px; }
+
 #radio #links {
   width: 100%;
   float: left;
@@ -448,6 +462,9 @@ html, body {
   #radio #links a {
     display: inline-block;
     margin-right: 18px; }
+    #radio #links a#itunes-link {
+      float: right;
+      margin-right: 0px; }
 #radio #year-list {
   float: left;
   width: 10%;

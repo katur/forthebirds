@@ -12,6 +12,7 @@ from creations.models import (Article, Book, ExternalProject,
                               ResearchCategory, Research,
                               SpeakingProgram, SpeakingProgramFile,
                               WebPage)
+from forthebirds.settings import ITUNES_SUBSCRIBE_LINK
 from website.models import User
 
 
@@ -54,6 +55,7 @@ def radio(request):
     programs = RadioProgram.objects.filter(air_date__year=year)
 
     context = {
+        'ITUNES_SUBSCRIBE_LINK': ITUNES_SUBSCRIBE_LINK,
         'year': year,
         'programs': programs,
         'all_years': all_years,
