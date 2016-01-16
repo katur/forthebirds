@@ -137,7 +137,7 @@ i, em {
 .markdown p, .markdown ul, .markdown ol, .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown .image-wrapper {
   margin-bottom: 24px; }
   .markdown p:last-child, .markdown ul:last-child, .markdown ol:last-child, .markdown h1:last-child, .markdown h2:last-child, .markdown h3:last-child, .markdown h4:last-child, .markdown .image-wrapper:last-child {
-    margin-bottom: none; }
+    margin-bottom: 0px; }
 .markdown ul {
   list-style-type: disc;
   list-style-position: inside; }
