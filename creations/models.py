@@ -1,3 +1,4 @@
+import binascii
 import math
 from mutagen.mp3 import MP3
 import re
@@ -156,6 +157,20 @@ class RadioProgram(Creation):
 
     def get_reruns(self):
         return self.radioprogramrerun_set
+
+    def get_artwork(self):
+        """
+        Get artwork embedded in this program's mp3 file.
+        Returns the artwork as a line of ASCII characters in base64 coding.
+        """
+        try:
+            program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
+            artwork = MP3(program_path).tags['APIC:'].data
+            base64 = binascii.b2a_base64(artwork)
+            return base64
+
+        except Exception:
+            return None
 
     def calculate_duration(self):
         """
