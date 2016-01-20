@@ -12,16 +12,29 @@
     var programIntros;
     programIntros = $(".program-intro");
     return programIntros.click(function(e) {
-      var program, programMore;
+      var program, programArtwork, programMore, programPk;
       e.preventDefault();
       $(this).toggleClass("active");
       program = $(this).closest(".program");
+      programPk = program.attr("data-program-pk");
+      programArtwork = program.find(".artwork");
       programMore = program.find(".program-more");
       if (programMore.is(":visible")) {
-        return programMore.hide();
+        programMore.hide();
       } else {
-        return programMore.show();
+        programMore.show();
       }
+      return $.ajax("/radio/program-artwork/" + programPk + "/", {
+        type: 'GET',
+        dataType: "json",
+        success: function(data, textStatus, jqXHR) {
+          var src;
+          if (data.artwork) {
+            src = "data:image;base64," + data.artwork;
+            return programArtwork.html("<img src=\"" + src + "\"/>");
+          }
+        }
+      });
     });
   };
 

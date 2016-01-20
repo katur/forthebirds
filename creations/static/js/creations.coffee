@@ -13,12 +13,22 @@ initializeProgramInfoButtons = ->
 
     $(this).toggleClass("active")
     program = $(this).closest(".program")
+    programPk = program.attr("data-program-pk")
+    programArtwork = program.find(".artwork")
     programMore = program.find(".program-more")
 
     if (programMore.is(":visible"))
       programMore.hide()
     else
       programMore.show()
+
+    $.ajax "/radio/program-artwork/#{programPk}/",
+      type: 'GET'
+      dataType: "json"
+      success: (data, textStatus, jqXHR) ->
+        if data.artwork
+          src = "data:image;base64,#{data.artwork}"
+          programArtwork.html("""<img src="#{src}"/>""")
 
 
 initializeImageCaptions = ->

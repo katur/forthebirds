@@ -83,23 +83,48 @@
       .program-more
         @include clearfix
         display: none
-        padding: 0 0 $whitespace $whitespace
+        padding: $whitespace
+        padding-top: $whitespace / 2
 
-        div
+        .column
+          font-size: $base-font-size - 1
+
+          a
+            @include dark-links
+
+          span
+            width: 100%
+            float: left
+            margin-bottom: $whitespace / 3
+
+            &.audio
+              line-height: 15px
+
+            &.artwork
+              img
+                width: 100%
+                max-width: 200px
+                height: auto
+                float: right
+
+        .tags
           width: 100%
           float: left
-          margin-bottom: $whitespace / 3
 
-          &.audio
-            margin-top: $whitespace / 2
-            line-height: 15px
 
-          &.permalink, &.transcript
-            a
-              @include dark-links
+#radio-program
+  .column
+    span
+      float: left
+      clear: both
+      margin-bottom: $whitespace / 2
 
-          &.tags
-            max-width: 600px
+      &.artwork
+        img
+          width: 100%
+          max-width: 600px
+          height: auto
+          float: right
 
 
 #radio, #radio-program
@@ -107,6 +132,9 @@
     img
       width: 30px
       height: 30px
+
+  audio
+    max-width: 100%
 
 
 #radio-calendar

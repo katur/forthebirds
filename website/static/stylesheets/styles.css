@@ -517,28 +517,48 @@ html, body {
         color: #777e86; }
     #radio #programs .program .program-more {
       display: none;
-      padding: 0 0 36px 36px; }
+      padding: 36px;
+      padding-top: 18px; }
       #radio #programs .program .program-more:after {
         content: "";
         display: table;
         clear: both; }
-      #radio #programs .program .program-more div {
-        width: 100%;
-        float: left;
-        margin-bottom: 12px; }
-        #radio #programs .program .program-more div.audio {
-          margin-top: 18px;
-          line-height: 15px; }
-        #radio #programs .program .program-more div.permalink a, #radio #programs .program .program-more div.transcript a {
+      #radio #programs .program .program-more .column {
+        font-size: 16px; }
+        #radio #programs .program .program-more .column a {
           color: #d36760; }
-          #radio #programs .program .program-more div.permalink a:hover, #radio #programs .program .program-more div.permalink a.active, #radio #programs .program .program-more div.transcript a:hover, #radio #programs .program .program-more div.transcript a.active {
+          #radio #programs .program .program-more .column a:hover, #radio #programs .program .program-more .column a.active {
             color: #cd944c; }
-        #radio #programs .program .program-more div.tags {
-          max-width: 600px; }
+        #radio #programs .program .program-more .column span {
+          width: 100%;
+          float: left;
+          margin-bottom: 12px; }
+          #radio #programs .program .program-more .column span.audio {
+            line-height: 15px; }
+          #radio #programs .program .program-more .column span.artwork img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            float: right; }
+      #radio #programs .program .program-more .tags {
+        width: 100%;
+        float: left; }
+
+#radio-program .column span {
+  float: left;
+  clear: both;
+  margin-bottom: 18px; }
+  #radio-program .column span.artwork img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    float: right; }
 
 #radio .download-link img, #radio-program .download-link img {
   width: 30px;
   height: 30px; }
+#radio audio, #radio-program audio {
+  max-width: 100%; }
 
 #radio-calendar .download-link img {
   width: 20px;

@@ -12,42 +12,53 @@
 
 {% block content %}
 
-<span class="field">
-  Original Air Date: {{ program.air_date }}
-</span>
+<div class="two-columns">
+  <div class="column">
+    <span>
+      Original Air Date: {{ program.air_date }}
+    </span>
 
-{% with program.get_reruns.all as reruns %}
-{% if reruns %}
-  <span class="field">
-    Rerun Dates:
-    {% for rerun in reruns %}
-      {{ rerun.air_date }}{% if not forloop.last %}; {% endif %}
-    {% endfor %}
-  </span>
-{% endif %}
-{% endwith %}
+    {% with program.get_reruns.all as reruns %}
+    {% if reruns %}
+    <span>
+      Rerun Dates:
+      {% for rerun in reruns %}
+        {{ rerun.air_date }}{% if not forloop.last %}; {% endif %}
+      {% endfor %}
+    </span>
+    {% endif %}
+    {% endwith %}
 
-<span class="field">
-  Duration: {{ program.get_printable_duration }}
-</span>
+    <span>
+      {{ program.description|markdown }}
+    </span>
 
-<span class="field">
-  {{ program.description|markdown }}
-</span>
+    <span>
+      {% include 'audio_with_download.html' with file=program.file %}
+    </span>
 
-{% if program.file %}
-<div class="field">
-  {% include 'audio_with_download.html' with file=program.file %}
+    <span>
+      Duration: {{ program.get_printable_duration }}
+    </span>
+
+    {% if program.supplemental_content_url %}
+    <span>
+      <a href="{{ program.supplemental_content_url }}">
+        Transcript and photos</a>
+    </span>
+    {% endif %}
+  </div>
+
+  <div class="column">
+    {% with artwork=program.get_artwork %}
+    {% if artwork %}
+    <span class="artwork">
+      <img src="data:image;base64,{{ artwork }}"/>
+    </span>
+    {% endif %}
+    {% endwith %}
+  </div>
 </div>
-
-{% endif %}
-
-{% if program.supplemental_content_url %}
-<div class="field">
-  <a href="{{ program.supplemental_content_url }}">
-    Transcript and photos</a>
-</div>
-{% endif %}
 
 {% include 'tags.html' with item=program field=True %}
 
