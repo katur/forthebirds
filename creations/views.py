@@ -4,7 +4,7 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.db.models import Max
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from creations.models import (Article, Book, ExternalProject,
@@ -70,6 +70,13 @@ def radio_program(request, id, slug=None):
         'program': program,
     }
     return render(request, 'radio_program.html', context)
+
+
+def radio_program_artwork(request, id):
+    program = get_object_or_404(RadioProgram, id=id)
+    artwork = program.get_artwork()
+    response = JsonResponse({'artwork': artwork})
+    return response
 
 
 def radio_calendar(request, year, month):
