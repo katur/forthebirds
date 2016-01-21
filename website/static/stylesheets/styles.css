@@ -605,6 +605,8 @@ html, body {
       #speaking ul ul ul ul {
         list-style-type: disc; }
 
+#speaking-program .tags {
+  padding-top: 36px; }
 #speaking-program #files {
   list-style-position: inside;
   list-style-type: disc; }
