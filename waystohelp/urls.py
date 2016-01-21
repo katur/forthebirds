@@ -1,8 +1,10 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
+
+from . import views
 
 
-urlpatterns = patterns(
-    'waystohelp.views',
-    url(r'^help-birds/$', 'ways_to_help', name='waystohelp_url'),
-    url(r'^help-birds/(?P<id>\d+)/$', 'way_to_help', name='waytohelp_url'),
-)
+urlpatterns = [
+    url(r'^help-birds/$', views.ways_to_help, name='waystohelp_url'),
+    url(r'^help-birds/(?P<id>\d+)/$', views.way_to_help,
+        name='waytohelp_url'),
+]

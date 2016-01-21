@@ -1,36 +1,37 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
+
+from . import views
 from creations.feeds import ForTheBirdsPodcastFeed
 
 
-urlpatterns = patterns(
-    'creations.views',
-    url(r'^radio/$', 'radio', name='radio_url'),
+urlpatterns = [
+    url(r'^radio/$', views.radio, name='radio_url'),
     url(r'^radio/feed\.xml$', ForTheBirdsPodcastFeed(),
         name='radio_podcast_feed_url'),
-    url(r'^radio/calendar/current/$', 'radio_current_calendar',
+    url(r'^radio/calendar/current/$', views.radio_current_calendar,
         name='radio_current_calendar_url'),
     url(r'^radio/calendar/(?P<year>\d\d\d\d)/(?P<month>\d+)/$',
-        'radio_calendar', name='radio_calendar_url'),
-    url(r'^radio/program/(?P<id>\d+)/(?P<slug>.*)/$', 'radio_program',
-        name='radio_program_url'),
-    url(r'^radio/program-artwork/(?P<id>\d+)/$', 'radio_program_artwork',
-        name='radio_program_artwork_url'),
+        views.radio_calendar, name='radio_calendar_url'),
+    url(r'^radio/program/(?P<id>\d+)/(?P<slug>.*)/$',
+        views.radio_program, name='radio_program_url'),
+    url(r'^radio/program-artwork/(?P<id>\d+)/$',
+        views.radio_program_artwork, name='radio_program_artwork_url'),
 
-    url(r'^writing/$', 'writing', name='writing_url'),
-    url(r'^book/(?P<slug>.+)/$', 'book', name='book_url'),
-    url(r'^article/(?P<id>\d+)/(?P<slug>.*)/$', 'article',
-        name='article_url'),
+    url(r'^writing/$', views.writing, name='writing_url'),
+    url(r'^book/(?P<slug>.+)/$', views.book, name='book_url'),
+    url(r'^article/(?P<id>\d+)/(?P<slug>.*)/$',
+        views.article, name='article_url'),
 
-    url(r'^page/(?P<slug>.+)/$', 'webpage', name='webpage_url'),
-    url(r'^miscellany/$', 'miscellany', name='miscellany_url'),
+    url(r'^page/(?P<slug>.+)/$', views.webpage, name='webpage_url'),
+    url(r'^miscellany/$', views.miscellany, name='miscellany_url'),
 
-    url(r'^speaking/$', 'speaking', name='speaking_url'),
-    url(r'^speaking/(?P<slug>.+)/$', 'speaking_program',
+    url(r'^speaking/$', views.speaking, name='speaking_url'),
+    url(r'^speaking/(?P<slug>.+)/$', views.speaking_program,
         name='speaking_program_url'),
 
-    url(r'^research/$', 'research', name='research_url'),
-    url(r'^research-category/(?P<id>\d+)/$', 'research_category',
+    url(r'^research/$', views.research, name='research_url'),
+    url(r'^research-category/(?P<id>\d+)/$', views.research_category,
         name='research_category_url'),
-    url(r'^research-item/(?P<id>\d+)/$', 'research_item',
+    url(r'^research-item/(?P<id>\d+)/$', views.research_item,
         name='research_item_url'),
-)
+]

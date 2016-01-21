@@ -1,10 +1,11 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
+
+from . import views
 
 
-urlpatterns = patterns(
-    'birds.views',
-    url(r'^birds/$', 'birds', name='birds_url'),
-    url(r'^bird/(?P<slug>.+)/$', 'bird', name='bird_url'),
-    url(r'^minnesota-birds/$', 'minnesota_birds',
+urlpatterns = [
+    url(r'^birds/$', views.birds, name='birds_url'),
+    url(r'^bird/(?P<slug>.+)/$', views.bird, name='bird_url'),
+    url(r'^minnesota-birds/$', views.minnesota_birds,
         name='minnesota_birds_url'),
-)
+]
