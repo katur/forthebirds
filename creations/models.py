@@ -77,7 +77,7 @@ class Article(Creation):
         if self.url:
             return self.url
         else:
-            return reverse('creations.views.article',
+            return reverse('article_url',
                            args=[self.id, slugify(self.title)])
 
 
@@ -113,7 +113,7 @@ class Book(Creation):
         return 'Book: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.book', args=[self.slug])
+        return reverse('book_url', args=[self.slug])
 
 
 class ExternalProject(Creation):
@@ -149,7 +149,7 @@ class RadioProgram(Creation):
         return 'Radio Program: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.radio_program',
+        return reverse('radio_program_url',
                        args=[self.id, slugify(self.title)])
 
     def get_display_date(self):
@@ -266,8 +266,7 @@ class ResearchCategory(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('creations.views.research_category',
-                       args=[self.id])
+        return reverse('research_category_url', args=[self.id])
 
     def get_ancestors(self):
         ancestors = []
@@ -297,7 +296,7 @@ class Research(Creation):
         return 'Research: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.research_item', args=[self.id])
+        return reverse('research_item_url', args=[self.id])
 
     def get_ancestors(self):
         ancestors = [self.category]
@@ -316,7 +315,7 @@ class SpeakingProgram(Creation):
         return 'Speaking Program: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.speaking_program', args=[self.slug])
+        return reverse('speaking_program_url', args=[self.slug])
 
 
 class SpeakingProgramFile(models.Model):
@@ -351,7 +350,7 @@ class WebPage(Creation):
         return 'Web Page: ' + self.title
 
     def get_absolute_url(self):
-        return reverse('creations.views.webpage', args=[self.slug])
+        return reverse('webpage_url', args=[self.slug])
 
 
 class ABAFieldGuideImage(Creation):

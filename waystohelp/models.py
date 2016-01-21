@@ -21,4 +21,4 @@ class WayToHelp(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('waystohelp.views.way_to_help', args=[self.id])
+        return reverse('way_to_help_url', args=[self.id])
