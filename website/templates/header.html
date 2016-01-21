@@ -1,7 +1,7 @@
 {% url 'home_url' as home_url %}
 {% url 'about_url' as about_url %}
 {% url 'radio_url' as radio_url %}
-{% url 'waystohelp_url' as waystohelp_url %}
+{% url 'ways_to_help_url' as ways_to_help_url %}
 {% url 'writing_url' as writing_url %}
 {% url 'miscellany_url' as miscellany_url %}
 {% url 'birds_url' as birds_url %}
@@ -19,8 +19,8 @@
       About Laura
     </a>
 
-    <a href="{{ waystohelp_url }}"
-        {% ifequal request.path waystohelp_url %}
+    <a href="{{ ways_to_help_url }}"
+        {% ifequal request.path ways_to_help_url %}
         class="active"
         {% endifequal %}>
       Ways to Help
