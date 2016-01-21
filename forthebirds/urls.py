@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import RedirectView
 
 from forthebirds.settings import PERMANENT_REDIRECTS
+from website.views import try_old_website
 
 
 urlpatterns = []
@@ -22,13 +23,13 @@ urlpatterns += [
     url(r'^logout/$', auth_views.logout, name='logout_url'),
 
     url(r'^', include('website.urls')),
-    url(r'^(?P<path>bird\/Species\/.+)$', 'website.views.try_old_website'),
-    url(r'^(?P<path>bird\/Places\/.+)$', 'website.views.try_old_website'),
+    url(r'^(?P<path>bird\/Species\/.+)$', try_old_website),
+    url(r'^(?P<path>bird\/Places\/.+)$', try_old_website),
     url(r'^', include('birds.urls')),
     url(r'^', include('creations.urls')),
     url(r'^', include('waystohelp.urls')),
     url(r'^', include('private_media.urls')),
 
     # Catchall to try old website before returning 404
-    url(r'^(?P<path>.+)/$', 'website.views.try_old_website'),
+    url(r'^(?P<path>.+)/$', try_old_website),
 ]
