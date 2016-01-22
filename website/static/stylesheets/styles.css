@@ -314,24 +314,17 @@ html, body {
     margin-top: 36px; }
 
 #about img#primary-photo {
-  width: 100%; }
-#about #overview {
-  width: 95%; }
-  #about #overview .column:first-child {
-    float: left;
-    width: 35%; }
-  #about #overview .column:last-child {
-    float: right;
-    width: 60%;
-    margin-top: 0px; }
-  @media (max-width: 750px) {
-    #about #overview .column:first-child, #about #overview .column:last-child {
-      float: left;
-      width: 100%; }
-    #about #overview .column:last-child {
-      margin-top: 36px; } }
-#about #bio {
-  max-width: 750px; }
+  float: left;
+  width: 50%;
+  height: auto;
+  margin-right: 8%;
+  margin-bottom: 5%; }
+@media (max-width: 600px) {
+  #about img#primary-photo {
+    width: 100%;
+    margin-right: 0%; } }
+#about #overview, #about #bio {
+  max-width: 900px; }
 
 #birds ul {
   list-style-position: inside;

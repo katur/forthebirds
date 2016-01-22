@@ -12,12 +12,11 @@
 {% block content %}
 
 <div id="overview" class="page-section">
-  <div class="column">
-    <img id="primary-photo"
-         src="{{ MEDIA_URL }}{{ laura.userprofile.main_photo.image }}" />
-  </div>
 
-  <div id="blurb" class="column markdown">
+  <img id="primary-photo"
+    src="{{ MEDIA_URL }}{{ laura.userprofile.main_photo.image }}" />
+
+  <div id="blurb" class="markdown">
     {{ laura.userprofile.blurb|markdown }}
   </div>
 </div>

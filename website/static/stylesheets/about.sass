@@ -1,11 +1,15 @@
 #about
   img#primary-photo
-    width: 100%
+    float: left
+    width: 50%
+    height: auto
+    margin-right: 8%
+    margin-bottom: 5%
 
-  #overview
-    width: 95%
+  @media (max-width: 600px)
+    img#primary-photo
+      width: 100%
+      margin-right: 0%
 
-    @include two-columns(35%, 60%, 750px)
-
-  #bio
-    max-width: 750px
+  #overview, #bio
+    max-width: 900px
