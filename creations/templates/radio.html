@@ -49,31 +49,27 @@
     </a>
 
     <div class="program-more">
-      <div class="two-columns">
-        <div class="column">
-          <span class="audio">
-            {% include 'audio_with_download.html' with file=program.file %}
-          </span>
+      <div class="artwork"></div>
 
-          <span class="duration">
-            Duration: {{ program.get_printable_duration }}
-          </span>
+      <div class="fields">
+        <span class="audio">
+          {% include 'audio_with_download.html' with file=program.file %}
+        </span>
 
-          {% if program.supplemental_content_url %}
-          <span class="transcript">
-            <a href="{{ program.supplemental_content_url }}">
-              Transcript and photos</a>
-          </span>
-          {% endif %}
+        <span class="duration">
+          Duration: {{ program.get_printable_duration }}
+        </span>
 
-          <span class="permalink">
-            <a href="{{ program.get_absolute_url }}">Permalink</a>
-          </span>
-        </div>
+        {% if program.supplemental_content_url %}
+        <span class="transcript">
+          <a href="{{ program.supplemental_content_url }}">
+            Transcript and photos</a>
+        </span>
+        {% endif %}
 
-        <div class="column">
-          <span class="artwork"></span>
-        </div>
+        <span class="permalink">
+          <a href="{{ program.get_absolute_url }}">Permalink</a>
+        </span>
       </div>
 
       {% include 'tags.html' with item=program %}

@@ -86,26 +86,36 @@
         padding: $whitespace
         padding-top: $whitespace / 2
 
-        .column
-          font-size: $base-font-size - 1
+        .artwork
+          float: left
+          width: 100%
+          max-width: 200px
+          min-height: 1px
+          margin-right: $whitespace
 
-          a
-            @include dark-links
+          img
+            width: 100%
+            height: auto
+
+        .fields
+          float: left
 
           span
-            width: 100%
             float: left
+            clear: both
             margin-bottom: $whitespace / 3
+
+            &:last-child
+              margin-bottom: 0px
 
             &.audio
               line-height: 15px
 
-            &.artwork
-              img
-                width: 100%
-                max-width: 200px
-                height: auto
-                float: right
+            a
+              @include dark-links
+
+        .artwork, .fields
+          margin-bottom: $whitespace
 
         .tags
           width: 100%
@@ -119,12 +129,11 @@
       clear: both
       margin-bottom: $whitespace / 2
 
-      &.artwork
-        img
-          width: 100%
-          max-width: 600px
-          height: auto
-          float: right
+  .artwork
+    img
+      width: 100%
+      max-width: 600px
+      height: auto
 
 
 #radio, #radio-program

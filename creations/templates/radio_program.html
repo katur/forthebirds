@@ -12,54 +12,57 @@
 
 {% block content %}
 
-<div class="two-columns">
-  <div class="column">
-    <span>
-      Original Air Date: {{ program.air_date }}
-    </span>
+<div class="page-subsection">
+  <div class="two-columns">
 
-    {% with program.get_reruns.all as reruns %}
-    {% if reruns %}
-    <span>
-      Rerun Dates:
-      {% for rerun in reruns %}
-        {{ rerun.air_date }}{% if not forloop.last %}; {% endif %}
-      {% endfor %}
-    </span>
-    {% endif %}
-    {% endwith %}
-
-    <span>
-      {{ program.description|markdown }}
-    </span>
-
-    <span>
-      {% include 'audio_with_download.html' with file=program.file %}
-    </span>
-
-    <span>
-      Duration: {{ program.get_printable_duration }}
-    </span>
-
-    {% if program.supplemental_content_url %}
-    <span>
-      <a href="{{ program.supplemental_content_url }}">
-        Transcript and photos</a>
-    </span>
-    {% endif %}
-  </div>
-
-  <div class="column">
     {% with artwork=program.get_artwork %}
     {% if artwork %}
-    <span class="artwork">
+    <div class="column artwork">
       <img src="data:image;base64,{{ artwork }}"/>
-    </span>
+    </div>
     {% endif %}
     {% endwith %}
+
+    <div class="column">
+      <span>
+        Original Air Date: {{ program.air_date }}
+      </span>
+
+      {% with program.get_reruns.all as reruns %}
+      {% if reruns %}
+      <span>
+        Rerun Dates:
+        {% for rerun in reruns %}
+          {{ rerun.air_date }}{% if not forloop.last %}; {% endif %}
+        {% endfor %}
+      </span>
+      {% endif %}
+      {% endwith %}
+
+      <span>
+        {{ program.description|markdown }}
+      </span>
+
+      <span>
+        {% include 'audio_with_download.html' with file=program.file %}
+      </span>
+
+      <span>
+        Duration: {{ program.get_printable_duration }}
+      </span>
+
+      {% if program.supplemental_content_url %}
+      <span>
+        <a href="{{ program.supplemental_content_url }}">
+          Transcript and photos</a>
+      </span>
+      {% endif %}
+    </div>
   </div>
 </div>
 
-{% include 'tags.html' with item=program field=True %}
+<div class="page-subsection">
+  {% include 'tags.html' with item=program %}
+</div>
 
 {% endblock %}

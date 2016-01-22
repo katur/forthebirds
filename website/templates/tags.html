@@ -1,5 +1,5 @@
 {% if item.species.all|length or item.tags.all|length %}
-<div class="tags {% if field %}field{% endif %}">
+<div class="tags">
   <ul>
     {% for bird in item.species.all %}
     <li class="tag">

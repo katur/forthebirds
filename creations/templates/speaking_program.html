@@ -18,7 +18,7 @@ Speaking Program: <i>{{ program.title }}</i>
   </div>
 
   {% if program.species or program.tags %}
-  {% include 'tags.html' with item=program field=True %}
+  {% include 'tags.html' with item=program %}
   {% endif %}
 </div>
 

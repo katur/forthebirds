@@ -10,39 +10,55 @@
 
 {% block content %}
 
-<div class="two-columns">
-  {% if book.cover_photo %}
-  <div class="column">
-    <img src="{{ MEDIA_URL }}{{ book.cover_photo.image }}" />
-  </div>
-  {% endif %}
+<div class="page-subsection">
+  <div class="two-columns">
 
-  <div class="column">
-    <span class="field">{{ book.date_published|date:"Y" }}</span>
-
-    {% if book.published_by %}
-    <span class="field">Published by {{ book.published_by }}</span>
+    {% if book.cover_photo %}
+    <div class="column">
+      <img src="{{ MEDIA_URL }}{{ book.cover_photo.image }}" />
+    </div>
     {% endif %}
 
-    {% if book.isbn_10 %}
-    <span class="field">ISBN-10: {{ book.isbn_10 }}</span>
-    {% endif %}
+    <div class="column">
+      {% if book.date_published or book.published_by %}
+      <span>
+        Published
 
-    {% if book.isbn_13 %}
-    <span class="field">ISBN-13: {{ book.isbn_13 }}</span>
-    {% endif %}
+        {% if book.date_published %}
+        in {{ book.date_published|date:"Y" }}
+        {% endif %}
 
-    <span class="field">{{ book.description|markdown }}</span>
 
-    {% if book.purchase_url %}
-    <span class="field">
-      <a class="purchase-link" href="{{ book.purchase_url }}">
-        Click here to purchase</a>
-    </span>
-    {% endif %}
+        {% if book.published_by %}
+        by {{ book.published_by }}
+        {% endif %}
+
+      </span>
+      {% endif %}
+
+
+      {% if book.isbn_10 %}
+      <span>ISBN-10: {{ book.isbn_10 }}</span>
+      {% endif %}
+
+      {% if book.isbn_13 %}
+      <span>ISBN-13: {{ book.isbn_13 }}</span>
+      {% endif %}
+
+      <span>{{ book.description|markdown }}</span>
+
+      {% if book.purchase_url %}
+      <span>
+        <a class="purchase-link" href="{{ book.purchase_url }}">
+          Click here to purchase</a>
+      </span>
+      {% endif %}
+    </div>
   </div>
 </div>
 
-{% include 'tags.html' with item=book %}
+<div class="page-subsection">
+  {% include 'tags.html' with item=book %}
+</div>
 
 {% endblock %}

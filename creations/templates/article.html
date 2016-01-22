@@ -10,33 +10,44 @@
 
 {% block content %}
 
-<div class="page-section">
-  {% if article.published_by or article.date_published %}
-  <span class="field">
+<div id="fields" class="page-subsection">
+  {% if article.date_published or article.published_by %}
+  <span>
     Published
-    {% if article.published_by %}by {{ article.published_by }}{% endif %}
-    {% if article.date_published %}on {{ article.date_published }}{% endif %}
+
+    {% if article.date_published %}
+    on {{ article.date_published }}
+    {% endif %}
+
+    {% if article.published_by %}
+    by {{ article.published_by }}
+    {% endif %}
+
   </span>
   {% endif %}
 
   {% if article.url %}
-  <span class="field">
+  <span>
     <a href="{{ article.url }}">URL</a>
   </span>
   {% endif %}
 
   {% if article.file %}
-  <span class="field">
+  <span>
     <a href="{{ MEDIA_URL }}{{ article.file }}">
       Download article</a>
   </span>
   {% endif %}
-
-  {% include 'tags.html' with item=article field=True %}
 </div>
 
+
+<div class="page-subsection">
+  {% include 'tags.html' with item=article %}
+</div>
+
+
 {% if article.text %}
-<div class="page-section markdown">
+<div class="page-subsection markdown">
   {{ article.text|markdown }}
 </div>
 {% endif %}
