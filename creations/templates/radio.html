@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+
+{% load staticfiles %}
 {% load markdown_deux_tags %}
 {% load extra_tags %}
 
@@ -49,7 +51,9 @@
     </a>
 
     <div class="program-more">
-      <div class="artwork"></div>
+      <div class="artwork">
+        <img src="{% static 'images/camera-icon.png' %}"/>
+      </div>
 
       <div class="fields">
         <span class="audio">
