@@ -51,29 +51,31 @@
     </a>
 
     <div class="program-more">
-      <div class="artwork">
-        <img src="{% static 'images/camera-icon.png' %}"/>
-      </div>
+      <div class="columns">
+        <div class="artwork column">
+          <img src="{% static 'images/camera-icon.png' %}"/>
+        </div>
 
-      <div class="fields">
-        <span class="audio">
-          {% include 'audio_with_download.html' with file=program.file %}
-        </span>
+        <div class="fields column">
+          <span class="audio">
+            {% include 'audio_with_download.html' with file=program.file %}
+          </span>
 
-        <span class="duration">
-          Duration: {{ program.get_printable_duration }}
-        </span>
+          <span class="duration">
+            Duration: {{ program.get_printable_duration }}
+          </span>
 
-        {% if program.supplemental_content_url %}
-        <span class="transcript">
-          <a href="{{ program.supplemental_content_url }}">
-            Transcript and photos</a>
-        </span>
-        {% endif %}
+          {% if program.supplemental_content_url %}
+          <span class="transcript">
+            <a href="{{ program.supplemental_content_url }}">
+              Transcript and photos</a>
+          </span>
+          {% endif %}
 
-        <span class="permalink">
-          <a href="{{ program.get_absolute_url }}">Permalink</a>
-        </span>
+          <span class="permalink">
+            <a href="{{ program.get_absolute_url }}">Permalink</a>
+          </span>
+        </div>
       </div>
 
       {% include 'tags.html' with item=program %}

@@ -84,43 +84,32 @@
 
       .program-more
         @include clearfix
+
         display: none
         padding: $whitespace
         padding-top: $whitespace / 2
 
-        .artwork
-          float: left
-          width: 100%
-          max-width: 200px
-          margin-right: $whitespace
+        .columns
+          @include two-columns(33%, 60%, 600px)
 
-          img
-            width: 100%
-            height: auto
+          .artwork
+            img
+              width: 100%
+              height: auto
 
-        .fields
-          float: left
+          .fields
+            @include cleared-spans($whitespace / 3)
 
-          span
-            float: left
-            clear: both
-            margin-bottom: $whitespace / 3
-
-            &:last-child
-              margin-bottom: 0px
-
-            &.audio
+            .audio
               line-height: 15px
 
             a
               @include dark-links
 
-        .artwork, .fields
-          margin-bottom: $whitespace
-
         .tags
           width: 100%
           float: left
+          margin-top: $whitespace
 
 
 #radio-program

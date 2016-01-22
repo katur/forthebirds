@@ -514,33 +514,38 @@ html, body {
         content: "";
         display: table;
         clear: both; }
-      #radio #programs .program .program-more .artwork {
+      #radio #programs .program .program-more .columns .column:first-child {
         float: left;
-        width: 100%;
-        max-width: 200px;
-        margin-right: 36px; }
-        #radio #programs .program .program-more .artwork img {
-          width: 100%;
-          height: auto; }
-      #radio #programs .program .program-more .fields {
-        float: left; }
-        #radio #programs .program .program-more .fields span {
+        width: 33%; }
+      #radio #programs .program .program-more .columns .column:last-child {
+        float: right;
+        width: 60%;
+        margin-top: 0px; }
+      @media (max-width: 600px) {
+        #radio #programs .program .program-more .columns .column:first-child, #radio #programs .program .program-more .columns .column:last-child {
           float: left;
-          clear: both;
-          margin-bottom: 12px; }
-          #radio #programs .program .program-more .fields span:last-child {
-            margin-bottom: 0px; }
-          #radio #programs .program .program-more .fields span.audio {
-            line-height: 15px; }
-          #radio #programs .program .program-more .fields span a {
-            color: #d36760; }
-            #radio #programs .program .program-more .fields span a:hover, #radio #programs .program .program-more .fields span a.active {
-              color: #cd944c; }
-      #radio #programs .program .program-more .artwork, #radio #programs .program .program-more .fields {
-        margin-bottom: 36px; }
+          width: 100%; }
+        #radio #programs .program .program-more .columns .column:last-child {
+          margin-top: 36px; } }
+      #radio #programs .program .program-more .columns .artwork img {
+        width: 100%;
+        height: auto; }
+      #radio #programs .program .program-more .columns .fields span {
+        float: left;
+        clear: both;
+        margin-bottom: 12px; }
+        #radio #programs .program .program-more .columns .fields span:last-child {
+          margin-bottom: 0px; }
+      #radio #programs .program .program-more .columns .fields .audio {
+        line-height: 15px; }
+      #radio #programs .program .program-more .columns .fields a {
+        color: #d36760; }
+        #radio #programs .program .program-more .columns .fields a:hover, #radio #programs .program .program-more .columns .fields a.active {
+          color: #cd944c; }
       #radio #programs .program .program-more .tags {
         width: 100%;
-        float: left; }
+        float: left;
+        margin-top: 36px; }
 
 #radio-program #program-info .column:first-child {
   float: left;
@@ -559,6 +564,8 @@ html, body {
   float: left;
   clear: both;
   margin-bottom: 18px; }
+  #radio-program #program-info span:last-child {
+    margin-bottom: 0px; }
 #radio-program #program-info #artwork {
   width: 100%; }
 
@@ -713,6 +720,8 @@ html, body {
   float: left;
   clear: both;
   margin-bottom: 18px; }
+  #article #fields span:last-child {
+    margin-bottom: 0px; }
 
 #book #book-info .column:first-child {
   float: left;
@@ -731,6 +740,8 @@ html, body {
   float: left;
   clear: both;
   margin-bottom: 18px; }
+  #book #book-info span:last-child {
+    margin-bottom: 0px; }
 #book #book-info img {
   width: 100%; }
 #book .tags {

@@ -73,8 +73,11 @@ $tag-spacing: 3px
         margin-top: $whitespace
 
 
-@mixin cleared-spans
+@mixin cleared-spans($spacing: $whitespace / 2)
   span
     float: left
     clear: both
-    margin-bottom: $whitespace / 2
+    margin-bottom: $spacing
+
+    &:last-child
+      margin-bottom: 0px
