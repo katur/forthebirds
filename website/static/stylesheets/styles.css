@@ -470,7 +470,9 @@ html, body {
 #radio #links {
   width: 100%;
   float: left;
-  margin-bottom: 36px; }
+  margin-bottom: 36px;
+  font-family: "Dosis", sans-serif;
+  font-size: 21px; }
   #radio #links a {
     display: inline-block;
     margin-right: 18px; }
