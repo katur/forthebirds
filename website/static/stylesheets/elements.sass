@@ -50,3 +50,31 @@ $tag-spacing: 3px
   span
     background: $chickadee-light-gray
     color: $chickadee-dark-gray
+
+
+@mixin two-columns($left: 47%, $right: 47%, $media: 750px)
+  .column
+    &:first-child
+      float: left
+      width: $left
+
+    &:last-child
+      float: right
+      width: $right
+      margin-top: 0px
+
+  @media (max-width: $media)
+    .column
+      &:first-child, &:last-child
+        float: left
+        width: 100%
+
+      &:last-child
+        margin-top: $whitespace
+
+
+@mixin cleared-spans
+  span
+    float: left
+    clear: both
+    margin-bottom: $whitespace / 2

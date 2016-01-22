@@ -10,50 +10,47 @@
 
 {% block content %}
 
-<div class="page-subsection">
-  <div class="two-columns">
+<div id="book-info" class="page-subsection">
+  {% if book.cover_photo %}
+  <div class="column">
+    <img src="{{ MEDIA_URL }}{{ book.cover_photo.image }}" />
+  </div>
+  {% endif %}
 
-    {% if book.cover_photo %}
-    <div class="column">
-      <img src="{{ MEDIA_URL }}{{ book.cover_photo.image }}" />
-    </div>
+  <div class="column">
+    {% if book.date_published or book.published_by %}
+    <span>
+      Published
+
+      {% if book.date_published %}
+      in {{ book.date_published|date:"Y" }}
+      {% endif %}
+
+
+      {% if book.published_by %}
+      by {{ book.published_by }}
+      {% endif %}
+
+    </span>
     {% endif %}
 
-    <div class="column">
-      {% if book.date_published or book.published_by %}
-      <span>
-        Published
 
-        {% if book.date_published %}
-        in {{ book.date_published|date:"Y" }}
-        {% endif %}
+    {% if book.isbn_10 %}
+    <span>ISBN-10: {{ book.isbn_10 }}</span>
+    {% endif %}
 
+    {% if book.isbn_13 %}
+    <span>ISBN-13: {{ book.isbn_13 }}</span>
+    {% endif %}
 
-        {% if book.published_by %}
-        by {{ book.published_by }}
-        {% endif %}
+    <span>{{ book.description|markdown }}</span>
 
-      </span>
-      {% endif %}
-
-
-      {% if book.isbn_10 %}
-      <span>ISBN-10: {{ book.isbn_10 }}</span>
-      {% endif %}
-
-      {% if book.isbn_13 %}
-      <span>ISBN-13: {{ book.isbn_13 }}</span>
-      {% endif %}
-
-      <span>{{ book.description|markdown }}</span>
-
-      {% if book.purchase_url %}
-      <span>
-        <a class="purchase-link" href="{{ book.purchase_url }}">
-          Click here to purchase</a>
-      </span>
-      {% endif %}
-    </div>
+    {% if book.purchase_url %}
+    <span>
+      <a class="purchase-link" href="{{ book.purchase_url }}">
+        Click here to purchase</a>
+    </span>
+    {% endif %}
   </div>
 </div>
 

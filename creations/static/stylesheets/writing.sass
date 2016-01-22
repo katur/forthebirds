@@ -64,21 +64,16 @@
 
 #article
   #fields
-    span
-      float: left
-      clear: both
-      margin-bottom: $whitespace / 2
+    @include cleared-spans
 
 
 #book
-  img
-    width: 100%
+  #book-info
+    @include two-columns(35%, 60%, 600px)
+    @include cleared-spans
 
-  .column
-    span
-      float: left
-      clear: both
-      margin-bottom: $whitespace / 2
+    img
+      width: 100%
 
   .tags
     float: left

@@ -41,15 +41,15 @@
 </div>
 
 
-<div class="page-subsection">
-  {% include 'tags.html' with item=article %}
-</div>
-
-
 {% if article.text %}
 <div class="page-subsection markdown">
   {{ article.text|markdown }}
 </div>
 {% endif %}
+
+
+<div class="page-subsection">
+  {% include 'tags.html' with item=article %}
+</div>
 
 {% endblock %}

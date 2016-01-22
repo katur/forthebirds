@@ -124,17 +124,12 @@
 
 
 #radio-program
-  .column
-    span
-      float: left
-      clear: both
-      margin-bottom: $whitespace / 2
+  #program-info
+    @include two-columns(35%, 60%, 600px)
+    @include cleared-spans
 
-  .artwork
-    img
+    #artwork
       width: 100%
-      max-width: 600px
-      height: auto
 
 
 #radio, #radio-program
