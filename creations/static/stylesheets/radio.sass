@@ -29,87 +29,121 @@
       &#itunes-link
         float: right
         margin-right: 0px
+        margin-top: 0px
 
-  #year-list
-    float: left
-    width: 10%
-    font-size: 36px
-    font-family: $sans-font-family
-    color: $chickadee-dark-gray
-
-    a
-      white-space: nowrap
-
-      &.active:after
-        display: inline-block
-        position: relative
-        bottom: 7px
-        padding-left: 7px
-        font-size: 18px
-        @include transform(scaleX(0.7))
-        content: "\27A4"
-
-  #programs
-    float: right
-    width: 85%
-
-    .program
-      float: left
-      width: 100%
-
-      &:nth-child(even)
-        background: lighten($moss, 40%)
-      &:nth-child(odd)
-        background: lighten($moss, 43%)
-
-      .program-intro
-        @include box-sizing(border-box)
-        @include dark-links
-        display: block
-        width: 100%
-        height: 100%
-        padding: 8px 12px
-
-        .title,
-        .description
-          width: 100%
-
-        .title
-          margin-top: 5px
-
-        .description
-          margin-top: 10px
-          font-size: $base-font-size - 2
-          color: $chickadee-dark-gray
-
-      .program-more
-        @include clearfix
-
-        display: none
-        padding: $whitespace
-        padding-top: $whitespace / 2
-
-        .columns
-          @include two-columns(33%, 60%, 600px)
-
-          .artwork
-            img
-              width: 100%
-              height: auto
-
-          .fields
-            @include cleared-spans($whitespace / 3)
-
-            .audio
-              line-height: 15px
-
-            a
-              @include dark-links
-
-        .tags
-          width: 100%
+        @media (max-width: 500px)
           float: left
-          margin-top: $whitespace
+          margin-top: 10px
+          margin-right: $whitespace / 2
+
+  #year-program-container
+    float: left
+    position: relative
+    width: 100%
+
+    // Hack so that full year list shows up even on years with few programs.
+    // Should change this to be dynamic.
+    min-height: 500px
+
+    $year-list-width-big: 93px
+    $year-list-width-small: 61px
+
+    #year-list
+      position: absolute
+      left: 0
+      width: $year-list-width-big
+      font-size: 36px
+      font-family: $sans-font-family
+      color: $chickadee-dark-gray
+
+      a
+        white-space: nowrap
+
+        &.active:after
+          display: inline-block
+          position: relative
+          bottom: 7px
+          padding-left: 7px
+          font-size: 18px
+          @include transform(scaleX(0.7))
+          content: "\27A4"
+
+      @media (max-width: 500px)
+        width: $year-list-width-small
+        font-size: 24px
+
+        a
+          &.active:after
+            bottom: 5px
+            padding-left: 5px
+            font-size: 12px
+
+    #programs
+      @include box-sizing(border-box)
+      width: 100%
+      float: left
+      padding-left: $year-list-width-big
+
+      @media (max-width: 500px)
+        padding-left: $year-list-width-small
+
+      .program
+        float: left
+        width: 100%
+
+        &:nth-child(even)
+          background: lighten($moss, 40%)
+        &:nth-child(odd)
+          background: lighten($moss, 43%)
+
+        .program-intro
+          @include box-sizing(border-box)
+          @include dark-links
+          display: block
+          width: 100%
+          height: 100%
+          padding: 8px 12px
+
+          .title,
+          .description
+            width: 100%
+
+          .title
+            margin-top: 5px
+
+          .description
+            margin-top: 10px
+            font-size: $base-font-size - 2
+            color: $chickadee-dark-gray
+
+        .program-more
+          @include clearfix
+
+          display: none
+          padding: $whitespace
+          padding-top: $whitespace / 2
+
+          .columns
+            @include two-columns(33%, 60%, 600px)
+
+            .artwork
+              img
+                width: 100%
+                height: auto
+
+            .fields
+              @include cleared-spans($whitespace / 3)
+
+              .audio
+                line-height: 15px
+
+              a
+                @include dark-links
+
+          .tags
+            width: 100%
+            float: left
+            margin-top: $whitespace
 
 
 #radio-program
@@ -121,7 +155,8 @@
       width: 100%
 
 
-#radio, #radio-program
+#radio,
+#radio-program
   .download-link
     img
       width: 30px

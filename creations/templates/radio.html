@@ -26,61 +26,63 @@
     href={{ ITUNES_SUBSCRIBE_LINK }}></a>
 </div>
 
-<ul id="year-list">
-  {% for y in all_years %}
-  <li>
-    <a href="?year={{ y.year }}" class="year-button
-        {% if year|is_string_equal:y.year %}active{% endif %}">
-        {{ y.year }}</a>
-  </li>
-  {% endfor %}
-</ul>
+<div id="year-program-container">
+  <ul id="year-list">
+    {% for y in all_years %}
+    <li>
+      <a href="?year={{ y.year }}" class="year-button
+          {% if year|is_string_equal:y.year %}active{% endif %}">
+          {{ y.year }}</a>
+    </li>
+    {% endfor %}
+  </ul>
 
-<ul id="programs">
-  {% for program in programs %}
-  <li class="program" data-program-pk="{{ program.pk }}">
-    <a class="program-intro" href="#">
-      <span class="title">
-        {{ program.title }}
-        ({{ program.air_date }})
-      </span>
+  <ul id="programs">
+    {% for program in programs %}
+    <li class="program" data-program-pk="{{ program.pk }}">
+      <a class="program-intro" href="#">
+        <span class="title">
+          {{ program.title }}
+          ({{ program.air_date }})
+        </span>
 
-      <span class="description">
-        {{ program.description|markdown }}
-      </span>
-    </a>
+        <span class="description">
+          {{ program.description|markdown }}
+        </span>
+      </a>
 
-    <div class="program-more">
-      <div class="columns">
-        <div class="artwork column">
-          <img src="{% static 'images/camera-icon.png' %}"/>
+      <div class="program-more">
+        <div class="columns">
+          <div class="artwork column">
+            <img src="{% static 'images/camera-icon.png' %}"/>
+          </div>
+
+          <div class="fields column">
+            <span class="audio">
+              {% include 'audio_with_download.html' with file=program.file %}
+            </span>
+
+            <span class="duration">
+              Duration: {{ program.get_printable_duration }}
+            </span>
+
+            {% if program.supplemental_content_url %}
+            <span class="transcript">
+              <a href="{{ program.supplemental_content_url }}">
+                Transcript and photos</a>
+            </span>
+            {% endif %}
+
+            <span class="permalink">
+              <a href="{{ program.get_absolute_url }}">Permalink</a>
+            </span>
+          </div>
         </div>
 
-        <div class="fields column">
-          <span class="audio">
-            {% include 'audio_with_download.html' with file=program.file %}
-          </span>
-
-          <span class="duration">
-            Duration: {{ program.get_printable_duration }}
-          </span>
-
-          {% if program.supplemental_content_url %}
-          <span class="transcript">
-            <a href="{{ program.supplemental_content_url }}">
-              Transcript and photos</a>
-          </span>
-          {% endif %}
-
-          <span class="permalink">
-            <a href="{{ program.get_absolute_url }}">Permalink</a>
-          </span>
-        </div>
-      </div>
-
-      {% include 'tags.html' with item=program %}
-  </li>
-  {% endfor %}
-</ul>
+        {% include 'tags.html' with item=program %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 
 {% endblock %}

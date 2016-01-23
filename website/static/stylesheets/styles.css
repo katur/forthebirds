@@ -160,11 +160,35 @@ html, body {
   background: #777e86; }
 
 #header, #content, #footer {
-  margin: 0 3%; }
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 1200px;
+  margin: auto; }
   #header:after, #content:after, #footer:after {
     content: "";
     display: table;
     clear: both; }
+  @media (max-width: 1395px) {
+    #header, #content, #footer {
+      width: 86%;
+      margin: 0 7%; } }
+  @media (max-width: 1200px) {
+    #header, #content, #footer {
+      width: 88%;
+      margin: 0 6%; } }
+  @media (max-width: 1100px) {
+    #header, #content, #footer {
+      width: 90%;
+      margin: 0 5%; } }
+  @media (max-width: 1000px) {
+    #header, #content, #footer {
+      width: 92%;
+      margin: 0 4%; } }
+  @media (max-width: 900px) {
+    #header, #content, #footer {
+      width: 94%;
+      margin: 0 3%; } }
 
 #header {
   position: relative; }
@@ -301,10 +325,8 @@ html, body {
   display: none; }
 #home #content #slideshow-wrapper {
   margin: auto;
-  text-align: center; }
-  @media (min-width: 1072px) {
-    #home #content #slideshow-wrapper {
-      width: 1000px; } }
+  text-align: center;
+  max-width: 900px; }
   #home #content #slideshow-wrapper span {
     font-style: italic;
     font-size: 26px;
@@ -455,97 +477,124 @@ html, body {
     margin-right: 18px; }
     #radio #links a#itunes-link {
       float: right;
-      margin-right: 0px; }
-#radio #year-list {
-  float: left;
-  width: 10%;
-  font-size: 36px;
-  font-family: "Dosis", sans-serif;
-  color: #777e86; }
-  #radio #year-list a {
-    white-space: nowrap; }
-    #radio #year-list a.active:after {
-      display: inline-block;
-      position: relative;
-      bottom: 7px;
-      padding-left: 7px;
-      font-size: 18px;
-      -webkit-transform: scaleX(0.7);
-      -moz-transform: scaleX(0.7);
-      -ms-transform: scaleX(0.7);
-      -o-transform: scaleX(0.7);
-      transform: scaleX(0.7);
-      content: "➤"; }
-#radio #programs {
-  float: right;
-  width: 85%; }
-  #radio #programs .program {
-    float: left;
-    width: 100%; }
-    #radio #programs .program:nth-child(even) {
-      background: #e1e6df; }
-    #radio #programs .program:nth-child(odd) {
-      background: #e9ede8; }
-    #radio #programs .program .program-intro {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      color: #d36760;
-      display: block;
-      width: 100%;
-      height: 100%;
-      padding: 8px 12px; }
-      #radio #programs .program .program-intro:hover, #radio #programs .program .program-intro.active {
-        color: #cd944c; }
-      #radio #programs .program .program-intro .title,
-      #radio #programs .program .program-intro .description {
-        width: 100%; }
-      #radio #programs .program .program-intro .title {
-        margin-top: 5px; }
-      #radio #programs .program .program-intro .description {
-        margin-top: 10px;
-        font-size: 15px;
-        color: #777e86; }
-    #radio #programs .program .program-more {
-      display: none;
-      padding: 36px;
-      padding-top: 18px; }
-      #radio #programs .program .program-more:after {
-        content: "";
-        display: table;
-        clear: both; }
-      #radio #programs .program .program-more .columns .column:first-child {
-        float: left;
-        width: 33%; }
-      #radio #programs .program .program-more .columns .column:last-child {
-        float: right;
-        width: 60%;
-        margin-top: 0px; }
-      @media (max-width: 600px) {
-        #radio #programs .program .program-more .columns .column:first-child, #radio #programs .program .program-more .columns .column:last-child {
+      margin-right: 0px;
+      margin-top: 0px; }
+      @media (max-width: 500px) {
+        #radio #links a#itunes-link {
           float: left;
-          width: 100%; }
-        #radio #programs .program .program-more .columns .column:last-child {
-          margin-top: 36px; } }
-      #radio #programs .program .program-more .columns .artwork img {
+          margin-top: 10px;
+          margin-right: 18px; } }
+#radio #year-program-container {
+  float: left;
+  position: relative;
+  width: 100%;
+  min-height: 500px; }
+  #radio #year-program-container #year-list {
+    position: absolute;
+    left: 0;
+    width: 93px;
+    font-size: 36px;
+    font-family: "Dosis", sans-serif;
+    color: #777e86; }
+    #radio #year-program-container #year-list a {
+      white-space: nowrap; }
+      #radio #year-program-container #year-list a.active:after {
+        display: inline-block;
+        position: relative;
+        bottom: 7px;
+        padding-left: 7px;
+        font-size: 18px;
+        -webkit-transform: scaleX(0.7);
+        -moz-transform: scaleX(0.7);
+        -ms-transform: scaleX(0.7);
+        -o-transform: scaleX(0.7);
+        transform: scaleX(0.7);
+        content: "➤"; }
+    @media (max-width: 500px) {
+      #radio #year-program-container #year-list {
+        width: 61px;
+        font-size: 24px; }
+        #radio #year-program-container #year-list a.active:after {
+          bottom: 5px;
+          padding-left: 5px;
+          font-size: 12px; } }
+  #radio #year-program-container #programs {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    float: left;
+    padding-left: 93px; }
+    @media (max-width: 500px) {
+      #radio #year-program-container #programs {
+        padding-left: 61px; } }
+    #radio #year-program-container #programs .program {
+      float: left;
+      width: 100%; }
+      #radio #year-program-container #programs .program:nth-child(even) {
+        background: #e1e6df; }
+      #radio #year-program-container #programs .program:nth-child(odd) {
+        background: #e9ede8; }
+      #radio #year-program-container #programs .program .program-intro {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #d36760;
+        display: block;
         width: 100%;
-        height: auto; }
-      #radio #programs .program .program-more .columns .fields span {
-        float: left;
-        clear: both;
-        margin-bottom: 12px; }
-        #radio #programs .program .program-more .columns .fields span:last-child {
-          margin-bottom: 0px; }
-      #radio #programs .program .program-more .columns .fields .audio {
-        line-height: 15px; }
-      #radio #programs .program .program-more .columns .fields a {
-        color: #d36760; }
-        #radio #programs .program .program-more .columns .fields a:hover, #radio #programs .program .program-more .columns .fields a.active {
+        height: 100%;
+        padding: 8px 12px; }
+        #radio #year-program-container #programs .program .program-intro:hover, #radio #year-program-container #programs .program .program-intro.active {
           color: #cd944c; }
-      #radio #programs .program .program-more .tags {
-        width: 100%;
-        float: left;
-        margin-top: 36px; }
+        #radio #year-program-container #programs .program .program-intro .title,
+        #radio #year-program-container #programs .program .program-intro .description {
+          width: 100%; }
+        #radio #year-program-container #programs .program .program-intro .title {
+          margin-top: 5px; }
+        #radio #year-program-container #programs .program .program-intro .description {
+          margin-top: 10px;
+          font-size: 15px;
+          color: #777e86; }
+      #radio #year-program-container #programs .program .program-more {
+        display: none;
+        padding: 36px;
+        padding-top: 18px; }
+        #radio #year-program-container #programs .program .program-more:after {
+          content: "";
+          display: table;
+          clear: both; }
+        #radio #year-program-container #programs .program .program-more .columns .column:first-child {
+          float: left;
+          width: 33%; }
+        #radio #year-program-container #programs .program .program-more .columns .column:last-child {
+          float: right;
+          width: 60%;
+          margin-top: 0px; }
+        @media (max-width: 600px) {
+          #radio #year-program-container #programs .program .program-more .columns .column:first-child, #radio #year-program-container #programs .program .program-more .columns .column:last-child {
+            float: left;
+            width: 100%; }
+          #radio #year-program-container #programs .program .program-more .columns .column:last-child {
+            margin-top: 36px; } }
+        #radio #year-program-container #programs .program .program-more .columns .artwork img {
+          width: 100%;
+          height: auto; }
+        #radio #year-program-container #programs .program .program-more .columns .fields span {
+          float: left;
+          clear: both;
+          margin-bottom: 12px; }
+          #radio #year-program-container #programs .program .program-more .columns .fields span:last-child {
+            margin-bottom: 0px; }
+        #radio #year-program-container #programs .program .program-more .columns .fields .audio {
+          line-height: 15px; }
+        #radio #year-program-container #programs .program .program-more .columns .fields a {
+          color: #d36760; }
+          #radio #year-program-container #programs .program .program-more .columns .fields a:hover, #radio #year-program-container #programs .program .program-more .columns .fields a.active {
+            color: #cd944c; }
+        #radio #year-program-container #programs .program .program-more .tags {
+          width: 100%;
+          float: left;
+          margin-top: 36px; }
 
 #radio-program #program-info .column:first-child {
   float: left;
@@ -569,10 +618,12 @@ html, body {
 #radio-program #program-info #artwork {
   width: 100%; }
 
-#radio .download-link img, #radio-program .download-link img {
+#radio .download-link img,
+#radio-program .download-link img {
   width: 30px;
   height: 30px; }
-#radio audio, #radio-program audio {
+#radio audio,
+#radio-program audio {
   max-width: 100%; }
 
 #radio-calendar .download-link img {
