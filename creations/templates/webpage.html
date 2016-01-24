@@ -5,7 +5,7 @@
 {% block body_id %}webpage{% endblock %}
 
 
-{% block page_title %}{{ webpage.title }}{% endblock %}
+{% block page_title %}{% if webpage.display_title %}{{ webpage.title }}{% endif %}{% endblock %}
 
 
 {% block content %}

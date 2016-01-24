@@ -342,6 +342,7 @@ class WebPage(Creation):
     slug = models.SlugField(max_length=120, unique=True)
     date_published = models.DateField(null=True, blank=True)
     content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    display_title = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['title']

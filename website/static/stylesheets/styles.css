@@ -212,6 +212,8 @@ html, body {
 
 #page-title {
   margin-bottom: 36px; }
+  #page-title:empty {
+    margin-bottom: 0px; }
 
 .page-subtitle {
   margin-bottom: 18px; }

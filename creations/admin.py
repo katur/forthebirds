@@ -140,7 +140,7 @@ class WebPageAdmin(admin.ModelAdmin):
     fieldsets = (
         BASIC_FIELDSET_WITH_SLUG,
         ('Details', {'fields':
-            ('date_published', 'content',),
+            ('display_title', 'date_published', 'content',),
         }),
         TAGGING_FIELDSET,
     )

@@ -8,9 +8,7 @@
     {% include 'header.html' %}
 
     <div id="content">
-      <h2 id="page-title">
-        {% block page_title %}{% endblock%}
-      </h2>
+      <h2 id="page-title">{% block page_title %}{% endblock%}</h2>
 
       {% block content %}{% endblock %}
     </div>
