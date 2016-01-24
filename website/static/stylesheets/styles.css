@@ -615,7 +615,7 @@ html, body {
     width: 100%; }
   #radio-program #program-columns .column:last-child {
     margin-top: 36px; } }
-#radio-program #program-columns #artwork {
+#radio-program #program-columns #artwork img {
   width: 100%; }
 #radio-program #program-columns #above-mp3 {
   float: left;

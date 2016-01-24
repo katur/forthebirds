@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+
 {% load markdown_deux_tags %}
+{% load staticfiles %}
 
 
 {% block body_id %}radio-program{% endblock %}
@@ -13,13 +15,10 @@
 {% block content %}
 
 <div id="program-columns" class="page-subsection">
-  {% with artwork=program.get_artwork %}
-  {% if artwork %}
-  <div class="column">
-    <img id="artwork" src="data:image;base64,{{ artwork }}"/>
+  <div id="artwork" class="column"
+      data-program-pk="{{ program.pk }}">
+    <img src="{% static 'images/camera-icon.png' %}"/>
   </div>
-  {% endif %}
-  {% endwith %}
 
   <div class="column">
     <div id="above-mp3">

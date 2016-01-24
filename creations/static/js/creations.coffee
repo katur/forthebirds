@@ -1,20 +1,37 @@
 $(document).ready ->
+  if $("body").attr("id") == "radio-program"
+    addArtwork()
+
   if $("body").attr("id") == "radio"
-    initializeProgramInfoButtons()
+    initializeProgramButtons()
 
   initializeImageCaptions()
 
 
-initializeProgramInfoButtons = ->
+addRadioProgramArtworkToElement = (radioProgramPk, element) ->
+  $.ajax "/radio/program-artwork/#{radioProgramPk}/",
+    type: "GET"
+    dataType: "json"
+    success: (data, textStatus, jqXHR) ->
+      if data.artwork
+        src = "data:image;base64,#{data.artwork}"
+        element.html("""<img src="#{src}"/>""")
+
+
+addArtwork = ->
+  artworkElement = $("#artwork")
+  programPk = artworkElement.attr("data-program-pk")
+  addRadioProgramArtworkToElement(programPk, artworkElement)
+
+
+initializeProgramButtons = ->
   programIntros = $(".program-intro")
 
   programIntros.click (e) ->
     e.preventDefault()
-
     $(this).toggleClass("active")
+
     program = $(this).closest(".program")
-    programPk = program.attr("data-program-pk")
-    programArtwork = program.find(".artwork")
     programMore = program.find(".program-more")
 
     if (programMore.is(":visible"))
@@ -22,13 +39,9 @@ initializeProgramInfoButtons = ->
     else
       programMore.show()
 
-    $.ajax "/radio/program-artwork/#{programPk}/",
-      type: 'GET'
-      dataType: "json"
-      success: (data, textStatus, jqXHR) ->
-        if data.artwork
-          src = "data:image;base64,#{data.artwork}"
-          programArtwork.html("""<img src="#{src}"/>""")
+    programPk = program.attr("data-program-pk")
+    artworkElement = program.find(".artwork")
+    addRadioProgramArtworkToElement(programPk, artworkElement)
 
 
 initializeImageCaptions = ->
