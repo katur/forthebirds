@@ -1,3 +1,9 @@
+@mixin radio-detail
+  font-family: $sans-font-family
+  font-size: $base-font-size - 2
+  color: $chickadee-dark-gray
+
+
 .itunes-badge-large
   display: inline-block
   overflow: hidden
@@ -133,6 +139,7 @@
 
             .fields
               @include cleared-spans($whitespace / 3)
+              @include radio-detail
 
               .audio
                 line-height: 15px
@@ -147,12 +154,21 @@
 
 
 #radio-program
-  #program-info
+  #program-columns
     @include two-columns(35%, 60%, 600px)
-    @include cleared-spans
 
     #artwork
       width: 100%
+
+    #above-mp3
+      float: left
+      @include cleared-spans
+      margin-bottom: $whitespace
+
+    #mp3-and-below
+      float: left
+      @include cleared-spans($whitespace / 3)
+      @include radio-detail
 
 
 #radio,
@@ -172,8 +188,6 @@
       width: 20px
       height: 20px
 
-
-#radio-calendar
   table, th, td
     border: 1px solid black
 
@@ -203,6 +217,4 @@
         font-weight: bold
 
       .program-type
-        font-size: $base-font-size - 2
-        font-family: $sans-font-family
-        color: $chickadee-dark-gray
+        @include radio-detail

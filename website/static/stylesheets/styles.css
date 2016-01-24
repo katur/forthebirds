@@ -581,44 +581,62 @@ html, body {
         #radio #year-program-container #programs .program .program-more .columns .artwork img {
           width: 100%;
           height: auto; }
-        #radio #year-program-container #programs .program .program-more .columns .fields span {
-          float: left;
-          clear: both;
-          margin-bottom: 12px; }
-          #radio #year-program-container #programs .program .program-more .columns .fields span:last-child {
-            margin-bottom: 0px; }
-        #radio #year-program-container #programs .program .program-more .columns .fields .audio {
-          line-height: 15px; }
-        #radio #year-program-container #programs .program .program-more .columns .fields a {
-          color: #d36760; }
-          #radio #year-program-container #programs .program .program-more .columns .fields a:hover, #radio #year-program-container #programs .program .program-more .columns .fields a.active {
-            color: #cd944c; }
+        #radio #year-program-container #programs .program .program-more .columns .fields {
+          font-family: "Dosis", sans-serif;
+          font-size: 15px;
+          color: #777e86; }
+          #radio #year-program-container #programs .program .program-more .columns .fields span {
+            float: left;
+            clear: both;
+            margin-bottom: 12px; }
+            #radio #year-program-container #programs .program .program-more .columns .fields span:last-child {
+              margin-bottom: 0px; }
+          #radio #year-program-container #programs .program .program-more .columns .fields .audio {
+            line-height: 15px; }
+          #radio #year-program-container #programs .program .program-more .columns .fields a {
+            color: #d36760; }
+            #radio #year-program-container #programs .program .program-more .columns .fields a:hover, #radio #year-program-container #programs .program .program-more .columns .fields a.active {
+              color: #cd944c; }
         #radio #year-program-container #programs .program .program-more .tags {
           width: 100%;
           float: left;
           margin-top: 36px; }
 
-#radio-program #program-info .column:first-child {
+#radio-program #program-columns .column:first-child {
   float: left;
   width: 35%; }
-#radio-program #program-info .column:last-child {
+#radio-program #program-columns .column:last-child {
   float: right;
   width: 60%;
   margin-top: 0px; }
 @media (max-width: 600px) {
-  #radio-program #program-info .column:first-child, #radio-program #program-info .column:last-child {
+  #radio-program #program-columns .column:first-child, #radio-program #program-columns .column:last-child {
     float: left;
     width: 100%; }
-  #radio-program #program-info .column:last-child {
+  #radio-program #program-columns .column:last-child {
     margin-top: 36px; } }
-#radio-program #program-info span {
-  float: left;
-  clear: both;
-  margin-bottom: 18px; }
-  #radio-program #program-info span:last-child {
-    margin-bottom: 0px; }
-#radio-program #program-info #artwork {
+#radio-program #program-columns #artwork {
   width: 100%; }
+#radio-program #program-columns #above-mp3 {
+  float: left;
+  margin-bottom: 36px; }
+  #radio-program #program-columns #above-mp3 span {
+    float: left;
+    clear: both;
+    margin-bottom: 18px; }
+    #radio-program #program-columns #above-mp3 span:last-child {
+      margin-bottom: 0px; }
+#radio-program #program-columns #mp3-and-below {
+  float: left;
+  font-family: "Dosis", sans-serif;
+  font-size: 15px;
+  color: #777e86; }
+  #radio-program #program-columns #mp3-and-below span {
+    float: left;
+    clear: both;
+    margin-bottom: 12px; }
+    #radio-program #program-columns #mp3-and-below span:last-child {
+      margin-bottom: 0px; }
 
 #radio .download-link img,
 #radio-program .download-link img {
@@ -631,7 +649,6 @@ html, body {
 #radio-calendar .download-link img {
   width: 20px;
   height: 20px; }
-
 #radio-calendar table, #radio-calendar th, #radio-calendar td {
   border: 1px solid black; }
 #radio-calendar table {
@@ -654,8 +671,8 @@ html, body {
       font-family: "Dosis", sans-serif;
       font-weight: bold; }
     #radio-calendar table td .program-type {
-      font-size: 15px;
       font-family: "Dosis", sans-serif;
+      font-size: 15px;
       color: #777e86; }
 
 #research #content p {

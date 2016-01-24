@@ -12,7 +12,7 @@
 
 {% block content %}
 
-<div id="program-info" class="page-subsection">
+<div id="program-columns" class="page-subsection">
   {% with artwork=program.get_artwork %}
   {% if artwork %}
   <div class="column">
@@ -22,39 +22,43 @@
   {% endwith %}
 
   <div class="column">
-    <span>
-      Original Air Date: {{ program.air_date }}
-    </span>
+    <div id="above-mp3">
+      <span>
+        Original Air Date: {{ program.air_date }}
+      </span>
 
-    {% with program.get_reruns.all as reruns %}
-    {% if reruns %}
-    <span>
-      Rerun Dates:
-      {% for rerun in reruns %}
-        {{ rerun.air_date }}{% if not forloop.last %}; {% endif %}
-      {% endfor %}
-    </span>
-    {% endif %}
-    {% endwith %}
+      {% with program.get_reruns.all as reruns %}
+      {% if reruns %}
+      <span>
+        Rerun Dates:
+        {% for rerun in reruns %}
+          {{ rerun.air_date }}{% if not forloop.last %}; {% endif %}
+        {% endfor %}
+      </span>
+      {% endif %}
+      {% endwith %}
 
-    <span>
-      {{ program.description|markdown }}
-    </span>
+      <span>
+        {{ program.description|markdown }}
+      </span>
+    </div>
 
-    <span>
-      {% include 'audio_with_download.html' with file=program.file %}
-    </span>
+    <div id="mp3-and-below">
+      <span>
+        {% include 'audio_with_download.html' with file=program.file %}
+      </span>
 
-    <span>
-      Duration: {{ program.get_printable_duration }}
-    </span>
+      <span id="duration">
+        Duration: {{ program.get_printable_duration }}
+      </span>
 
-    {% if program.supplemental_content_url %}
-    <span>
-      <a href="{{ program.supplemental_content_url }}">
-        Transcript and photos</a>
-    </span>
-    {% endif %}
+      {% if program.supplemental_content_url %}
+      <span id="transcript">
+        <a href="{{ program.supplemental_content_url }}">
+          Transcript and photos</a>
+      </span>
+      {% endif %}
+    </div>
   </div>
 </div>
 
