@@ -447,6 +447,7 @@ html, body {
 #bird #overview #blurb {
   margin-bottom: 36px; }
 #bird #overview #info-spans span {
+  font-family: "Dosis", sans-serif;
   display: block;
   margin-bottom: 12px; }
 #bird #public-cards,
