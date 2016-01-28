@@ -19,7 +19,7 @@
         {{ page.title }}</a>
 
       {% if page.description %}
-        <br>&nbsp;&nbsp;{{ page.description }}
+      <span class="description">{{ page.description }}</span>
       {% endif %}
     </li>
     {% endfor %}
@@ -34,7 +34,7 @@
       <a href="{{ project.url }}">{{ project.title }}</a>
 
       {% if project.description %}
-        <br>&nbsp;&nbsp;{{ project.description }}
+      <span class="description">{{ project.description }}</span>
       {% endif %}
     </li>
     {% endfor %}

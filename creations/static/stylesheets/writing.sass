@@ -30,12 +30,15 @@
         width: 100%
         margin-bottom: $whitespace / 3
 
+      &:nth-child(4n+1)
+        clear: left
+
       .title
         font-style: italic
         font-weight: bold
 
-      &:nth-child(4n+1)
-        clear: left
+      .more-info
+        @include sans-font
 
     @media (max-width: 1000px)
       .book
@@ -78,3 +81,11 @@
   .tags
     float: left
     width: 100%
+
+  .purchase-link,
+  .isbn
+    @include sans-font
+
+  .isbn
+    font-size: $base-font-size - 2
+    color: $chickadee-gray

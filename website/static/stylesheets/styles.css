@@ -507,6 +507,26 @@ html, body {
   #birds-taxonomical .plus-sign.minus::before {
     display: none; }
 
+#miscellany ul {
+  list-style-position: inside;
+  list-style-type: disc; }
+  #miscellany ul ul li, #miscellany ul ul ul {
+    padding-left: 30px; }
+  #miscellany ul ul {
+    list-style-type: circle; }
+    #miscellany ul ul ul {
+      list-style-type: square; }
+      #miscellany ul ul ul ul {
+        list-style-type: disc; }
+  #miscellany ul li {
+    margin-bottom: 9px; }
+    #miscellany ul li a,
+    #miscellany ul li span {
+      display: block;
+      clear: both; }
+    #miscellany ul li .description {
+      margin-left: 1em; }
+
 .itunes-badge-large {
   display: inline-block;
   overflow: hidden;
@@ -816,11 +836,13 @@ html, body {
       float: left;
       width: 100%;
       margin-bottom: 12px; }
+    #writing #books .book:nth-child(4n+1) {
+      clear: left; }
     #writing #books .book .title {
       font-style: italic;
       font-weight: bold; }
-    #writing #books .book:nth-child(4n+1) {
-      clear: left; }
+    #writing #books .book .more-info {
+      font-family: "Dosis", sans-serif; }
   @media (max-width: 1000px) {
     #writing #books .book {
       width: 28.3%; }
@@ -872,6 +894,12 @@ html, body {
 #book .tags {
   float: left;
   width: 100%; }
+#book .purchase-link,
+#book .isbn {
+  font-family: "Dosis", sans-serif; }
+#book .isbn {
+  font-size: 15px;
+  color: #9ba5a9; }
 
 #ways-to-help #all-ways-to-help {
   width: 105%;

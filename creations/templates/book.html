@@ -35,14 +35,6 @@
     {% endif %}
 
 
-    {% if book.isbn_10 %}
-    <span>ISBN-10: {{ book.isbn_10 }}</span>
-    {% endif %}
-
-    {% if book.isbn_13 %}
-    <span>ISBN-13: {{ book.isbn_13 }}</span>
-    {% endif %}
-
     <span>{{ book.description|markdown }}</span>
 
     {% if book.purchase_url %}
@@ -50,6 +42,14 @@
       <a class="purchase-link" href="{{ book.purchase_url }}">
         Click here to purchase</a>
     </span>
+    {% endif %}
+
+    {% if book.isbn_10 %}
+    <span class="isbn">ISBN-10: {{ book.isbn_10 }}</span>
+    {% endif %}
+
+    {% if book.isbn_13 %}
+    <span class="isbn">ISBN-13: {{ book.isbn_13 }}</span>
     {% endif %}
   </div>
 </div>

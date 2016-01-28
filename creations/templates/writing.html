@@ -41,7 +41,8 @@
 
       <span class="description">{{ book.description|markdown }}</span>
 
-      <a href="{{ book.get_absolute_url }}">More info</a>
+      <a class="more-info" href="{{ book.get_absolute_url }}">
+        More info</a>
     </div>
     {% endfor %}
   </div>
