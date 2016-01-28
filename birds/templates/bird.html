@@ -93,8 +93,8 @@
       {% include "creation_card.html" %}
       {% endwith %}
     {% endfor %}
-    {% endif %}
   </div>
+  {% endif %}
 </div>
 
 {% if private_creations or user.is_authenticated and bird.is_minnesotan %}
