@@ -16,7 +16,7 @@
       <tr>
       <td><i>{{ bird.scientific_name }}</i></td>
 
-      {% with order=bird.get_order family=bird.get_family subfamily=bird.get_subfamily%}
+      {% with order=bird.get_order family=bird.get_family %}
 
       <td>
         Order: {{ order.name }}
@@ -27,13 +27,6 @@
         Family: {{ family.name }}
         {% if family.common_name %}({{ family.common_name }}){% endif %}
       </td>
-
-      {% if subfamily %}
-      <td>
-        Subfamily: {{ family.name }}
-        {% if subfamily.common_name %}({{ subfamily.common_name }}){% endif %}
-      </td>
-      {% endif %}
 
       {% endwith %}
     </table>
