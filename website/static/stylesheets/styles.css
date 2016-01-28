@@ -431,7 +431,7 @@ html, body {
   color: #f5f4ee;
   text-align: center; }
   #bird #taxonomy td {
-    padding: 2px; }
+    padding: 2px 4px; }
 #bird #overview #main-photo {
   display: block;
   float: left;
