@@ -1,0 +1,44 @@
+@import "svg_images"
+
+.chickadee
+  display: block
+  position: absolute
+  background-size: contain
+  background-repeat: no-repeat
+
+.chickadee-l
+  top: -149px
+  left: -50px
+  width: 15%
+  height: 154px
+  background-image: $chickadee-l
+  background-position: bottom right
+
+  @media (max-width: 850px)
+    left: -40px
+
+  @media (max-width: 550px)
+    top: -152px
+
+  @media (max-width: 650px)
+    left: -20px
+
+.chickadee-r
+  top: -145px
+  right: -13px
+  width: 10%
+  height: 154px
+  background-image: $chickadee-r
+  background-position: bottom left
+
+  @media (max-width: 1050px)
+    top: -148px
+
+  @media (max-width: 900px)
+    right: 0
+
+  @media (max-width: 650px)
+    top: -150px
+
+  @media (max-width: 400px)
+    top: -152px

@@ -7,6 +7,7 @@ html, body
 #header, #content, #footer
   @include clearfix
   @include box-sizing(border-box)
+  position: relative
   width: 1200px
   margin: auto
 
@@ -30,16 +31,12 @@ html, body
     width: 94%
     margin: 0 3%
 
-#header
-  position: relative
-
 
 #content
   min-height: 500px
   background: $content-background
   padding: $whitespace * 1.5
   border-radius: 2px
-  overflow: hidden
   height: auto
 
 
