@@ -14,6 +14,8 @@
     position: relative
     overflow: hidden
     margin: 0
+    width: 725px
+    padding-top: 87px
 
     h1
       position: absolute
@@ -21,17 +23,19 @@
       top: -46%
       left: 0
       color: $chickadee-white
+      font-size: 110px
+      letter-spacing: 3px
 
-    @media (min-width: 797px)
-      width: 725px
-      padding-top: 87px
+
+    @media (max-width: 950px)
+      width: 90%
+      padding-top: 11%
 
       h1
-        font-size: 110px
-        letter-spacing: 3px
+        font-size: 12vw
+        letter-spacing: 0.2vw
 
-
-    @media (max-width: 797px)
+    @media (max-width: 750px)
       width: 100%
       padding-top: 12%
 

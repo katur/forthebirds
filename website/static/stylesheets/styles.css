@@ -239,21 +239,25 @@ html, body {
     display: inline-block;
     position: relative;
     overflow: hidden;
-    margin: 0; }
+    margin: 0;
+    width: 725px;
+    padding-top: 87px; }
     #header #site-title h1 {
       position: absolute;
       width: 100%;
       top: -46%;
       left: 0;
-      color: #deedf2; }
-    @media (min-width: 797px) {
+      color: #deedf2;
+      font-size: 110px;
+      letter-spacing: 3px; }
+    @media (max-width: 950px) {
       #header #site-title {
-        width: 725px;
-        padding-top: 87px; }
+        width: 90%;
+        padding-top: 11%; }
         #header #site-title h1 {
-          font-size: 110px;
-          letter-spacing: 3px; } }
-    @media (max-width: 797px) {
+          font-size: 12vw;
+          letter-spacing: 0.2vw; } }
+    @media (max-width: 750px) {
       #header #site-title {
         width: 100%;
         padding-top: 12%; }
