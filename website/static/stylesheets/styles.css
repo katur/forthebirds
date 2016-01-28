@@ -422,43 +422,98 @@ html, body {
   #birds #bird-search form .submit {
     margin-left: 9px; }
 
-#bird #main-photo {
-  display: block;
-  width: 500px;
-  max-width: 100%;
-  float: left;
-  margin-right: 46px;
-  margin-bottom: 36px; }
-  @media (max-width: 600px) {
-    #bird #main-photo #main-photo {
-      margin-right: 0;
-      margin-bottom: 0; } }
-#bird .card {
-  float: left;
-  padding: 10px;
-  margin-right: 18px;
-  margin-bottom: 18px;
-  max-width: 500px;
-  border: 1px solid #cfd3cf;
-  border-radius: 2px; }
-  #bird .card h4 {
-    margin-bottom: 10px;
-    text-align: center; }
-  #bird .card span {
-    display: block;
-    clear: both; }
-    #bird .card span.year {
-      clear: none;
-      display: inline;
-      font-size: 13px;
-      color: #9ba5a9; }
-  #bird .card ul {
-    list-style-type: disc;
-    list-style-position: inside; }
-#bird #blurb {
-  float: left;
+#bird #taxonomy {
   width: 100%;
-  clear: both; }
+  background: #788c6d;
+  font-family: "Dosis", sans-serif;
+  font-weight: 200;
+  letter-spacing: 1px;
+  color: #f5f4ee;
+  text-align: center; }
+  #bird #taxonomy td {
+    padding: 2px; }
+#bird #overview #main-photo {
+  display: block;
+  float: left;
+  width: 45%;
+  height: auto;
+  margin-right: 5%;
+  margin-bottom: 18px; }
+  @media (max-width: 600px) {
+    #bird #overview #main-photo {
+      width: 100%;
+      margin-right: 0%;
+      margin-bottom: 36px; } }
+#bird #overview #blurb {
+  margin-bottom: 36px; }
+#bird #overview #info-spans span {
+  display: block;
+  margin-bottom: 12px; }
+#bird #public-cards,
+#bird #private-cards {
+  width: 103%;
+  margin-right: -3%; }
+  #bird #public-cards .card,
+  #bird #private-cards .card {
+    display: block;
+    box-sizing: border-box;
+    float: left;
+    width: 20%;
+    margin: 0 2.5% 50px 2.5%;
+    padding: 10px;
+    border: 1px solid #cfd3cf;
+    border-radius: 2px; }
+    #bird #public-cards .card:nth-child(4n+1),
+    #bird #private-cards .card:nth-child(4n+1) {
+      clear: left; }
+    @media (max-width: 1400px) {
+      #bird #public-cards .card,
+      #bird #private-cards .card {
+        width: 28.3%; }
+        #bird #public-cards .card:nth-child(4n+1),
+        #bird #private-cards .card:nth-child(4n+1) {
+          clear: none; }
+        #bird #public-cards .card:nth-child(3n+1),
+        #bird #private-cards .card:nth-child(3n+1) {
+          clear: left; } }
+    @media (max-width: 1050px) {
+      #bird #public-cards .card,
+      #bird #private-cards .card {
+        width: 45%; }
+        #bird #public-cards .card:nth-child(4n+1),
+        #bird #private-cards .card:nth-child(4n+1) {
+          clear: none; }
+        #bird #public-cards .card:nth-child(3n+1),
+        #bird #private-cards .card:nth-child(3n+1) {
+          clear: none; }
+        #bird #public-cards .card:nth-child(2n+1),
+        #bird #private-cards .card:nth-child(2n+1) {
+          clear: left; } }
+    @media (max-width: 700px) {
+      #bird #public-cards .card,
+      #bird #private-cards .card {
+        width: 95%; } }
+    #bird #public-cards .card h4,
+    #bird #private-cards .card h4 {
+      margin-bottom: 10px;
+      text-align: center; }
+    #bird #public-cards .card span,
+    #bird #private-cards .card span {
+      display: block;
+      clear: both; }
+      #bird #public-cards .card span.year,
+      #bird #private-cards .card span.year {
+        clear: none;
+        display: inline;
+        font-size: 13px;
+        color: #9ba5a9; }
+    #bird #public-cards .card ul,
+    #bird #private-cards .card ul {
+      list-style-type: disc;
+      list-style-position: inside; }
+    #bird #public-cards .card img,
+    #bird #private-cards .card img {
+      max-width: 100%; }
 
 #birds-taxonomical ul {
   list-style-position: inside;
@@ -908,18 +963,37 @@ html, body {
   left: -5%; }
   #ways-to-help #all-ways-to-help .way-to-help-card {
     display: block;
-    position: relative;
+    box-sizing: border-box;
     float: left;
     width: 20%;
     margin: 0 2.5% 50px 2.5%;
+    position: relative;
     padding: 20px;
     border-radius: 2px;
-    box-sizing: border-box;
     box-shadow: 0px 1px 1px #9ba5a9;
     background-size: cover;
     background-position: center center; }
     #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(4n+1) {
       clear: left; }
+    @media (max-width: 1400px) {
+      #ways-to-help #all-ways-to-help .way-to-help-card {
+        width: 28.3%; }
+        #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(4n+1) {
+          clear: none; }
+        #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(3n+1) {
+          clear: left; } }
+    @media (max-width: 1050px) {
+      #ways-to-help #all-ways-to-help .way-to-help-card {
+        width: 45%; }
+        #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(4n+1) {
+          clear: none; }
+        #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(3n+1) {
+          clear: none; }
+        #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(2n+1) {
+          clear: left; } }
+    @media (max-width: 700px) {
+      #ways-to-help #all-ways-to-help .way-to-help-card {
+        width: 95%; } }
     #ways-to-help #all-ways-to-help .way-to-help-card:after {
       content: "";
       display: block;
@@ -952,22 +1026,3 @@ html, body {
         font-family: "adelaidaregular";
         font-size: 119px;
         color: rgba(207, 211, 207, 0.65); }
-  @media (max-width: 1400px) {
-    #ways-to-help #all-ways-to-help .way-to-help-card {
-      width: 28.3%; }
-      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(4n+1) {
-        clear: none; }
-      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(3n+1) {
-        clear: left; } }
-  @media (max-width: 1050px) {
-    #ways-to-help #all-ways-to-help .way-to-help-card {
-      width: 45%; }
-      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(4n+1) {
-        clear: none; }
-      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(3n+1) {
-        clear: none; }
-      #ways-to-help #all-ways-to-help .way-to-help-card:nth-child(2n+1) {
-        clear: left; } }
-  @media (max-width: 700px) {
-    #ways-to-help #all-ways-to-help .way-to-help-card {
-      width: 95%; } }

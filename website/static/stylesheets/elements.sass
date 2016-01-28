@@ -52,6 +52,16 @@ $tag-spacing: 3px
     color: $chickadee-dark-gray
 
 
+@mixin cleared-spans($spacing: $whitespace / 2)
+  span
+    float: left
+    clear: both
+    margin-bottom: $spacing
+
+    &:last-child
+      margin-bottom: 0px
+
+
 @mixin two-columns($left: 47%, $right: 47%, $media: 750px)
   .column
     &:first-child
@@ -73,11 +83,33 @@ $tag-spacing: 3px
         margin-top: $whitespace
 
 
-@mixin cleared-spans($spacing: $whitespace / 2)
-  span
-    float: left
-    clear: both
-    margin-bottom: $spacing
+@mixin four-three-two-one
+  display: block
+  box-sizing: border-box
+  float: left
+  width: 20%
+  margin: 0 2.5% 50px 2.5%
 
-    &:last-child
-      margin-bottom: 0px
+  &:nth-child(4n+1)
+    clear: left
+
+  @media (max-width: 1400px)
+    width: 28.3%
+
+    &:nth-child(4n+1)
+      clear: none
+    &:nth-child(3n+1)
+      clear: left
+
+  @media (max-width: 1050px)
+    width: 45%
+
+    &:nth-child(4n+1)
+      clear: none
+    &:nth-child(3n+1)
+      clear: none
+    &:nth-child(2n+1)
+      clear: left
+
+  @media (max-width: 700px)
+    width: 95%

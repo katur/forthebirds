@@ -11,90 +11,94 @@
 {% block content %}
 
 <div class="page-section">
-  {% if bird.main_photo_url %}
-  <img id="main-photo" src="{{ bird.main_photo_url }}"/>
-  {% endif %}
+  <div class="page-subsection">
+    <table id="taxonomy">
+      <tr>
+      <td><i>{{ bird.scientific_name }}</i></td>
 
-  <div id="taxonomy" class="card">
-    <h4>Taxonomy</h4>
-    {% for ancestor in bird.get_ancestors reversed %}
-      <span>
-        {{ ancestor.level|capfirst }}:
-        {{ ancestor.name }}
-        {% if ancestor.common_name %}
-          ({{ ancestor.common_name }})
+      {% with order=bird.get_order family=bird.get_family subfamily=bird.get_subfamily%}
+
+      <td>
+        Order: {{ order.name }}
+        {% if order.common_name %}({{ order.common_name }}){% endif %}
+      </td>
+
+      <td>
+        Family: {{ family.name }}
+        {% if family.common_name %}({{ family.common_name }}){% endif %}
+      </td>
+
+      {% if subfamily %}
+      <td>
+        Subfamily: {{ family.name }}
+        {% if subfamily.common_name %}({{ subfamily.common_name }}){% endif %}
+      </td>
+      {% endif %}
+
+      {% endwith %}
+    </table>
+  </div>
+
+  <div id="overview" class="page-subsection">
+    {% if bird.main_photo_url %}
+    <img id="main-photo" src="{{ bird.main_photo_url }}"/>
+    {% endif %}
+
+    <div id="overview-text">
+      {% if bird.blurb %}
+      <div id="blurb" class="markdown">
+        {{ bird.blurb|markdown }}
+      </div>
+      {% endif %}
+
+      <div id="info-spans">
+        {% if bird.nacc_annotation %}
+          <span>NACC Annotation: {{ bird.nacc_annotation }}</span>
         {% endif %}
-      </span>
-    {% endfor %}
-    <span>Scientific name: <i>{{ bird.scientific_name }}</i></span>
-    <span>French name: {{ bird.french_name }}</span>
+
+        {% if bird.get_nacc_statuses %}
+          {% for status in bird.get_nacc_statuses %}
+          <span>NACC Status: {{ status }}</span>
+          {% endfor %}
+        {% endif %}
+
+        <span>
+          <a href="{{ bird.get_flickr_search_url }}">
+            Search Laura's Flickr photos</a>
+        </span>
+
+        {% if bird.has_cornell_all_about_birds_url %}
+        <span>
+          <a href="{{ bird.get_cornell_all_about_birds_url }}">
+            Cornell Lab's All About Birds</a>
+        </span>
+        {% endif %}
+
+        {% if bird.has_abc_bird_of_the_week_url %}
+        <span>
+          <a href="{{ bird.get_abc_bird_of_the_week_url }}">
+            ABC's Bird of the Week</a>
+        </span>
+        {% endif %}
+      </div>
+    </div>
+
   </div>
-
-  {% if bird.nacc_annotation or bird.get_nacc_statuses %}
-  <div id="nacc" class="card">
-    <h4>NACC Information</h4>
-    {% if bird.nacc_annotation %}
-      <span>Annotation: {{ bird.nacc_annotation }}</span>
-    {% endif %}
-
-    {% if bird.get_nacc_statuses %}
-      {% for status in bird.get_nacc_statuses %}
-        <span>Status: {{ status }}</span>
-      {% endfor %}
-    {% endif %}
-  </div>
-  {% endif %}
-
-  <div id="links" class="card">
-    <h4>External Resources</h4>
-
-    <ul>
-      {% if bird.has_cornell_all_about_birds_url %}
-      <li>
-        <a href="{{ bird.get_cornell_all_about_birds_url }}">
-          Cornell Lab's All About Birds</a>
-      </li>
-      {% endif %}
-
-      {% if bird.has_abc_bird_of_the_week_url %}
-      <li>
-        <a href="{{ bird.get_abc_bird_of_the_week_url }}">
-          ABC's Bird of the Week</a>
-      </li>
-      {% endif %}
-
-      <li>
-        <a href="{{ bird.get_flickr_search_url }}">
-          Search Laura's Flickr photos</a>
-      </li>
-
-      {% for link in bird.links %}
-      <li>
-        <a href="{{ link.url }}">{{ link.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  {% if bird.blurb %}
-  <div id="blurb" class="card markdown-section">
-    {{ bird.blurb|markdown }}
-  </div>
-  {% endif %}
 
   {% if public_creations %}
-  {% regroup public_creations by get_class_display_name as card_list %}
-  {% for card in card_list %}
-    {% with category=card.grouper creations=card.list %}
-    {% include "creation_card.html" %}
-    {% endwith %}
-  {% endfor %}
-  {% endif %}
+  <div id="public-cards" class="page-subsection">
+    {% regroup public_creations by get_class_display_name as card_list %}
+    {% for card in card_list %}
+      {% with category=card.grouper creations=card.list %}
+      {% include "creation_card.html" %}
+      {% endwith %}
+    {% endfor %}
+    {% endif %}
+  </div>
 </div>
 
-
 {% if private_creations or user.is_authenticated and bird.is_minnesotan %}
-<div class="page-section">
+<div id="private-cards" class="page-section">
   <h3 class="page-subtitle">
     Private Information
   </h3>

@@ -6,20 +6,13 @@
     left: -5%
 
     .way-to-help-card
-      display: block
+      @include four-three-two-one
       position: relative
-      float: left
-      width: 20%
-      margin: 0 2.5% 50px 2.5%
       padding: 20px
       border-radius: $card-border-radius
-      box-sizing: border-box
       box-shadow: 0px 1px 1px $chickadee-gray
       background-size: cover
       background-position: center center
-
-      &:nth-child(4n+1)
-        clear: left
 
       &:after
         content: ''
@@ -53,27 +46,3 @@
           font-family: 'adelaidaregular'
           font-size: $base-font-size * 7
           color: rgba($chickadee-light-gray, 0.65)
-
-    @media (max-width: 1400px)
-      .way-to-help-card
-        width: 28.3%
-
-        &:nth-child(4n+1)
-          clear: none
-        &:nth-child(3n+1)
-          clear: left
-
-    @media (max-width: 1050px)
-      .way-to-help-card
-        width: 45%
-
-        &:nth-child(4n+1)
-          clear: none
-        &:nth-child(3n+1)
-          clear: none
-        &:nth-child(2n+1)
-          clear: left
-
-    @media (max-width: 700px)
-      .way-to-help-card
-        width: 95%

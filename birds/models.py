@@ -62,6 +62,34 @@ class Species(models.Model):
     def get_absolute_url(self):
         return reverse('bird_url', args=[self.slug])
 
+    def get_ancestors(self):
+        ancestors = []
+        parent = self.parent
+
+        while parent:
+            ancestors.append(parent)
+            parent = parent.parent
+
+        return ancestors
+
+    def get_ancestor(self, ancestor_level_name):
+        for ancestor in self.get_ancestors():
+            if ancestor.level.name == ancestor_level_name:
+                return ancestor
+        return None
+
+    def get_order(self):
+        return self.get_ancestor('order')
+
+    def get_family(self):
+        return self.get_ancestor('family')
+
+    def get_subfamily(self):
+        return self.get_ancestor('subfamily')
+
+    def get_genus(self):
+        return self.get_ancestor('genus')
+
     def get_abc_bird_of_the_week_url(self):
         url_name = self.common_name.replace(' ', '-')
         url_name = url_name.replace("'", '')
@@ -105,16 +133,6 @@ class Species(models.Model):
         if self.nacc_is_misplaced:
             statuses.append('Misplaced')
         return statuses
-
-    def get_ancestors(self):
-        ancestors = []
-        parent = self.parent
-
-        while parent:
-            ancestors.append(parent)
-            parent = parent.parent
-
-        return ancestors
 
     def important_field_differs(self, other):
         return (

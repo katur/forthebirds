@@ -14,47 +14,66 @@
 
 
 #bird
-  #main-photo
-    display: block
-    width: 500px
-    max-width: 100%
-    float: left
-    margin-right: $whitespace + 10
-    margin-bottom: $whitespace
-
-    @media (max-width: 600px)
-      #main-photo
-        margin-right: 0
-        margin-bottom: 0
-
-  .card
-    float: left
-    padding: 10px
-    margin-right: $whitespace / 2
-    margin-bottom: $whitespace / 2
-    max-width: 500px
-    border: 1px solid $chickadee-light-gray
-    border-radius: $card-border-radius
-
-    h4
-      margin-bottom: 10px
-      text-align: center
-
-    span
-      display: block
-      clear: both
-
-      &.year
-        @include following-text
-
-    ul
-      list-style-type: disc
-      list-style-position: inside
-
-  #blurb
-    float: left
+  #taxonomy
     width: 100%
-    clear: both
+    background: $moss
+    @include sans-font(light)
+    color: $chickadee-cream
+    text-align: center
+
+    td
+      padding: 2px
+
+  #overview
+    #main-photo
+      display: block
+      float: left
+      width: 45%
+      height: auto
+      margin-right: 5%
+      margin-bottom: $whitespace / 2
+
+      @media (max-width: 600px)
+        width: 100%
+        margin-right: 0%
+        margin-bottom: $whitespace
+
+    #blurb
+      margin-bottom: $whitespace
+
+    #info-spans
+      span
+        display: block
+        margin-bottom: $whitespace / 3
+
+  #public-cards,
+  #private-cards
+    width: 103%
+    margin-right: -3%
+
+    .card
+      @include four-three-two-one
+      padding: 10px
+      border: 1px solid $chickadee-light-gray
+      border-radius: $card-border-radius
+
+      h4
+        margin-bottom: 10px
+        text-align: center
+
+      span
+        display: block
+        clear: both
+
+        &.year
+          @include following-text
+
+      ul
+        list-style-type: disc
+        list-style-position: inside
+
+      img
+        max-width: 100%
 
 
 #birds-taxonomical
