@@ -10,5 +10,13 @@
 
   <a class="logout" href="{% url 'logout_url' %}?next={{ request.path }}">
     Log Out</a>
+
+  <span class="bird-search">
+    Search birds
+    <form action="/birds" method="get">
+      <input name="query" type="text" placeholder="e.g. chickadee">
+      <button type="submit" value="Submit">go</button>
+    </form>
+  </span>
 </div>
 {% endif %}

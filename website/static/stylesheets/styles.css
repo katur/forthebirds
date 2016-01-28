@@ -311,16 +311,28 @@ html, body {
   #admin-bar span,
   #admin-bar a {
     float: left;
+    padding: 0 10px;
     text-transform: lowercase; }
   #admin-bar .user {
     margin: 0 10px; }
-  #admin-bar a {
-    padding: 0 10px; }
-    #admin-bar a:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #de8d88; }
-  #admin-bar .logout {
+  #admin-bar a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #de8d88; }
+  #admin-bar .logout, #admin-bar .bird-search {
     float: right; }
+  #admin-bar form, #admin-bar button, #admin-bar input {
+    display: inline; }
+    #admin-bar form button, #admin-bar form input, #admin-bar button button, #admin-bar button input, #admin-bar input button, #admin-bar input input {
+      border: none;
+      border-radius: 3px;
+      padding: 2px 4px;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit; }
+    #admin-bar form input, #admin-bar button input, #admin-bar input input {
+      background: #cfd3cf; }
+    #admin-bar form button, #admin-bar button button, #admin-bar input button {
+      background: #9ba5a9; }
 
 #home #page-title {
   display: none; }

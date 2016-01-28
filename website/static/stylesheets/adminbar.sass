@@ -16,17 +16,33 @@ $admin-padding: 10px
   span,
   a
     float: left
+    padding: 0 $admin-padding
     text-transform: lowercase
 
   .user
     margin: 0  $admin-padding
 
   a
-    padding: 0 $admin-padding
-
     &:hover
       background: transparentize(#fff, 0.9)
       color: $peach-pink
 
-  .logout
+  .logout, .bird-search
     float: right
+
+  form, button, input
+    display: inline
+
+    button, input
+      border: none
+      border-radius: 3px
+      padding: 2px 4px
+      font-family: inherit
+      font-size: inherit
+      letter-spacing: inherit
+
+    input
+      background: $chickadee-light-gray
+
+    button
+      background: $chickadee-gray
