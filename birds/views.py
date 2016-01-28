@@ -67,7 +67,12 @@ def bird(request, slug):
             return x.get_display_date() or mindate
 
         def get_name(x):
-            return x.get_class_display_name()
+            display_name = x.get_class_display_name()
+            if display_name.startswith('A B A'):
+                print display_name
+                return 'zzz'
+            else:
+                return display_name
 
         creations = sorted(creations, key=get_sorting_date, reverse=True)
         creations = sorted(creations, key=get_name)
