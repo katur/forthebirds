@@ -1,5 +1,5 @@
-@mixin radio-detail
-  font-family: $sans-font-family
+@mixin radio-detail-font
+  @include sans-font
   font-size: $base-font-size - 2
   color: $chickadee-dark-gray
 
@@ -58,8 +58,8 @@
       position: absolute
       left: 0
       width: $year-list-width-big
+      @include sans-font
       font-size: 36px
-      font-family: $sans-font-family
       color: $chickadee-dark-gray
 
       a
@@ -139,7 +139,7 @@
 
             .fields
               @include cleared-spans($whitespace / 3)
-              @include radio-detail
+              @include radio-detail-font
 
               .audio
                 line-height: 15px
@@ -169,7 +169,7 @@
     #mp3-and-below
       float: left
       @include cleared-spans($whitespace / 3)
-      @include radio-detail
+      @include radio-detail-font
 
 
 #radio,
@@ -203,7 +203,7 @@
     th
       background: $moss
       color: $content-background
-      font-family: $sans-font-family
+      @include sans-font
       letter-spacing: 1px
 
     td
@@ -214,8 +214,8 @@
         display: block
 
       .day
-        font-family: $sans-font-family
+        @include sans-font
         font-weight: bold
 
       .program-type
-        @include radio-detail
+        @include radio-detail-font
