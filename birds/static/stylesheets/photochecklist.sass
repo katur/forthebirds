@@ -22,6 +22,7 @@
         @include four-three-two-one-parent
 
         .photo-and-caption
+          display: block
           box-sizing: border-box
           @include four-three-two-one-child
 
@@ -38,17 +39,18 @@
           &:hover
             &:after
               cursor: pointer
-              @include transition(background, 100ms, linear)
-              background: rgba($chickadee-white, .2)
+              @include transition(background, 130ms, linear)
+              background: rgba($chickadee-white, .1)
 
           img
+            float: left
             width: 100%
 
           .photo-caption
             box-sizing: border-box
             display: block
             position: absolute
-            bottom: 6px
+            bottom: 0
             left: 0
             width: 100%
             padding: 2%

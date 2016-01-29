@@ -615,6 +615,7 @@ html, body {
     position: relative;
     left: -5%; }
     #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
+      display: block;
       box-sizing: border-box;
       display: block;
       position: relative;
@@ -654,17 +655,18 @@ html, body {
         z-index: 1; }
       #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:hover:after {
         cursor: pointer;
-        -webkit-transition: background, 100ms, linear;
-        -moz-transition: background, 100ms, linear;
-        transition: background, 100ms, linear;
-        background: rgba(222, 237, 242, 0.2); }
+        -webkit-transition: background, 130ms, linear;
+        -moz-transition: background, 130ms, linear;
+        transition: background, 130ms, linear;
+        background: rgba(222, 237, 242, 0.1); }
       #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption img {
+        float: left;
         width: 100%; }
       #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption {
         box-sizing: border-box;
         display: block;
         position: absolute;
-        bottom: 6px;
+        bottom: 0;
         left: 0;
         width: 100%;
         padding: 2%;
