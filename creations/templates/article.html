@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}article{% endblock %}
@@ -43,7 +43,7 @@
 
 {% if article.text %}
 <div class="page-subsection markdown">
-  {{ article.text|markdown }}
+  {{ article.text|enhanced_markdown }}
 </div>
 {% endif %}
 

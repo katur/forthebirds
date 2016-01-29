@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}way-to-help{% endblock %}
@@ -11,5 +11,5 @@
 
 
 {% block content %}
-{{ way.text|markdown }}
+{{ way.text|enhanced_markdown }}
 {% endblock %}

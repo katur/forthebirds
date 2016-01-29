@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 {% load thumbnail %}
 
 
@@ -17,7 +17,7 @@
     src="{{ MEDIA_URL }}{{ laura.userprofile.main_photo.image }}" />
 
   <div id="blurb" class="markdown">
-    {{ laura.userprofile.blurb|markdown }}
+    {{ laura.userprofile.blurb|enhanced_markdown }}
   </div>
 </div>
 
@@ -27,7 +27,7 @@
   </h3>
 
   <div id="bio" class="markdown">
-    {{ laura.userprofile.bio|markdown }}
+    {{ laura.userprofile.bio|enhanced_markdown }}
   </div>
 </div>
 
@@ -37,7 +37,7 @@
   </h3>
 
   <div id="awards" class="markdown">
-    {{ laura.userprofile.awards|markdown }}
+    {{ laura.userprofile.awards|enhanced_markdown }}
   </div>
 </div>
 
@@ -48,7 +48,7 @@
 
   <div>
     <a href="{% url 'speaking_url' %}">Click here</a>
-    to learn about Laura's speaking engagements.
+    to learn about Laura&rsquo;s speaking engagements.
   </div>
 </div>
 

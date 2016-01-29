@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}speaking{% endblock %}
@@ -14,7 +14,7 @@ Laura's Speaking Engagements
 
 <div class="page-section">
   <div class="markdown">
-    {{ laura.userprofile.speaking_overview|markdown }}
+    {{ laura.userprofile.speaking_overview|enhanced_markdown }}
   </div>
 </div>
 
@@ -39,7 +39,7 @@ Laura's Speaking Engagements
   </h3>
 
   <div class="markdown">
-    {{ laura.userprofile.speaking_keynotes|markdown }}
+    {{ laura.userprofile.speaking_keynotes|enhanced_markdown }}
   </div>
 </div>
 
@@ -49,7 +49,7 @@ Laura's Speaking Engagements
   </h3>
 
   <div class="markdown">
-    {{ laura.userprofile.speaking_testimonials|markdown }}
+    {{ laura.userprofile.speaking_testimonials|enhanced_markdown }}
   </div>
 </div>
 

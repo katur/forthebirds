@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}research-item{% endblock %}
@@ -16,14 +16,14 @@
 {% if research_item.description %}
 <div class="page-section">
   <h3 class="page-subtitle">Description</h3>
-  {{ research_item.description }}
+  {{ research_item.description|enhanced_markdown }}
 </div>
 {% endif %}
 
 {% if research_item.attribution %}
 <div class="page-section">
   <h3 class="page-subtitle">Attribution</h3>
-  {{ research_item.attribution|markdown }}
+  {{ research_item.attribution|enhanced_markdown }}
 </div>
 {% endif %}
 
@@ -51,7 +51,7 @@
 {% if research_item.text %}
 <div class="page-section">
   <h3 class="page-subtitle">Text</h3>
-  {{ research_item.text|markdown }}
+  {{ research_item.text|enhanced_markdown }}
 </div>
 {% endif %}
 

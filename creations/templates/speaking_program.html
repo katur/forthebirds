@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}speaking-program{% endblock %}
@@ -14,7 +14,7 @@ Speaking Program: <i>{{ program.title }}</i>
 
 <div class="page-section">
   <div class="markdown">
-    {{ program.description|markdown }}
+    {{ program.description|enhanced_markdown }}
   </div>
 
   {% if program.species or program.tags %}

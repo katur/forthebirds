@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}miscellany{% endblock %}
@@ -19,7 +19,9 @@
         {{ page.title }}</a>
 
       {% if page.description %}
-      <span class="description">{{ page.description }}</span>
+      <span class="description">
+        {{ page.description|enhanced_markdown }}
+      </span>
       {% endif %}
     </li>
     {% endfor %}
@@ -34,7 +36,9 @@
       <a href="{{ project.url }}">{{ project.title }}</a>
 
       {% if project.description %}
-      <span class="description">{{ project.description }}</span>
+      <span class="description">
+        {{ project.description|enhanced_markdown }}
+      </span>
       {% endif %}
     </li>
     {% endfor %}

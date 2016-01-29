@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}webpage{% endblock %}
@@ -20,7 +20,7 @@
 {% endif %}
 
 <div id="webpage-text" class="markdown">
-  {{ webpage.content|markdown }}
+  {{ webpage.content|enhanced_markdown }}
 </div>
 
 <div id="webpage-tags">

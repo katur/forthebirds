@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}bird{% endblock %}
@@ -40,7 +40,7 @@
     <div id="overview-text">
       {% if bird.blurb %}
       <div id="blurb" class="markdown">
-        {{ bird.blurb|markdown }}
+        {{ bird.blurb|enhanced_markdown }}
       </div>
       {% endif %}
 
@@ -57,20 +57,20 @@
 
         <span>
           <a href="{{ bird.get_flickr_search_url }}">
-            Search Laura's Flickr photos</a>
+            Search Laura&rsquo;s Flickr photos</a>
         </span>
 
         {% if bird.has_cornell_all_about_birds_url %}
         <span>
           <a href="{{ bird.get_cornell_all_about_birds_url }}">
-            Cornell Lab's All About Birds</a>
+            Cornell Lab&rsquo;s All About Birds</a>
         </span>
         {% endif %}
 
         {% if bird.has_abc_bird_of_the_week_url %}
         <span>
           <a href="{{ bird.get_abc_bird_of_the_week_url }}">
-            ABC's Bird of the Week</a>
+            ABC&rsquo;s Bird of the Week</a>
         </span>
         {% endif %}
       </div>

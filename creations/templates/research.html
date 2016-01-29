@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}research{% endblock %}
@@ -14,7 +14,12 @@
   <li>
   <a href="{{ category.get_absolute_url }}">
     {{ category.name }}</a>
-    {% if category.notes %}({{ category.notes|markdown }}){% endif %}
+
+  {% if category.notes %}
+  <span class="help-message">
+    {{ category.notes|enhanced_markdown }}
+  </span>
+  {% endif %}
   </li>
 {% endfor %}
 </ul>

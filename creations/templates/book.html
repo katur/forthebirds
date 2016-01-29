@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load extra_tags %}
 
 
 {% block body_id %}book{% endblock %}
@@ -35,7 +35,7 @@
     {% endif %}
 
 
-    <span>{{ book.description|markdown }}</span>
+    <span>{{ book.description|enhanced_markdown }}</span>
 
     {% if book.purchase_url %}
     <span>

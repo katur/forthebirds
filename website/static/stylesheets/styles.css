@@ -134,9 +134,9 @@ i, em {
 
 .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
   margin-top: 36px; }
-.markdown p, .markdown ul, .markdown ol, .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown .image-wrapper {
+.markdown p, .markdown ul, .markdown ol, .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown blockquote, .markdown .image-wrapper {
   margin-bottom: 24px; }
-  .markdown p:last-child, .markdown ul:last-child, .markdown ol:last-child, .markdown h1:last-child, .markdown h2:last-child, .markdown h3:last-child, .markdown h4:last-child, .markdown .image-wrapper:last-child {
+  .markdown p:last-child, .markdown ul:last-child, .markdown ol:last-child, .markdown h1:last-child, .markdown h2:last-child, .markdown h3:last-child, .markdown h4:last-child, .markdown blockquote:last-child, .markdown .image-wrapper:last-child {
     margin-bottom: 0px; }
 .markdown ul {
   list-style-type: disc;
@@ -804,8 +804,21 @@ html, body {
       font-size: 15px;
       color: #777e86; }
 
-#research #content p {
-  display: inline; }
+#research ul {
+  list-style-position: inside;
+  list-style-type: disc; }
+  #research ul ul li, #research ul ul ul {
+    padding-left: 30px; }
+  #research ul ul {
+    list-style-type: circle; }
+    #research ul ul ul {
+      list-style-type: square; }
+      #research ul ul ul ul {
+        list-style-type: disc; }
+#research #content .help-message {
+  margin-left: 18px; }
+  #research #content .help-message p {
+    display: inline; }
 
 #speaking ul {
   list-style-position: inside;

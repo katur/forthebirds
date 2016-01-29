@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% load extra_tags %}
-{% load markdown_deux_tags %}
 {% load staticfiles %}
 
 
@@ -47,7 +46,7 @@
         </span>
 
         <span class="description">
-          {{ program.description|markdown }}
+          {{ program.description|enhanced_markdown }}
         </span>
       </a>
 
