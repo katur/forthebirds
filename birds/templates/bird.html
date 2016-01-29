@@ -49,12 +49,12 @@
 
       <div id="info-spans">
         {% if bird.nacc_annotation %}
-          <span>NACC Annotation: {{ bird.nacc_annotation }}</span>
+          <span>NACC Annotation: {{ bird.nacc_annotation|safe }}</span>
         {% endif %}
 
         {% if bird.get_nacc_statuses %}
           {% for status in bird.get_nacc_statuses %}
-          <span>NACC Status: {{ status }}</span>
+          <span>NACC Status: {{ status|safe }}</span>
           {% endfor %}
         {% endif %}
 
