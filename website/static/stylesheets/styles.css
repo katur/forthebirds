@@ -604,6 +604,9 @@ html, body {
     font-size: 200px;
     color: #deedf2;
     text-align: center; }
+    @media (max-width: 1120px) {
+      #photo-checklist #content #photo-checklist-full h2 {
+        font-size: 18vw; } }
   #photo-checklist #content #photo-checklist-full .photo-checklist-family {
     float: left;
     clear: both;
