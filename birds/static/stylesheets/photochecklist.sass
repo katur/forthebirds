@@ -22,17 +22,35 @@
         @include four-three-two-one-parent
 
         .photo-and-caption
+          box-sizing: border-box
           @include four-three-two-one-child
+
+          &:after
+            content: ''
+            display: block
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            z-index: 1
+
+          &:hover
+            &:after
+              cursor: pointer
+              @include transition(background, 100ms, linear)
+              background: rgba($chickadee-white, .2)
 
           img
             width: 100%
 
           .photo-caption
+            box-sizing: border-box
             display: block
             position: absolute
-            bottom: 0
+            bottom: 6px
             left: 0
-            width: 96%
+            width: 100%
             padding: 2%
             background: rgba(0,0,0,.5)
             font-size: 12px
