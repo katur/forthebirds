@@ -5,12 +5,22 @@
   #bird-search
     form
       margin-bottom: $whitespace / 2
+      @include pretty-form
 
       p
         display: inline-block
 
-      .submit
-        margin-left: $whitespace / 4
+      button,
+      input
+        font-size: $base-font-size
+        @include sans-font
+        letter-spacing: 1px
+
+      input
+        background: $chickadee-light-gray
+
+      button
+        background: $chickadee-gray
 
 
 #bird

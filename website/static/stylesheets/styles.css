@@ -363,11 +363,13 @@ html, body {
   #admin-bar button,
   #admin-bar input {
     display: inline; }
-  #admin-bar button,
-  #admin-bar input {
+  #admin-bar form button,
+  #admin-bar form input {
     border: none;
     border-radius: 3px;
-    padding: 2px 4px;
+    padding: 2px 4px; }
+  #admin-bar button,
+  #admin-bar input {
     font-family: inherit;
     font-size: inherit;
     letter-spacing: inherit; }
@@ -417,10 +419,22 @@ html, body {
         list-style-type: disc; }
 #birds #bird-search form {
   margin-bottom: 18px; }
+  #birds #bird-search form button,
+  #birds #bird-search form input {
+    border: none;
+    border-radius: 3px;
+    padding: 2px 4px; }
   #birds #bird-search form p {
     display: inline-block; }
-  #birds #bird-search form .submit {
-    margin-left: 9px; }
+  #birds #bird-search form button,
+  #birds #bird-search form input {
+    font-size: 17px;
+    font-family: "Dosis", sans-serif;
+    letter-spacing: 1px; }
+  #birds #bird-search form input {
+    background: #cfd3cf; }
+  #birds #bird-search form button {
+    background: #9ba5a9; }
 
 #bird #taxonomy {
   width: 100%;

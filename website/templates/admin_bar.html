@@ -13,9 +13,9 @@
 
   <span class="bird-search">
     Search birds
-    <form action="/birds" method="get">
+    <form action="{% url 'birds_url' %}" method="get">
       <input name="query" type="text" placeholder="e.g. chickadee">
-      <button type="submit" value="Submit">go</button>
+      <button type="submit">go</button>
     </form>
   </span>
 </div>
