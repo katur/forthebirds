@@ -113,7 +113,10 @@ class ForTheBirdsPodcastFeed(Feed):
         return SITE_DOMAIN + item.file.url
 
     def item_enclosure_length(self, item):
-        return item.file.size
+        try:
+            return item.file.size
+        except OSError:
+            return 0
 
     def item_enclosure_mime_type(self, item):
         return 'audio/mpeg'
