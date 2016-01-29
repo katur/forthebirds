@@ -137,7 +137,7 @@ LOGIN_URL = 'login_url'
 
 MARKDOWN_PROMPT = (
     'Use Markdown syntax for italics, bullets, etc. See '
-    '<a href="http://www.darkcoding.net/software/markdown-quick-reference">'
+    '<a href="https://daringfireball.net/projects/markdown/syntax">'
     'a quick reference</a>, '
     '<a href="http://www.markdowntutorial.com/">a tutorial</a>, '
     'or practice <a href="http://dillinger.io/">here</a>. '
