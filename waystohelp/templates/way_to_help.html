@@ -11,5 +11,11 @@
 
 
 {% block content %}
+
+{% if user.is_authenticated %}
 {{ way.text|enhanced_markdown }}
+{% else %}
+More content coming soon!
+{% endif %}
+
 {% endblock %}
