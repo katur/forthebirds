@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% include 'head.html' %}
+  <head>
+    {% include 'head_common.html' %}
+
+    <title>
+      {% block head_title_prefix %}{% endblock %}
+      Laura Erickson's For the Birds
+    </title>
+  </head>
+
   <body id="{% block body_id %}{% endblock %}">
     {% include 'admin_bar.html' %}
 

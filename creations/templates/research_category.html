@@ -4,6 +4,11 @@
 {% block body_id %}research-category{% endblock %}
 
 
+{% block head_title_prefix %}
+{{ category.name }} | Research Category |
+{% endblock %}
+
+
 {% block page_title %}
 {% include 'research_ancestry.html' with item=category %}
 {{ category.name }}

@@ -5,6 +5,9 @@
 {% block body_id %}webpage{% endblock %}
 
 
+{% block head_title_prefix %}{{ webpage.title }} |{% endblock %}
+
+
 {% block page_title %}{% if webpage.display_title %}{{ webpage.title }}{% endif %}{% endblock %}
 
 

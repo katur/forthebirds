@@ -5,6 +5,11 @@
 {% block body_id %}research-item{% endblock %}
 
 
+{% block head_title_prefix %}
+{{ research_item.title }} | Research Item |
+{% endblock %}
+
+
 {% block page_title %}
 {% include 'research_ancestry.html' with item=research_item %}
 {{ research_item.title }}

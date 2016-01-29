@@ -4,6 +4,11 @@
 {% block body_id %}radio-calendar{% endblock %}
 
 
+{% block head_title_prefix %}
+{{ month }} {{ year }} Radio Calendar |
+{% endblock %}
+
+
 {% block page_title %}
 <a href="{{ previous_month_url }}">&larr;</a>
 <i>For the Birds</i> Radio Program Calendar
