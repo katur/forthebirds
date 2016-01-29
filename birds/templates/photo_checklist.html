@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block body_id %}photo-checklist{% endblock %}
+
+
+{% block page_title %}Laura's Photo Checklist{% endblock %}
+
+
+{% block content %}
+<div id="photo-checklist-full" class="page-section">
+  {% regroup birds by family as families %}
+
+  {% for family in families %}
+  <h2>{{ family.grouper }}</h2>
+  <div class="photo-checklist-family">
+    {% for bird in family.list %}
+      <div class="photo-and-caption">
+        <a href="{{ bird.get_absolute_url }}">
+          <img src="{{ bird.main_photo_url }}" />
+
+          <div class="photo-caption">
+            {{ bird.common_name }}
+            (<i>{{ bird.scientific_name}}</i>)
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

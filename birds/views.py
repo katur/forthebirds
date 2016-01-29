@@ -59,6 +59,15 @@ def minnesota_birds(request):
     return render(request, 'minnesota_birds.html', context)
 
 
+def photo_checklist(request):
+    birds = Species.objects.exclude(main_photo_url__exact='')
+    for bird in birds:
+        bird.family = bird.get_family()
+
+    context = {'birds': birds}
+    return render(request, 'photo_checklist.html', context)
+
+
 def bird(request, slug):
     def organize_creations(creations):
         mindate = datetime.date(datetime.MINYEAR, 1, 1)

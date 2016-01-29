@@ -5,6 +5,7 @@ from . import views
 
 urlpatterns = [
     url(r'^birds/$', views.birds, name='birds_url'),
+    url(r'^photo-checklist/$', views.photo_checklist, name='photo_checklist_url'),
     url(r'^bird/(?P<slug>.+)/$', views.bird, name='bird_url'),
     url(r'^minnesota-birds/$', views.minnesota_birds,
         name='minnesota_birds_url'),

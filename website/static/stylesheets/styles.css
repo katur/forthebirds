@@ -196,10 +196,10 @@ html, body {
 
 #content {
   min-height: 500px;
+  height: auto;
   background: #f5f4ee;
   padding: 54px;
-  border-radius: 2px;
-  height: auto; }
+  border-radius: 2px; }
 
 #footer {
   margin-top: 36px;
@@ -487,6 +487,7 @@ html, body {
   #bird #public-cards .card,
   #bird #private-cards .card {
     display: block;
+    position: relative;
     box-sizing: border-box;
     float: left;
     width: 20%;
@@ -592,6 +593,69 @@ html, body {
     background: #deb888; }
   #birds-taxonomical .plus-sign.minus::before {
     display: none; }
+
+#photo-checklist #content {
+  background: black; }
+  #photo-checklist #content #photo-checklist-full h2 {
+    width: 100%;
+    float: left;
+    clear: both;
+    font-family: "adelaidaregular", sans-serif;
+    font-size: 200px;
+    color: white;
+    text-align: center; }
+  #photo-checklist #content #photo-checklist-full .photo-checklist-family {
+    float: left;
+    clear: both;
+    width: 105%;
+    padding: 0 2.5%;
+    position: relative;
+    left: -5%; }
+    #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
+      display: block;
+      position: relative;
+      box-sizing: border-box;
+      float: left;
+      width: 20%;
+      margin: 0 2.5% 50px 2.5%; }
+      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(4n+1) {
+        clear: left; }
+      @media (max-width: 1400px) {
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
+          width: 28.3%; }
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(4n+1) {
+            clear: none; }
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(3n+1) {
+            clear: left; } }
+      @media (max-width: 1050px) {
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
+          width: 45%; }
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(4n+1) {
+            clear: none; }
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(3n+1) {
+            clear: none; }
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(2n+1) {
+            clear: left; } }
+      @media (max-width: 700px) {
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
+          width: 95%; } }
+      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption img {
+        width: 100%; }
+      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 96%;
+        padding: 2%;
+        background: rgba(0, 0, 0, 0.5);
+        font-size: 12px;
+        color: #deedf2;
+        text-align: center; }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption .left {
+          float: left; }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption .right {
+          float: right; }
 
 #miscellany ul {
   list-style-position: inside;
@@ -1007,6 +1071,7 @@ html, body {
   left: -5%; }
   #ways-to-help #all-ways-to-help .way-to-help-card {
     display: block;
+    position: relative;
     box-sizing: border-box;
     float: left;
     width: 20%;
