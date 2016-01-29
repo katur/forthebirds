@@ -1070,3 +1070,24 @@ html, body {
         font-family: "adelaidaregular";
         font-size: 119px;
         color: rgba(207, 211, 207, 0.65); }
+
+#way-to-help #text {
+  width: 100%;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto; }
+  #way-to-help #text .image-wrapper {
+    display: table;
+    margin-left: auto;
+    margin-right: auto; }
+    #way-to-help #text .image-wrapper img {
+      max-width: 500px;
+      height: auto; }
+    #way-to-help #text .image-wrapper .image-caption {
+      display: table-caption;
+      caption-side: bottom; }
+    #way-to-help #text .image-wrapper.banner {
+      width: 100%; }
+      #way-to-help #text .image-wrapper.banner img {
+        width: 100%;
+        max-width: 100%; }

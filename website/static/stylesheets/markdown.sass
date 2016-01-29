@@ -26,3 +26,25 @@
 
   blockquote
     padding-left: 40px
+
+
+@mixin markdown-image-wrapper($max-img-width)
+  .image-wrapper
+    display: table
+    margin-left: auto
+    margin-right: auto
+
+    img
+      max-width: $max-img-width
+      height: auto
+
+    .image-caption
+      display: table-caption
+      caption-side: bottom
+
+    &.banner
+      width: 100%
+
+      img
+        width: 100%
+        max-width: 100%

@@ -13,7 +13,10 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-{{ way.text|enhanced_markdown }}
+<div id="text" class="markdown">
+  {{ way.text|enhanced_markdown }}
+</div>
+
 {% else %}
 More content coming soon!
 {% endif %}
