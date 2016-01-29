@@ -46,10 +46,20 @@
   #menu
     float: left
     clear: both
-    width: 80%
-    margin: $whitespace / 4 10%
+    width: 86%
+    margin: $whitespace / 4 7%
     font-size: 22px
 
     a
       white-space: nowrap
       padding: 0 $whitespace / 2
+
+    @media (max-width: 1000px)
+      width: 84%
+      margin: $whitespace / 4 8%
+      font-size: 21px
+
+    @media (max-width: 750px)
+      width: 80%
+      margin: $whitespace / 4 10%
+      font-size: 20px

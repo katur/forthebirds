@@ -270,12 +270,22 @@ html, body {
   #header #menu {
     float: left;
     clear: both;
-    width: 80%;
-    margin: 9px 10%;
+    width: 86%;
+    margin: 9px 7%;
     font-size: 22px; }
     #header #menu a {
       white-space: nowrap;
       padding: 0 18px; }
+    @media (max-width: 1000px) {
+      #header #menu {
+        width: 84%;
+        margin: 9px 8%;
+        font-size: 21px; } }
+    @media (max-width: 750px) {
+      #header #menu {
+        width: 80%;
+        margin: 9px 10%;
+        font-size: 20px; } }
 
 .chickadee {
   display: block;
