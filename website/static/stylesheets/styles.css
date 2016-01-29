@@ -435,7 +435,7 @@ html, body {
 #bird #overview #main-photo {
   display: block;
   float: left;
-  width: 45%;
+  max-width: 45%;
   height: auto;
   margin-right: 5%;
   margin-bottom: 18px; }
@@ -745,7 +745,7 @@ html, body {
   #radio-program #program-columns .column:last-child {
     margin-top: 36px; } }
 #radio-program #program-columns #artwork img {
-  width: 100%; }
+  max-width: 100%; }
 #radio-program #program-columns #above-mp3 {
   float: left;
   margin-bottom: 36px; }
