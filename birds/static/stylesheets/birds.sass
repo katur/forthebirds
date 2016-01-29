@@ -34,7 +34,7 @@
       margin-bottom: $whitespace / 2
 
       @media (max-width: 600px)
-        width: 100%
+        max-width: 100%
         margin-right: 0%
         margin-bottom: $whitespace
 
@@ -49,11 +49,10 @@
 
   #public-cards,
   #private-cards
-    width: 103%
-    margin-right: -3%
+    @include four-three-two-one-parent
 
     .card
-      @include four-three-two-one
+      @include four-three-two-one-child
       padding: 10px
       border: 1px solid $chickadee-light-gray
       border-radius: $card-border-radius

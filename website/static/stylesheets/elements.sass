@@ -83,7 +83,14 @@ $tag-spacing: 3px
         margin-top: $whitespace
 
 
-@mixin four-three-two-one
+@mixin four-three-two-one-parent
+  width: 105%
+  padding: 0 2.5%
+  position: relative
+  left: -5%
+
+
+@mixin four-three-two-one-child
   display: block
   box-sizing: border-box
   float: left

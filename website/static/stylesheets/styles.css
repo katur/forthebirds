@@ -441,7 +441,7 @@ html, body {
   margin-bottom: 18px; }
   @media (max-width: 600px) {
     #bird #overview #main-photo {
-      width: 100%;
+      max-width: 100%;
       margin-right: 0%;
       margin-bottom: 36px; } }
 #bird #overview #blurb {
@@ -452,8 +452,10 @@ html, body {
   margin-bottom: 12px; }
 #bird #public-cards,
 #bird #private-cards {
-  width: 103%;
-  margin-right: -3%; }
+  width: 105%;
+  padding: 0 2.5%;
+  position: relative;
+  left: -5%; }
   #bird #public-cards .card,
   #bird #private-cards .card {
     display: block;

@@ -75,11 +75,15 @@
         {% endif %}
       </div>
     </div>
-
   </div>
+</div>
 
-  {% if public_creations %}
-  <div id="public-cards" class="page-subsection">
+
+{% if public_creations %}
+<div class="page-section">
+  <h3 class="page-subtitle">Laura's Published Works</h3>
+
+  <div id="public-cards">
     {% regroup public_creations by get_class_display_name as card_list %}
     {% for card in card_list %}
       {% with category=card.grouper creations=card.list %}
@@ -87,8 +91,9 @@
       {% endwith %}
     {% endfor %}
   </div>
-  {% endif %}
 </div>
+{% endif %}
+
 
 {% if private_creations or user.is_authenticated and bird.is_minnesotan %}
 <div id="private-cards" class="page-section">
