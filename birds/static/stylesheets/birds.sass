@@ -10,18 +10,23 @@
       p
         display: inline-block
 
-      button,
-      input
+      input,
+      button
         font-size: $base-font-size - 3
         @include sans-font
         letter-spacing: 1px
+        padding: 8px
 
       input
+        min-width: 180px
         background: lighten($chickadee-light-gray, 5%)
 
       button
         color: $chickadee-cream
         background: $chickadee-gray
+
+        &:hover
+          background: $chickadee-dark-gray
 
 
 #bird
