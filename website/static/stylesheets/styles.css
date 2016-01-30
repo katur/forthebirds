@@ -940,7 +940,6 @@ html, body {
   height: 30px; }
 #radio audio,
 #radio-program audio {
-  display: block;
   max-width: 100%; }
 
 #radio-calendar {
