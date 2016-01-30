@@ -785,6 +785,22 @@ html, body {
   position: relative;
   width: 100%;
   min-height: 500px; }
+  #radio #year-program-container #year-selector-container {
+    display: none;
+    width: 100%;
+    margin-bottom: 25px; }
+    @media (max-width: 500px) {
+      #radio #year-program-container #year-selector-container {
+        display: block; } }
+    #radio #year-program-container #year-selector-container label {
+      display: block;
+      width: 100%;
+      padding-bottom: 5px;
+      font-family: "Dosis", sans-serif; }
+    #radio #year-program-container #year-selector-container #year-selector {
+      display: block;
+      width: 100%;
+      padding: 20px; }
   #radio #year-program-container #year-list {
     position: absolute;
     left: 0;
@@ -792,6 +808,9 @@ html, body {
     font-family: "Dosis", sans-serif;
     font-size: 36px;
     color: #777e86; }
+    @media (max-width: 500px) {
+      #radio #year-program-container #year-list {
+        display: none; } }
     #radio #year-program-container #year-list a {
       white-space: nowrap; }
       #radio #year-program-container #year-list a.active:after {
@@ -823,7 +842,7 @@ html, body {
     padding-left: 93px; }
     @media (max-width: 500px) {
       #radio #year-program-container #programs {
-        padding-left: 61px; } }
+        padding-left: 0; } }
     #radio #year-program-container #programs .program {
       float: left;
       width: 100%;

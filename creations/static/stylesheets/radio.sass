@@ -1,3 +1,6 @@
+$mobile-breakpoint: 500px
+
+
 @mixin radio-detail-font
   @include sans-font
   font-size: $base-font-size - 2
@@ -37,7 +40,7 @@
         margin-right: 0px
         margin-top: 0px
 
-        @media (max-width: 500px)
+        @media (max-width: $mobile-breakpoint)
           float: left
           margin-top: 10px
           margin-right: $whitespace / 2
@@ -54,6 +57,25 @@
     $year-list-width-big: 93px
     $year-list-width-small: 61px
 
+    #year-selector-container
+      display: none
+      width: 100%
+      margin-bottom: 25px
+
+      @media (max-width: $mobile-breakpoint)
+        display: block
+
+      label
+        display: block
+        width: 100%
+        padding-bottom: 5px
+        @include sans-font
+
+      #year-selector
+        display: block // to keep there from being space between the label
+        width: 100%
+        padding: 20px
+
     #year-list
       position: absolute
       left: 0
@@ -61,6 +83,9 @@
       @include sans-font
       font-size: 36px
       color: $chickadee-dark-gray
+
+      @media (max-width: $mobile-breakpoint)
+        display: none
 
       a
         white-space: nowrap
@@ -74,7 +99,7 @@
           @include transform(scaleX(0.7))
           content: "\27A4"
 
-      @media (max-width: 500px)
+      @media (max-width: $mobile-breakpoint)
         width: $year-list-width-small
         font-size: 24px
 
@@ -90,8 +115,8 @@
       float: left
       padding-left: $year-list-width-big
 
-      @media (max-width: 500px)
-        padding-left: $year-list-width-small
+      @media (max-width: $mobile-breakpoint)
+        padding-left: 0
 
       .program
         float: left
