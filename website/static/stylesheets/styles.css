@@ -826,7 +826,9 @@ html, body {
         padding-left: 61px; } }
     #radio #year-program-container #programs .program {
       float: left;
-      width: 100%; }
+      width: 100%;
+      overflow: hidden;
+      word-wrap: break-word; }
       #radio #year-program-container #programs .program:nth-child(even) {
         background: #e1e6df; }
       #radio #year-program-container #programs .program:nth-child(odd) {
