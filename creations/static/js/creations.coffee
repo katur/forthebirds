@@ -1,9 +1,12 @@
 $(document).ready ->
-  if $("body").attr("id") == "radio-program"
+  page = $("body").attr("id")
+
+  if page == "radio-program"
     addArtwork()
 
-  if $("body").attr("id") == "radio"
+  if page == "radio"
     initializeProgramButtons()
+    watchYearSelect()
 
   initializeImageCaptions()
 
@@ -42,6 +45,12 @@ initializeProgramButtons = ->
     programPk = program.attr("data-program-pk")
     artworkElement = program.find(".artwork")
     addRadioProgramArtworkToElement(programPk, artworkElement)
+
+
+watchYearSelect = ->
+  $("#year-selector").on("change", (e) =>
+    window.location = "?year=#{$(e.currentTarget).val()}"
+  )
 
 
 initializeImageCaptions = ->

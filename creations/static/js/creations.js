@@ -1,12 +1,15 @@
 (function() {
-  var addArtwork, addRadioProgramArtworkToElement, initializeImageCaptions, initializeProgramButtons;
+  var addArtwork, addRadioProgramArtworkToElement, initializeImageCaptions, initializeProgramButtons, watchYearSelect;
 
   $(document).ready(function() {
-    if ($("body").attr("id") === "radio-program") {
+    var page;
+    page = $("body").attr("id");
+    if (page === "radio-program") {
       addArtwork();
     }
-    if ($("body").attr("id") === "radio") {
+    if (page === "radio") {
       initializeProgramButtons();
+      watchYearSelect();
     }
     return initializeImageCaptions();
   });
@@ -50,6 +53,14 @@
       artworkElement = program.find(".artwork");
       return addRadioProgramArtworkToElement(programPk, artworkElement);
     });
+  };
+
+  watchYearSelect = function() {
+    return $("#year-selector").on("change", (function(_this) {
+      return function(e) {
+        return window.location = "?year=" + ($(e.currentTarget).val());
+      };
+    })(this));
   };
 
   initializeImageCaptions = function() {

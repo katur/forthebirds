@@ -35,6 +35,20 @@
 </div>
 
 <div id="year-program-container">
+	<div id="year-selector-container">
+		<label for="year-selector">
+			Choose a year
+		</label>
+		<select id="year-selector">
+			{% for y in all_years %}
+			<option value="{{ y.year }}"
+						{% if year|is_string_equal:y.year %}selected{% endif %}>
+				{{ y.year }}
+			</option>
+			{% endfor %}
+		</select>
+	</div>
+
   <ul id="year-list">
     {% for y in all_years %}
     <li>
