@@ -54,7 +54,8 @@ class BookAdmin(admin.ModelAdmin):
 
 
 class ExternalProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url',)
+    list_display = ('title', 'url', 'display_order',)
+    list_editable = ('display_order',)
     filter_horizontal = ('species',)
 
     fieldsets = (
@@ -131,7 +132,8 @@ class WebPageAdminForm(forms.ModelForm):
 
 
 class WebPageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug',)
+    list_display = ('title', 'slug', 'display_order',)
+    list_editable = ('display_order',)
     filter_horizontal = ('species',)
     prepopulated_fields = {'slug': ('title',)}
 

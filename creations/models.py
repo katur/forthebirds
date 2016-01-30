@@ -119,9 +119,10 @@ class Book(Creation):
 class ExternalProject(Creation):
     """One of Laura's projects hosted on an external domain."""
     url = models.URLField()
+    display_order = models.PositiveSmallIntegerField(default=0)
 
     class Meta:
-        ordering = ['title']
+        ordering = ['display_order', 'title']
 
     def __unicode__(self):
         return 'External Project: ' + self.title
@@ -343,9 +344,10 @@ class WebPage(Creation):
     date_published = models.DateField(null=True, blank=True)
     content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     display_title = models.BooleanField(default=True)
+    display_order = models.PositiveSmallIntegerField(default=0)
 
     class Meta:
-        ordering = ['title']
+        ordering = ['display_order', 'title']
 
     def __unicode__(self):
         return 'Web Page: ' + self.title
