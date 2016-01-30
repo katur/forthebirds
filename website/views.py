@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponsePermanentRedirect
 from django.shortcuts import render, get_object_or_404
 
 from forthebirds.settings import OLD_SITE_DOMAIN
@@ -36,6 +36,6 @@ def try_old_website(request, path):
     url = OLD_SITE_DOMAIN + '/' + path
 
     if http_response_ok(url):
-        return HttpResponseRedirect(url)
+        return HttpResponsePermanentRedirect(url)
     else:
         raise Http404

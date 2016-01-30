@@ -13,7 +13,7 @@ urlpatterns = []
 # First, redirect the annotated redirects
 for old, new in PERMANENT_REDIRECTS:
     urlpatterns += [url(old, RedirectView.as_view(url=new,
-                                                  permanent=False))]
+                                                  permanent=True))]
 
 
 urlpatterns += [
