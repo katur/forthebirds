@@ -116,6 +116,9 @@ a {
 .image-caption {
   color: #777e86;
   font-size: 15px; }
+  @media (max-width: 700px) {
+    .image-caption {
+      font-size: 13px; } }
 
 b, strong {
   font-weight: bold; }
@@ -928,34 +931,36 @@ html, body {
   display: block;
   max-width: 100%; }
 
-#radio-calendar .download-link img {
-  width: 20px;
-  height: 20px; }
-#radio-calendar table, #radio-calendar th, #radio-calendar td {
-  border: 1px solid black; }
-#radio-calendar table {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse; }
-  #radio-calendar table th, #radio-calendar table td {
-    padding: 5px; }
-  #radio-calendar table th {
-    background: #788c6d;
-    color: #f5f4ee;
-    font-family: "Dosis", sans-serif;
-    letter-spacing: 1px; }
-  #radio-calendar table td {
-    height: 50px;
-    font-size: 16px; }
-    #radio-calendar table td a, #radio-calendar table td span {
-      display: block; }
-    #radio-calendar table td .day {
+#radio-calendar {
+  min-width: 800px; }
+  #radio-calendar .download-link img {
+    width: 20px;
+    height: 20px; }
+  #radio-calendar table, #radio-calendar th, #radio-calendar td {
+    border: 1px solid black; }
+  #radio-calendar table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse; }
+    #radio-calendar table th, #radio-calendar table td {
+      padding: 5px; }
+    #radio-calendar table th {
+      background: #788c6d;
+      color: #f5f4ee;
       font-family: "Dosis", sans-serif;
-      font-weight: bold; }
-    #radio-calendar table td .program-type {
-      font-family: "Dosis", sans-serif;
-      font-size: 15px;
-      color: #777e86; }
+      letter-spacing: 1px; }
+    #radio-calendar table td {
+      height: 50px;
+      font-size: 16px; }
+      #radio-calendar table td a, #radio-calendar table td span {
+        display: block; }
+      #radio-calendar table td .day {
+        font-family: "Dosis", sans-serif;
+        font-weight: bold; }
+      #radio-calendar table td .program-type {
+        font-family: "Dosis", sans-serif;
+        font-size: 15px;
+        color: #777e86; }
 
 #research ul {
   list-style-position: inside;
