@@ -25,9 +25,5 @@
     <a href="http://katherineerickson.com/">Katherine Erickson</a>,
     code on
     <a href="https://github.com/katur/forthebirds">Github</a>.
-    {% if not user.is_authenticated %}
-    <br>
-    <a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>
-    {% endif %}
   </div>
 </div>
