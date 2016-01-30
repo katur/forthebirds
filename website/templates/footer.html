@@ -6,13 +6,6 @@
     For permissions,
     <a href="mailto:chickadee@lauraerickson.com">
       email Laura</a>.
-
-    <br>
-
-    {% if not user.is_authenticated %}
-    <a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>
-    {% endif %}
-
     <!--
     I love to share my work to promote bird conservation and education,
     and to help people enjoy and learn about the birds and other creatures
@@ -32,5 +25,9 @@
     <a href="http://katherineerickson.com/">Katherine Erickson</a>,
     code on
     <a href="https://github.com/katur/forthebirds">Github</a>.
+    {% if not user.is_authenticated %}
+    <br>
+    <a href="{% url 'login_url' %}?next={{ request.path }}">Log In</a>
+    {% endif %}
   </div>
 </div>
