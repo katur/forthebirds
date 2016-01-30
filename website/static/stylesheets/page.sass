@@ -40,7 +40,7 @@ html, body
   border-radius: 2px
 
   @media (max-width: 500px)
-    padding: 3%
+    padding: $whitespace / 2 5%
 
 
 #footer
@@ -56,6 +56,9 @@ html, body
 
 #page-title
   margin-bottom: $whitespace
+
+  @media (max-width: 500px)
+    margin-bottom: $whitespace / 2
 
   &:empty
     margin-bottom: 0px
