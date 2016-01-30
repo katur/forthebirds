@@ -200,6 +200,9 @@ html, body {
   background: #f5f4ee;
   padding: 54px;
   border-radius: 2px; }
+  @media (max-width: 500px) {
+    #content {
+      padding: 3%; } }
 
 #footer {
   margin-top: 36px;
@@ -283,8 +286,8 @@ html, body {
         font-size: 21px; } }
     @media (max-width: 750px) {
       #header #menu {
-        width: 80%;
-        margin: 9px 10%;
+        width: 82%;
+        margin: 9px 9%;
         font-size: 20px; } }
 
 .chickadee {
@@ -404,6 +407,14 @@ html, body {
     color: #9ba5a9; }
   #home #content #slideshow-wrapper div {
     margin-top: 36px; }
+  @media (max-width: 750px) {
+    #home #content #slideshow-wrapper span {
+      font-size: 22px; } }
+  @media (max-width: 500px) {
+    #home #content #slideshow-wrapper span {
+      font-size: 18px; }
+    #home #content #slideshow-wrapper div {
+      margin-top: 18px; } }
 
 #about img#primary-photo {
   float: left;
