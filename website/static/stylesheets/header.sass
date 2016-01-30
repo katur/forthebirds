@@ -43,6 +43,14 @@
         font-size: 14vw
         letter-spacing: 0.2vw
 
+    @media (max-width: 600px)
+      margin-top: 10px
+
+      // this font doesn't have a bold face, so this text-shadow trick gives
+      // it a bit more weight
+      h1
+        text-shadow: 0 0 1px $chickadee-white
+
   #menu
     float: left
     clear: both
@@ -63,3 +71,20 @@
       width: 82%
       margin: $whitespace / 4 9%
       font-size: 20px
+
+    @media (max-width: 600px)
+      @include sans-font(bold)
+
+      a
+        display: inline-block
+        padding-top: 5px
+        padding-bottom: 5px
+
+    @media (max-width: 400px)
+      @include box-sizing(border-box)
+      width: 100%
+      margin-top: 0
+      margin-right: 0
+      margin-bottom: 35px
+      margin-left: 0
+      padding: 10px
