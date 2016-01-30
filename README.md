@@ -41,7 +41,7 @@ npm install --dev-save gulp-ruby-sass
 npm install --dev-save gulp-coffee
 ```
 
-Then to compile, simply run `gulp`.
+Then to compile, simply run `gulp` in the project root.
 
 
 ## Migration from old sources
