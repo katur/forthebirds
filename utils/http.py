@@ -12,6 +12,7 @@ def http_response_url(url):
     try:
         # Workaround so it doesn't seem like we are a content-stealing bot
         # (we're not! we're just checking if the URL works!)
+        url = url.encode('utf8')
         req = urllib2.Request(url, headers={'User-Agent': 'Magic Browser'})
         r = urllib2.urlopen(req)
     except urllib2.URLError as e:
@@ -25,6 +26,7 @@ def http_response_url(url):
 
 def http_response_ok(url):
     try:
+        url = url.encode('utf8')
         r = urllib2.urlopen(url)
     except urllib2.URLError:
         return False
