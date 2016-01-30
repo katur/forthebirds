@@ -602,6 +602,8 @@ html, body {
 
 #photo-checklist #content {
   background: black; }
+  #photo-checklist #content #page-title {
+    color: #de8d88; }
   #photo-checklist #content #photo-checklist-full h2 {
     width: 100%;
     float: left;
