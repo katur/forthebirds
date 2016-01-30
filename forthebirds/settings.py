@@ -131,6 +131,7 @@ TEMPLATES = [
 # Login
 
 LOGIN_URL = 'login_url'
+LOGIN_REDIRECT_URL = '/'
 
 
 # Miscellany
