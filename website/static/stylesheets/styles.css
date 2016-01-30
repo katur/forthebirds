@@ -1008,6 +1008,16 @@ html, body {
   #research #content .help-message p {
     display: inline; }
 
+#sound-recording #recording-information span {
+  float: left;
+  clear: both;
+  margin-bottom: 18px; }
+  #sound-recording #recording-information span:last-child {
+    margin-bottom: 0px; }
+#sound-recording #recording-information #audio .download-link img {
+  width: 30px;
+  height: 30px; }
+
 #speaking ul {
   list-style-position: inside;
   list-style-type: disc; }

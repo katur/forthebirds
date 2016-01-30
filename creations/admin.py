@@ -3,7 +3,7 @@ from django import forms
 
 from creations.models import (Article, BlogPost, Book, ExternalProject,
                               RadioProgram, RadioProgramRerun,
-                              ResearchCategory, Research,
+                              ResearchCategory, Research, SoundRecording,
                               SpeakingProgram, SpeakingProgramFile,
                               WebPage)
 
@@ -107,6 +107,20 @@ class ResearchAdmin(admin.ModelAdmin):
     )
 
 
+class SoundRecordingAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_recorded', 'location',)
+    search_fields = ('title', 'location', 'description',)
+    filter_horizontal = ('species',)
+
+    fieldsets = (
+        BASIC_FIELDSET,
+        ('Details', {'fields':
+            ('file', 'date_recorded', 'location',),
+        }),
+        TAGGING_FIELDSET,
+    )
+
+
 class SpeakingProgramFileInline(admin.TabularInline):
     model = SpeakingProgramFile
 
@@ -155,5 +169,6 @@ admin.site.register(ExternalProject, ExternalProjectAdmin)
 admin.site.register(RadioProgram, RadioProgramAdmin)
 admin.site.register(ResearchCategory, ResearchCategoryAdmin)
 admin.site.register(Research, ResearchAdmin)
+admin.site.register(SoundRecording, SoundRecordingAdmin)
 admin.site.register(SpeakingProgram, SpeakingProgramAdmin)
 admin.site.register(WebPage, WebPageAdmin)

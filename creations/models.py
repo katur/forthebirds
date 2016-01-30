@@ -48,6 +48,8 @@ class Creation(models.Model, RealInstanceProvider):
     def get_display_date(self):
         if hasattr(self, 'date_published'):
             return self.date_published
+        elif hasattr(self, 'date_recorded'):
+            return self.date_recorded
         else:
             return None
 
@@ -129,6 +131,22 @@ class ExternalProject(Creation):
 
     def get_absolute_url(self):
         return self.url
+
+
+class SoundRecording(Creation):
+    """A bird sound recording."""
+    file = models.FileField(upload_to='soundrecordings')
+    date_recorded = models.DateField()
+    location = models.CharField(max_length=200, blank=True)
+
+    class Meta:
+        ordering = ['-date_recorded']
+
+    def __unicode__(self):
+        return 'Sound Recording: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('sound_recording_url', args=[self.id])
 
 
 class RadioProgram(Creation):
