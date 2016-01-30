@@ -40,7 +40,8 @@ class SpeciesAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('is_visible', 'main_photo_url', 'blurb',),
+            'fields': ('is_visible', 'main_photo_url', 'main_sound_recording',
+                       'blurb',),
         }),
         ('From AOU checklist', {
             'fields': aou_fields,
