@@ -754,7 +754,9 @@ html, body {
         width: 100%;
         padding: 2%;
         background: rgba(0, 0, 0, 0.5);
-        font-size: 12px;
+        font-family: "Dosis", sans-serif;
+        font-size: 13px;
+        letter-spacing: 0.1em;
         color: #deedf2; }
         #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption .left {
           float: left; }
