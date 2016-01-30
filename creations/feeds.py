@@ -8,6 +8,9 @@ from creations.models import RadioProgram
 from forthebirds.settings import SITE_DOMAIN
 
 
+NUMBER_OF_EPISODES = 50
+
+
 class iTunesFeed(Rss201rev2Feed):
     """
     From https://djangosnippets.org/snippets/2112/
@@ -76,7 +79,7 @@ class ForTheBirdsPodcastFeed(Feed):
 
     author_name = 'Laura Erickson'
     author_email = 'chickadee@lauraerickson.com'
-    author_link = 'http://lauraerickson.com'
+    author_link = SITE_DOMAIN
     feed_copyright = 'Copyright {} by Laura Erickson'.format(
         date.today().year)
 
@@ -98,7 +101,9 @@ class ForTheBirdsPodcastFeed(Feed):
 
     def items(self):
         """Get a list of items to publish in this feed."""
-        return RadioProgram.objects.order_by('-air_date')[:100]
+        today = datetime.today()
+        return (RadioProgram.objects.order_by('-air_date')
+                .filter(air_date__lte=today)[:NUMBER_OF_EPISODES])
 
     def item_title(self, item):
         return item.title
