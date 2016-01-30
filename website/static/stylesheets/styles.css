@@ -221,7 +221,8 @@ html, body {
   border-radius: 2px; }
   @media (max-width: 500px) {
     #content {
-      padding: 18px 5%; } }
+      padding: 18px 5%;
+      min-height: 0; } }
 
 #footer {
   margin-top: 36px;
@@ -242,14 +243,23 @@ html, body {
 
 .page-subtitle {
   margin-bottom: 18px; }
+  @media (max-width: 500px) {
+    .page-subtitle {
+      margin-bottom: 12px; } }
 
 .page-section {
   margin-bottom: 72px; }
+  @media (max-width: 500px) {
+    .page-section {
+      margin-bottom: 36px; } }
   .page-section:last-child {
     margin-bottom: 0px; }
 
 .page-subsection {
   margin-bottom: 36px; }
+  @media (max-width: 500px) {
+    .page-subsection {
+      margin-bottom: 18px; } }
   .page-subsection:last-child {
     margin-bottom: 0px; }
 

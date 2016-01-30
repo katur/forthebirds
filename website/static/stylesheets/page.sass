@@ -41,6 +41,7 @@ html, body
 
   @media (max-width: 500px)
     padding: $whitespace / 2 5%
+    min-height: 0
 
 
 #footer
@@ -54,10 +55,13 @@ html, body
   width: 100%
 
 
+$page-element-breakpoint: 500px
+
+
 #page-title
   margin-bottom: $whitespace
 
-  @media (max-width: 500px)
+  @media (max-width: $page-element-breakpoint)
     margin-bottom: $whitespace / 2
 
   &:empty
@@ -67,9 +71,15 @@ html, body
 .page-subtitle
   margin-bottom: $whitespace / 2
 
+  @media (max-width: $page-element-breakpoint)
+    margin-bottom: $whitespace / 3
+
 
 .page-section
   margin-bottom: $whitespace * 2
+
+  @media (max-width: $page-element-breakpoint)
+    margin-bottom: $whitespace
 
   &:last-child
     margin-bottom: 0px
@@ -77,6 +87,9 @@ html, body
 
 .page-subsection
   margin-bottom: $whitespace
+
+  @media (max-width: $page-element-breakpoint)
+    margin-bottom: $whitespace / 2
 
   &:last-child
     margin-bottom: 0px
