@@ -460,6 +460,12 @@ html, body {
   text-align: center; }
   #bird #taxonomy td {
     padding: 2px 4px; }
+  @media (max-width: 800px) {
+    #bird #taxonomy {
+      font-size: 16px; } }
+  @media (max-width: 600px) {
+    #bird #taxonomy {
+      font-size: 15px; } }
 #bird #overview #main-photo {
   display: block;
   float: left;
