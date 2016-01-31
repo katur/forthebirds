@@ -31,16 +31,21 @@
 
   (function($) {
     $.expr[':'].onScreen = function(elem) {
-      var $elem, $window, bottom, height, top, viewport_bottom, viewport_height, viewport_top;
+      var $window, bottom, bottomIsVisible, buffer, isBiggerThanScreen, rect, top, topIsVisible, windowBottom, windowTop;
       $window = $(window);
-      viewport_top = $window.scrollTop();
-      viewport_height = $window.height();
-      viewport_bottom = viewport_top + viewport_height;
-      $elem = $(elem);
-      top = $elem.offset().top;
-      height = $elem.height();
-      bottom = top + height;
-      return top >= viewport_top && top < viewport_bottom || bottom > viewport_top && bottom <= viewport_bottom || height > viewport_height && top <= viewport_top && bottom >= viewport_bottom;
+      if (!PhotoChecklist.windowHeight) {
+        PhotoChecklist.windowHeight = $window.height();
+      }
+      buffer = PhotoChecklist.buffer || 0;
+      windowTop = $window.scrollTop();
+      windowBottom = windowTop + PhotoChecklist.windowHeight;
+      rect = elem.getBoundingClientRect();
+      top = rect.top + windowTop;
+      bottom = rect.bottom + windowTop;
+      topIsVisible = top >= (windowTop - buffer) && top < (windowBottom + buffer);
+      bottomIsVisible = bottom > (windowTop - buffer) && bottom <= (windowBottom + buffer);
+      isBiggerThanScreen = (rect.height != null) && rect.height > PhotoChecklist.windowHeight && top <= (windowTop - buffer) && bottom >= (windowBottom + buffer);
+      return topIsVisible || bottomIsVisible || isBiggerThanScreen;
     };
   })(jQuery);
 
@@ -95,17 +100,24 @@
   };
 
   window.PhotoChecklist = {
+    buffer: 300,
     classnames: {
       unloaded: "photo-and-caption--unloaded",
       loading: "photo-and-caption--loading",
       loaded: "photo-and-caption--loaded"
     },
     init: function() {
-      var lazyScroll;
+      var lazyResize, lazyScroll;
       lazyScroll = _.throttle(this.checkScroll.bind(this), 500);
       $(document).on("scroll", (function(_this) {
         return function(e) {
           return lazyScroll();
+        };
+      })(this));
+      lazyResize = _.throttle(this.checkResize.bind(this), 500);
+      $(window).on("resize", (function(_this) {
+        return function(e) {
+          return lazyResize();
         };
       })(this));
       return this.checkScroll();
@@ -114,6 +126,9 @@
       return $(".photo-and-caption--unloaded:onScreen").each(function() {
         return PhotoChecklist.triggerLoad($(this));
       });
+    },
+    checkResize: function() {
+      return this.windowHeight = $(window).height();
     },
     triggerLoad: function(el) {
       var img;
