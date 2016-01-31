@@ -248,6 +248,12 @@ html, body {
   #page-title:empty {
     margin-bottom: 0px; }
 
+#page-title + .page-section > .page-subtitle {
+  margin-top: 12px; }
+  @media (max-width: 500px) {
+    #page-title + .page-section > .page-subtitle {
+      margin-top: 12px; } }
+
 .page-subtitle {
   margin-bottom: 18px; }
   @media (max-width: 500px) {
