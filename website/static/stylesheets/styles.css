@@ -225,10 +225,7 @@ html, body {
   border-radius: 2px; }
   @media (max-width: 600px) {
     #content {
-      padding: 24px 3%; } }
-  @media (max-width: 500px) {
-    #content {
-      padding: 18px 5%;
+      padding: 28.8px 3%;
       min-height: 0; } }
   @media (max-width: 400px) {
     #content {
