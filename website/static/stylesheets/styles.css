@@ -48,9 +48,7 @@ table {
 @font-face {
   font-family: "adelaidaregular";
   src: url("../fonts/adelaida/adelaida-regular-webfont.eot");
-  src: url("../fonts/adelaida/adelaida-regular-webfont.eot?#iefix") format("embedded-opentype");
-  src: url("../fonts/adelaida/adelaida-regular-webfont.woff") format("woff");
-  src: url("../fonts/adelaida/adelaida-regular-webfont.ttf") format("truetype");
+  src: url("../fonts/adelaida/adelaida-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/adelaida/adelaida-regular-webfont.woff2") format("woff2"), url("../fonts/adelaida/adelaida-regular-webfont.woff") format("woff"), url("../fonts/adelaida/adelaida-regular-webfont.ttf") format("truetype"), url("../fonts/adelaida/adelaida-regular-webfont.svg#adelaidaregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 body {
