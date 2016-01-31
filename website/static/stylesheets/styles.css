@@ -727,6 +727,38 @@ html, body {
           #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded {
             width: 95%;
             padding-top: 57%; } }
+      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading {
+        display: block;
+        position: relative;
+        box-sizing: border-box;
+        float: left;
+        width: 20%;
+        margin: 0 2.5% 50px 2.5%;
+        padding-top: 16%; }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(4n+1) {
+          clear: left; }
+        @media (max-width: 1400px) {
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading {
+            width: 28.3%;
+            padding-top: 19%; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(4n+1) {
+              clear: none; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(3n+1) {
+              clear: left; } }
+        @media (max-width: 1050px) {
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading {
+            width: 45%;
+            padding-top: 30%; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(4n+1) {
+              clear: none; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(3n+1) {
+              clear: none; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(2n+1) {
+              clear: left; } }
+        @media (max-width: 700px) {
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading {
+            width: 95%;
+            padding-top: 57%; } }
       #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:after {
         content: "";
         display: block;
