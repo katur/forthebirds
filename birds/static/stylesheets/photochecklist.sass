@@ -6,6 +6,9 @@
       color: $peach-pink
 
     #photo-checklist-full
+      position: relative
+      overflow: hidden
+
       h2
         width: 100%
         float: left
@@ -25,8 +28,17 @@
 
         .photo-and-caption
           display: block
+          background: rgba(#fff, 0.2)
           box-sizing: border-box
           @include four-three-two-one-child
+
+          &--unloaded
+            @include four-three-two-one-child(true)
+
+          &--loading
+            @include four-three-two-one-child(true)
+
+          &--loaded
 
           &:after
             content: ''
@@ -47,6 +59,7 @@
           img
             float: left
             width: 100%
+            height: auto
 
           .photo-caption
             box-sizing: border-box
@@ -57,7 +70,9 @@
             width: 100%
             padding: 2%
             background: rgba(0,0,0,.5)
-            font-size: 12px
+            @include sans-font
+            font-size: 13px
+            letter-spacing: 0.1em
             color: $chickadee-white
 
             .left

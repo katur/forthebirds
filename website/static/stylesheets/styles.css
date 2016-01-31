@@ -714,87 +714,158 @@ html, body {
   background: black; }
   #photo-checklist #content #page-title {
     color: #de8d88; }
-  #photo-checklist #content #photo-checklist-full h2 {
-    width: 100%;
-    float: left;
-    clear: both;
-    font-family: "adelaidaregular", sans-serif;
-    font-size: 200px;
-    color: #deedf2;
-    text-align: center; }
-    @media (max-width: 1120px) {
-      #photo-checklist #content #photo-checklist-full h2 {
-        font-size: 18vw; } }
-  #photo-checklist #content #photo-checklist-full .photo-checklist-family {
-    float: left;
-    clear: both;
-    width: 105%;
-    padding: 0 2.5%;
+  #photo-checklist #content #photo-checklist-full {
     position: relative;
-    left: -5%; }
-    #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
-      display: block;
-      box-sizing: border-box;
-      display: block;
-      position: relative;
-      box-sizing: border-box;
+    overflow: hidden; }
+    #photo-checklist #content #photo-checklist-full h2 {
+      width: 100%;
       float: left;
-      width: 20%;
-      margin: 0 2.5% 50px 2.5%; }
-      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(4n+1) {
-        clear: left; }
-      @media (max-width: 1400px) {
-        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
-          width: 28.3%; }
-          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(4n+1) {
-            clear: none; }
-          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(3n+1) {
-            clear: left; } }
-      @media (max-width: 1050px) {
-        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
-          width: 45%; }
-          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(4n+1) {
-            clear: none; }
-          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(3n+1) {
-            clear: none; }
-          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(2n+1) {
-            clear: left; } }
-      @media (max-width: 700px) {
-        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
-          width: 95%; } }
-      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:after {
-        content: "";
+      clear: both;
+      font-family: "adelaidaregular", sans-serif;
+      font-size: 200px;
+      color: #deedf2;
+      text-align: center; }
+      @media (max-width: 1120px) {
+        #photo-checklist #content #photo-checklist-full h2 {
+          font-size: 18vw; } }
+    #photo-checklist #content #photo-checklist-full .photo-checklist-family {
+      float: left;
+      clear: both;
+      width: 105%;
+      padding: 0 2.5%;
+      position: relative;
+      left: -5%; }
+      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
         display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1; }
-      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:hover:after {
-        cursor: pointer;
-        -webkit-transition: background, 130ms, linear;
-        -moz-transition: background, 130ms, linear;
-        transition: background, 130ms, linear;
-        background: rgba(222, 237, 242, 0.1); }
-      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption img {
-        float: left;
-        width: 100%; }
-      #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption {
+        background: rgba(255, 255, 255, 0.2);
         box-sizing: border-box;
         display: block;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 2%;
-        background: rgba(0, 0, 0, 0.5);
-        font-size: 12px;
-        color: #deedf2; }
-        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption .left {
-          float: left; }
-        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption .right {
-          float: right; }
+        position: relative;
+        box-sizing: border-box;
+        float: left;
+        width: 20%;
+        margin: 0 2.5% 50px 2.5%; }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(4n+1) {
+          clear: left; }
+        @media (max-width: 1400px) {
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
+            width: 28.3%; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(4n+1) {
+              clear: none; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(3n+1) {
+              clear: left; } }
+        @media (max-width: 1050px) {
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
+            width: 45%; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(4n+1) {
+              clear: none; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(3n+1) {
+              clear: none; }
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:nth-child(2n+1) {
+              clear: left; } }
+        @media (max-width: 700px) {
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption {
+            width: 95%; } }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded {
+          display: block;
+          position: relative;
+          box-sizing: border-box;
+          float: left;
+          width: 20%;
+          margin: 0 2.5% 50px 2.5%;
+          padding-top: 16%; }
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded:nth-child(4n+1) {
+            clear: left; }
+          @media (max-width: 1400px) {
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded {
+              width: 28.3%;
+              padding-top: 19%; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded:nth-child(4n+1) {
+                clear: none; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded:nth-child(3n+1) {
+                clear: left; } }
+          @media (max-width: 1050px) {
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded {
+              width: 45%;
+              padding-top: 30%; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded:nth-child(4n+1) {
+                clear: none; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded:nth-child(3n+1) {
+                clear: none; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded:nth-child(2n+1) {
+                clear: left; } }
+          @media (max-width: 700px) {
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--unloaded {
+              width: 95%;
+              padding-top: 57%; } }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading {
+          display: block;
+          position: relative;
+          box-sizing: border-box;
+          float: left;
+          width: 20%;
+          margin: 0 2.5% 50px 2.5%;
+          padding-top: 16%; }
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(4n+1) {
+            clear: left; }
+          @media (max-width: 1400px) {
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading {
+              width: 28.3%;
+              padding-top: 19%; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(4n+1) {
+                clear: none; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(3n+1) {
+                clear: left; } }
+          @media (max-width: 1050px) {
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading {
+              width: 45%;
+              padding-top: 30%; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(4n+1) {
+                clear: none; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(3n+1) {
+                clear: none; }
+              #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading:nth-child(2n+1) {
+                clear: left; } }
+          @media (max-width: 700px) {
+            #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption--loading {
+              width: 95%;
+              padding-top: 57%; } }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1; }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:hover:after {
+          cursor: pointer;
+          -webkit-transition: background, 130ms, linear;
+          -moz-transition: background, 130ms, linear;
+          transition: background, 130ms, linear;
+          background: rgba(222, 237, 242, 0.1); }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption img {
+          float: left;
+          width: 100%;
+          height: auto; }
+        #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption {
+          box-sizing: border-box;
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 2%;
+          background: rgba(0, 0, 0, 0.5);
+          font-family: "Dosis", sans-serif;
+          font-size: 13px;
+          letter-spacing: 0.1em;
+          color: #deedf2; }
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption .left {
+            float: left; }
+          #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption .right {
+            float: right; }
 
 #miscellany ul {
   list-style-position: inside;
