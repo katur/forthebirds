@@ -123,7 +123,6 @@
       if (el.hasClass(this.classnames.loading)) {
         return;
       }
-      console.log("loading", this);
       el.removeClass(this.classnames.unloaded).addClass(this.classnames.loading);
       img = new Image();
       return $(img).on("load", (function(_this) {

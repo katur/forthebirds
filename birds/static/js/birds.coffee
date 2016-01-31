@@ -25,6 +25,7 @@ createExpandButtons = ->
     $(this).closest("li").next("ul").toggleClass("collapsed")
 
 
+# TODO rewrite this fucker to use getBoundingClientRect()
 # onScreen jQuery plugin v0.2.1
 # (c) 2011-2013 Ben Pickles
 #
@@ -42,7 +43,10 @@ createExpandButtons = ->
     top = $elem.offset().top
     height = $elem.height()
     bottom = top + height
-    top >= viewport_top and top < viewport_bottom or bottom > viewport_top and bottom <= viewport_bottom or height > viewport_height and top <= viewport_top and bottom >= viewport_bottom
+
+    return top >= viewport_top and top < viewport_bottom or
+      bottom > viewport_top and bottom <= viewport_bottom or
+      height > viewport_height and top <= viewport_top and bottom >= viewport_bottom
 
   return
 ) jQuery
@@ -116,7 +120,6 @@ window.PhotoChecklist = {
   triggerLoad: (el) ->
     return if el.hasClass(@classnames.loaded)
     return if el.hasClass(@classnames.loading)
-    console.log "loading", @
 
     el
       .removeClass(@classnames.unloaded)
