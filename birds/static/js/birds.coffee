@@ -25,28 +25,35 @@ createExpandButtons = ->
     $(this).closest("li").next("ul").toggleClass("collapsed")
 
 
-# TODO rewrite this fucker to use getBoundingClientRect()
 # onScreen jQuery plugin v0.2.1
 # (c) 2011-2013 Ben Pickles
 #
 # http://benpickles.github.io/onScreen
 #
 # Released under MIT license.
+#
+# Modified by Michael P. Geraci to use getBoundingClientRect, optionally have a
+# buffer, and cache window size. Depends on PhotoChecklist for caching instead
+# of globals.
 (($) ->
-
   $.expr[':'].onScreen = (elem) ->
     $window = $(window)
-    viewport_top = $window.scrollTop()
-    viewport_height = $window.height()
-    viewport_bottom = viewport_top + viewport_height
-    $elem = $(elem)
-    top = $elem.offset().top
-    height = $elem.height()
-    bottom = top + height
 
-    return top >= viewport_top and top < viewport_bottom or
-      bottom > viewport_top and bottom <= viewport_bottom or
-      height > viewport_height and top <= viewport_top and bottom >= viewport_bottom
+    if !PhotoChecklist.windowHeight
+      PhotoChecklist.windowHeight = $window.height()
+
+    buffer = PhotoChecklist.buffer || 0
+    windowTop = $window.scrollTop()
+    windowBottom = windowTop + PhotoChecklist.windowHeight
+    rect = elem.getBoundingClientRect()
+    top = rect.top + windowTop
+    bottom = rect.bottom + windowTop
+
+    topIsVisible = top >= (windowTop - buffer) && top < (windowBottom + buffer)
+    bottomIsVisible = bottom > (windowTop - buffer) && bottom <= (windowBottom + buffer)
+    isBiggerThanScreen = rect.height? && rect.height > PhotoChecklist.windowHeight && top <= (windowTop - buffer) && bottom >= (windowBottom + buffer)
+
+    return topIsVisible || bottomIsVisible || isBiggerThanScreen
 
   return
 ) jQuery
@@ -95,6 +102,9 @@ _.throttle = (func, wait, options) ->
 
 
 window.PhotoChecklist = {
+  # how close an elements needs to be to the viewport to trigger load
+  buffer: 300
+
   classnames: {
     unloaded: "photo-and-caption--unloaded"
     loading: "photo-and-caption--loading"
@@ -107,6 +117,11 @@ window.PhotoChecklist = {
       lazyScroll()
     )
 
+    lazyResize = _.throttle(@checkResize.bind(@), 500)
+    $(window).on("resize", (e) =>
+      lazyResize()
+    )
+
     # load the first set before scroll
     @checkScroll()
 
@@ -116,6 +131,9 @@ window.PhotoChecklist = {
     $(".photo-and-caption--unloaded:onScreen").each( ->
       PhotoChecklist.triggerLoad($(@))
     )
+
+  checkResize: ->
+    @windowHeight = $(window).height()
 
   triggerLoad: (el) ->
     return if el.hasClass(@classnames.loaded)
