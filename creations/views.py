@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from creations.models import (Article, Book, ExternalProject,
                               RadioProgram, RadioProgramRerun,
-                              ResearchCategory, Research,
+                              ResearchCategory, Research, SoundRecording,
                               SpeakingProgram, SpeakingProgramFile,
                               WebPage)
 from forthebirds.settings import ITUNES_SUBSCRIBE_LINK
@@ -196,6 +196,14 @@ def research_item(request, id):
         'research_item': research_item,
     }
     return render(request, 'research_item.html', context)
+
+
+def sound_recording(request, id):
+    recording = get_object_or_404(SoundRecording, id=id)
+    context = {
+        'recording': recording,
+    }
+    return render(request, 'sound_recording.html', context)
 
 
 def speaking(request):

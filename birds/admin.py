@@ -1,6 +1,8 @@
+from django import forms
 from django.contrib import admin
 
 from birds.models import Species, MinnesotaSpecies, TaxonomicGroup
+from creations.models import SoundRecording
 
 
 def add_to_minnesota_species(modeladmin, request, queryset):
@@ -16,7 +18,21 @@ add_to_minnesota_species.short_description = ('Add this bird to MN list if '
                                               'not already there')
 
 
+class SpeciesAdminForm(forms.ModelForm):
+    class Meta:
+        model = Species
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(SpeciesAdminForm, self).__init__(*args, **kwargs)
+        if self.instance:
+            recordings = SoundRecording.objects.filter(species=self.instance)
+            self.fields['main_sound_recording'].queryset = recordings
+
+
 class SpeciesAdmin(admin.ModelAdmin):
+    form = SpeciesAdminForm
+
     list_display = ('common_name', 'slug', 'scientific_name',
                     'main_photo_url', 'absolute_position',
                     'is_visible', 'is_in_minnesota_list',)
@@ -40,7 +56,8 @@ class SpeciesAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('is_visible', 'main_photo_url', 'blurb',),
+            'fields': ('is_visible', 'main_photo_url',
+                       'main_sound_recording', 'blurb',),
         }),
         ('From AOU checklist', {
             'fields': aou_fields,

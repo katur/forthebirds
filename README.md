@@ -48,14 +48,4 @@ npm install --dev-save gulp-ruby-sass
 npm install --dev-save gulp-coffee
 ```
 
-Then to compile, simply run `gulp` in the project root.
-
-
-## Migration from old sources
-Query to extract Bird-Of-The-Week name from url:
-
-> SELECT species_list.scientific_name, TRIM(TRAILING ".html" FROM
->   SUBSTR(link.link, LOCATE("botw/", link.link) + 5))
-> FROM link
-> LEFT JOIN species_list ON link.species_id = species_list.id
-> WHERE link LIKE "%/botw/%"
+To compile, simply run `gulp` in the project root.

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load extra_tags %}
+{% load staticfiles %}
+
+
+{% block body_id %}sound-recording{% endblock %}
+
+
+{% block head_title_prefix %}
+{{ recording.title }} | Sound Recording |
+{% endblock %}
+
+
+{% block page_title %}
+Sound Recording: {{ recording.title }}
+{% endblock %}
+
+
+{% block content %}
+
+<div id="recording-information" class="page-subsection">
+  <span>
+    Recorded on {{ recording.date_recorded }}
+  </span>
+
+  {% if recording.location %}
+  <span>
+    Recorded in {{ recording.location }}
+  </span>
+  {% endif %}
+
+  {% if recording.description %}
+  <span>
+    {{ recording.description|enhanced_markdown }}
+  </span>
+  {% endif %}
+
+  <span id="audio">
+    {% include 'audio_with_download.html' with file=recording.file %}
+  </span>
+</div>
+
+<div class="page-subsection">
+  {% include 'tags.html' with item=recording %}
+</div>
+
+{% endblock %}

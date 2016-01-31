@@ -36,8 +36,20 @@
   </div>
 
   <div id="overview" class="page-subsection">
-    {% if bird.main_photo_url %}
-    <img id="main-photo" src="{{ bird.main_photo_url }}"/>
+    {% if bird.main_photo_url or bird.main_sound_recording %}
+    <div id="main-media-wrapper">
+      {% if bird.main_photo_url %}
+      <img src="{{ bird.main_photo_url }}" />
+      {% endif %}
+
+      {% if bird.main_sound_recording %}
+      <audio controls preload="none">
+        <source src="{{ MEDIA_URL }}{{ bird.main_sound_recording.file }}"
+          type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      {% endif %}
+    </div>
     {% endif %}
 
     <div id="overview-text">

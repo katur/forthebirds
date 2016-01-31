@@ -212,6 +212,10 @@ html, body {
     #header, #content, #footer {
       width: 94%;
       margin: 0 3%; } }
+  @media (max-width: 400px) {
+    #header, #content, #footer {
+      width: 100%;
+      margin: 0; } }
 
 #content {
   min-height: 500px;
@@ -219,10 +223,13 @@ html, body {
   background: #f5f4ee;
   padding: 54px;
   border-radius: 2px; }
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     #content {
-      padding: 18px 5%;
+      padding: 28.8px 3%;
       min-height: 0; } }
+  @media (max-width: 400px) {
+    #content {
+      border-radius: 0; } }
 
 #footer {
   margin-top: 36px;
@@ -302,6 +309,11 @@ html, body {
         #header #site-title h1 {
           font-size: 14vw;
           letter-spacing: 0.2vw; } }
+    @media (max-width: 600px) {
+      #header #site-title {
+        margin-top: 10px; }
+        #header #site-title h1 {
+          text-shadow: 0 0 1px #deedf2; } }
   #header #menu {
     float: left;
     clear: both;
@@ -321,6 +333,26 @@ html, body {
         width: 82%;
         margin: 9px 9%;
         font-size: 20px; } }
+    @media (max-width: 600px) {
+      #header #menu {
+        font-family: "Dosis", sans-serif;
+        font-weight: 500;
+        letter-spacing: 1px; }
+        #header #menu a {
+          display: inline-block;
+          padding-top: 5px;
+          padding-bottom: 5px; } }
+    @media (max-width: 400px) {
+      #header #menu {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 35px;
+        margin-left: 0;
+        padding: 10px; } }
 
 .chickadee {
   display: block;
@@ -339,12 +371,15 @@ html, body {
   @media (max-width: 850px) {
     .chickadee-l {
       left: -40px; } }
-  @media (max-width: 550px) {
-    .chickadee-l {
-      top: -152px; } }
   @media (max-width: 650px) {
     .chickadee-l {
       left: -20px; } }
+  @media (max-width: 550px) {
+    .chickadee-l {
+      top: -152px; } }
+  @media (max-width: 400px) {
+    .chickadee-l {
+      left: -5px; } }
 
 .chickadee-r {
   top: -145px;
@@ -372,12 +407,31 @@ html, body {
   font-family: "Dosis", sans-serif;
   font-weight: 200;
   letter-spacing: 1px; }
+  @media (max-width: 600px) {
+    #footer {
+      font-family: "Dosis", sans-serif;
+      font-weight: 500;
+      letter-spacing: 1px; } }
+  @media (max-width: 400px) {
+    #footer {
+      padding: 0 20px; } }
   #footer #content-copyright {
     max-width: 60%;
     float: left; }
+    @media (max-width: 400px) {
+      #footer #content-copyright {
+        max-width: 100%;
+        width: 100%; } }
   #footer #website-copyright {
     max-width: 35%;
     float: right; }
+    @media (max-width: 400px) {
+      #footer #website-copyright {
+        max-width: 100%;
+        width: 100%;
+        margin-top: 20px; }
+        #footer #website-copyright span {
+          display: block; } }
   #footer a {
     color: #e6a8a4; }
     #footer a:hover, #footer a.active {
@@ -481,16 +535,20 @@ html, body {
     padding: 2px 4px; }
   #birds #bird-search form p {
     display: inline-block; }
-  #birds #bird-search form button,
-  #birds #bird-search form input {
+  #birds #bird-search form input,
+  #birds #bird-search form button {
     font-size: 14px;
     font-family: "Dosis", sans-serif;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    padding: 8px; }
   #birds #bird-search form input {
+    min-width: 180px;
     background: #dcdfdc; }
   #birds #bird-search form button {
     color: #f5f4ee;
     background: #9ba5a9; }
+    #birds #bird-search form button:hover {
+      background: #777e86; }
 
 #bird #taxonomy {
   width: 100%;
@@ -508,15 +566,19 @@ html, body {
   @media (max-width: 600px) {
     #bird #taxonomy {
       font-size: 15px; } }
-#bird #overview #main-photo {
-  display: block;
+#bird #overview #main-media-wrapper {
   float: left;
   max-width: 45%;
-  height: auto;
   margin-right: 5%;
   margin-bottom: 18px; }
+  #bird #overview #main-media-wrapper img, #bird #overview #main-media-wrapper audio {
+    float: left;
+    width: 100%;
+    display: block; }
+  #bird #overview #main-media-wrapper img {
+    height: auto; }
   @media (max-width: 600px) {
-    #bird #overview #main-photo {
+    #bird #overview #main-media-wrapper {
       max-width: 100%;
       margin-right: 0%;
       margin-bottom: 36px; } }
@@ -840,13 +902,13 @@ html, body {
     margin-right: 18px; }
     #radio #links a#itunes-link {
       float: right;
-      margin-right: 0px;
-      margin-top: 0px; }
+      margin-top: 0px;
+      margin-right: 0px; }
       @media (max-width: 500px) {
         #radio #links a#itunes-link {
-          float: left;
-          margin-top: 10px;
-          margin-right: 18px; } }
+          float: none;
+          position: relative;
+          top: 12px; } }
 #radio #year-program-container {
   float: left;
   position: relative;
@@ -1074,6 +1136,16 @@ html, body {
   margin-left: 18px; }
   #research #content .help-message p {
     display: inline; }
+
+#sound-recording #recording-information span {
+  float: left;
+  clear: both;
+  margin-bottom: 18px; }
+  #sound-recording #recording-information span:last-child {
+    margin-bottom: 0px; }
+#sound-recording #recording-information #audio .download-link img {
+  width: 30px;
+  height: 30px; }
 
 #speaking ul {
   list-style-position: inside;
