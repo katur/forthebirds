@@ -554,7 +554,8 @@ html, body {
     #birds #bird-search form button:hover {
       background: #777e86; }
 
-#bird #taxonomy {
+#bird #taxonomy-table,
+#bird #taxonomy-text {
   width: 100%;
   background: #788c6d;
   font-family: "Dosis", sans-serif;
@@ -562,14 +563,34 @@ html, body {
   letter-spacing: 1px;
   color: #f5f4ee;
   text-align: center; }
-  #bird #taxonomy td {
-    padding: 2px 4px; }
-  @media (max-width: 800px) {
-    #bird #taxonomy {
-      font-size: 16px; } }
+#bird #taxonomy-table td {
+  padding: 2px 4px; }
+@media (max-width: 800px) {
+  #bird #taxonomy-table {
+    font-size: 16px; } }
+@media (max-width: 600px) {
+  #bird #taxonomy-table {
+    display: none; } }
+#bird #taxonomy-text {
+  display: none; }
+  #bird #taxonomy-text:after {
+    content: "";
+    display: table;
+    clear: both; }
   @media (max-width: 600px) {
-    #bird #taxonomy {
-      font-size: 15px; } }
+    #bird #taxonomy-text {
+      display: block; } }
+  #bird #taxonomy-text span {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    width: 33%;
+    padding: 5px 20px; }
+    @media (max-width: 400px) {
+      #bird #taxonomy-text span {
+        width: 100%;
+        padding: 5px 10px; } }
 #bird #overview #main-media-wrapper {
   float: left;
   max-width: 45%;
