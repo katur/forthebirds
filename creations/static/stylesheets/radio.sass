@@ -77,8 +77,7 @@ $mobile-breakpoint: 500px
         padding: 20px
 
     #year-list
-      position: absolute
-      left: 0
+      float: left
       width: $year-list-width-big
       @include sans-font
       font-size: 36px
@@ -111,12 +110,11 @@ $mobile-breakpoint: 500px
 
     #programs
       @include box-sizing(border-box)
-      width: 100%
-      float: left
-      padding-left: $year-list-width-big
+      @include calc(width, "100% - #{$year-list-width-big}")
+      float: right
 
       @media (max-width: $mobile-breakpoint)
-        padding-left: 0
+        width: 100%
 
       .program
         float: left

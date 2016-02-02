@@ -960,8 +960,7 @@ html, body {
       width: 100%;
       padding: 20px; }
   #radio #year-program-container #year-list {
-    position: absolute;
-    left: 0;
+    float: left;
     width: 93px;
     font-family: "Dosis", sans-serif;
     font-size: 36px;
@@ -995,12 +994,12 @@ html, body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    width: 100%;
-    float: left;
-    padding-left: 93px; }
+    width: -webkit-calc(100% - 93px);
+    width: calc(100% - 93px);
+    float: right; }
     @media (max-width: 500px) {
       #radio #year-program-container #programs {
-        padding-left: 0; } }
+        width: 100%; } }
     #radio #year-program-container #programs .program {
       float: left;
       width: 100%;
