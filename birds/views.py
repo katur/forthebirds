@@ -78,7 +78,6 @@ def bird(request, slug):
         def get_name(x):
             display_name = x.get_class_display_name()
             if display_name.startswith('A B A'):
-                print display_name
                 return 'zzz'
             else:
                 return display_name
