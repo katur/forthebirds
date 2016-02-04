@@ -79,6 +79,13 @@ def radio_program_artwork(request, id):
     return response
 
 
+def sound_recording_artwork(request, id):
+    recording = get_object_or_404(SoundRecording, id=id)
+    artwork = recording.get_artwork()
+    response = JsonResponse({'artwork': artwork})
+    return response
+
+
 def radio_calendar(request, year, month):
     year = int(year)
     month = int(month)

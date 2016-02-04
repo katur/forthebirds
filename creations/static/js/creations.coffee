@@ -2,7 +2,10 @@ $(document).ready ->
   page = $("body").attr("id")
 
   if page == "radio-program"
-    addArtwork()
+    addRadioProgramArtwork()
+
+  if page == "sound-recording"
+    addSoundRecordingArtwork()
 
   if page == "radio"
     initializeProgramButtons()
@@ -11,8 +14,8 @@ $(document).ready ->
   initializeImageCaptions()
 
 
-addRadioProgramArtworkToElement = (radioProgramPk, element) ->
-  $.ajax "/radio/program-artwork/#{radioProgramPk}/",
+addArtworkToElement = (pk, element, urlStart) ->
+  $.ajax "/#{urlStart}/artwork/#{pk}/",
     type: "GET"
     dataType: "json"
     success: (data, textStatus, jqXHR) ->
@@ -21,10 +24,16 @@ addRadioProgramArtworkToElement = (radioProgramPk, element) ->
         element.html("""<img src="#{src}"/>""")
 
 
-addArtwork = ->
+addRadioProgramArtwork = ->
   artworkElement = $("#artwork")
-  programPk = artworkElement.attr("data-program-pk")
-  addRadioProgramArtworkToElement(programPk, artworkElement)
+  pk = artworkElement.attr("data-pk")
+  addArtworkToElement(pk, artworkElement, "radio")
+
+
+addSoundRecordingArtwork = ->
+  artworkElement = $("#artwork")
+  pk = artworkElement.attr("data-pk")
+  addArtworkToElement(pk, artworkElement, "sound-recording")
 
 
 initializeProgramButtons = ->
@@ -44,7 +53,7 @@ initializeProgramButtons = ->
 
     programPk = program.attr("data-program-pk")
     artworkElement = program.find(".artwork")
-    addRadioProgramArtworkToElement(programPk, artworkElement)
+    addArtworkToElement(programPk, artworkElement, "radio")
 
 
 watchYearSelect = ->

@@ -1,11 +1,14 @@
 (function() {
-  var addArtwork, addRadioProgramArtworkToElement, initializeImageCaptions, initializeProgramButtons, watchYearSelect;
+  var addArtworkToElement, addRadioProgramArtwork, addSoundRecordingArtwork, initializeImageCaptions, initializeProgramButtons, watchYearSelect;
 
   $(document).ready(function() {
     var page;
     page = $("body").attr("id");
     if (page === "radio-program") {
-      addArtwork();
+      addRadioProgramArtwork();
+    }
+    if (page === "sound-recording") {
+      addSoundRecordingArtwork();
     }
     if (page === "radio") {
       initializeProgramButtons();
@@ -14,8 +17,8 @@
     return initializeImageCaptions();
   });
 
-  addRadioProgramArtworkToElement = function(radioProgramPk, element) {
-    return $.ajax("/radio/program-artwork/" + radioProgramPk + "/", {
+  addArtworkToElement = function(pk, element, urlStart) {
+    return $.ajax("/" + urlStart + "/artwork/" + pk + "/", {
       type: "GET",
       dataType: "json",
       success: function(data, textStatus, jqXHR) {
@@ -28,11 +31,18 @@
     });
   };
 
-  addArtwork = function() {
-    var artworkElement, programPk;
+  addRadioProgramArtwork = function() {
+    var artworkElement, pk;
     artworkElement = $("#artwork");
-    programPk = artworkElement.attr("data-program-pk");
-    return addRadioProgramArtworkToElement(programPk, artworkElement);
+    pk = artworkElement.attr("data-pk");
+    return addArtworkToElement(pk, artworkElement, "radio");
+  };
+
+  addSoundRecordingArtwork = function() {
+    var artworkElement, pk;
+    artworkElement = $("#artwork");
+    pk = artworkElement.attr("data-pk");
+    return addArtworkToElement(pk, artworkElement, "sound-recording");
   };
 
   initializeProgramButtons = function() {
@@ -51,7 +61,7 @@
       }
       programPk = program.attr("data-program-pk");
       artworkElement = program.find(".artwork");
-      return addRadioProgramArtworkToElement(programPk, artworkElement);
+      return addArtworkToElement(programPk, artworkElement, "radio");
     });
   };
 

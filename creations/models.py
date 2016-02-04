@@ -18,6 +18,21 @@ from website.models import UploadedImage
 from utils.models import RealInstanceProvider
 
 
+def get_artwork_from_file(obj):
+    """
+    Get artwork embedded in obj's mp3 file.
+    Returns the artwork as a line of ASCII characters in base64 coding.
+    """
+    try:
+        program_path = '{}/{}'.format(MEDIA_ROOT, obj.file.name)
+        artwork = MP3(program_path).tags['APIC:'].data
+        base64 = binascii.b2a_base64(artwork)
+        return base64
+
+    except Exception:
+        return None
+
+
 class Creation(models.Model, RealInstanceProvider):
     """Superclass for one of Laura's creations."""
     title = models.CharField(max_length=120)
@@ -148,6 +163,12 @@ class SoundRecording(Creation):
     def get_absolute_url(self):
         return reverse('sound_recording_url', args=[self.id])
 
+    def get_artwork(self):
+        """
+        Get artwork embedded in this program's mp3 file.
+        """
+        return get_artwork_from_file(self)
+
 
 class RadioProgram(Creation):
     """A For the Birds radio program."""
@@ -180,16 +201,8 @@ class RadioProgram(Creation):
     def get_artwork(self):
         """
         Get artwork embedded in this program's mp3 file.
-        Returns the artwork as a line of ASCII characters in base64 coding.
         """
-        try:
-            program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
-            artwork = MP3(program_path).tags['APIC:'].data
-            base64 = binascii.b2a_base64(artwork)
-            return base64
-
-        except Exception:
-            return None
+        return get_artwork_from_file(self)
 
     def calculate_duration(self):
         """

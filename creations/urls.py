@@ -14,7 +14,7 @@ urlpatterns = [
         views.radio_calendar, name='radio_calendar_url'),
     url(r'^radio/program/(?P<id>\d+)/(?P<slug>.*)/$',
         views.radio_program, name='radio_program_url'),
-    url(r'^radio/program-artwork/(?P<id>\d+)/$',
+    url(r'^radio/artwork/(?P<id>\d+)/$',
         views.radio_program_artwork, name='radio_program_artwork_url'),
 
     url(r'^writing/$', views.writing, name='writing_url'),
@@ -27,6 +27,9 @@ urlpatterns = [
 
     url(r'^sound-recording/(?P<id>\d+)/$', views.sound_recording,
         name='sound_recording_url'),
+    url(r'^sound-recording/artwork/(?P<id>\d+)/$',
+        views.sound_recording_artwork,
+        name='sound_recording_artwork_url'),
 
     url(r'^speaking/$', views.speaking, name='speaking_url'),
     url(r'^speaking/(?P<slug>.+)/$', views.speaking_program,

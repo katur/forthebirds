@@ -1,9 +1,14 @@
 #sound-recording
-  #recording-information
+  #recording-columns
+    @include two-columns(35%, 60%, 600px)
+
+    #artwork
+      img
+        max-width: 100%
+
     @include cleared-spans
 
-    #audio
-      .download-link
-        img
-          width: 30px
-          height: 30px
+    .download-link
+      img
+        width: 30px
+        height: 30px

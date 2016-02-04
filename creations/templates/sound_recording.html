@@ -19,26 +19,32 @@ Sound Recording: {{ recording.title }}
 
 {% block content %}
 
-<div id="recording-information" class="page-subsection">
-  <span>
-    Recorded on {{ recording.date_recorded }}
-  </span>
+<div id="recording-columns" class="page-subsection">
+  <div id="artwork" class="column" data-pk="{{ recording.pk }}">
+    <img src="{% static 'images/camera-icon.png' %}" />
+  </div>
 
-  {% if recording.location %}
-  <span>
-    Recorded in {{ recording.location }}
-  </span>
-  {% endif %}
+  <div class="column">
+    <span>
+      Recorded on {{ recording.date_recorded }}
+    </span>
 
-  {% if recording.description %}
-  <span>
-    {{ recording.description|enhanced_markdown }}
-  </span>
-  {% endif %}
+    {% if recording.location %}
+    <span>
+      Recorded in {{ recording.location }}
+    </span>
+    {% endif %}
 
-  <span id="audio">
-    {% include 'audio_with_download.html' with file=recording.file %}
-  </span>
+    {% if recording.description %}
+    <span>
+      {{ recording.description|enhanced_markdown }}
+    </span>
+    {% endif %}
+
+    <span id="audio">
+      {% include 'audio_with_download.html' with file=recording.file %}
+    </span>
+  </div>
 </div>
 
 <div class="page-subsection">
