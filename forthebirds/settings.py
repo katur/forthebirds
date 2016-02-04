@@ -29,6 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 from local_settings import (
     DEBUG, SECRET_KEY, DATABASES, SITE_DOMAIN, OLD_SITE_DOMAIN,
     ITUNES_SUBSCRIBE_LINK, PERMANENT_REDIRECTS,
+    STATIC_URL, MEDIA_URL, PRIVATE_MEDIA_URL,
     STATIC_ROOT, MEDIA_ROOT, PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_SERVER)
 
 
@@ -89,16 +90,6 @@ USE_I18N = True
 USE_L10N = False
 
 USE_TZ = True
-
-
-# Static and Media files
-# https://docs.djangoproject.com/en/dev/howto/static-files/
-
-STATIC_URL = '/static/'
-
-MEDIA_URL = '/media/'
-
-PRIVATE_MEDIA_URL = '/private-media/'
 
 
 # Templates
