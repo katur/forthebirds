@@ -112,7 +112,7 @@ class ForTheBirdsPodcastFeed(Feed):
         return datetime.combine(item.air_date, time())
 
     def item_enclosure_url(self, item):
-        return 'http://media.lauraerickson.com' + item.file.url
+        return item.file.url
 
     def item_enclosure_length(self, item):
         try:
