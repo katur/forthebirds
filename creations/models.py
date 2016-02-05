@@ -385,19 +385,3 @@ class WebPage(Creation):
 
     def get_absolute_url(self):
         return reverse('webpage_url', args=[self.slug])
-
-
-class ABAFieldGuideImage(Creation):
-    image = models.ImageField(null=True, blank=True, upload_to='abafieldguide')
-    is_public = False
-    is_image = True
-
-    class Meta:
-        ordering = ['title']
-        verbose_name = 'ABA Field Guide Images'
-
-    def __unicode__(self):
-        return 'ABA Field Guide Image ' + self.title
-
-    def get_absolute_url(self):
-        return self.image.url
