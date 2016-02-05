@@ -172,8 +172,6 @@ class MinnesotaSpecies(models.Model):
                                                   default=None)
     mou_annotation = models.CharField('MOU annotation', max_length=500,
                                       blank=True)
-    range_in_minnesota = models.CharField(max_length=500, blank=True)
-    miscellaneous_notes = models.TextField(blank=True)
 
     class Meta:
         ordering = ['species__absolute_position']
