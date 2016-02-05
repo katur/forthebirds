@@ -1,21 +1,8 @@
 from django import forms
 from django.contrib import admin
 
-from birds.models import Species, MinnesotaSpecies, TaxonomicGroup
+from birds.models import Species, TaxonomicGroup
 from creations.models import SoundRecording
-
-
-def add_to_minnesota_species(modeladmin, request, queryset):
-    for species in queryset:
-        print species
-        try:
-            minnesota_species = MinnesotaSpecies.objects.get(
-                species=species)
-        except MinnesotaSpecies.DoesNotExist:
-            minnesota_species = MinnesotaSpecies(species=species)
-            minnesota_species.save()
-add_to_minnesota_species.short_description = ('Add this bird to MN list if '
-                                              'not already there')
 
 
 class SpeciesAdminForm(forms.ModelForm):
@@ -34,16 +21,13 @@ class SpeciesAdmin(admin.ModelAdmin):
     form = SpeciesAdminForm
 
     list_display = ('common_name', 'slug', 'scientific_name',
-                    'main_photo_url', 'absolute_position',
-                    'is_visible', 'is_in_minnesota_list',)
+                    'main_photo_url', 'absolute_position', 'is_visible',)
 
     list_filter = ('is_visible', 'nacc_is_accidental', 'nacc_is_hawaiian',
                    'nacc_is_introduced', 'nacc_is_nonbreeding',
                    'nacc_is_extinct', 'nacc_is_misplaced',)
 
     search_fields = ('scientific_name', 'common_name',)
-
-    actions = [add_to_minnesota_species]
 
     aou_fields = ('common_name', 'slug', 'scientific_name',
                   'parent', 'id', 'absolute_position',
@@ -61,37 +45,6 @@ class SpeciesAdmin(admin.ModelAdmin):
         }),
         ('From AOU checklist', {
             'fields': aou_fields,
-        }),
-    )
-
-    def is_in_minnesota_list(self, obj):
-        try:
-            MinnesotaSpecies.objects.get(species=obj)
-            return True
-        except MinnesotaSpecies.DoesNotExist:
-            return False
-    is_in_minnesota_list.boolean = True
-
-
-class MinnesotaSpeciesAdmin(admin.ModelAdmin):
-    list_display = ('species', 'include_in_book', 'mou_status',
-                    'mou_breeding_status', 'mou_annotation',)
-
-    list_filter = ('include_in_book', 'mou_status', 'mou_breeding_status',)
-
-    search_fields = ('species__common_name', 'species__scientific_name',)
-
-    mou_fields = ('mou_status', 'mou_breeding_status', 'mou_annotation',)
-
-    readonly_fields = ('species',)
-
-    fieldsets = (
-        (None, {
-            'fields': ('species', 'include_in_book', 'range_in_minnesota',
-                       'miscellaneous_notes',),
-        }),
-        ('From MOU checklist', {
-            'fields': mou_fields,
         }),
     )
 
@@ -119,5 +72,4 @@ class TaxonomicGroupAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Species, SpeciesAdmin)
-admin.site.register(MinnesotaSpecies, MinnesotaSpeciesAdmin)
 admin.site.register(TaxonomicGroup, TaxonomicGroupAdmin)

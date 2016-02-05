@@ -3,7 +3,7 @@ import datetime
 from django.shortcuts import redirect, render, get_object_or_404
 
 from birds.forms import BirdSearchForm
-from birds.models import Species, MinnesotaSpecies
+from birds.models import Species
 
 
 def birds(request):
@@ -53,12 +53,6 @@ def birds(request):
     return render(request, 'birds.html', context)
 
 
-def minnesota_birds(request):
-    birds = MinnesotaSpecies.objects.filter(include_in_book=True)
-    context = {'birds': birds}
-    return render(request, 'minnesota_birds.html', context)
-
-
 def photo_checklist(request):
     birds = Species.objects.exclude(main_photo_url__exact='')
     for bird in birds:
@@ -87,8 +81,6 @@ def bird(request, slug):
         return creations
 
     bird = get_object_or_404(Species, slug=slug)
-
-    bird.is_minnesotan = hasattr(bird, 'minnesotaspecies')
 
     public_creations = []
     private_creations = []

@@ -130,7 +130,7 @@
 {% endif %}
 
 
-{% if private_creations or user.is_authenticated and bird.is_minnesotan %}
+{% if private_creations and user.is_authenticated %}
 <div id="private-cards" class="page-section">
   <h3 class="page-subtitle">
     Private Information
@@ -143,32 +143,6 @@
     {% include 'creation_card.html' %}
     {% endwith %}
   {% endfor %}
-  {% endif %}
-
-  {% if user.is_authenticated and bird.is_minnesotan %}
-  <div class="card">
-    <h4>
-      MOU Checklist Info
-    </h4>
-
-    Status: {{ bird.minnesotaspecies.mou_status }}
-    <br>
-    Breeding status: {{ bird.minnesotaspecies.mou_breeding_status }}
-    <br>
-    Annotation: {{ bird.minnesotaspecies.mou_annotation }}
-  </div>
-
-  <div class="card">
-    <h4>
-      Other Minnesota Field Guide Info
-    </h4>
-
-    Include in book: {{ bird.minnesotaspecies.include_in_book }}
-    <br>
-    Range in MN: {{ bird.minnesotaspecies.range_in_minnesota }}
-    <br>
-    Miscellanous notes: {{ bird.minnesotaspecies.miscellaneous_notes }}
-  </div>
   {% endif %}
 </div>
 {% endif %}
