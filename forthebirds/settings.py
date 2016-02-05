@@ -28,9 +28,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 from local_settings import (
     DEBUG, SECRET_KEY, DATABASES, SITE_DOMAIN, OLD_SITE_DOMAIN,
-    ITUNES_SUBSCRIBE_LINK, PERMANENT_REDIRECTS,
+    ITUNES_SUBSCRIBE_LINK, GOOGLE_ANALYTICS_ID, PERMANENT_REDIRECTS,
     STATIC_URL, MEDIA_URL, PRIVATE_MEDIA_URL,
-    STATIC_ROOT, MEDIA_ROOT, PRIVATE_MEDIA_ROOT, PRIVATE_MEDIA_SERVER)
+    STATIC_ROOT, MEDIA_ROOT, PRIVATE_MEDIA_ROOT)
 
 
 # Security
@@ -40,7 +40,7 @@ ALLOWED_HOSTS = ['*']
 
 # Administration
 
-ADMINS = [('Katherine Erickson', 'katherine.erickson@gmail.com'),]
+ADMINS = [('Katherine Erickson', 'katherine.erickson@gmail.com')]
 
 
 # Application definition
@@ -126,6 +126,8 @@ LOGIN_REDIRECT_URL = '/'
 
 
 # Miscellany
+PRIVATE_MEDIA_SERVER = 'private_media.servers.DefaultServer'
+
 
 MARKDOWN_PROMPT = (
     'Use Markdown syntax for italics, bullets, etc. See '
