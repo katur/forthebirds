@@ -85,8 +85,8 @@ class ForTheBirdsPodcastFeed(Feed):
         extras['itunes_name'] = 'Laura Erickson'
         extras['itunes_email'] = 'chickadee@lauraerickson.com'
         extras['itunes_new_feed_url'] = SITE_DOMAIN + '/radio/feed.xml'
-        extras['itunes_image_url'] = SITE_DOMAIN + (
-            '/media/images/a588d7c7-cb24-487b-bf3e-b8e94b61fb72_'
+        extras['itunes_image_url'] = ('http://media.lauraerickson.com'
+            '/images/a588d7c7-cb24-487b-bf3e-b8e94b61fb72_'
             'laura_erickson_itunes.jpg')
         extras['itunes_explicit'] = 'clean'
         extras['itunes_categories'] = {
@@ -112,7 +112,7 @@ class ForTheBirdsPodcastFeed(Feed):
         return datetime.combine(item.air_date, time())
 
     def item_enclosure_url(self, item):
-        return SITE_DOMAIN + item.file.url
+        return 'http://media.lauraerickson.com' + item.file.url
 
     def item_enclosure_length(self, item):
         try:
