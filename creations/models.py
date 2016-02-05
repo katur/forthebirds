@@ -148,28 +148,6 @@ class ExternalProject(Creation):
         return self.url
 
 
-class SoundRecording(Creation):
-    """A bird sound recording."""
-    file = models.FileField(upload_to='soundrecordings')
-    date_recorded = models.DateField()
-    location = models.CharField(max_length=200, blank=True)
-
-    class Meta:
-        ordering = ['-date_recorded']
-
-    def __unicode__(self):
-        return 'Sound Recording: ' + self.title
-
-    def get_absolute_url(self):
-        return reverse('sound_recording_url', args=[self.id])
-
-    def get_artwork(self):
-        """
-        Get artwork embedded in this program's mp3 file.
-        """
-        return get_artwork_from_file(self)
-
-
 class RadioProgram(Creation):
     """A For the Birds radio program."""
     file = models.FileField(upload_to='radio')
@@ -334,6 +312,28 @@ class Research(Creation):
         ancestors = [self.category]
         ancestors.extend(self.category.get_ancestors())
         return ancestors
+
+
+class SoundRecording(Creation):
+    """A bird sound recording."""
+    file = models.FileField(upload_to='soundrecordings')
+    date_recorded = models.DateField()
+    location = models.CharField(max_length=200, blank=True)
+
+    class Meta:
+        ordering = ['-date_recorded']
+
+    def __unicode__(self):
+        return 'Sound Recording: ' + self.title
+
+    def get_absolute_url(self):
+        return reverse('sound_recording_url', args=[self.id])
+
+    def get_artwork(self):
+        """
+        Get artwork embedded in this program's mp3 file.
+        """
+        return get_artwork_from_file(self)
 
 
 class SpeakingProgram(Creation):
