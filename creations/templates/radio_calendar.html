@@ -51,7 +51,7 @@ for {{ month }}, {{ year }}
           {{ program.get_printable_duration}},
 
           {% if is_rerun %}
-          rerun
+          rerun ({{ program.air_date|date:'Y' }})
           {% else %}
           new!
           {% endif %}
