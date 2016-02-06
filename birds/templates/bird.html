@@ -122,7 +122,7 @@
     {% regroup public_creations by get_class_display_name as card_list %}
     {% for card in card_list %}
       {% with category=card.grouper creations=card.list %}
-      {% include "creation_card.html" %}
+      {% include 'creation_card.html' %}
       {% endwith %}
     {% endfor %}
   </div>
@@ -131,19 +131,17 @@
 
 
 {% if private_creations and user.is_authenticated %}
-<div id="private-cards" class="page-section">
-  <h3 class="page-subtitle">
-    Private Information
-  </h3>
+<div class="page-section">
+  <h3 class="page-subtitle">Private Information</h3>
 
-  {% if private_creations %}
-  {% regroup private_creations by get_class_display_name as card_list %}
-  {% for card in card_list %}
-    {% with category=card.grouper creations=card.list %}
-    {% include 'creation_card.html' %}
-    {% endwith %}
-  {% endfor %}
-  {% endif %}
+  <div id="private-cards">
+    {% regroup private_creations by get_class_display_name as card_list %}
+    {% for card in card_list %}
+      {% with category=card.grouper creations=card.list %}
+      {% include 'creation_card.html' %}
+      {% endwith %}
+    {% endfor %}
+  </div>
 </div>
 {% endif %}
 
