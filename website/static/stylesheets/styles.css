@@ -1091,6 +1091,7 @@ html, body {
   max-width: 100%; }
 #radio-program #program-columns #above-mp3 {
   float: left;
+  width: 100%;
   margin-bottom: 36px; }
   #radio-program #program-columns #above-mp3 span {
     float: left;
@@ -1100,6 +1101,7 @@ html, body {
       margin-bottom: 0px; }
 #radio-program #program-columns #mp3-and-below {
   float: left;
+  width: 100%;
   font-family: "Dosis", sans-serif;
   font-size: 15px;
   color: #777e86; }
