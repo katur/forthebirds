@@ -1221,6 +1221,11 @@ html, body {
       #speaking-program #files ul ul ul {
         list-style-type: disc; }
 
+#webpage #construction-warning {
+  width: 100%;
+  text-align: center;
+  color: red;
+  margin-bottom: 72px; }
 #webpage #page-title, #webpage #webpage-info, #webpage #webpage-text, #webpage #webpage-tags {
   float: none;
   width: 100%;

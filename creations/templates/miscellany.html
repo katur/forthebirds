@@ -19,7 +19,11 @@
     {% for page in webpages %}
     <li>
       <a href="{{ page.get_absolute_url }}">
-        {{ page.title }}</a>
+        {{ page.title }}
+        {% if not page.is_public %}
+          UNDER CONSTRUCTION
+        {% endif %}
+      </a>
 
       {% if page.description %}
       <span class="description">

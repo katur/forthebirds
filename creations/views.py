@@ -35,8 +35,13 @@ def book(request, slug):
 
 
 def miscellany(request):
-    webpages = WebPage.objects.all()
+    if request.user.is_authenticated():
+        webpages = WebPage.objects.all()
+    else:
+        webpages = WebPage.objects.filter(is_public=True)
+
     externalprojects = ExternalProject.objects.all()
+
     context = {
         'webpages': webpages,
         'externalprojects': externalprojects,
@@ -147,10 +152,10 @@ def radio_calendar(request, year, month):
         'month': calendar.month_name[month],
         'weekdays': weekdays,
         'calendar': radio_month,
-        'previous_month_url': reverse('radio_calendar_url',
-            args=(previous_year, previous_month)),
-        'next_month_url': reverse('radio_calendar_url',
-            args=(next_year, next_month)),
+        'previous_month_url': reverse('radio_calendar_url', args=(
+            previous_year, previous_month)),
+        'next_month_url': reverse('radio_calendar_url', args=(
+            next_year, next_month)),
     }
 
     return render(request, 'radio_calendar.html', context)

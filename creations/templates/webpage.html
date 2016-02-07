@@ -13,21 +13,29 @@
 
 {% block content %}
 
-{% if webpage.date_published %}
-<div id="webpage-info">
-  <div>
-    Publication Date:
-    {{ webpage.date_published }}
-  </div>
-</div>
+{% if not webpage.is_public %}
+<h4 id="construction-warning">Page under construction</h4>
 {% endif %}
 
-<div id="webpage-text" class="markdown">
-  {{ webpage.content|enhanced_markdown }}
-</div>
+{% if webpage.is_public or user.is_authenticated %}
 
-<div id="webpage-tags">
-  {% include 'tags.html' with item=webpage %}
-</div>
+  {% if webpage.date_published %}
+  <div id="webpage-info">
+    <div>
+      Publication Date:
+      {{ webpage.date_published }}
+    </div>
+  </div>
+  {% endif %}
+
+  <div id="webpage-text" class="markdown">
+    {{ webpage.content|enhanced_markdown }}
+  </div>
+
+  <div id="webpage-tags">
+    {% include 'tags.html' with item=webpage %}
+  </div>
+
+{% endif %}
 
 {% endblock %}

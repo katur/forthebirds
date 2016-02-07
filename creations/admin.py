@@ -9,8 +9,8 @@ from creations.models import (Article, BlogPost, Book, ExternalProject,
 
 
 BASIC_FIELDSET = (None, {'fields': ('title', 'description',)})
-BASIC_FIELDSET_WITH_SLUG = (None, {'fields':
-    ('title', 'slug', 'description',)})
+BASIC_FIELDSET_WITH_SLUG = (None, {'fields': (
+    'title', 'slug', 'description',)})
 TAGGING_FIELDSET = ('Tagging', {'fields': ('species', 'tags',)})
 
 
@@ -20,8 +20,8 @@ class ArticleAdmin(admin.ModelAdmin):
 
     fieldsets = (
         BASIC_FIELDSET,
-        ('Details', {'fields':
-            ('published_by', 'date_published', 'url', 'file', 'text'),
+        ('Details', {'fields': (
+            'published_by', 'date_published', 'url', 'file', 'text'),
         }),
         TAGGING_FIELDSET,
     )
@@ -33,7 +33,7 @@ class BlogPostAdmin(admin.ModelAdmin):
 
     fieldsets = (
         BASIC_FIELDSET,
-        ('Details', {'fields': ('url',),}),
+        ('Details', {'fields': ('url',)}),
         TAGGING_FIELDSET,
     )
 
@@ -45,9 +45,9 @@ class BookAdmin(admin.ModelAdmin):
 
     fieldsets = (
         BASIC_FIELDSET_WITH_SLUG,
-        ('Details', {'fields':
-            ('published_by', 'date_published', 'isbn_10', 'isbn_13',
-             'purchase_url', 'cover_photo'),
+        ('Details', {'fields': (
+            'published_by', 'date_published', 'isbn_10', 'isbn_13',
+            'purchase_url', 'cover_photo'),
         }),
         TAGGING_FIELDSET,
     )
@@ -60,7 +60,7 @@ class ExternalProjectAdmin(admin.ModelAdmin):
 
     fieldsets = (
         BASIC_FIELDSET,
-        ('Details', {'fields': ('url',),}),
+        ('Details', {'fields': ('url',)}),
         TAGGING_FIELDSET,
     )
 
@@ -79,9 +79,9 @@ class RadioProgramAdmin(admin.ModelAdmin):
 
     fieldsets = (
         BASIC_FIELDSET,
-        ('Details', {'fields':
-            ('air_date', 'file', 'supplemental_content_url',
-             'transcript',),
+        ('Details', {'fields': (
+            'air_date', 'file', 'supplemental_content_url',
+            'transcript',),
         }),
         TAGGING_FIELDSET,
     )
@@ -99,9 +99,9 @@ class ResearchAdmin(admin.ModelAdmin):
 
     fieldsets = (
         BASIC_FIELDSET,
-        ('Details', {'fields':
-            ('category', 'is_public', 'date', 'attribution',
-             'url', 'file', 'text'),
+        ('Details', {'fields': (
+            'category', 'is_public', 'date', 'attribution',
+            'url', 'file', 'text'),
         }),
         TAGGING_FIELDSET,
     )
@@ -114,8 +114,8 @@ class SoundRecordingAdmin(admin.ModelAdmin):
 
     fieldsets = (
         BASIC_FIELDSET,
-        ('Details', {'fields':
-            ('file', 'date_recorded', 'location',),
+        ('Details', {'fields': (
+            'file', 'date_recorded', 'location',),
         }),
         TAGGING_FIELDSET,
     )
@@ -155,8 +155,8 @@ class WebPageAdmin(admin.ModelAdmin):
 
     fieldsets = (
         BASIC_FIELDSET_WITH_SLUG,
-        ('Details', {'fields':
-            ('display_title', 'date_published', 'content',),
+        ('Details', {'fields': (
+            'is_public', 'display_title', 'date_published', 'content',),
         }),
         TAGGING_FIELDSET,
     )
