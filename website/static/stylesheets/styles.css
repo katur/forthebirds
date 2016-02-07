@@ -905,6 +905,9 @@ html, body {
       clear: both; }
     #miscellany ul li .description {
       margin-left: 1em; }
+      #miscellany ul li .description a {
+        display: inline-block;
+        clear: none; }
 
 .itunes-badge-large {
   display: inline-block;
