@@ -260,6 +260,11 @@ class RadioProgramRerun(models.Model):
         return '{} aired {}'.format(self.program, self.air_date)
 
 
+class RadioProgramMissedDate(models.Model):
+    text = models.CharField(max_length=255)
+    air_date = models.DateField()
+
+
 class ResearchCategory(models.Model):
     """A category of Laura's private research."""
     name = models.CharField(max_length=100)

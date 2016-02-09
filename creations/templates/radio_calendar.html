@@ -42,8 +42,14 @@ for {{ month }}, {{ year }}
         {{ day }}.
       </span>
 
-      {% for program, is_rerun in programs %}
+      {% for program, is_rerun, is_missed_date in programs %}
       <span class="program">
+        {% if is_missed_date %}
+
+        <span class="missed-program">{{ program.text }}</span>
+
+        {% else %}
+
         <a href="{{ program.get_absolute_url }}">
           {{ program.title }}</a>
 
@@ -55,10 +61,11 @@ for {{ month }}, {{ year }}
           {% else %}
           new!
           {% endif %}
-
         </span>
 
         {% include 'download.html' with file=program.file %}
+
+        {% endif%}
       </span>
       {% endfor %}
 

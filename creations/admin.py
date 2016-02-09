@@ -3,6 +3,7 @@ from django import forms
 
 from creations.models import (Article, BlogPost, Book, ExternalProject,
                               RadioProgram, RadioProgramRerun,
+                              RadioProgramMissedDate,
                               ResearchCategory, Research, SoundRecording,
                               SpeakingProgram, SpeakingProgramFile,
                               WebPage)
@@ -87,6 +88,10 @@ class RadioProgramAdmin(admin.ModelAdmin):
     )
 
 
+class RadioProgramMissedDateAdmin(admin.ModelAdmin):
+    list_display = ('air_date', 'text',)
+
+
 class ResearchCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
@@ -167,6 +172,7 @@ admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(ExternalProject, ExternalProjectAdmin)
 admin.site.register(RadioProgram, RadioProgramAdmin)
+admin.site.register(RadioProgramMissedDate, RadioProgramMissedDateAdmin)
 admin.site.register(ResearchCategory, ResearchCategoryAdmin)
 admin.site.register(Research, ResearchAdmin)
 admin.site.register(SoundRecording, SoundRecordingAdmin)

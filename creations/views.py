@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from creations.models import (Article, Book, ExternalProject,
                               RadioProgram, RadioProgramRerun,
+                              RadioProgramMissedDate,
                               ResearchCategory, Research, SoundRecording,
                               SpeakingProgram, SpeakingProgramFile,
                               WebPage)
@@ -101,20 +102,27 @@ def radio_calendar(request, year, month):
     reruns = RadioProgramRerun.objects.filter(
         air_date__year=year, air_date__month=month)
 
+    missed_dates = RadioProgramMissedDate.objects.filter(
+        air_date__year=year, air_date__month=month)
+
     day_to_programs = {}
 
-    def process_program(program, day, is_rerun):
+    def process_program(program, day, is_rerun=False, is_missed_date=False):
         if day not in day_to_programs:
             day_to_programs[day] = []
-        day_to_programs[day].append((program, is_rerun))
+        day_to_programs[day].append((program, is_rerun, is_missed_date))
 
     for program in new_programs:
         day = program.air_date.day
-        process_program(program, day, False)
+        process_program(program, day)
 
     for rerun in reruns:
         day = rerun.air_date.day
-        process_program(rerun.program, day, True)
+        process_program(rerun.program, day, is_rerun=True)
+
+    for missed_date in missed_dates:
+        day = missed_date.air_date.day
+        process_program(missed_date, day, is_missed_date=True)
 
     # Get a calendar that considers Sunday the first day of the week
     sunday_start = calendar.Calendar(6)
