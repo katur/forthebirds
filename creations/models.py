@@ -242,11 +242,10 @@ def add_radio_program_duration(sender, instance, **kwargs):
     Need to disconnect this signal handler during function execution,
     so that the post_save handler is not sent recursively.
     """
-    if not instance.duration:
-        post_save.disconnect(add_radio_program_duration, sender=sender)
-        instance.duration = instance.calculate_duration()
-        instance.save()
-        post_save.connect(add_radio_program_duration, sender=sender)
+    post_save.disconnect(add_radio_program_duration, sender=sender)
+    instance.duration = instance.calculate_duration()
+    instance.save()
+    post_save.connect(add_radio_program_duration, sender=sender)
 
 
 class RadioProgramRerun(models.Model):
