@@ -264,6 +264,9 @@ class RadioProgramMissedDate(models.Model):
     text = models.CharField(max_length=255)
     air_date = models.DateField()
 
+    class Meta:
+        ordering = ['-air_date']
+
 
 class ResearchCategory(models.Model):
     """A category of Laura's private research."""
