@@ -1,17 +1,32 @@
 $(document).ready ->
   page = $("body").attr("id")
 
+  if page == "radio"
+    initializeProgramButtons()
+    watchYearSelect()
+
+  if page == "radio-calendar"
+    addCalendarKeyboardNav()
+
   if page == "radio-program"
     addRadioProgramArtwork()
 
   if page == "sound-recording"
     addSoundRecordingArtwork()
 
-  if page == "radio"
-    initializeProgramButtons()
-    watchYearSelect()
-
   initializeImageCaptions()
+
+
+addCalendarKeyboardNav = ->
+  previous = $("#previous-month")
+  next = $("#next-month")
+
+  $("body").on("keydown", (e) ->
+    if e.which == 37
+      window.location = previous.attr("href")
+    else if e.which == 39
+      window.location = next.attr("href")
+  )
 
 
 addArtworkToElement = (pk, element, urlStart) ->

@@ -1,21 +1,37 @@
 (function() {
-  var addArtworkToElement, addRadioProgramArtwork, addSoundRecordingArtwork, initializeImageCaptions, initializeProgramButtons, watchYearSelect;
+  var addArtworkToElement, addCalendarKeyboardNav, addRadioProgramArtwork, addSoundRecordingArtwork, initializeImageCaptions, initializeProgramButtons, watchYearSelect;
 
   $(document).ready(function() {
     var page;
     page = $("body").attr("id");
+    if (page === "radio") {
+      initializeProgramButtons();
+      watchYearSelect();
+    }
+    if (page === "radio-calendar") {
+      addCalendarKeyboardNav();
+    }
     if (page === "radio-program") {
       addRadioProgramArtwork();
     }
     if (page === "sound-recording") {
       addSoundRecordingArtwork();
     }
-    if (page === "radio") {
-      initializeProgramButtons();
-      watchYearSelect();
-    }
     return initializeImageCaptions();
   });
+
+  addCalendarKeyboardNav = function() {
+    var next, previous;
+    previous = $("#previous-month");
+    next = $("#next-month");
+    return $("body").on("keydown", function(e) {
+      if (e.which === 37) {
+        return window.location = previous.attr("href");
+      } else if (e.which === 39) {
+        return window.location = next.attr("href");
+      }
+    });
+  };
 
   addArtworkToElement = function(pk, element, urlStart) {
     return $.ajax("/" + urlStart + "/artwork/" + pk + "/", {
