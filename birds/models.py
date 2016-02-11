@@ -69,15 +69,7 @@ class Species(models.Model):
         related_name='species_with_main_recording')
 
     # all these will be deleted later
-    french_name = models.CharField(max_length=50)
     parent = models.ForeignKey(TaxonomicGroup)
-    nacc_is_accidental = models.NullBooleanField()
-    nacc_is_hawaiian = models.NullBooleanField()
-    nacc_is_introduced = models.NullBooleanField()
-    nacc_is_nonbreeding = models.NullBooleanField()
-    nacc_is_extinct = models.NullBooleanField()
-    nacc_is_misplaced = models.NullBooleanField()
-    nacc_annotation = models.TextField(blank=True)
 
     class Meta:
         ordering = ['absolute_position']
@@ -144,22 +136,6 @@ class Species(models.Model):
             'text': self.common_name,
         }
         return url + urllib.urlencode(get_params)
-
-    def get_nacc_statuses(self):
-        statuses = []
-        if self.nacc_is_accidental:
-            statuses.append('Accidental')
-        if self.nacc_is_hawaiian:
-            statuses.append('Hawaiian')
-        if self.nacc_is_introduced:
-            statuses.append('Introduced')
-        if self.nacc_is_nonbreeding:
-            statuses.append('Non-breeding')
-        if self.nacc_is_extinct:
-            statuses.append('Extinct')
-        if self.nacc_is_misplaced:
-            statuses.append('Misplaced')
-        return statuses
 
 
 class MinnesotaSpecies(models.Model):

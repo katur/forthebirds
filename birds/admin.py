@@ -23,18 +23,12 @@ class SpeciesAdmin(admin.ModelAdmin):
     list_display = ('common_name', 'slug', 'scientific_name',
                     'main_photo_url', 'absolute_position', 'is_visible',)
 
-    list_filter = ('is_visible', 'nacc_is_accidental', 'nacc_is_hawaiian',
-                   'nacc_is_introduced', 'nacc_is_nonbreeding',
-                   'nacc_is_extinct', 'nacc_is_misplaced',)
+    list_filter = ('is_visible',)
 
     search_fields = ('scientific_name', 'common_name',)
 
     aou_fields = ('common_name', 'slug', 'scientific_name',
-                  'parent', 'id', 'absolute_position',
-                  'french_name', 'nacc_is_accidental',
-                  'nacc_is_hawaiian', 'nacc_is_introduced',
-                  'nacc_is_nonbreeding', 'nacc_is_extinct',
-                  'nacc_is_misplaced', 'nacc_annotation')
+                  'parent', 'id', 'absolute_position',)
 
     readonly_fields = aou_fields
 
