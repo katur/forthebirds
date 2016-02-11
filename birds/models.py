@@ -60,6 +60,10 @@ class TaxonomicGroup(models.Model):
 
 class Species(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
+
+    # change to unique later
+    ebird_id = models.CharField(max_length=10, blank=True)
+
     absolute_position = models.PositiveSmallIntegerField(
         'Taxonomic position', null=True, blank=True)
     scientific_name = models.CharField(max_length=50, unique=True)
