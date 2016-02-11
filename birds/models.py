@@ -7,6 +7,34 @@ from forthebirds.settings import MARKDOWN_PROMPT
 from utils.http import http_response_url
 
 
+"""
+TODO: Migrating to eBird.
+
+Limit parsing of eBird file to CATEGORY='species'.
+
+Re: species naming fields:
+
+    - id should be CharField(20), from eBird.SPECIES_CODE
+    - absolute_position => taxon_order; should be DecimalField, from
+      eBird.TAXON_ORDER. Note: this is not unique!!!
+    - scientific_name from eBird.SCI_NAME
+    - common_name from eBird.PRIMARY_COM_NAME
+    - possibly also take eBird.en_IOC, another common name
+    - possibly also take eBird.REPORT_AS (not sure what it is yet)
+    - delete french_name
+    - calculate slug frmo new common_name
+
+Re: ancestry fields:
+
+    - delete TaxonomicLevel class, TaxonomicGroup class, and Species.parent
+    - add field `order`, from eBird.ORDER1
+    - add field `family`, from eBird.FAMILY split before '('
+    - add field `family_common` from eBird.FAMILY split after ')'
+    - note: SPECIES_GROUP probably need not be used (seems like just
+      an indicator for the first line where a new family starts)
+"""
+
+
 class TaxonomicLevel(models.Model):
     name = models.CharField(max_length=20)
     depth = models.PositiveSmallIntegerField()
@@ -34,11 +62,11 @@ class Species(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     absolute_position = models.PositiveSmallIntegerField(
         'Taxonomic position', null=True, blank=True)
-    parent = models.ForeignKey(TaxonomicGroup)
     scientific_name = models.CharField(max_length=50, unique=True)
     common_name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
     french_name = models.CharField(max_length=50)
+    parent = models.ForeignKey(TaxonomicGroup)
     is_visible = models.BooleanField('Visible on website', default=True)
     has_abc_bird_of_the_week_url = models.BooleanField(default=False)
     has_cornell_all_about_birds_url = models.BooleanField(default=False)
