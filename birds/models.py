@@ -7,34 +7,6 @@ from forthebirds.settings import MARKDOWN_PROMPT
 from utils.http import http_response_url
 
 
-"""
-TODO: Migrating to eBird.
-
-Limit parsing of eBird file to CATEGORY='species'.
-
-Re: species naming fields:
-
-    - id should be CharField(20), from eBird.SPECIES_CODE
-    - absolute_position => taxon_order; should be DecimalField, from
-      eBird.TAXON_ORDER. Note: this is not unique!!!
-    - scientific_name from eBird.SCI_NAME
-    - common_name from eBird.PRIMARY_COM_NAME
-    - possibly also take eBird.en_IOC, another common name
-    - possibly also take eBird.REPORT_AS (not sure what it is yet)
-    - delete french_name
-    - calculate slug frmo new common_name
-
-Re: ancestry fields:
-
-    - delete TaxonomicLevel class, TaxonomicGroup class, and Species.parent
-    - add field `order`, from eBird.ORDER1
-    - add field `family`, from eBird.FAMILY split before '('
-    - add field `family_common` from eBird.FAMILY split after ')'
-    - note: SPECIES_GROUP probably need not be used (seems like just
-      an indicator for the first line where a new family starts)
-"""
-
-
 class TaxonomicLevel(models.Model):
     name = models.CharField(max_length=20)
     depth = models.PositiveSmallIntegerField()
@@ -64,14 +36,30 @@ class Species(models.Model):
     # change to unique later
     ebird_id = models.CharField(max_length=10, blank=True)
 
+    # delete later
     absolute_position = models.PositiveSmallIntegerField(
         'Taxonomic position', null=True, blank=True)
+
+    # change to unique later
+    taxon_order = models.DecimalField(
+        max_digits=20, decimal_places=10, null=True, blank=True)
+
+    # update these in place
     scientific_name = models.CharField(max_length=50, unique=True)
     common_name = models.CharField(max_length=50)
+
+    # more new fields
+    order = models.CharField(max_length=50, blank=True)
+    family = models.CharField(max_length=50, blank=True)
+    family_common = models.CharField(max_length=50, blank=True)
+    en_IOC = models.CharField(max_length=50, blank=True)
+    report_as = models.CharField(max_length=50, blank=True)
+
+    # need to update this later, per any common_name updates
     slug = models.SlugField(max_length=50, unique=True)
-    french_name = models.CharField(max_length=50)
-    parent = models.ForeignKey(TaxonomicGroup)
-    is_visible = models.BooleanField('Visible on website', default=True)
+
+    # these should not change
+    is_visible = models.BooleanField('Visible on website', default=False)
     has_abc_bird_of_the_week_url = models.BooleanField(default=False)
     has_cornell_all_about_birds_url = models.BooleanField(default=False)
     blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
@@ -79,6 +67,10 @@ class Species(models.Model):
     main_sound_recording = models.ForeignKey(
         'creations.SoundRecording', null=True, blank=True,
         related_name='species_with_main_recording')
+
+    # all these will be deleted later
+    french_name = models.CharField(max_length=50)
+    parent = models.ForeignKey(TaxonomicGroup)
     nacc_is_accidental = models.NullBooleanField()
     nacc_is_hawaiian = models.NullBooleanField()
     nacc_is_introduced = models.NullBooleanField()
