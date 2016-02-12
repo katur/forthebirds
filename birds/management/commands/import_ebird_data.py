@@ -36,21 +36,16 @@ class Command(BaseCommand):
                 bird = Species(ebird_id=ebird_id)
 
             # Replace existing fields
-            common_name = row['PRIMARY_COM_NAME']
-            try:
-                if bird.common_name and bird.common_name != common_name:
-                    s = ('Changing common from {} to {}'
+            common_name = row['PRIMARY_COM_NAME'].decode('utf-8')
+            if bird.common_name:
+                if bird.common_name != common_name:
+                    s = (u'Changing common from {} to {}'
                          .format(bird.common_name, common_name))
+
                     if bird.is_visible:
                         self.stderr.write(s)
                     else:
                         self.stderr.write('\t' + s)
-            except UnicodeEncodeError:
-                self.stderr.write('UnicodeEncodeError with {}'
-                                  .format(ebird_id))
-            except UnicodeDecodeError:
-                self.stderr.write('UnicodeDecodeError with {}'
-                                  .format(ebird_id))
 
             bird.common_name = common_name
 
