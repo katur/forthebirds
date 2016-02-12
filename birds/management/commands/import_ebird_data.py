@@ -1,6 +1,7 @@
 import argparse
 
 from django.core.management.base import BaseCommand
+from django.utils.text import slugify
 
 from birds.models import Species
 
@@ -34,16 +35,34 @@ class Command(BaseCommand):
             except KeyError:
                 bird = Species(ebird_id=ebird_id)
 
-            # replaces existing fields
+            # Replace existing fields
             common_name = row['PRIMARY_COM_NAME']
-            if bird.common_name and bird.common_name != common_name:
-                s = ('Changing common from {} to {}'
-                     .format(bird.common_name, common_name))
+            try:
+                if bird.common_name and bird.common_name != common_name:
+                    s = ('Changing common from {} to {}'
+                         .format(bird.common_name, common_name))
+                    if bird.is_visible:
+                        self.stderr.write(s)
+                    else:
+                        self.stderr.write('\t' + s)
+            except UnicodeEncodeError:
+                self.stderr.write('UnicodeEncodeError with {}'
+                                  .format(ebird_id))
+            except UnicodeDecodeError:
+                self.stderr.write('UnicodeDecodeError with {}'
+                                  .format(ebird_id))
+
+            bird.common_name = common_name
+
+            slug = slugify(common_name)
+            if bird.slug and bird.slug != slug:
+                s = ('Changing slug from {} to {}'
+                     .format(bird.slug, slug))
                 if bird.is_visible:
                     self.stderr.write(s)
                 else:
                     self.stderr.write('\t' + s)
-            bird.common_name = common_name
+            bird.slug = slug
 
             sci_name = row['SCI_NAME']
             if bird.scientific_name and bird.scientific_name != sci_name:
@@ -55,14 +74,12 @@ class Command(BaseCommand):
                     self.stderr.write('\t' + s)
             bird.scientific_name = sci_name
 
-            # new DecimalField (this will replace absolute_ordering)
+            # new fields
             bird.taxon_order = row['TAXON_ORDER']
-
-            # new CharFields (these will replace parent field taxonomy tables)
             bird.order = row['ORDER1']
             bird.family = row['FAMILY'].split('(')[0].strip()
             bird.family_common = (row['FAMILY'].split('(')[1]
                                   .split(')')[0].strip())
-
             bird.en_IOC = row['en_IOC']
-            bird.report_as = row['REPORT_AS'],
+
+            bird.save()

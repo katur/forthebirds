@@ -34,7 +34,7 @@ class Species(models.Model):
     # change these to unique later
     ebird_id = models.CharField(max_length=10, blank=True)
     taxon_order = models.DecimalField(
-        max_digits=20, decimal_places=10, null=True, blank=True)
+        max_digits=12, decimal_places=6, null=True, blank=True)
 
     # delete these later
     absolute_position = models.PositiveSmallIntegerField(
@@ -51,7 +51,6 @@ class Species(models.Model):
     family = models.CharField(max_length=50, blank=True)
     family_common = models.CharField(max_length=50, blank=True)
     en_IOC = models.CharField(max_length=75, blank=True)  # change to unique
-    report_as = models.CharField(max_length=50, blank=True)
 
     # these should not change
     is_visible = models.BooleanField('Visible on website', default=False)
@@ -125,6 +124,6 @@ class Species(models.Model):
         get_params = {
             'user_id': '48014585@N00',
             'sort': 'date-taken-desc',
-            'text': self.common_name,
+            'text': self.common_name.encode('utf-8'),
         }
         return url + urllib.urlencode(get_params)
