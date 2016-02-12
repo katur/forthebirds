@@ -37,7 +37,8 @@ class Creation(models.Model, RealInstanceProvider):
     """Superclass for one of Laura's creations."""
     title = models.CharField(max_length=120)
     description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
-    species = models.ManyToManyField(Species, blank=True)
+    species = models.ManyToManyField(Species, blank=True,
+                                     limit_choices_to={'is_visible': True})
     tags = TaggableManager(blank=True)
     is_public = True
     is_image = False

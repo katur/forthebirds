@@ -18,7 +18,6 @@ TAGGING_FIELDSET = ('Tagging', {'fields': ('species', 'tags',)})
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_published', 'published_by')
     filter_horizontal = ('species',)
-
     fieldsets = (
         BASIC_FIELDSET,
         ('Details', {'fields': (

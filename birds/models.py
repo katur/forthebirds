@@ -7,39 +7,11 @@ from forthebirds.settings import MARKDOWN_PROMPT
 from utils.http import http_response_url
 
 
-class TaxonomicLevel(models.Model):
-    name = models.CharField(max_length=20)
-    depth = models.PositiveSmallIntegerField()
-
-    def __unicode__(self):
-        return self.name
-
-
-class TaxonomicGroup(models.Model):
-    name = models.CharField(max_length=30, unique=True)
-    common_name = models.CharField(max_length=50, blank=True)
-    level = models.ForeignKey(TaxonomicLevel)
-    parent = models.ForeignKey('self', null=True, blank=True)
-    relative_position = models.PositiveSmallIntegerField(null=True,
-                                                         blank=True)
-
-    class Meta:
-        ordering = ['level__depth', 'relative_position']
-
-    def __unicode__(self):
-        return self.common_name if self.common_name else self.name
-
-
 class Species(models.Model):
     # change these to unique later
     ebird_id = models.CharField(max_length=10, blank=True)
     taxon_order = models.DecimalField(
         max_digits=12, decimal_places=6, null=True, blank=True)
-
-    # delete these later
-    absolute_position = models.PositiveSmallIntegerField(
-        'Taxonomic position', null=True, blank=True)
-    parent = models.ForeignKey(TaxonomicGroup, null=True, blank=True)
 
     # update these in place
     scientific_name = models.CharField(max_length=50)  # change to unique
@@ -63,7 +35,7 @@ class Species(models.Model):
         related_name='species_with_main_recording')
 
     class Meta:
-        ordering = ['absolute_position']
+        ordering = ['taxon_order']
         verbose_name_plural = 'bird species'
 
     def __unicode__(self):
@@ -72,33 +44,14 @@ class Species(models.Model):
     def get_absolute_url(self):
         return reverse('bird_url', args=[self.slug])
 
-    def get_ancestors(self):
-        ancestors = []
-        parent = self.parent
-
-        while parent:
-            ancestors.append(parent)
-            parent = parent.parent
-
-        return ancestors
-
-    def get_ancestor(self, ancestor_level_name):
-        for ancestor in self.get_ancestors():
-            if ancestor.level.name == ancestor_level_name:
-                return ancestor
-        return None
-
-    def get_order(self):
-        return self.get_ancestor('order')
-
-    def get_family(self):
-        return self.get_ancestor('family')
-
-    def get_subfamily(self):
-        return self.get_ancestor('subfamily')
-
-    def get_genus(self):
-        return self.get_ancestor('genus')
+    def get_flickr_search_url(self):
+        url = 'https://www.flickr.com/search?'
+        get_params = {
+            'user_id': '48014585@N00',
+            'sort': 'date-taken-desc',
+            'text': self.common_name.encode('utf-8'),
+        }
+        return url + urllib.urlencode(get_params)
 
     def get_abc_bird_of_the_week_url(self):
         url_name = self.common_name.replace(' ', '-')
@@ -118,12 +71,3 @@ class Species(models.Model):
         if url and 'search' in url:
             url = None
         return url
-
-    def get_flickr_search_url(self):
-        url = 'https://www.flickr.com/search?'
-        get_params = {
-            'user_id': '48014585@N00',
-            'sort': 'date-taken-desc',
-            'text': self.common_name.encode('utf-8'),
-        }
-        return url + urllib.urlencode(get_params)

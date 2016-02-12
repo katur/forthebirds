@@ -7,6 +7,9 @@ from birds.models import Species
 
 
 def birds(request):
+    """
+    Render page to find birds in various ways (search, taxonomical, etc)
+    """
     if request.GET.get('query'):
         search_birds = []
         form = BirdSearchForm(request.GET)
@@ -22,27 +25,7 @@ def birds(request):
         form = BirdSearchForm()
         search_birds = None
 
-    taxonomical_birds = Species.objects.raw(
-        'SELECT species.id, species.scientific_name, species.common_name, '
-        'G.name AS genus_name, '
-        'S.name AS subfamily_name, '
-        'S.common_name AS subfamily_common, '
-        'F.name AS family_name, '
-        'F.common_name AS family_common, '
-        'O.name AS order_name, '
-        'O.common_name AS order_common '
-        'FROM birds_species AS species '
-        'LEFT JOIN birds_taxonomicgroup AS G '
-        'ON species.parent_id=G.id '
-        'LEFT JOIN birds_taxonomicgroup AS S '
-        'ON (G.parent_id=S.id AND S.level_id=3) '
-        'LEFT JOIN birds_taxonomicgroup AS F '
-        'ON (S.parent_id=F.id OR G.parent_id=F.id) AND F.level_id=2 '
-        'LEFT JOIN birds_taxonomicgroup AS O '
-        'ON F.parent_id=O.id '
-        'WHERE species.is_visible = 1 '
-        'ORDER BY species.absolute_position'
-    )
+    taxonomical_birds = Species.objects.filter(is_visible=True)
 
     context = {
         'form': form,
@@ -54,33 +37,48 @@ def birds(request):
 
 
 def photo_checklist(request):
-    birds = Species.objects.exclude(main_photo_url__exact='')
+    """
+    Render photo checklist page.
+    """
+    birds = (Species.objects.filter(is_visible=True)
+             .exclude(main_photo_url__exact=''))
+
+    # Shorten family common names, since using a big font
     for bird in birds:
-        bird.family = bird.get_family()
+        # Replace certain spaces with zero-width spaces, to cut down
+        # width while still having line breaks behave correctly
+        s = bird.family_common
+        s = s.replace(', and ', u',\u200b')
+        s = s.replace(', ', u',\u200b')
+        s = s.replace(' and ', u',\u200b')
+        bird.family_common_nospace = s
 
     context = {'birds': birds}
     return render(request, 'photo_checklist.html', context)
 
 
 def bird(request, slug):
+    """
+    Render page showing a single bird species.
+    """
     def organize_creations(creations):
+        """
+        Sort creations so that they can be grouped by type, and ordered
+        by date (if available).
+        """
         mindate = datetime.date(datetime.MINYEAR, 1, 1)
 
         def get_sorting_date(x):
             return x.get_display_date() or mindate
 
         def get_name(x):
-            display_name = x.get_class_display_name()
-            if display_name.startswith('A B A'):
-                return 'zzz'
-            else:
-                return display_name
+            return x.get_class_display_name()
 
         creations = sorted(creations, key=get_sorting_date, reverse=True)
         creations = sorted(creations, key=get_name)
         return creations
 
-    bird = get_object_or_404(Species, slug=slug)
+    bird = get_object_or_404(Species, slug=slug, is_visible=True)
 
     public_creations = []
     private_creations = []

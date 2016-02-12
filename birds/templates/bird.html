@@ -17,41 +17,32 @@
   <div class="page-subsection">
     <table id="taxonomy-table">
       <tr>
-      <td><i>{{ bird.scientific_name }}</i></td>
-
-      {% with order=bird.get_order family=bird.get_family %}
-
       <td>
-        Order: {{ order.name }}
-        {% if order.common_name %}({{ order.common_name }}){% endif %}
+        <i>{{ bird.scientific_name }}</i>
       </td>
 
       <td>
-        Family: {{ family.name }}
-        {% if family.common_name %}({{ family.common_name }}){% endif %}
+        Order: {{ bird.order }}
       </td>
 
-      {% endwith %}
+      <td>
+        Family: {{ bird.family }} ({{ bird.family_common }})
+      </td>
+      </tr>
     </table>
 
 		<div id="taxonomy-text">
 			<span>
-				{{ bird.scientific_name }}
-			</span>
-
-      {% with order=bird.get_order family=bird.get_family %}
-
-			<span>
-        Order: {{ order.name }}
-        {% if order.common_name %}({{ order.common_name }}){% endif %}
+        <i>{{ bird.scientific_name }}</i>
 			</span>
 
 			<span>
-        Family: {{ family.name }}
-        {% if family.common_name %}({{ family.common_name }}){% endif %}
+        Order: {{ bird.order }}
 			</span>
 
-			{% endwith %}
+			<span>
+        Family: {{ bird.family }} ({{ bird.family_common }})
+			</span>
 		</div>
   </div>
 

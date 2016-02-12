@@ -18,6 +18,9 @@ from website.models import User
 
 
 def article(request, id, slug=None):
+    """
+    Render the page about an article Laura has written.
+    """
     article = get_object_or_404(Article, id=id)
 
     context = {
@@ -27,6 +30,9 @@ def article(request, id, slug=None):
 
 
 def book(request, slug):
+    """
+    Render the page about one of Laura's books.
+    """
     book = get_object_or_404(Book, slug=slug)
 
     context = {
@@ -36,6 +42,9 @@ def book(request, slug):
 
 
 def miscellany(request):
+    """
+    Render the landing page for miscellaneous projects.
+    """
     if request.user.is_authenticated():
         webpages = WebPage.objects.all()
     else:
@@ -51,6 +60,9 @@ def miscellany(request):
 
 
 def radio(request):
+    """
+    Render the main radio page, showing radio archives by year.
+    """
     all_years = RadioProgram.objects.dates('air_date', 'year')
     all_years = sorted(all_years, reverse=True)
 
@@ -70,6 +82,9 @@ def radio(request):
 
 
 def radio_program(request, id, slug=None):
+    """
+    Render the page for a single radio program.
+    """
     program = get_object_or_404(RadioProgram, id=id)
 
     context = {
@@ -79,20 +94,19 @@ def radio_program(request, id, slug=None):
 
 
 def radio_program_artwork(request, id):
+    """
+    Extract the artwork from the radio program with this id.
+    """
     program = get_object_or_404(RadioProgram, id=id)
     artwork = program.get_artwork()
     response = JsonResponse({'artwork': artwork})
     return response
 
 
-def sound_recording_artwork(request, id):
-    recording = get_object_or_404(SoundRecording, id=id)
-    artwork = recording.get_artwork()
-    response = JsonResponse({'artwork': artwork})
-    return response
-
-
 def radio_calendar(request, year, month):
+    """
+    Render the radio calendar page.
+    """
     year = int(year)
     month = int(month)
 
@@ -170,6 +184,9 @@ def radio_calendar(request, year, month):
 
 
 def radio_current_calendar(request):
+    """
+    Redirect to the "current" calendar month.
+    """
     today = datetime.datetime.now().date()
 
     most_recent_rerun = (RadioProgramRerun.objects
@@ -219,11 +236,24 @@ def research_item(request, id):
 
 
 def sound_recording(request, id):
+    """
+    Render the page about a single sound recording.
+    """
     recording = get_object_or_404(SoundRecording, id=id)
     context = {
         'recording': recording,
     }
     return render(request, 'sound_recording.html', context)
+
+
+def sound_recording_artwork(request, id):
+    """
+    Extract the artwork from the sound recording with this id.
+    """
+    recording = get_object_or_404(SoundRecording, id=id)
+    artwork = recording.get_artwork()
+    response = JsonResponse({'artwork': artwork})
+    return response
 
 
 def speaking(request):
