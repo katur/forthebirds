@@ -128,20 +128,3 @@ class Species(models.Model):
             'text': self.common_name,
         }
         return url + urllib.urlencode(get_params)
-
-
-class MinnesotaSpecies(models.Model):
-    species = models.OneToOneField(Species, primary_key=True)
-    include_in_book = models.NullBooleanField(default=None)
-    mou_status = models.CharField('MOU status', max_length=50, blank=True)
-    mou_breeding_status = models.NullBooleanField('MOU breeding status',
-                                                  default=None)
-    mou_annotation = models.CharField('MOU annotation', max_length=500,
-                                      blank=True)
-
-    class Meta:
-        ordering = ['species__absolute_position']
-        verbose_name_plural = 'Minnesota species'
-
-    def __unicode__(self):
-        return str(self.species)
