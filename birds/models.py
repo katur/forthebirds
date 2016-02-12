@@ -14,7 +14,6 @@ class Species(models.Model):
     ebird_id = models.CharField(max_length=10, unique=True)
     taxon_order = models.DecimalField(
         max_digits=12, decimal_places=6, unique=True)
-    scientific_name = models.CharField(max_length=50, unique=True)
     common_name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
 
@@ -22,14 +21,15 @@ class Species(models.Model):
     # by eBird
     en_IOC = models.CharField(max_length=75, unique=True)
 
-    order = models.CharField(max_length=50, blank=True)
-    family = models.CharField(max_length=50, blank=True)
-    family_common = models.CharField(max_length=50, blank=True)
+    scientific_name = models.CharField(max_length=50, unique=True)
+    family = models.CharField(max_length=50)
+    family_common = models.CharField(max_length=50)
+    order = models.CharField(max_length=50)
 
-    # these should not change
     is_visible = models.BooleanField('Visible on website', default=False)
     has_abc_bird_of_the_week_url = models.BooleanField(default=False)
     has_cornell_all_about_birds_url = models.BooleanField(default=False)
+
     blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     main_photo_url = models.URLField(blank=True)
     main_sound_recording = models.ForeignKey(
