@@ -14,16 +14,17 @@ class Species(models.Model):
     ebird_id = models.CharField(max_length=10, unique=True)
     taxon_order = models.DecimalField(
         max_digits=12, decimal_places=6, unique=True)
-
     scientific_name = models.CharField(max_length=50, unique=True)
     common_name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
 
-    # more new fields
+    # This is not used in project yet, but is another common name provided
+    # by eBird
+    en_IOC = models.CharField(max_length=75, unique=True)
+
     order = models.CharField(max_length=50, blank=True)
     family = models.CharField(max_length=50, blank=True)
     family_common = models.CharField(max_length=50, blank=True)
-    en_IOC = models.CharField(max_length=75, blank=True)  # change to unique
 
     # these should not change
     is_visible = models.BooleanField('Visible on website', default=False)
