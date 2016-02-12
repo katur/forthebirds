@@ -25,6 +25,9 @@
 
 ############### THIS IS WHERE I CURRENTLY AM ON WEBFACTION ###############
 
+# Apply migration to delete minnesota species
+
+./manage.py migrate birds 0020_remove_minnesotaspecies
 
 # Run MySQL query to change bird species id to autoincrement INT
 
@@ -34,7 +37,7 @@ LOCK TABLES
 
 ALTER TABLE creations_creation_species
     DROP FOREIGN KEY creations_creati_species_id_27f3ca1253e3b048_fk_birds_species_id,
-    MODIFY species_id INT;
+    MODIFY species_id INT NOT NULL;
 
 ALTER TABLE birds_species MODIFY id INT AUTO_INCREMENT;
 
@@ -48,12 +51,13 @@ UNLOCK TABLES;
 # Apply migration that *should* have applied the MySQL above, but that causes
 # a MySQL error due to a foreign key not getting updated
 
-./manage.py migration birds/0020_auto_20160211_2005
+./manage.py migrate birds 0021_add_autoid
 
 
 # Run script that populates new eBird fields; updates common, slug, and
 # scientific names if they are different in eBird; and adds eBird species
-# not previously present in the database (these all default to not visible)
+# not previously present in the database (these all default to not visible).
+# For new species, id will autoincrement;
 
 ./manage.py import_ebird_data eBird_v2015_csv.csv
 
