@@ -39,7 +39,7 @@ class Species(models.Model):
     # delete these later
     absolute_position = models.PositiveSmallIntegerField(
         'Taxonomic position', null=True, blank=True)
-    parent = models.ForeignKey(TaxonomicGroup)
+    parent = models.ForeignKey(TaxonomicGroup, null=True, blank=True)
 
     # update these in place
     scientific_name = models.CharField(max_length=50, unique=True)
