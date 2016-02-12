@@ -15,9 +15,8 @@ class Species(models.Model):
     taxon_order = models.DecimalField(
         max_digits=12, decimal_places=6, unique=True)
 
-    # update these in place
-    scientific_name = models.CharField(max_length=50)  # change to unique
-    common_name = models.CharField(max_length=50)  # change to unique
+    scientific_name = models.CharField(max_length=50, unique=True)
+    common_name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
 
     # more new fields
