@@ -23,7 +23,7 @@
 ./manage.py add_ebird_ids eBird_v2015_csv.csv
 
 
-# STOP HERE FIRST TIME
+############### THIS IS WHERE I CURRENTLY AM ON WEBFACTION ###############
 
 
 # Run MySQL query to change bird species id to autoincrement INT
@@ -45,13 +45,28 @@ ALTER TABLE creations_creation_species
 UNLOCK TABLES;
 
 
-# Apply migration that SHOULD have applied the MySQL above, but that causes
+# Apply migration that *should* have applied the MySQL above, but that causes
 # a MySQL error due to a foreign key not getting updated
 
 ./manage.py migration birds/0020_auto_20160211_2005
 
 
-# Populate those fields:
+# Run script that populates new eBird fields; updates common, slug, and
+# scientific names if they are different in eBird; and adds eBird species
+# not previously present in the database (these all default to not visible)
 
 ./manage.py import_ebird_data eBird_v2015_csv.csv
+
+
+# Set up redirects for the common names that changed during switch to eBird
+
+# Set various fields to `required` that should be: ebird_id, taxon_order,
+family, order, taxon_order (family_common?, en_IOC?)
+
+# Modify code to use eBird taxonomy instead of NACC taxonomy. Then delete
+# the parent pointer and separate taxonomy tables.
+
+# Modify code to use taxon_order instead of absolute_position. Then delete
+# absolute_position.
+
 ```
