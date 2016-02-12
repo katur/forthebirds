@@ -57,27 +57,28 @@ def photo_checklist(request):
     return render(request, 'photo_checklist.html', context)
 
 
+def _organize_creations(creations):
+    """
+    Sort creations by class type, and within that by display date (if
+    available).
+    """
+    mindate = datetime.date(datetime.MINYEAR, 1, 1)
+
+    def get_sorting_date(x):
+        return x.get_display_date() or mindate
+
+    def get_name(x):
+        return x.get_class_display_name()
+
+    creations = sorted(creations, key=get_sorting_date, reverse=True)
+    creations = sorted(creations, key=get_name)
+    return creations
+
+
 def bird(request, slug):
     """
     Render page showing a single bird species.
     """
-    def organize_creations(creations):
-        """
-        Sort creations so that they can be grouped by type, and ordered
-        by date (if available).
-        """
-        mindate = datetime.date(datetime.MINYEAR, 1, 1)
-
-        def get_sorting_date(x):
-            return x.get_display_date() or mindate
-
-        def get_name(x):
-            return x.get_class_display_name()
-
-        creations = sorted(creations, key=get_sorting_date, reverse=True)
-        creations = sorted(creations, key=get_name)
-        return creations
-
     bird = get_object_or_404(Species, slug=slug, is_visible=True)
 
     public_creations = []
@@ -94,8 +95,8 @@ def bird(request, slug):
         else:
             continue
 
-    public_creations = organize_creations(public_creations)
-    private_creations = organize_creations(private_creations)
+    public_creations = _organize_creations(public_creations)
+    private_creations = _organize_creations(private_creations)
 
     context = {
         'bird': bird,
