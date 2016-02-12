@@ -42,7 +42,7 @@ class Species(models.Model):
     parent = models.ForeignKey(TaxonomicGroup, null=True, blank=True)
 
     # update these in place
-    scientific_name = models.CharField(max_length=50, unique=True)
+    scientific_name = models.CharField(max_length=50)  # change to unique
     common_name = models.CharField(max_length=50)  # change to unique
     slug = models.SlugField(max_length=50, unique=True)
 
@@ -50,7 +50,7 @@ class Species(models.Model):
     order = models.CharField(max_length=50, blank=True)
     family = models.CharField(max_length=50, blank=True)
     family_common = models.CharField(max_length=50, blank=True)
-    en_IOC = models.CharField(max_length=50, blank=True)  # change to unique
+    en_IOC = models.CharField(max_length=75, blank=True)  # change to unique
     report_as = models.CharField(max_length=50, blank=True)
 
     # these should not change
