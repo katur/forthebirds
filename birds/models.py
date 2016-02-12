@@ -31,9 +31,7 @@ class TaxonomicGroup(models.Model):
 
 
 class Species(models.Model):
-    id = models.PositiveIntegerField(primary_key=True)
-
-    # change to unique later
+    # change these to unique later
     ebird_id = models.CharField(max_length=10, blank=True)
     taxon_order = models.DecimalField(
         max_digits=20, decimal_places=10, null=True, blank=True)
