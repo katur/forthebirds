@@ -54,7 +54,7 @@ $mobile-breakpoint: 500px
     // Should change this to be dynamic.
     min-height: 500px
 
-    $year-list-width-big: 93px
+    $year-list-width-big: 100px
     $year-list-width-small: 61px
 
     #year-selector-container
@@ -97,16 +97,6 @@ $mobile-breakpoint: 500px
           font-size: 18px
           @include transform(scaleX(0.7))
           content: "\27A4"
-
-      @media (max-width: $mobile-breakpoint)
-        width: $year-list-width-small
-        font-size: 24px
-
-        a
-          &.active:after
-            bottom: 5px
-            padding-left: 5px
-            font-size: 12px
 
     #programs
       @include box-sizing(border-box)
