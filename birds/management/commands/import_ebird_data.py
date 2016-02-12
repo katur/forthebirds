@@ -55,16 +55,14 @@ class Command(BaseCommand):
                     self.stderr.write('\t' + s)
             bird.scientific_name = sci_name
 
-            # new DecimalField, to replace absolute_ordering
+            # new DecimalField (this will replace absolute_ordering)
             bird.taxon_order = row['TAXON_ORDER']
 
-            # new CharFields, to replace taxonomy stuff
+            # new CharFields (these will replace parent field taxonomy tables)
             bird.order = row['ORDER1']
-
             bird.family = row['FAMILY'].split('(')[0].strip()
             bird.family_common = (row['FAMILY'].split('(')[1]
                                   .split(')')[0].strip())
 
-            # new CharFields, to have in database if need be
             bird.en_IOC = row['en_IOC']
             bird.report_as = row['REPORT_AS'],
