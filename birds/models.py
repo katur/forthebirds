@@ -8,10 +8,12 @@ from utils.http import http_response_url
 
 
 class Species(models.Model):
-    # change these to unique later
-    ebird_id = models.CharField(max_length=10, blank=True)
+    """
+    A bird species.
+    """
+    ebird_id = models.CharField(max_length=10, unique=True)
     taxon_order = models.DecimalField(
-        max_digits=12, decimal_places=6, null=True, blank=True)
+        max_digits=12, decimal_places=6, unique=True)
 
     # update these in place
     scientific_name = models.CharField(max_length=50)  # change to unique
