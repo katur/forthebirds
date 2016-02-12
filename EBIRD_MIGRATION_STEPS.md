@@ -1,5 +1,5 @@
 ```
-# Apply migration to add optional ebird_id CharField
+# Apply migrations to add optional ebird_id CharField
 
 ./manage.py migrate birds/0014_species_ebird_id
 ./manage.py migrate birds/0015_auto_20160210_2157
@@ -23,11 +23,10 @@
 ./manage.py add_ebird_ids eBird_v2015_csv.csv
 
 
-############### THIS IS WHERE I CURRENTLY AM ON WEBFACTION ###############
-
 # Apply migration to delete minnesota species
 
 ./manage.py migrate birds 0020_remove_minnesotaspecies
+
 
 # Run MySQL query to change bird species id to autoincrement INT
 
@@ -52,6 +51,11 @@ UNLOCK TABLES;
 # a MySQL error due to a foreign key not getting updated
 
 ./manage.py migrate birds 0021_add_autoid
+
+
+############### THIS IS WHERE I CURRENTLY AM ON WEBFACTION ###############
+
+
 
 
 # Run script that populates new eBird fields; updates common, slug, and
