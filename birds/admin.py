@@ -27,8 +27,8 @@ class SpeciesAdmin(admin.ModelAdmin):
 
     search_fields = ('scientific_name', 'common_name',)
 
-    ebird_fields = ('ebird_id', 'taxon_order', 'common_name', 'slug',
-                    'order', 'family', 'family_common', 'scientific_name',)
+    ebird_fields = ('common_name', 'slug', 'ebird_id', 'taxon_order',
+                    'scientific_name', 'family', 'family_common', 'order',)
 
     readonly_fields = ebird_fields
 
