@@ -20,8 +20,8 @@ class SpeciesAdminForm(forms.ModelForm):
 class SpeciesAdmin(admin.ModelAdmin):
     form = SpeciesAdminForm
 
-    list_display = ('common_name', 'slug', 'scientific_name',
-                    'main_photo_url', 'taxon_order', 'is_visible',)
+    list_display = ('common_name', 'is_visible', 'taxon_order',
+                    'scientific_name', 'main_photo_url',)
 
     list_filter = ('is_visible',)
 
