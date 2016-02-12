@@ -61,7 +61,17 @@ UNLOCK TABLES;
 # Run script that populates new eBird fields; updates common, slug, and
 # scientific names if they are different in eBird; and adds eBird species
 # not previously present in the database (these all default to not visible).
-# For new species, id will autoincrement;
+# For new species, id will autoincrement.
+# Had to do this to convert linebreaks in original ebird file:
+# http://stackoverflow.com/questions/811193/how-to-convert-the-m-
+#     linebreak-to-normal-linebreak-in-a-file-opened-in-vim
+# Also had to replace enyays and umlots in thes:
+
+# These need ñ
+#   marcre1 nartap2 marspi3 marthr2 hoomoc1
+
+# These need ü (do :%s/Ÿ/ü/g)
+#   ruegri1 ruebus1 ruepar1 ruewar1 rurcha1 ruecha1 ruegls1 ruewea1
 
 ./manage.py import_ebird_data eBird_v2015_csv.csv
 
