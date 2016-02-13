@@ -43,9 +43,21 @@ html, body
   padding: $whitespace * 1.5
   border-radius: 2px
 
+  #edit-page-link
+    display: block
+    position: absolute
+    top: $whitespace * 1.5
+    right: $whitespace * 1.5
+    @include sans-font
+    font-size: $base-font-size - 2
+
   @media (max-width: 600px)
     padding: $whitespace / 1.25 3%
     min-height: 0
+
+    #edit-page-link
+      top: $whitespace / 1.25
+      right: 3%
 
   @media (max-width: 400px)
     border-radius: 0
