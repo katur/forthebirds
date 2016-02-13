@@ -13,11 +13,8 @@
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
-<a id="edit-page-link"
-    href="{% url 'admin:birds_species_change' bird.id %}">
-  Edit this bird</a>
-{% endif %}
+{% url 'admin:birds_species_change' bird.id as edit_page_url %}
+{% include 'edit_page_link.html' %}
 
 <div class="page-section">
   <div class="page-subsection">

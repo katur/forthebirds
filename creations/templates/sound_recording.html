@@ -19,6 +19,9 @@ Sound Recording: {{ recording.title }}
 
 {% block content %}
 
+{% url 'admin:creations_soundrecording_change' recording.id as edit_page_url %}
+{% include 'edit_page_link.html' %}
+
 <div id="recording-columns" class="page-subsection">
   <div id="artwork" class="column" data-pk="{{ recording.pk }}">
     <img src="{% static 'images/camera-icon.png' %}" />

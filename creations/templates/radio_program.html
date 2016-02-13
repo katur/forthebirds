@@ -24,6 +24,9 @@
 
 {% block content %}
 
+{% url 'admin:creations_radioprogram_change' program.id as edit_page_url %}
+{% include 'edit_page_link.html' %}
+
 <div id="program-columns" class="page-subsection">
   <div id="artwork" class="column" data-pk="{{ program.pk }}">
     <img src="{% static 'images/camera-icon.png' %}" />

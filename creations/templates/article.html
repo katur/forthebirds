@@ -13,6 +13,9 @@
 
 {% block content %}
 
+{% url 'admin:creations_article_change' article.id as edit_page_url %}
+{% include 'edit_page_link.html' %}
+
 <div id="fields" class="page-subsection">
   {% if article.date_published or article.published_by %}
   <span>

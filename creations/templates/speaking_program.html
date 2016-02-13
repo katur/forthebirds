@@ -15,6 +15,9 @@ Speaking Program: <i>{{ program.title }}</i>
 
 {% block content %}
 
+{% url 'admin:creations_speakingprogram_change' program.id as edit_page_url %}
+{% include 'edit_page_link.html' %}
+
 <div class="page-section">
   <div class="markdown">
     {{ program.description|enhanced_markdown }}

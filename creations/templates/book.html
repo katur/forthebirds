@@ -13,6 +13,9 @@
 
 {% block content %}
 
+{% url 'admin:creations_book_change' book.id as edit_page_url %}
+{% include 'edit_page_link.html' %}
+
 <div id="book-info" class="page-subsection">
   {% if book.cover_photo %}
   <div class="column">
