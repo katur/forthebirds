@@ -36,7 +36,7 @@ for {{ month }}, {{ year }}
   {% for week in calendar %}
   <tr>
     {% for day, programs in week %}
-    <td>
+    <td {% if not day %}class="no-day"{% endif %}>
       {% if day %}
       <span class="day">
         {{ day }}.

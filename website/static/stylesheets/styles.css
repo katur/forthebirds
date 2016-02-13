@@ -1155,6 +1155,8 @@ html, body {
         font-family: "Dosis", sans-serif;
         font-size: 15px;
         color: #777e86; }
+      #radio-calendar table td.no-day {
+        background: #cfd3cf; }
 
 #research ul {
   list-style-position: inside;
