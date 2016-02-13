@@ -100,7 +100,7 @@
   };
 
   window.PhotoChecklist = {
-    buffer: 300,
+    buffer: 1000,
     classnames: {
       unloaded: "photo-and-caption--unloaded",
       loading: "photo-and-caption--loading",
@@ -120,6 +120,9 @@
           return lazyResize();
         };
       })(this));
+      $(window).load(function() {
+        return PhotoChecklist.checkScroll();
+      });
       return this.checkScroll();
     },
     checkScroll: function() {

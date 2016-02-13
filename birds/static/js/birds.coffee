@@ -103,7 +103,7 @@ _.throttle = (func, wait, options) ->
 
 window.PhotoChecklist = {
   # how close an elements needs to be to the viewport to trigger load
-  buffer: 300
+  buffer: 1000
 
   classnames: {
     unloaded: "photo-and-caption--unloaded"
@@ -121,6 +121,9 @@ window.PhotoChecklist = {
     $(window).on("resize", (e) =>
       lazyResize()
     )
+
+    $(window).load ->
+      PhotoChecklist.checkScroll()
 
     # load the first set before scroll
     @checkScroll()
