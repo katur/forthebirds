@@ -11,6 +11,7 @@ class Species(models.Model):
     """
     A bird species.
     """
+
     ebird_id = models.CharField(max_length=10, unique=True)
     taxon_order = models.DecimalField(
         max_digits=12, decimal_places=6, unique=True)

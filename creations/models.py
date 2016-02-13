@@ -35,6 +35,7 @@ def get_artwork_from_file(obj):
 
 class Creation(models.Model, RealInstanceProvider):
     """Superclass for one of Laura's creations."""
+
     title = models.CharField(max_length=120)
     description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     species = models.ManyToManyField(Species, blank=True,
@@ -79,6 +80,7 @@ class Creation(models.Model, RealInstanceProvider):
 
 class Article(Creation):
     """An article written by Laura."""
+
     published_by = models.CharField(max_length=100, blank=True)
     date_published = models.DateField(null=True, blank=True)
     url = models.URLField(blank=True)
@@ -101,6 +103,7 @@ class Article(Creation):
 
 class BlogPost(Creation):
     """A blog post, written on another domain, written by Laura."""
+
     url = models.URLField()
 
     class Meta:
@@ -115,6 +118,7 @@ class BlogPost(Creation):
 
 class Book(Creation):
     """A book written by Laura."""
+
     slug = models.SlugField(max_length=120, unique=True)
     published_by = models.CharField(max_length=100, blank=True)
     date_published = models.DateField(null=True, blank=True)
@@ -136,6 +140,7 @@ class Book(Creation):
 
 class ExternalProject(Creation):
     """One of Laura's projects hosted on an external domain."""
+
     url = models.URLField()
     display_order = models.PositiveSmallIntegerField(default=0)
 
@@ -150,7 +155,8 @@ class ExternalProject(Creation):
 
 
 class RadioProgram(Creation):
-    """A For the Birds radio program."""
+    """A 'For the Birds' radio program."""
+
     file = models.FileField(upload_to='radio')
     air_date = models.DateField()
 
@@ -251,6 +257,7 @@ def add_radio_program_duration(sender, instance, **kwargs):
 
 class RadioProgramRerun(models.Model):
     """A rerun airing of a RadioProgram."""
+
     program = models.ForeignKey(RadioProgram)
     air_date = models.DateField()
 
@@ -262,6 +269,12 @@ class RadioProgramRerun(models.Model):
 
 
 class RadioProgramMissedDate(models.Model):
+    """
+    A date that Laura forgot to put up a radio program.
+
+    This is useful only for "filling up" archived calendars.
+    """
+
     text = models.CharField(max_length=255)
     air_date = models.DateField()
 
@@ -271,6 +284,7 @@ class RadioProgramMissedDate(models.Model):
 
 class ResearchCategory(models.Model):
     """A category of Laura's private research."""
+
     name = models.CharField(max_length=100)
     notes = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
     parent = models.ForeignKey('self', null=True, blank=True,
@@ -296,7 +310,8 @@ class ResearchCategory(models.Model):
 
 
 class Research(Creation):
-    """A typically-private research item of Laura's."""
+    """A (typically) private research item of Laura's."""
+
     category = models.ForeignKey(ResearchCategory)
     is_public = models.BooleanField(default=False)
     date = models.DateField(null=True, blank=True)
@@ -324,6 +339,7 @@ class Research(Creation):
 
 class SoundRecording(Creation):
     """A bird sound recording."""
+
     file = models.FileField(upload_to='soundrecordings')
     date_recorded = models.DateField()
     location = models.CharField(max_length=200, blank=True)
@@ -346,6 +362,7 @@ class SoundRecording(Creation):
 
 class SpeakingProgram(Creation):
     """A public speaking program."""
+
     slug = models.SlugField(max_length=120, unique=True)
 
     class Meta:
@@ -359,7 +376,8 @@ class SpeakingProgram(Creation):
 
 
 class SpeakingProgramFile(models.Model):
-    """A file (typically a Powerpoint) to use during a SpeakingProgram."""
+    """A file (typically a Powerpoint) for a SpeakingProgram."""
+
     program = models.ForeignKey(SpeakingProgram)
     title = models.CharField(max_length=120)
     file = models.FileField(upload_to='speaking',
@@ -379,6 +397,7 @@ class SpeakingProgramFile(models.Model):
 
 class WebPage(Creation):
     """A static web page of Laura's to be displayed within this website."""
+
     slug = models.SlugField(max_length=120, unique=True)
     date_published = models.DateField(null=True, blank=True)
     content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
