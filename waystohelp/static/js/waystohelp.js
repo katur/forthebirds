@@ -8,17 +8,14 @@ $(document).ready(function() {
 
 function generateRandomBackgroundColors() {
   var elements = $(".random-background-color");
-  var results = [];
 
   var i, element, hash, hexString;
   for (i = 0; i < elements.length; i++) {
     element = $(elements[i]);
     hash = getHexableHash(element.text());
     hexString = hash.toString(16);
-    results.push(element.css("background-color", "#" + hexString));
+    element.css("background-color", "#" + hexString);
   }
-
-  return results;
 };
 
 
@@ -60,14 +57,11 @@ function getHashCode(str) {
 
 function generateBackgroundImagesForWays() {
   var ways = $(".way-to-help-card");
-  var results = [];
 
   var i, j, way, backgroundImage;
   for (i = 0, j = ways.length; i < j; i++) {
     way = $(ways[i]);
     backgroundImage = way.attr("data-background");
-    results.push(way.css("background-image", "url(" + backgroundImage + ")"));
+    way.css("background-image", "url(" + backgroundImage + ")");
   }
-
-  return results;
 };

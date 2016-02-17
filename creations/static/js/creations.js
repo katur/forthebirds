@@ -1,114 +1,107 @@
-(function() {
-  var addArtworkToElement, addCalendarKeyboardNav, addRadioProgramArtwork, addSoundRecordingArtwork, initializeImageCaptions, initializeProgramButtons, watchYearSelect;
+$(document).ready(function() {
+  var page = $("body").attr("id");
 
-  $(document).ready(function() {
-    var page;
-    page = $("body").attr("id");
-    if (page === "radio") {
-      initializeProgramButtons();
-      watchYearSelect();
-    }
-    if (page === "radio-calendar") {
-      addCalendarKeyboardNav();
-    }
-    if (page === "radio-program") {
-      addRadioProgramArtwork();
-    }
-    if (page === "sound-recording") {
-      addSoundRecordingArtwork();
-    }
-    return initializeImageCaptions();
+  if (page === "radio") {
+    watchYearSelect();
+    initializeProgramButtons();
+  } else if (page === "radio-program") {
+    addRadioProgramArtwork();
+  } else if (page === "radio-calendar") {
+    addCalendarKeyboardNav();
+  } else if (page === "sound-recording") {
+    addSoundRecordingArtwork();
+  }
+
+  initializeImageCaptions();
+});
+
+
+function watchYearSelect() {
+  $("#year-selector").on("change", function(e) {
+    window.location = "?year=" + ($(e.currentTarget).val());
   });
+};
 
-  addCalendarKeyboardNav = function() {
-    var next, previous;
-    previous = $("#previous-month");
-    next = $("#next-month");
-    return $("body").on("keydown", function(e) {
-      if (e.which === 37) {
-        return window.location = previous.attr("href");
-      } else if (e.which === 39) {
-        return window.location = next.attr("href");
-      }
-    });
-  };
 
-  addArtworkToElement = function(pk, element, urlStart) {
-    return $.ajax("/" + urlStart + "/artwork/" + pk + "/", {
-      type: "GET",
-      dataType: "json",
-      success: function(data, textStatus, jqXHR) {
-        var src;
-        if (data.artwork) {
-          src = "data:image;base64," + data.artwork;
-          return element.html("<img src=\"" + src + "\"/>");
-        }
-      }
-    });
-  };
+function initializeProgramButtons() {
+  $(".program-intro").click(function(e) {
+    e.preventDefault();
+    $(this).toggleClass("active");
 
-  addRadioProgramArtwork = function() {
-    var artworkElement, pk;
-    artworkElement = $("#artwork");
-    pk = artworkElement.attr("data-pk");
-    return addArtworkToElement(pk, artworkElement, "radio");
-  };
+    var program = $(this).closest(".program");
+    var programMore = program.find(".program-more");
+    var programPk = program.attr("data-program-pk");
+    var artworkElement = program.find(".artwork");
 
-  addSoundRecordingArtwork = function() {
-    var artworkElement, pk;
-    artworkElement = $("#artwork");
-    pk = artworkElement.attr("data-pk");
-    return addArtworkToElement(pk, artworkElement, "sound-recording");
-  };
+    if (programMore.is(":visible")) {
+      programMore.hide();
+    } else {
+      programMore.show();
+    }
 
-  initializeProgramButtons = function() {
-    var programIntros;
-    programIntros = $(".program-intro");
-    return programIntros.click(function(e) {
-      var artworkElement, program, programMore, programPk;
-      e.preventDefault();
-      $(this).toggleClass("active");
-      program = $(this).closest(".program");
-      programMore = program.find(".program-more");
-      if (programMore.is(":visible")) {
-        programMore.hide();
-      } else {
-        programMore.show();
-      }
-      programPk = program.attr("data-program-pk");
-      artworkElement = program.find(".artwork");
-      return addArtworkToElement(programPk, artworkElement, "radio");
-    });
-  };
+    addArtworkToElement(programPk, artworkElement, "radio");
+  });
+};
 
-  watchYearSelect = function() {
-    return $("#year-selector").on("change", (function(_this) {
-      return function(e) {
-        return window.location = "?year=" + ($(e.currentTarget).val());
-      };
-    })(this));
-  };
 
-  initializeImageCaptions = function() {
-    var altText, i, image, len, markdownImages, results, title;
-    markdownImages = $(".markdown img");
-    results = [];
-    for (i = 0, len = markdownImages.length; i < len; i++) {
-      image = markdownImages[i];
-      altText = $(image).attr("alt");
-      if ((altText.indexOf("BANNER")) !== -1) {
-        $(image).wrap('<div class="image-wrapper banner">');
-      } else {
-        $(image).wrap('<div class="image-wrapper">');
-      }
-      title = $(image).attr("title");
-      if (title) {
-        results.push($(image).after("<span class=\"image-caption\">" + title + "</span>"));
-      } else {
-        results.push(void 0);
+function addRadioProgramArtwork() {
+  var artworkElement = $("#artwork");
+  var pk = artworkElement.attr("data-pk");
+  addArtworkToElement(pk, artworkElement, "radio");
+};
+
+
+function addArtworkToElement(pk, element, urlStart) {
+  $.ajax("/" + urlStart + "/artwork/" + pk + "/", {
+    type: "GET",
+    dataType: "json",
+    success: function(data, textStatus, jqXHR) {
+      if (data.artwork) {
+        var src = "data:image;base64," + data.artwork;
+        element.html("<img src=\"" + src + "\"/>");
       }
     }
-    return results;
-  };
+  });
+};
 
-}).call(this);
+
+function addCalendarKeyboardNav() {
+  var previous = $("#previous-month");
+  var next = $("#next-month");
+  $("body").on("keydown", function(e) {
+    if (e.which === 37) {
+      window.location = previous.attr("href");
+    } else if (e.which === 39) {
+      window.location = next.attr("href");
+    }
+  });
+};
+
+
+function addSoundRecordingArtwork() {
+  var artworkElement = $("#artwork");
+  var pk = artworkElement.attr("data-pk");
+  addArtworkToElement(pk, artworkElement, "sound-recording");
+};
+
+
+function initializeImageCaptions() {
+  var markdownImages = $(".markdown img");
+
+  var i, image, altText, title;
+  for (i = 0; i < markdownImages.length; i++) {
+    image = markdownImages[i];
+    altText = $(image).attr("alt");
+
+    if ((altText.indexOf("BANNER")) !== -1) {
+      $(image).wrap('<div class="image-wrapper banner">');
+    } else {
+      $(image).wrap('<div class="image-wrapper">');
+    }
+
+    title = $(image).attr("title");
+    if (title) {
+      $(image).after("<span class=\"image-caption\">" + title + "</span>");
+    }
+  }
+};
