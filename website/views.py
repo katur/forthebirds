@@ -1,8 +1,8 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponsePermanentRedirect
 from django.shortcuts import render, get_object_or_404
 
-from forthebirds.settings import OLD_SITE_DOMAIN
 from utils.http import http_response_ok
 from website.models import User, UploadedImage
 
@@ -33,7 +33,7 @@ def try_old_website(request, path):
     """
     Before returning a 404 page not found, check if path is at old website.
     """
-    url = OLD_SITE_DOMAIN + '/' + path
+    url = settings.OLD_SITE_DOMAIN + '/' + path
 
     if http_response_ok(url):
         return HttpResponsePermanentRedirect(url)

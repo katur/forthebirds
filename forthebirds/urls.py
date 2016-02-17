@@ -5,7 +5,6 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.views.generic import RedirectView
 
-from forthebirds.settings import PERMANENT_REDIRECTS
 from website.views import try_old_website
 
 
@@ -13,7 +12,7 @@ urlpatterns = []
 
 
 # First, redirect the annotated redirects
-for old, new in PERMANENT_REDIRECTS:
+for old, new in settings.PERMANENT_REDIRECTS:
     urlpatterns += [url(old, RedirectView.as_view(url=new,
                                                   permanent=True))]
 

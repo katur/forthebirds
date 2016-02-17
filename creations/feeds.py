@@ -1,11 +1,11 @@
 from datetime import datetime, date, time
 
+from django.conf import settings
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse_lazy
 from django.utils.feedgenerator import Rss201rev2Feed
 
 from creations.models import RadioProgram
-from forthebirds.settings import SITE_DOMAIN
 
 
 class iTunesFeed(Rss201rev2Feed):
@@ -57,7 +57,7 @@ class iTunesFeed(Rss201rev2Feed):
         super(iTunesFeed, self).add_item_elements(handler, item)
         handler.addQuickElement('itunes:summary', item['description'])
         handler.addQuickElement('itunes:explicit', item['itunes_explicit'])
-        handler.addQuickElement('itunes:duration',item['itunes_duration'])
+        handler.addQuickElement('itunes:duration', item['itunes_duration'])
 
 
 class ForTheBirdsPodcastFeed(Feed):
@@ -76,7 +76,7 @@ class ForTheBirdsPodcastFeed(Feed):
 
     author_name = 'Laura Erickson'
     author_email = 'chickadee@lauraerickson.com'
-    author_link = SITE_DOMAIN
+    author_link = settings.SITE_DOMAIN
     feed_copyright = 'Copyright {} by Laura Erickson'.format(
         date.today().year)
 
@@ -84,8 +84,11 @@ class ForTheBirdsPodcastFeed(Feed):
         extras = {}
         extras['itunes_name'] = 'Laura Erickson'
         extras['itunes_email'] = 'chickadee@lauraerickson.com'
-        extras['itunes_new_feed_url'] = SITE_DOMAIN + '/radio/feed.xml'
-        extras['itunes_image_url'] = ('http://media.lauraerickson.com'
+        extras['itunes_new_feed_url'] = (
+            settings.SITE_DOMAIN +
+            '/radio/feed.xml')
+        extras['itunes_image_url'] = (
+            'http://media.lauraerickson.com'
             '/images/a588d7c7-cb24-487b-bf3e-b8e94b61fb72_'
             'laura_erickson_itunes.jpg')
         extras['itunes_explicit'] = 'clean'

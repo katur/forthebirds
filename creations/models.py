@@ -3,6 +3,7 @@ import math
 from mutagen.mp3 import MP3
 import re
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
@@ -12,7 +13,6 @@ from django.template.defaultfilters import slugify
 from taggit.managers import TaggableManager
 from private_media.storages import PrivateMediaStorage
 
-from forthebirds.settings import MARKDOWN_PROMPT, MEDIA_ROOT
 from birds.models import Species
 from website.models import UploadedImage
 from utils.models import RealInstanceProvider
@@ -24,7 +24,7 @@ def get_artwork_from_file(obj):
     Returns the artwork as a line of ASCII characters in base64 coding.
     """
     try:
-        program_path = '{}/{}'.format(MEDIA_ROOT, obj.file.name)
+        program_path = '{}/{}'.format(settings.MEDIA_ROOT, obj.file.name)
         artwork = MP3(program_path).tags['APIC:'].data
         base64 = binascii.b2a_base64(artwork)
         return base64
@@ -37,7 +37,8 @@ class Creation(models.Model, RealInstanceProvider):
     """Superclass for one of Laura's creations."""
 
     title = models.CharField(max_length=120)
-    description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    description = models.TextField(blank=True,
+                                   help_text=settings.MARKDOWN_PROMPT)
     species = models.ManyToManyField(Species, blank=True,
                                      limit_choices_to={'is_visible': True})
     tags = TaggableManager(blank=True)
@@ -85,7 +86,7 @@ class Article(Creation):
     date_published = models.DateField(null=True, blank=True)
     url = models.URLField(blank=True)
     file = models.FileField(null=True, blank=True, upload_to='articles')
-    text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    text = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
 
     class Meta:
         ordering = ['-date_published']
@@ -165,7 +166,7 @@ class RadioProgram(Creation):
 
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
-                                  help_text=MARKDOWN_PROMPT)
+                                  help_text=settings.MARKDOWN_PROMPT)
 
     class Meta:
         ordering = ['-air_date']
@@ -194,7 +195,7 @@ class RadioProgram(Creation):
         Caculate this program's duration by reading the mp3 file.
         """
         try:
-            program_path = '{}/{}'.format(MEDIA_ROOT, self.file.name)
+            program_path = '{}/{}'.format(settings.MEDIA_ROOT, self.file.name)
             return int(math.ceil(MP3(program_path).info.length))
 
         except Exception:
@@ -286,7 +287,7 @@ class ResearchCategory(models.Model):
     """A category of Laura's private research."""
 
     name = models.CharField(max_length=100)
-    notes = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    notes = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
     parent = models.ForeignKey('self', null=True, blank=True,
                                on_delete=models.SET_NULL)
 
@@ -316,10 +317,10 @@ class Research(Creation):
     is_public = models.BooleanField(default=False)
     date = models.DateField(null=True, blank=True)
     attribution = models.CharField(max_length=200, blank=True,
-                                   help_text=MARKDOWN_PROMPT)
+                                   help_text=settings.MARKDOWN_PROMPT)
     url = models.URLField(blank=True)
     file = models.FileField(null=True, blank=True, upload_to='research')
-    text = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    text = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
 
     class Meta:
         ordering = ['-date']
@@ -383,7 +384,8 @@ class SpeakingProgramFile(models.Model):
     file = models.FileField(upload_to='speaking',
                             storage=PrivateMediaStorage())
     date = models.DateField(null=True, blank=True)
-    description = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    description = models.TextField(blank=True,
+                                   help_text=settings.MARKDOWN_PROMPT)
 
     class Meta:
         ordering = ['date']
@@ -400,7 +402,7 @@ class WebPage(Creation):
 
     slug = models.SlugField(max_length=120, unique=True)
     date_published = models.DateField(null=True, blank=True)
-    content = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    content = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
     is_public = models.BooleanField(default=True)
     display_title = models.BooleanField(default=True)
     display_order = models.PositiveSmallIntegerField(default=0)

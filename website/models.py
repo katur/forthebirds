@@ -1,10 +1,9 @@
 import uuid
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from sorl.thumbnail import ImageField, get_thumbnail
-
-from forthebirds.settings import MARKDOWN_PROMPT
 
 
 def get_updated_filename(instance, filename):
@@ -43,18 +42,20 @@ class UploadedImage(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True)
-    blurb = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
-    bio = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
-    awards = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
-    main_photo = models.ForeignKey(UploadedImage, null=True, blank=True,
-                                   related_name='main_uploaded_photo',
-                                   on_delete=models.SET_NULL)
+    blurb = models.TextField(help_text=settings.MARKDOWN_PROMPT, blank=True)
+    bio = models.TextField(help_text=settings.MARKDOWN_PROMPT, blank=True)
+    awards = models.TextField(help_text=settings.MARKDOWN_PROMPT, blank=True)
+    main_photo = models.ForeignKey(
+        UploadedImage, null=True, blank=True,
+        related_name='main_uploaded_photo', on_delete=models.SET_NULL)
     publicity_photos = models.ManyToManyField(
         UploadedImage, related_name='uploaded_publicity_photos', blank=True)
-    speaking_overview = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
-    speaking_keynotes = models.TextField(help_text=MARKDOWN_PROMPT, blank=True)
-    speaking_testimonials = models.TextField(help_text=MARKDOWN_PROMPT,
-                                             blank=True)
+    speaking_overview = models.TextField(
+        help_text=settings.MARKDOWN_PROMPT, blank=True)
+    speaking_keynotes = models.TextField(
+        help_text=settings.MARKDOWN_PROMPT, blank=True)
+    speaking_testimonials = models.TextField(
+        help_text=settings.MARKDOWN_PROMPT, blank=True)
 
     def __unicode__(self):
         return self.user.get_full_name()

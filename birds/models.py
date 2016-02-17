@@ -1,9 +1,9 @@
 import urllib
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 
-from forthebirds.settings import MARKDOWN_PROMPT
 from utils.http import http_response_url
 
 
@@ -31,7 +31,7 @@ class Species(models.Model):
     has_abc_bird_of_the_week_url = models.BooleanField(default=False)
     has_cornell_all_about_birds_url = models.BooleanField(default=False)
 
-    blurb = models.TextField(blank=True, help_text=MARKDOWN_PROMPT)
+    blurb = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
     main_photo_url = models.URLField(blank=True)
     main_sound_recording = models.ForeignKey(
         'creations.SoundRecording', null=True, blank=True,
