@@ -30,15 +30,12 @@ to download PDF.
 
 Django/Python. Scripts live in the standard location (an app's management/commands).
 
-CSS is in [SASS](http://sass-lang.com/).
+Javascript uses [jQuery](http://jquery.com/).
 
-Javascript is in [CoffeeScript](http://coffeescript.org/).
-
-To compile both the CSS and Javascript, use gulp.
-After installing [Gulp.js](http://gulpjs.com/),
-run the following in the project root
-to install project-specific gulp packages in a git-ignored directory called
-`node_modules`:
+CSS is in [SASS](http://sass-lang.com/). To compile, use gulp.
+After installing [Gulp.js](http://gulpjs.com/), run the following in the
+project root to install project-specific gulp packages in a git-ignored
+directory called `node_modules`:
 
 ```
 npm install --dev-save gulp
@@ -48,4 +45,4 @@ npm install --dev-save gulp-ruby-sass
 npm install --dev-save gulp-coffee
 ```
 
-To compile, simply run `gulp` in the project root.
+Then, to compile, simply run `gulp` in the project root.
