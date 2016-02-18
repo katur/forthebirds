@@ -27,7 +27,7 @@ class Species(models.Model):
     family_common = models.CharField(max_length=50)
     order = models.CharField(max_length=50)
 
-    is_visible = models.BooleanField('Visible on website', default=False)
+    is_visible = models.BooleanField(default=False)
     has_abc_bird_of_the_week_url = models.BooleanField(default=False)
     has_cornell_all_about_birds_url = models.BooleanField(default=False)
     has_wikipedia_url = models.BooleanField(default=False)
