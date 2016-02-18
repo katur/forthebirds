@@ -64,7 +64,8 @@ class SpeciesAdmin(admin.ModelAdmin):
     form = SpeciesAdminForm
 
     list_display = ('common_name', 'taxon_order', 'is_visible',
-                    'has_blurb', 'has_photo', 'has_sound',)
+                    'has_blurb', 'has_photo', 'has_sound',
+                    'get_number_of_creations',)
 
     list_filter = (
         'is_visible',

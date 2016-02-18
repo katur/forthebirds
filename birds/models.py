@@ -95,3 +95,7 @@ class Species(models.Model):
     def has_sound(self):
         return self.main_sound_recording is not None
     has_sound.boolean = True
+
+    def get_number_of_creations(self):
+        return len(self.creation_set.all())
+    get_number_of_creations.short_description = 'Num creations'
