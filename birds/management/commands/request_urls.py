@@ -5,8 +5,8 @@ from utils.scripting import require_db_write_acknowledgement
 
 
 class Command(BaseCommand):
-    help = ('Determine ABC bird of the week and Cornell all about birds '
-            'url fields')
+    help = ('Determine Wikipedia, ABC Bird of the Week, and Cornell All '
+            'About Birds url fields')
 
     def handle(self, **options):
         require_db_write_acknowledgement()
@@ -20,5 +20,9 @@ class Command(BaseCommand):
             cornell = bird.get_resolved_cornell_all_about_birds_url()
             if cornell:
                 bird.has_cornell_all_about_birds_url = True
+
+            wikipedia = bird.get_resolved_wikipedia_url()
+            if wikipedia:
+                bird.has_wikipedia_url = True
 
             bird.save()

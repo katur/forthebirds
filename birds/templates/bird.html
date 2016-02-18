@@ -79,6 +79,13 @@
             Search Laura&rsquo;s Flickr photos</a>
         </span>
 
+        {% if bird.has_wikipedia_url %}
+        <span>
+          <a href="{{ bird.get_wikipedia_url }}">
+            Find on Wikipedia</a>
+        </span>
+        {% endif %}
+
         {% if bird.has_cornell_all_about_birds_url %}
         <span>
           <a href="{{ bird.get_cornell_all_about_birds_url }}">

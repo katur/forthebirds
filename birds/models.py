@@ -30,6 +30,7 @@ class Species(models.Model):
     is_visible = models.BooleanField('Visible on website', default=False)
     has_abc_bird_of_the_week_url = models.BooleanField(default=False)
     has_cornell_all_about_birds_url = models.BooleanField(default=False)
+    has_wikipedia_url = models.BooleanField(default=False)
 
     blurb = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
     main_photo_url = models.URLField(blank=True)
@@ -55,6 +56,14 @@ class Species(models.Model):
             'text': self.common_name.encode('utf-8'),
         }
         return url + urllib.urlencode(get_params)
+
+    def get_wikipedia_url(self):
+        url_name = self.common_name.replace(' ', '_')
+        url_name = urllib.quote_plus(url_name)
+        return 'https://en.wikipedia.org/wiki/{}'.format(url_name)
+
+    def get_resolved_wikipedia_url(self):
+        return http_response_url(self.get_wikipedia_url())
 
     def get_abc_bird_of_the_week_url(self):
         url_name = self.common_name.replace(' ', '-')
