@@ -83,3 +83,15 @@ class Species(models.Model):
         if url and 'search' in url:
             url = None
         return url
+
+    def has_blurb(self):
+        return self.blurb != ''
+    has_blurb.boolean = True
+
+    def has_photo(self):
+        return self.main_photo_url != ''
+    has_photo.boolean = True
+
+    def has_sound(self):
+        return self.main_sound_recording is not None
+    has_sound.boolean = True
