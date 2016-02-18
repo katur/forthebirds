@@ -7,6 +7,8 @@ from django.utils.feedgenerator import Rss201rev2Feed
 
 from creations.models import RadioProgram
 
+EPISODE_LIMIT = 250
+
 
 class iTunesFeed(Rss201rev2Feed):
     """
@@ -103,7 +105,7 @@ class ForTheBirdsPodcastFeed(Feed):
         """Get a list of items to publish in this feed."""
         today = datetime.today()
         return (RadioProgram.objects.order_by('-air_date')
-                .filter(air_date__lte=today))
+                .filter(air_date__lte=today))[:EPISODE_LIMIT]
 
     def item_title(self, item):
         return item.title
