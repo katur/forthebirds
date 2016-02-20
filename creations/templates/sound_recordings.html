@@ -23,8 +23,12 @@ Sound Recordings
   <ul>
     {% for recording in recordings %}
     <li>
-      <a href="{{ recording.get_absolute_url }}">
+      <span>
+        <a href="{{ recording.get_absolute_url }}">
         {{ recording.title }}</a>
+        ({{ recording.get_printable_duration }})
+      </span>
+
       <span class="description">
         Recorded on {{ recording.date_recorded }}
         in {{ recording.location }}

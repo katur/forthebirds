@@ -1212,7 +1212,6 @@ html, body {
         list-style-type: disc; }
   #sound-recordings ul li {
     margin-bottom: 9px; }
-    #sound-recordings ul li a,
     #sound-recordings ul li span {
       display: block;
       clear: both; }
