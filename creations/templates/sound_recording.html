@@ -47,6 +47,10 @@ Sound Recording: {{ recording.title }}
     <span id="audio">
       {% include 'audio_with_download.html' with file=recording.file %}
     </span>
+
+    <span id="duration">
+      Duration: {{ recording.get_printable_duration }}
+    </span>
   </div>
 </div>
 

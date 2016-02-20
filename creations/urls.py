@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^page/(?P<slug>.+)/$', views.webpage, name='webpage_url'),
     url(r'^miscellany/$', views.miscellany, name='miscellany_url'),
 
+    url(r'^sound-recordings/$', views.sound_recordings,
+        name='sound_recordings_url'),
     url(r'^sound-recording/(?P<id>\d+)/$', views.sound_recording,
         name='sound_recording_url'),
     url(r'^sound-recording/artwork/(?P<id>\d+)/$',

@@ -33,6 +33,38 @@ def get_artwork_from_file(obj):
         return None
 
 
+def get_duration_from_file(obj):
+    """
+    Get the duration in seconds of obj's mp3 file.
+    """
+    try:
+        program_path = '{}/{}'.format(settings.MEDIA_ROOT, obj.file.name)
+        return int(math.ceil(MP3(program_path).info.length))
+
+    except Exception:
+        return None
+
+
+def get_minutes_and_seconds(duration):
+    """
+    Get duration as tuple (minutes, seconds).
+
+    Minutes and seconds are both integers.
+    """
+    minutes = duration // 60
+    seconds = duration % 60
+    return (minutes, seconds)
+
+
+def get_printable_duration(duration):
+    """
+    Get duration as string in format min'sec"
+    """
+    minutes, seconds = get_minutes_and_seconds(duration)
+    return u'{0}{1}{2:02d}{3}'.format(
+        minutes, u'\N{PRIME}', seconds, u'\N{DOUBLE PRIME}')
+
+
 class Creation(models.Model, RealInstanceProvider):
     """Superclass for one of Laura's creations."""
 
@@ -68,6 +100,8 @@ class Creation(models.Model, RealInstanceProvider):
             return self.date_published
         elif hasattr(self, 'date_recorded'):
             return self.date_recorded
+        elif hasattr(self, 'air_date'):
+            return self.air_date
         else:
             return None
 
@@ -159,11 +193,11 @@ class RadioProgram(Creation):
     """A 'For the Birds' radio program."""
 
     file = models.FileField(upload_to='radio')
-    air_date = models.DateField()
 
     # Duration in seconds
     duration = models.PositiveIntegerField(blank=True, null=True)
 
+    air_date = models.DateField()
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=settings.MARKDOWN_PROMPT)
@@ -178,9 +212,6 @@ class RadioProgram(Creation):
         return reverse('radio_program_url',
                        args=[self.id, slugify(self.title)])
 
-    def get_display_date(self):
-        return self.air_date
-
     def get_reruns(self):
         return self.radioprogramrerun_set
 
@@ -190,52 +221,24 @@ class RadioProgram(Creation):
         """
         return get_artwork_from_file(self)
 
-    def calculate_duration(self):
+    def get_printable_duration(self):
         """
-        Caculate this program's duration by reading the mp3 file.
-        """
-        try:
-            program_path = '{}/{}'.format(settings.MEDIA_ROOT, self.file.name)
-            return int(math.ceil(MP3(program_path).info.length))
-
-        except Exception:
-            return None
-
-    def get_minutes_and_seconds(self):
-        """
-        Get program duration as tuple (minutes, seconds).
-
-        Minutes and seconds are both integers.
+        Get duration as string in format min'sec"
         """
         if self.duration:
-            minutes = self.duration // 60
-            seconds = self.duration % 60
+            return get_printable_duration(self.duration)
         else:
-            minutes = None
-            seconds = None
-
-        return (minutes, seconds)
+            return 'N/A'
 
     def get_itunes_duration(self):
         """
         Get program duration as string in format min:sec
         """
         if self.duration:
-            minutes, seconds = self.get_minutes_and_seconds()
+            minutes, seconds = get_minutes_and_seconds(self.duration)
             return '{}:{:02d}'.format(minutes, seconds)
         else:
             return '0:00'
-
-    def get_printable_duration(self):
-        """
-        Get program duration as string in format min'sec"
-        """
-        if self.duration:
-            minutes, seconds = self.get_minutes_and_seconds()
-            return u'{0}{1}{2:02d}{3}'.format(
-                minutes, u'\N{PRIME}', seconds, u'\N{DOUBLE PRIME}')
-        else:
-            return 'N/A'
 
 
 @receiver(post_save, sender=RadioProgram)
@@ -251,7 +254,7 @@ def add_radio_program_duration(sender, instance, **kwargs):
     so that the post_save handler is not sent recursively.
     """
     post_save.disconnect(add_radio_program_duration, sender=sender)
-    instance.duration = instance.calculate_duration()
+    instance.duration = get_duration_from_file(instance)
     instance.save()
     post_save.connect(add_radio_program_duration, sender=sender)
 
@@ -342,6 +345,10 @@ class SoundRecording(Creation):
     """A bird sound recording."""
 
     file = models.FileField(upload_to='soundrecordings')
+
+    # Duration in seconds
+    duration = models.PositiveIntegerField(blank=True, null=True)
+
     date_recorded = models.DateField()
     location = models.CharField(max_length=200, blank=True)
 
@@ -359,6 +366,28 @@ class SoundRecording(Creation):
         Get artwork embedded in this program's mp3 file.
         """
         return get_artwork_from_file(self)
+
+    def get_printable_duration(self):
+        """
+        Get duration as string in format min'sec"
+        """
+        if self.duration:
+            return get_printable_duration(self.duration)
+        else:
+            return 'N/A'
+
+
+@receiver(post_save, sender=SoundRecording)
+def add_sound_recording_duration(sender, instance, **kwargs):
+    """
+    Signal handler to set sound recording duration after it is saved.
+
+    See similar RadioProgram signal handler for more details.
+    """
+    post_save.disconnect(add_sound_recording_duration, sender=sender)
+    instance.duration = get_duration_from_file(instance)
+    instance.save()
+    post_save.connect(add_sound_recording_duration, sender=sender)
 
 
 class SpeakingProgram(Creation):

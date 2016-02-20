@@ -246,6 +246,17 @@ def sound_recording(request, id):
     return render(request, 'sound_recording.html', context)
 
 
+def sound_recordings(request):
+    """
+    Render the page listing all sound recordings.
+    """
+    recordings = SoundRecording.objects.all()
+    context = {
+        'recordings': recordings,
+    }
+    return render(request, 'sound_recordings.html', context)
+
+
 def sound_recording_artwork(request, id):
     """
     Extract the artwork from the sound recording with this id.

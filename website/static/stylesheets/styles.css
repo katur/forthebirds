@@ -1199,6 +1199,26 @@ html, body {
   width: 30px;
   height: 30px; }
 
+#sound-recordings ul {
+  list-style-position: inside;
+  list-style-type: disc; }
+  #sound-recordings ul ul li, #sound-recordings ul ul ul {
+    padding-left: 30px; }
+  #sound-recordings ul ul {
+    list-style-type: circle; }
+    #sound-recordings ul ul ul {
+      list-style-type: square; }
+      #sound-recordings ul ul ul ul {
+        list-style-type: disc; }
+  #sound-recordings ul li {
+    margin-bottom: 9px; }
+    #sound-recordings ul li a,
+    #sound-recordings ul li span {
+      display: block;
+      clear: both; }
+    #sound-recordings ul li .description {
+      margin-left: 1em; }
+
 #speaking ul {
   list-style-position: inside;
   list-style-type: disc; }

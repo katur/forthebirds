@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load extra_tags %}
+{% load staticfiles %}
+
+
+{% block body_id %}sound-recordings{% endblock %}
+
+
+{% block head_title_prefix %}
+Sound Recordings |
+{% endblock %}
+
+
+{% block page_title %}
+Sound Recordings
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-subsection">
+  <ul>
+    {% for recording in recordings %}
+    <li>
+      <a href="{{ recording.get_absolute_url }}">
+        {{ recording.title }}</a>
+      <span class="description">
+        Recorded on {{ recording.date_recorded }}
+        in {{ recording.location }}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}
