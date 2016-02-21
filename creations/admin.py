@@ -112,7 +112,7 @@ class ResearchAdmin(admin.ModelAdmin):
 
 
 class SoundRecordingAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_recorded', 'location',)
+    list_display = ('title', 'date_recorded', 'location', 'file',)
     search_fields = ('title', 'location', 'description',)
     filter_horizontal = ('species',)
 
