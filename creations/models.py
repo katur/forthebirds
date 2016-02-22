@@ -198,6 +198,7 @@ class RadioProgram(Creation):
     duration = models.PositiveIntegerField(blank=True, null=True)
 
     air_date = models.DateField()
+    date_is_estimate = models.BooleanField(default=False)
     supplemental_content_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=settings.MARKDOWN_PROMPT)
