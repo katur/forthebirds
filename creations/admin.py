@@ -81,8 +81,8 @@ class RadioProgramAdmin(admin.ModelAdmin):
     fieldsets = (
         BASIC_FIELDSET,
         ('Details', {'fields': (
-            'air_date', 'file', 'supplemental_content_url',
-            'transcript',),
+            'air_date', 'date_is_estimate', 'file',
+            'supplemental_content_url', 'transcript',),
         }),
         TAGGING_FIELDSET,
     )
