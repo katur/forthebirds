@@ -7,6 +7,8 @@ from django.utils.feedgenerator import Rss201rev2Feed
 
 from creations.models import RadioProgram
 
+EPISODE_LIMIT = 250
+
 
 class iTunesFeed(Rss201rev2Feed):
     """
@@ -71,7 +73,9 @@ class ForTheBirdsPodcastFeed(Feed):
     description = (
         '"For the Birds" began airing on KUMD in Duluth, MN, in May, 1986, '
         'and is the longest continually-running radio '
-        'program about birds in the U.S.')
+        'program about birds in the U.S. '
+        'Hundreds more episodes are available at {}/radio/.'
+    ).format(settings.SITE_DOMAIN)
     link = reverse_lazy('radio_url')
 
     author_name = 'Laura Erickson'
@@ -103,7 +107,7 @@ class ForTheBirdsPodcastFeed(Feed):
         """Get a list of items to publish in this feed."""
         today = datetime.today()
         return (RadioProgram.objects.order_by('-air_date')
-                .filter(air_date__lte=today))
+                .filter(air_date__lte=today))[:EPISODE_LIMIT]
 
     def item_title(self, item):
         return item.title
