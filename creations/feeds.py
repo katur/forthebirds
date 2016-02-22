@@ -74,7 +74,7 @@ class ForTheBirdsPodcastFeed(Feed):
         '"For the Birds" began airing on KUMD in Duluth, MN, in May, 1986, '
         'and is the longest continually-running radio '
         'program about birds in the U.S. '
-        'Hundreds more episodes are available at {}/radio/.'
+        'Hundreds more episodes are available for free at {}/radio/.'
     ).format(settings.SITE_DOMAIN)
     link = reverse_lazy('radio_url')
 
