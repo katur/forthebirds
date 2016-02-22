@@ -70,8 +70,9 @@ class RadioProgramRerunInline(admin.TabularInline):
 
 
 class RadioProgramAdmin(admin.ModelAdmin):
-    list_display = ('title', 'air_date', 'date_is_estimate', 'file',)
-    list_filter = ('air_date',)
+    list_display = ('title', 'air_date', 'date_is_estimate', 'duration',
+                    'file',)
+    list_filter = ('air_date', 'date_is_estimate',)
     search_fields = ('title',)
     filter_horizontal = ('species',)
 
