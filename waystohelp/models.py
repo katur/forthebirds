@@ -9,9 +9,8 @@ class WayToHelp(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     title = models.CharField(max_length=200)
     text = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
-    background_image = models.ForeignKey(UploadedImage, null=True,
-                                         blank=True,
-                                         on_delete=models.SET_NULL)
+    background_image = models.ForeignKey(
+        UploadedImage, models.SET_NULL, null=True, blank=True)
 
     class Meta:
         ordering = ['id']

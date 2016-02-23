@@ -35,7 +35,8 @@ class Species(models.Model):
     blurb = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
     main_photo_url = models.URLField(blank=True)
     main_sound_recording = models.ForeignKey(
-        'creations.SoundRecording', null=True, blank=True,
+        'creations.SoundRecording', models.SET_NULL,
+        null=True, blank=True,
         related_name='species_with_main_recording')
 
     class Meta:
