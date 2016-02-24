@@ -123,6 +123,9 @@ def _organize_creations(creations):
     def get_sorting_date(x):
         return x.get_display_date() or mindate
 
+    def get_name(x):
+        return x.get_class_display_name()
+
     def get_index(x):
         name = x.get_class_display_name()
         try:
@@ -131,5 +134,6 @@ def _organize_creations(creations):
             return len(CREATION_DISPLAY_ORDER)
 
     creations = sorted(creations, key=get_sorting_date, reverse=True)
+    creations = sorted(creations, key=get_name)
     creations = sorted(creations, key=get_index)
     return creations
