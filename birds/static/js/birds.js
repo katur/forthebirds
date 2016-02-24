@@ -70,9 +70,9 @@ function addFlickrPhotos() {
       container.find($("#spinner")).remove();
       var message;
       if (t === "timeout") {
-        message = "Flickr taking too long to respond.";
+        message = "Timeout occurred while trying to connect to Flickr.";
       } else {
-        message = "Some other error occurred.";
+        message = "Unable to connect to Flickr right now.";
       }
       container.append(
         "<span class=\"no-photo-message\">" +
