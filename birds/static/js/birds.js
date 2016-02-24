@@ -38,7 +38,7 @@ function addFlickrPhotos() {
         if (photos.length === 0) {
           container.append(
             "<div class=\"additional-photo\">Laura hasn't added " +
-            "photos for this bird</div>");
+            "photos for this bird.</div>");
           return;
         }
 
