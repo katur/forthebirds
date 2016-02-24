@@ -100,6 +100,19 @@ def photo_checklist(request):
     return render(request, 'photo_checklist.html', context)
 
 
+CREATION_DISPLAY_ORDER = (
+    'Radio Program',
+    'Sound Recording',
+    'Web Page',
+    'Article',
+    'Blog Post',
+    'Speaking Program',
+    'External Project',
+    'Book',
+    'Research',
+)
+
+
 def _organize_creations(creations):
     """
     Sort creations by class type, and within that by display date (if
@@ -110,9 +123,13 @@ def _organize_creations(creations):
     def get_sorting_date(x):
         return x.get_display_date() or mindate
 
-    def get_name(x):
-        return x.get_class_display_name()
+    def get_index(x):
+        name = x.get_class_display_name()
+        try:
+            return CREATION_DISPLAY_ORDER.index(name)
+        except ValueError:
+            return len(CREATION_DISPLAY_ORDER)
 
     creations = sorted(creations, key=get_sorting_date, reverse=True)
-    creations = sorted(creations, key=get_name)
+    creations = sorted(creations, key=get_index)
     return creations
