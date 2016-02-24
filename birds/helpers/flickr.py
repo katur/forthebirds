@@ -1,7 +1,7 @@
 import flickrapi
 
-from forthebirds.local_settings import (FLICKR_KEY, FLICKR_SECRET,
-                                        FLICKR_USER_ID)
+from forthebirds.localsettings import (FLICKR_KEY, FLICKR_SECRET,
+                                       FLICKR_USER_ID)
 
 DEFAULT_PER_PAGE = 10
 

@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 from birds.helpers.flickr import search_flickr
-from forthebirds.local_settings import FLICKR_USER_ID
+from forthebirds.localsettings import FLICKR_USER_ID
 from utils.http import http_response_url
 
 

@@ -5,7 +5,7 @@ from django.template.defaultfilters import stringfilter
 from django.utils.encoding import force_unicode
 from django.utils.safestring import mark_safe
 
-from forthebirds.local_settings import FLICKR_USER_ID
+from forthebirds.localsettings import FLICKR_USER_ID
 
 
 register = template.Library()

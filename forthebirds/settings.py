@@ -8,16 +8,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
 # Local configuration
 
-# Note: I hard-coded the site domain in local_settings in order to
-# use it in the podcast feed. For some reason, while Django does prefix
+# Note: I hard-coded the site domain in localsettings to use it in
+# the podcast feed. For some reason, while Django does prefix
 # the feed-wide url and feed item page urls with the domain name,
 # it is does not add this prefix to the enclosure mp3 url. Since
 # iTunes requires the domain name in the enclosure url, I need to add
@@ -26,11 +20,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # I opted not to use the Sites framework for this since it does not
 # seem to be the intention of the Sites framework.
 
-from local_settings import (
+from localsettings import (
     DEBUG, SECRET_KEY, DATABASES, SITE_DOMAIN, OLD_SITE_DOMAIN,
     ITUNES_SUBSCRIBE_LINK, GOOGLE_ANALYTICS_ID, PERMANENT_REDIRECTS,
     STATIC_URL, MEDIA_URL, PRIVATE_MEDIA_URL,
     STATIC_ROOT, MEDIA_ROOT, PRIVATE_MEDIA_ROOT)
+
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 # Security

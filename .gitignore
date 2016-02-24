@@ -1,5 +1,5 @@
 # Database connection and other secret settings
-*local_settings.py
+*localsettings.py
 
 # Collected static files (re-collect with ./manage.py collectstatic)
 staticfiles/
