@@ -4,6 +4,8 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 
+from birds.helpers.flickr import search_flickr
+from forthebirds.local_settings import FLICKR_USER_ID
 from utils.http import http_response_url
 
 
@@ -49,10 +51,26 @@ class Species(models.Model):
     def get_absolute_url(self):
         return reverse('bird_url', args=[self.slug])
 
+    def has_blurb(self):
+        return self.blurb != ''
+    has_blurb.boolean = True
+
+    def has_photo(self):
+        return self.main_photo_url != ''
+    has_photo.boolean = True
+
+    def has_sound(self):
+        return self.main_sound_recording is not None
+    has_sound.boolean = True
+
+    def get_number_of_creations(self):
+        return len(self.creation_set.all())
+    get_number_of_creations.short_description = 'Num creations'
+
     def get_flickr_search_url(self):
         url = 'https://www.flickr.com/search?'
         get_params = {
-            'user_id': '48014585@N00',
+            'user_id': FLICKR_USER_ID,
             'sort': 'date-taken-desc',
             'text': self.common_name.encode('utf-8'),
         }
@@ -85,18 +103,22 @@ class Species(models.Model):
             url = None
         return url
 
-    def has_blurb(self):
-        return self.blurb != ''
-    has_blurb.boolean = True
+    def get_lauras_flickr_photos(self):
+        """
+        Get Laura's "additional Flickr photos" for this bird.
 
-    def has_photo(self):
-        return self.main_photo_url != ''
-    has_photo.boolean = True
+        First attempts to find photos with the tag "website" in addition
+        to this bird's common_name. This is Laura's tag to select
+        particular favorites to show on the website. Finds up to 100
+        of these images.
 
-    def has_sound(self):
-        return self.main_sound_recording is not None
-    has_sound.boolean = True
+        If no results are found with "website", then it returns up to 10
+        photos tagged with common_name only.
+        """
+        common_name = self.common_name
+        photos = search_flickr([common_name, 'website'], per_page=100)
 
-    def get_number_of_creations(self):
-        return len(self.creation_set.all())
-    get_number_of_creations.short_description = 'Num creations'
+        if photos['photos']['total'] == '0':
+            photos = search_flickr([common_name], per_page=10)
+
+        return photos

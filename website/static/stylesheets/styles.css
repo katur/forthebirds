@@ -45,6 +45,225 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+.ic-Spin-cycle--classic, .ic-Spin-cycle--classic-forthebirds, .ic-Spin-cycle--classic-salmon-yellow, .ic-Spin-cycle--circles, .ic-Spin-cycle--police-car, .ic-Spin-cycle--faces {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: visible; }
+  .ic-Spin-cycle--classic > svg, .ic-Spin-cycle--classic-forthebirds > svg, .ic-Spin-cycle--classic-salmon-yellow > svg, .ic-Spin-cycle--circles > svg, .ic-Spin-cycle--police-car > svg, .ic-Spin-cycle--faces > svg {
+    display: block;
+    overflow: visible; }
+    .ic-Spin-cycle--classic > svg > *, .ic-Spin-cycle--classic-forthebirds > svg > *, .ic-Spin-cycle--classic-salmon-yellow > svg > *, .ic-Spin-cycle--circles > svg > *, .ic-Spin-cycle--police-car > svg > *, .ic-Spin-cycle--faces > svg > * {
+      transform: translate3d(0, 0, 0);
+      transform-origin: center;
+      animation-iteration-count: infinite; }
+
+body:not(:-moz-handler-blocked) svg > * {
+  transform: none !important;
+  transform-origin: 0 0; }
+
+.ic-Spin-cycle--classic {
+  margin: 12px;
+  width: 72px;
+  height: 72px; }
+@keyframes spin-cycle {
+  from {
+    fill: white;
+    transform: scale(1); }
+  to {
+    fill: rgba(255, 255, 255, 0.1);
+    transform: scale(1); } }
+  .ic-Spin-cycle--classic > svg {
+    width: 72px;
+    height: 72px; }
+    .ic-Spin-cycle--classic > svg > * {
+      fill: rgba(255, 255, 255, 0.1);
+      animation-name: spin-cycle;
+      animation-duration: 0.8s; }
+      .ic-Spin-cycle--classic > svg > *:nth-of-type(1) {
+        animation-delay: 0.1s; }
+      .ic-Spin-cycle--classic > svg > *:nth-of-type(2) {
+        animation-delay: 0.2s; }
+      .ic-Spin-cycle--classic > svg > *:nth-of-type(3) {
+        animation-delay: 0.3s; }
+      .ic-Spin-cycle--classic > svg > *:nth-of-type(4) {
+        animation-delay: 0.4s; }
+      .ic-Spin-cycle--classic > svg > *:nth-of-type(5) {
+        animation-delay: 0.5s; }
+      .ic-Spin-cycle--classic > svg > *:nth-of-type(6) {
+        animation-delay: 0.6s; }
+      .ic-Spin-cycle--classic > svg > *:nth-of-type(7) {
+        animation-delay: 0.7s; }
+
+.ic-Spin-cycle--classic-forthebirds {
+  margin: 12px 24px;
+  width: 48px;
+  height: 48px; }
+@keyframes forthebirds {
+  from {
+    fill: #cfd3cf;
+    transform: scale(1.1); }
+  to {
+    fill: #788c6d;
+    transform: scale(0.9); } }
+  .ic-Spin-cycle--classic-forthebirds > svg {
+    width: 48px;
+    height: 48px; }
+    .ic-Spin-cycle--classic-forthebirds > svg > * {
+      fill: #788c6d;
+      animation-name: forthebirds;
+      animation-duration: 0.8s; }
+      .ic-Spin-cycle--classic-forthebirds > svg > *:nth-of-type(1) {
+        animation-delay: 0.1s; }
+      .ic-Spin-cycle--classic-forthebirds > svg > *:nth-of-type(2) {
+        animation-delay: 0.2s; }
+      .ic-Spin-cycle--classic-forthebirds > svg > *:nth-of-type(3) {
+        animation-delay: 0.3s; }
+      .ic-Spin-cycle--classic-forthebirds > svg > *:nth-of-type(4) {
+        animation-delay: 0.4s; }
+      .ic-Spin-cycle--classic-forthebirds > svg > *:nth-of-type(5) {
+        animation-delay: 0.5s; }
+      .ic-Spin-cycle--classic-forthebirds > svg > *:nth-of-type(6) {
+        animation-delay: 0.6s; }
+      .ic-Spin-cycle--classic-forthebirds > svg > *:nth-of-type(7) {
+        animation-delay: 0.7s; }
+
+.ic-Spin-cycle--classic-salmon-yellow {
+  margin: 12px 24px;
+  width: 48px;
+  height: 48px; }
+@keyframes yellow {
+  from {
+    fill: yellow;
+    transform: scale(1.1); }
+  to {
+    fill: salmon;
+    transform: scale(0.9); } }
+  .ic-Spin-cycle--classic-salmon-yellow > svg {
+    width: 48px;
+    height: 48px; }
+    .ic-Spin-cycle--classic-salmon-yellow > svg > * {
+      fill: salmon;
+      animation-name: yellow;
+      animation-duration: 0.8s; }
+      .ic-Spin-cycle--classic-salmon-yellow > svg > *:nth-of-type(1) {
+        animation-delay: 0.1s; }
+      .ic-Spin-cycle--classic-salmon-yellow > svg > *:nth-of-type(2) {
+        animation-delay: 0.2s; }
+      .ic-Spin-cycle--classic-salmon-yellow > svg > *:nth-of-type(3) {
+        animation-delay: 0.3s; }
+      .ic-Spin-cycle--classic-salmon-yellow > svg > *:nth-of-type(4) {
+        animation-delay: 0.4s; }
+      .ic-Spin-cycle--classic-salmon-yellow > svg > *:nth-of-type(5) {
+        animation-delay: 0.5s; }
+      .ic-Spin-cycle--classic-salmon-yellow > svg > *:nth-of-type(6) {
+        animation-delay: 0.6s; }
+      .ic-Spin-cycle--classic-salmon-yellow > svg > *:nth-of-type(7) {
+        animation-delay: 0.7s; }
+
+.ic-Spin-cycle--circles {
+  margin: 12px 24px;
+  width: 100px;
+  height: 40px; }
+@keyframes circles {
+  from {
+    fill: rgba(0, 255, 0, 0.8);
+    transform: scale(1.6); }
+  to {
+    fill: rgba(255, 255, 255, 0.5);
+    transform: scale(1); } }
+  .ic-Spin-cycle--circles > svg {
+    width: 100px;
+    height: 40px; }
+    .ic-Spin-cycle--circles > svg > * {
+      fill: rgba(255, 255, 255, 0.5);
+      animation-name: circles;
+      animation-duration: 0.8s; }
+      .ic-Spin-cycle--circles > svg > *:nth-of-type(1) {
+        animation-delay: 0.1s; }
+      .ic-Spin-cycle--circles > svg > *:nth-of-type(2) {
+        animation-delay: 0.2s; }
+      .ic-Spin-cycle--circles > svg > *:nth-of-type(3) {
+        animation-delay: 0.3s; }
+      .ic-Spin-cycle--circles > svg > *:nth-of-type(4) {
+        animation-delay: 0.4s; }
+      .ic-Spin-cycle--circles > svg > *:nth-of-type(5) {
+        animation-delay: 0.5s; }
+      .ic-Spin-cycle--circles > svg > *:nth-of-type(6) {
+        animation-delay: 0.6s; }
+      .ic-Spin-cycle--circles > svg > *:nth-of-type(7) {
+        animation-delay: 0.7s; }
+
+.ic-Spin-cycle--police-car {
+  margin: 12px 24px;
+  width: 100px;
+  height: 40px; }
+@keyframes your-animation {
+  from {
+    fill: cyan;
+    transform: scale(1.1); }
+  to {
+    fill: rgba(34, 34, 34, 0.8);
+    transform: scale(0.3); } }
+  .ic-Spin-cycle--police-car > svg {
+    width: 100px;
+    height: 40px; }
+    .ic-Spin-cycle--police-car > svg > * {
+      fill: rgba(34, 34, 34, 0.8);
+      animation-name: your-animation;
+      animation-duration: 0.6s; }
+      .ic-Spin-cycle--police-car > svg > *:nth-of-type(1) {
+        animation-delay: 0.1s; }
+      .ic-Spin-cycle--police-car > svg > *:nth-of-type(2) {
+        animation-delay: 0.2s; }
+      .ic-Spin-cycle--police-car > svg > *:nth-of-type(3) {
+        animation-delay: 0.3s; }
+      .ic-Spin-cycle--police-car > svg > *:nth-of-type(4) {
+        animation-delay: 0.4s; }
+      .ic-Spin-cycle--police-car > svg > *:nth-of-type(5) {
+        animation-delay: 0.5s; }
+
+.ic-Spin-cycle--faces {
+  margin: 12px 24px;
+  width: 100px;
+  height: 40px; }
+@keyframes faces {
+  from {
+    fill: rgba(255, 255, 0, 0.7);
+    transform: scale(2); }
+  to {
+    fill: rgba(102, 51, 153, 0.8);
+    transform: scale(1); } }
+  .ic-Spin-cycle--faces > svg {
+    width: 100px;
+    height: 40px; }
+    .ic-Spin-cycle--faces > svg > * {
+      fill: rgba(102, 51, 153, 0.8);
+      animation-name: faces;
+      animation-duration: 1.2s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(1) {
+        animation-delay: 0.1s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(2) {
+        animation-delay: 0.2s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(3) {
+        animation-delay: 0.3s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(4) {
+        animation-delay: 0.4s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(5) {
+        animation-delay: 0.5s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(6) {
+        animation-delay: 0.6s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(7) {
+        animation-delay: 0.7s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(8) {
+        animation-delay: 0.8s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(9) {
+        animation-delay: 0.9s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(10) {
+        animation-delay: 1s; }
+      .ic-Spin-cycle--faces > svg > *:nth-of-type(11) {
+        animation-delay: 1.1s; }
+
 @font-face {
   font-family: "adelaidaregular";
   src: url("../fonts/adelaida/adelaida-regular-webfont.eot");
@@ -623,73 +842,135 @@ html, body {
   font-family: "Dosis", sans-serif;
   display: block;
   margin-bottom: 12px; }
+#bird #additional-photos #spinner {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%); }
 #bird #public-cards,
-#bird #private-cards {
+#bird #private-cards,
+#bird #additional-photos {
   width: 105%;
   padding: 0 2.5%;
   position: relative;
   left: -5%; }
-  #bird #public-cards .card,
-  #bird #private-cards .card {
+  #bird #public-cards .card, #bird #public-cards .additional-photo,
+  #bird #private-cards .card,
+  #bird #private-cards .additional-photo,
+  #bird #additional-photos .card,
+  #bird #additional-photos .additional-photo {
     display: block;
     position: relative;
     box-sizing: border-box;
     float: left;
     width: 20%;
-    margin: 0 2.5% 50px 2.5%;
-    padding: 10px;
-    border: 1px solid #cfd3cf;
-    border-radius: 2px; }
-    #bird #public-cards .card:nth-child(4n+1),
-    #bird #private-cards .card:nth-child(4n+1) {
+    margin: 0 2.5% 50px 2.5%; }
+    #bird #public-cards .card:nth-child(4n+1), #bird #public-cards .additional-photo:nth-child(4n+1),
+    #bird #private-cards .card:nth-child(4n+1),
+    #bird #private-cards .additional-photo:nth-child(4n+1),
+    #bird #additional-photos .card:nth-child(4n+1),
+    #bird #additional-photos .additional-photo:nth-child(4n+1) {
       clear: left; }
     @media (max-width: 1400px) {
-      #bird #public-cards .card,
-      #bird #private-cards .card {
+      #bird #public-cards .card, #bird #public-cards .additional-photo,
+      #bird #private-cards .card,
+      #bird #private-cards .additional-photo,
+      #bird #additional-photos .card,
+      #bird #additional-photos .additional-photo {
         width: 28.3%; }
-        #bird #public-cards .card:nth-child(4n+1),
-        #bird #private-cards .card:nth-child(4n+1) {
+        #bird #public-cards .card:nth-child(4n+1), #bird #public-cards .additional-photo:nth-child(4n+1),
+        #bird #private-cards .card:nth-child(4n+1),
+        #bird #private-cards .additional-photo:nth-child(4n+1),
+        #bird #additional-photos .card:nth-child(4n+1),
+        #bird #additional-photos .additional-photo:nth-child(4n+1) {
           clear: none; }
-        #bird #public-cards .card:nth-child(3n+1),
-        #bird #private-cards .card:nth-child(3n+1) {
+        #bird #public-cards .card:nth-child(3n+1), #bird #public-cards .additional-photo:nth-child(3n+1),
+        #bird #private-cards .card:nth-child(3n+1),
+        #bird #private-cards .additional-photo:nth-child(3n+1),
+        #bird #additional-photos .card:nth-child(3n+1),
+        #bird #additional-photos .additional-photo:nth-child(3n+1) {
           clear: left; } }
     @media (max-width: 1050px) {
-      #bird #public-cards .card,
-      #bird #private-cards .card {
+      #bird #public-cards .card, #bird #public-cards .additional-photo,
+      #bird #private-cards .card,
+      #bird #private-cards .additional-photo,
+      #bird #additional-photos .card,
+      #bird #additional-photos .additional-photo {
         width: 45%; }
-        #bird #public-cards .card:nth-child(4n+1),
-        #bird #private-cards .card:nth-child(4n+1) {
+        #bird #public-cards .card:nth-child(4n+1), #bird #public-cards .additional-photo:nth-child(4n+1),
+        #bird #private-cards .card:nth-child(4n+1),
+        #bird #private-cards .additional-photo:nth-child(4n+1),
+        #bird #additional-photos .card:nth-child(4n+1),
+        #bird #additional-photos .additional-photo:nth-child(4n+1) {
           clear: none; }
-        #bird #public-cards .card:nth-child(3n+1),
-        #bird #private-cards .card:nth-child(3n+1) {
+        #bird #public-cards .card:nth-child(3n+1), #bird #public-cards .additional-photo:nth-child(3n+1),
+        #bird #private-cards .card:nth-child(3n+1),
+        #bird #private-cards .additional-photo:nth-child(3n+1),
+        #bird #additional-photos .card:nth-child(3n+1),
+        #bird #additional-photos .additional-photo:nth-child(3n+1) {
           clear: none; }
-        #bird #public-cards .card:nth-child(2n+1),
-        #bird #private-cards .card:nth-child(2n+1) {
+        #bird #public-cards .card:nth-child(2n+1), #bird #public-cards .additional-photo:nth-child(2n+1),
+        #bird #private-cards .card:nth-child(2n+1),
+        #bird #private-cards .additional-photo:nth-child(2n+1),
+        #bird #additional-photos .card:nth-child(2n+1),
+        #bird #additional-photos .additional-photo:nth-child(2n+1) {
           clear: left; } }
     @media (max-width: 700px) {
-      #bird #public-cards .card,
-      #bird #private-cards .card {
+      #bird #public-cards .card, #bird #public-cards .additional-photo,
+      #bird #private-cards .card,
+      #bird #private-cards .additional-photo,
+      #bird #additional-photos .card,
+      #bird #additional-photos .additional-photo {
         width: 95%; } }
+  #bird #public-cards .additional-photo img,
+  #bird #private-cards .additional-photo img,
+  #bird #additional-photos .additional-photo img {
+    width: 100%; }
+  #bird #public-cards .additional-photo a,
+  #bird #private-cards .additional-photo a,
+  #bird #additional-photos .additional-photo a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: "Dosis", sans-serif; }
+  #bird #public-cards .card,
+  #bird #private-cards .card,
+  #bird #additional-photos .card {
+    padding: 15px;
+    border: 1px solid #cfd3cf;
+    border-radius: 2px; }
     #bird #public-cards .card h4,
-    #bird #private-cards .card h4 {
+    #bird #private-cards .card h4,
+    #bird #additional-photos .card h4 {
       margin-bottom: 10px;
       text-align: center; }
     #bird #public-cards .card span,
-    #bird #private-cards .card span {
+    #bird #private-cards .card span,
+    #bird #additional-photos .card span {
       display: block;
       clear: both; }
       #bird #public-cards .card span.year,
-      #bird #private-cards .card span.year {
+      #bird #private-cards .card span.year,
+      #bird #additional-photos .card span.year {
         clear: none;
         display: inline;
         font-size: 13px;
         color: #9ba5a9; }
     #bird #public-cards .card ul,
-    #bird #private-cards .card ul {
+    #bird #private-cards .card ul,
+    #bird #additional-photos .card ul {
+      font-size: 15px;
       list-style-type: disc;
-      list-style-position: inside; }
+      list-style-position: inside;
+      max-height: 167px;
+      overflow: scroll; }
     #bird #public-cards .card img,
-    #bird #private-cards .card img {
+    #bird #private-cards .card img,
+    #bird #additional-photos .card img {
       max-width: 100%; }
 
 #birds-taxonomical ul {

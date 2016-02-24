@@ -94,13 +94,32 @@
         display: block
         margin-bottom: $whitespace / 3
 
+  #additional-photos
+    #spinner
+      display: inline-block
+      position: relative
+      left: 50%
+      @include transform(translateX(-50%))
+
   #public-cards,
-  #private-cards
+  #private-cards,
+  #additional-photos
     @include four-three-two-one-parent
 
-    .card
+    .card, .additional-photo
       @include four-three-two-one-child
-      padding: 10px
+
+    .additional-photo
+      img
+        width: 100%
+      a
+        display: block
+        width: 100%
+        text-align: center
+        @include sans-font
+
+    .card
+      padding: 15px
       border: 1px solid $chickadee-light-gray
       border-radius: $card-border-radius
 
@@ -116,8 +135,11 @@
           @include following-text
 
       ul
+        font-size: $base-font-size - 2
         list-style-type: disc
         list-style-position: inside
+        max-height: 167px
+        overflow: scroll
 
       img
         max-width: 100%

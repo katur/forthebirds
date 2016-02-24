@@ -5,6 +5,8 @@ from django.template.defaultfilters import stringfilter
 from django.utils.encoding import force_unicode
 from django.utils.safestring import mark_safe
 
+from forthebirds.local_settings import FLICKR_USER_ID
+
 
 register = template.Library()
 
@@ -24,3 +26,15 @@ def enhanced_markdown(value):
 
     return mark_safe(markdown.markdown(
         force_unicode(value), extensions, enable_attributes=False))
+
+
+@register.filter
+def is_flickr_src(src):
+    return 'staticflickr' in src
+
+
+@register.filter
+def get_flickr_url_from_flickr_src(src):
+    photo_id = src.split('/')[-1].split('_')[0]
+    return 'https://www.flickr.com/photos/{}/{}'.format(FLICKR_USER_ID,
+                                                        photo_id)

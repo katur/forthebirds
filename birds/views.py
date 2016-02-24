@@ -1,9 +1,52 @@
 import datetime
 
+from django.http import JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 
 from birds.forms import BirdSearchForm
 from birds.models import Species
+
+
+def bird(request, slug):
+    """
+    Render page showing a single bird species.
+    """
+    bird = get_object_or_404(Species, slug=slug, is_visible=True)
+
+    public_creations = []
+    private_creations = []
+
+    for creation in bird.creation_set.all():
+        # Get actual instances to take advantage of polymorphic fields
+        actual_creation = creation.get_actual_instance()
+
+        if actual_creation.is_public:
+            public_creations.append(actual_creation)
+        elif request.user.is_authenticated():
+            private_creations.append(actual_creation)
+        else:
+            continue
+
+    public_creations = _organize_creations(public_creations)
+    private_creations = _organize_creations(private_creations)
+
+    context = {
+        'bird': bird,
+        'public_creations': public_creations,
+        'private_creations': private_creations,
+    }
+
+    return render(request, 'bird.html', context)
+
+
+def bird_flickr_photos(request, slug):
+    """
+    Get the Flickr images for the bird with this slug.
+    """
+    bird = get_object_or_404(Species, slug=slug)
+    data = bird.get_lauras_flickr_photos()
+    response = JsonResponse({'data': data})
+    return response
 
 
 def birds(request):
@@ -73,35 +116,3 @@ def _organize_creations(creations):
     creations = sorted(creations, key=get_sorting_date, reverse=True)
     creations = sorted(creations, key=get_name)
     return creations
-
-
-def bird(request, slug):
-    """
-    Render page showing a single bird species.
-    """
-    bird = get_object_or_404(Species, slug=slug, is_visible=True)
-
-    public_creations = []
-    private_creations = []
-
-    for creation in bird.creation_set.all():
-        # Get actual instances to take advantage of polymorphic fields
-        actual_creation = creation.get_actual_instance()
-
-        if actual_creation.is_public:
-            public_creations.append(actual_creation)
-        elif request.user.is_authenticated():
-            private_creations.append(actual_creation)
-        else:
-            continue
-
-    public_creations = _organize_creations(public_creations)
-    private_creations = _organize_creations(private_creations)
-
-    context = {
-        'bird': bird,
-        'public_creations': public_creations,
-        'private_creations': private_creations,
-    }
-
-    return render(request, 'bird.html', context)

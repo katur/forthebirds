@@ -58,7 +58,7 @@ function addArtworkToElement(pk, element, urlStart) {
     success: function(data, textStatus, jqXHR) {
       if (data.artwork) {
         var src = "data:image;base64," + data.artwork;
-        element.html("<img src=\"" + src + "\"/>");
+        element.html("<img src=\"" + src + "\" />");
       }
     }
   });

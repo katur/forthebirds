@@ -52,9 +52,25 @@
   <div id="overview" class="page-subsection">
     {% if bird.main_photo_url or bird.main_sound_recording %}
     <div id="main-media-wrapper">
-      {% if bird.main_photo_url %}
-      <img src="{{ bird.main_photo_url }}" />
+      {% with src=bird.main_photo_url %}
+      {% if src %}
+
+        {% if src|is_flickr_src %}
+        <a href="{{ src|get_flickr_url_from_flickr_src }}">
+        {% endif %}
+
+        <img
+          src="{{ src }}"
+          title="{{ bird.common_name }}"
+          alt="{{ bird.common_name }}"
+        />
+
+        {% if src|is_flickr_src %}
+        </a>
+        {% endif %}
+
       {% endif %}
+      {% endwith %}
 
       {% if bird.main_sound_recording %}
       <audio controls preload="none">
@@ -74,11 +90,6 @@
       {% endif %}
 
       <div id="info-spans">
-        <span>
-          <a href="{{ bird.get_flickr_search_url }}">
-            Search Laura&rsquo;s Flickr photos</a>
-        </span>
-
         {% if bird.has_wikipedia_url %}
         <span>
           <a href="{{ bird.get_wikipedia_url }}">
@@ -119,6 +130,19 @@
   </div>
 </div>
 {% endif %}
+
+<div class="page-section">
+  <h3 id="additional-photos-header" class="page-subtitle"
+      data-more-photos="{{ bird.get_flickr_search_url }}">
+    More Photos
+  </h3>
+
+  <div id="additional-photos" data-bird-slug="{{ bird.slug }}">
+    <div id="spinner">
+      {% include 'spincycle.html' %}
+    </div>
+  </div>
+</div>
 
 
 {% if private_creations and user.is_authenticated %}
