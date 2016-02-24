@@ -112,13 +112,13 @@ class Species(models.Model):
         particular favorites to show on the website. Finds up to 100
         of these images.
 
-        If no results are found with "website", then it returns up to 10
+        If no results are found with "website", then it returns up to 12
         photos tagged with common_name only.
         """
         common_name = self.common_name
         photos = search_flickr([common_name, 'website'], per_page=100)
 
         if photos['photos']['total'] == '0':
-            photos = search_flickr([common_name], per_page=10)
+            photos = search_flickr([common_name], per_page=12)
 
         return photos
