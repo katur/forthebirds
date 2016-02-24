@@ -28,21 +28,23 @@ to download PDF.
 
 ## Code
 
-Django/Python. Scripts live in the standard location (an app's management/commands).
+Django/Python. Scripts live in the standard location
+(`appname/management/commands`).
 
 Javascript uses [jQuery](http://jquery.com/).
 
-CSS is in [SASS](http://sass-lang.com/). To compile, use gulp.
-After installing [Gulp.js](http://gulpjs.com/), run the following in the
-project root to install project-specific gulp packages in a git-ignored
-directory called `node_modules`:
-
+CSS is in [SASS](http://sass-lang.com/).
+[gulpfile.js](gulpfile.js) can be used to automate the compilation of
+SASS in development.
+To set up, assuming [Gulp.js](http://gulpjs.com/) is installed on the
+system, run the following in the project root (which will install the
+dependencies---listed in [package.json](package.json)---in a git-ignored
+directory called `node_modules`):
 ```
-npm install --dev-save gulp
-npm install --dev-save gulp-util
-npm install --dev-save gulp-plumber
-npm install --dev-save gulp-ruby-sass
-npm install --dev-save gulp-coffee
+npm install --dev-save
 ```
 
-Then, to compile, simply run `gulp` in the project root.
+And to start the gulp build script, run the following in the project root:
+```
+gulp
+```
