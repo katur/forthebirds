@@ -29,7 +29,7 @@ function addFlickrPhotos() {
   $.ajax("/bird-flickr-photos/" + birdSlug + "/", {
     type: "GET",
     dataType: "json",
-    timeout: 5000,
+    timeout: 10000,
     success: function(data, textStatus, jqXHR) {
       if (data.data) {
         container.find($("#spinner")).remove();
