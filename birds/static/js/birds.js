@@ -29,6 +29,7 @@ function addFlickrPhotos() {
   $.ajax("/bird-flickr-photos/" + birdSlug + "/", {
     type: "GET",
     dataType: "json",
+    timeout: 5000,
     success: function(data, textStatus, jqXHR) {
       if (data.data) {
         container.find($("#spinner")).remove();
@@ -37,8 +38,8 @@ function addFlickrPhotos() {
 
         if (photos.length === 0) {
           container.append(
-            "<div class=\"additional-photo\">Laura hasn't added " +
-            "photos for this bird.</div>");
+            "<span class=\"no-photo-message\">Laura hasn't added " +
+            "photos for this bird.</span>");
           return;
         }
 
@@ -64,6 +65,19 @@ function addFlickrPhotos() {
           );
         }
       }
+    },
+    error: function(x, t, m) {
+      container.find($("#spinner")).remove();
+      var message;
+      if (t === "timeout") {
+        message = "Flickr taking too long to respond.";
+      } else {
+        message = "Some other error occurred.";
+      }
+      container.append(
+        "<span class=\"no-photo-message\">" +
+        message + "</span>"
+      );
     }
   });
 };

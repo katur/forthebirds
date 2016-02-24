@@ -851,6 +851,10 @@ html, body {
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%); }
+#bird #additional-photos .no-photo-message {
+  width: 100%;
+  padding: 0 2.5%;
+  float: left; }
 #bird #public-cards,
 #bird #private-cards,
 #bird #additional-photos {
