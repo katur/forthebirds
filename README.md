@@ -1,6 +1,6 @@
 # Laura Erickson's For the Birds
 
-A birder's portfolio and resource for helping birds.
+A birder's portfolio and resources for learning about and helping birds.
 
 
 ## Dependencies
@@ -8,7 +8,10 @@ A birder's portfolio and resource for helping birds.
 Python version is listed in `runtime.txt`.
 
 Package dependencies are listed in `requirements.txt`.
-Install with `pip install -r requirements.txt`.
+To install:
+```
+pip install -r requirements.txt
+```
 
 Due to a release issue with django-private-media, do these two steps for
 Django 1.9 compatibility:
