@@ -1,5 +1,5 @@
-from django.contrib import admin
 from django import forms
+from django.contrib import admin
 
 from creations.models import (Article, BlogPost, Book, ExternalProject,
                               RadioProgram, RadioProgramRerun,
@@ -156,8 +156,6 @@ class WebPageAdmin(admin.ModelAdmin):
     filter_horizontal = ('species',)
     prepopulated_fields = {'slug': ('title',)}
 
-    form = WebPageAdminForm
-
     fieldsets = (
         BASIC_FIELDSET_WITH_SLUG,
         ('Details', {'fields': (
@@ -165,6 +163,8 @@ class WebPageAdmin(admin.ModelAdmin):
         }),
         TAGGING_FIELDSET,
     )
+
+    form = WebPageAdminForm
 
 
 admin.site.register(Article, ArticleAdmin)
