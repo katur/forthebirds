@@ -16,6 +16,8 @@ urlpatterns = [
         views.radio_program, name='radio_program_url'),
     url(r'^radio/artwork/(?P<id>\d+)/$',
         views.radio_program_artwork, name='radio_program_artwork_url'),
+    url(r'^radio/program-count$', views.radio_program_count,
+        name='radio_program_count'),
 
     url(r'^writing/$', views.writing, name='writing_url'),
     url(r'^book/(?P<slug>.+)/$', views.book, name='book_url'),

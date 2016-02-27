@@ -103,6 +103,12 @@ def radio_program_artwork(request, id):
     return response
 
 
+def radio_program_count(request):
+    program_count = RadioProgram.objects.count()
+    response = JsonResponse({'program_count': program_count})
+    return response
+
+
 def radio_calendar(request, year, month):
     """
     Render the radio calendar page.
