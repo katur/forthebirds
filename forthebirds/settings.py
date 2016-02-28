@@ -129,6 +129,7 @@ LOGIN_REDIRECT_URL = '/'
 
 
 # Miscellany
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/radio/program-count$'
 
 PRIVATE_MEDIA_SERVER = 'private_media.servers.DefaultServer'
