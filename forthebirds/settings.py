@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'jquery',
     'private_media',
     'sorl.thumbnail',
@@ -66,6 +67,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -127,8 +129,9 @@ LOGIN_REDIRECT_URL = '/'
 
 
 # Miscellany
-PRIVATE_MEDIA_SERVER = 'private_media.servers.DefaultServer'
+CORS_URLS_REGEX = r'^/radio/program-count$'
 
+PRIVATE_MEDIA_SERVER = 'private_media.servers.DefaultServer'
 
 MARKDOWN_PROMPT = (
     'Use Markdown syntax for italics, bullets, etc. See '
