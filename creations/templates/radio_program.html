@@ -36,6 +36,7 @@
     <div id="above-mp3">
       <span>
         Original Air Date: {{ program.air_date }}
+        {% if program.date_is_estimate %}(estimated date){% endif %}
       </span>
 
       {% with program.get_reruns.all as reruns %}
