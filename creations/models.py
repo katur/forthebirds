@@ -214,7 +214,17 @@ class RadioProgram(Creation):
                        args=[self.id, slugify(self.title)])
 
     def get_reruns(self):
-        return self.radioprogramrerun_set
+        """
+        Get all reruns of this program.
+        """
+        return self.radioprogramrerun_set.all()
+
+    def get_number_of_reruns(self):
+        """
+        Get the number of reruns for this program.
+        """
+        return len(self.get_reruns())
+    get_number_of_reruns.short_description = 'Num reruns'
 
     def get_artwork(self):
         """

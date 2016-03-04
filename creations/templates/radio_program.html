@@ -39,7 +39,7 @@
         {% if program.date_is_estimate %}(estimated date){% endif %}
       </span>
 
-      {% with program.get_reruns.all as reruns %}
+      {% with program.get_reruns as reruns %}
       {% if reruns %}
       <span>
         Rerun Dates:
