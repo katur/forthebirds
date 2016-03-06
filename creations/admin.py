@@ -9,71 +9,135 @@ from creations.models import (Article, BlogPost, Book, ExternalProject,
                               WebPage)
 
 
-BASIC_FIELDSET = (None, {'fields': ('title', 'description',)})
+BASIC_FIELDSET = (None, {'fields': (
+    'title',
+    'description',
+)})
+
 BASIC_FIELDSET_WITH_SLUG = (None, {'fields': (
-    'title', 'slug', 'description',)})
-TAGGING_FIELDSET = ('Tagging', {'fields': ('species', 'tags',)})
+    'title',
+    'slug',
+    'description',
+)})
+
+TAGGING_FIELDSET = ('Tagging', {'fields': (
+    'species',
+    'tags',
+)})
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_published', 'published_by')
-    filter_horizontal = ('species',)
+
+    list_display = (
+        'title',
+        'date_published',
+        'published_by'
+    )
+
+    filter_horizontal = (
+        'species',
+    )
+
     fieldsets = (
         BASIC_FIELDSET,
         ('Details', {'fields': (
-            'published_by', 'date_published', 'url', 'file', 'text'),
-        }),
+            'published_by',
+            'date_published',
+            'url',
+            'file',
+            'text',
+        )}),
         TAGGING_FIELDSET,
     )
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url',)
-    filter_horizontal = ('species',)
+
+    list_display = (
+        'title',
+        'url',
+    )
+
+    filter_horizontal = (
+        'species',
+    )
 
     fieldsets = (
         BASIC_FIELDSET,
-        ('Details', {'fields': ('url',)}),
+        ('Details', {'fields': (
+            'url',
+        )}),
         TAGGING_FIELDSET,
     )
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'date_published',)
-    filter_horizontal = ('species',)
-    prepopulated_fields = {'slug': ('title',)}
+
+    list_display = (
+        'title',
+        'slug',
+        'date_published',
+    )
+
+    filter_horizontal = (
+        'species',
+    )
+
+    prepopulated_fields = {
+        'slug': ('title',),
+    }
 
     fieldsets = (
         BASIC_FIELDSET_WITH_SLUG,
         ('Details', {'fields': (
-            'published_by', 'date_published', 'isbn_10', 'isbn_13',
-            'purchase_url', 'cover_photo'),
-        }),
+            'published_by',
+            'date_published',
+            'isbn_10',
+            'isbn_13',
+            'purchase_url',
+            'cover_photo',
+        )}),
         TAGGING_FIELDSET,
     )
 
 
 class ExternalProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url', 'display_order',)
-    list_editable = ('display_order',)
-    filter_horizontal = ('species',)
+
+    list_display = (
+        'title',
+        'url',
+        'display_order',
+    )
+
+    list_editable = (
+        'display_order',
+    )
+
+    filter_horizontal = (
+        'species',
+    )
 
     fieldsets = (
         BASIC_FIELDSET,
-        ('Details', {'fields': ('url',)}),
+        ('Details', {'fields': (
+            'url',
+        )}),
         TAGGING_FIELDSET,
     )
 
 
-class RadioProgramRerunInline(admin.TabularInline):
-    model = RadioProgramRerun
+class AirYearListFilter(admin.SimpleListFilter):
+    """
+    Admin list filter to filter by air_date year.
+    """
 
+    title = 'air date year'
+    parameter_name = 'air_date'
 
-class YearListFilter(admin.SimpleListFilter):
     def lookups(self, request, model_admin):
-        date_list = RadioProgram.objects.all().dates('air_date', 'year')
-        year_tuples = [(d.year, d.year) for d in date_list]
-        return year_tuples
+        qs = model_admin.get_queryset(request)
+        date_list = qs.dates('air_date', 'year')
+        return [(d.year, d.year) for d in reversed(date_list)]
 
     def queryset(self, request, queryset):
         if self.value():
@@ -82,14 +146,13 @@ class YearListFilter(admin.SimpleListFilter):
             return queryset
 
 
-def year_filter(field, title_=None):
-    class YearListFieldFilter(YearListFilter):
-        parameter_name = field
-        title = title_ or parameter_name.replace('_', ' ')
-    return YearListFieldFilter
+class RadioProgramRerunInline(admin.TabularInline):
+
+    model = RadioProgramRerun
 
 
 class RadioProgramAdmin(admin.ModelAdmin):
+
     list_display = (
         'title',
         'air_date',
@@ -101,71 +164,136 @@ class RadioProgramAdmin(admin.ModelAdmin):
 
     list_filter = (
         'date_is_estimate',
-        year_filter('air_date'),
+        AirYearListFilter,
     )
 
-    search_fields = ('title',)
+    search_fields = (
+        'title',
+    )
 
-    filter_horizontal = ('species',)
+    filter_horizontal = (
+        'species',
+    )
 
     inlines = [RadioProgramRerunInline]
 
     fieldsets = (
         BASIC_FIELDSET,
         ('Details', {'fields': (
-            'air_date', 'date_is_estimate', 'file',
-            'supplemental_content_url', 'transcript',),
-        }),
+            'air_date',
+            'date_is_estimate',
+            'file',
+            'supplemental_content_url',
+            'transcript',
+        )}),
         TAGGING_FIELDSET,
     )
 
 
 class RadioProgramMissedDateAdmin(admin.ModelAdmin):
-    list_display = ('air_date', 'text',)
+
+    list_display = (
+        'air_date',
+        'text',
+    )
 
 
 class ResearchCategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+
+    list_display = (
+        'name',
+    )
 
 
 class ResearchAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'attribution', 'date', 'url',)
-    list_filter = ('category',)
-    search_fields = ('title', 'attribution', 'description',)
-    filter_horizontal = ('species',)
+
+    list_display = (
+        'title',
+        'category',
+        'attribution',
+        'date',
+        'url',
+    )
+
+    list_filter = (
+        'category',
+    )
+
+    search_fields = (
+        'title',
+        'attribution',
+        'description',
+    )
+
+    filter_horizontal = (
+        'species',
+    )
 
     fieldsets = (
         BASIC_FIELDSET,
         ('Details', {'fields': (
-            'category', 'is_public', 'date', 'attribution',
-            'url', 'file', 'text'),
-        }),
+            'category',
+            'is_public',
+            'date',
+            'attribution',
+            'url',
+            'file',
+            'text',
+        )}),
         TAGGING_FIELDSET,
     )
 
 
 class SoundRecordingAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_recorded', 'location', 'duration', 'file',)
-    search_fields = ('title', 'location', 'description',)
-    filter_horizontal = ('species',)
+
+    list_display = (
+        'title',
+        'date_recorded',
+        'location',
+        'duration',
+        'file',
+    )
+
+    search_fields = (
+        'title',
+        'location',
+        'description',
+    )
+
+    filter_horizontal = (
+        'species',
+    )
 
     fieldsets = (
         BASIC_FIELDSET,
         ('Details', {'fields': (
-            'file', 'date_recorded', 'location',),
-        }),
+            'file',
+            'date_recorded',
+            'location',
+        )}),
         TAGGING_FIELDSET,
     )
 
 
 class SpeakingProgramFileInline(admin.TabularInline):
+
     model = SpeakingProgramFile
 
 
 class SpeakingProgramAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug',)
-    filter_horizontal = ('species',)
-    prepopulated_fields = {'slug': ('title',)}
+
+    list_display = (
+        'title',
+        'slug',
+    )
+
+    filter_horizontal = (
+        'species',
+    )
+
+    prepopulated_fields = {
+        'slug': ('title',)
+    }
 
     inlines = [SpeakingProgramFileInline]
 
@@ -176,6 +304,7 @@ class SpeakingProgramAdmin(admin.ModelAdmin):
 
 
 class WebPageAdminForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
         super(WebPageAdminForm, self).__init__(*args, **kwargs)
         self.fields['content'].widget = admin.widgets.AdminTextareaWidget(
@@ -183,16 +312,33 @@ class WebPageAdminForm(forms.ModelForm):
 
 
 class WebPageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'display_order',)
-    list_editable = ('display_order',)
-    filter_horizontal = ('species',)
-    prepopulated_fields = {'slug': ('title',)}
+
+    list_display = (
+        'title',
+        'slug',
+        'display_order',
+    )
+
+    list_editable = (
+        'display_order',
+    )
+
+    filter_horizontal = (
+        'species',
+    )
+
+    prepopulated_fields = {
+        'slug': ('title',)
+    }
 
     fieldsets = (
         BASIC_FIELDSET_WITH_SLUG,
         ('Details', {'fields': (
-            'is_public', 'display_title', 'date_published', 'content',),
-        }),
+            'is_public',
+            'display_title',
+            'date_published',
+            'content',
+        )}),
         TAGGING_FIELDSET,
     )
 
