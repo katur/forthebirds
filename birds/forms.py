@@ -1,3 +1,5 @@
+import re
+
 from django import forms
 
 from birds.models import Species
@@ -10,7 +12,7 @@ class BirdSearchForm(forms.Form):
 
     def clean(self):
         cleaned_data = super(BirdSearchForm, self).clean()
-        terms = cleaned_data['query'].split()
+        terms = re.split('\W+', cleaned_data['query'])
 
         all_birds = Species.objects.filter(is_visible=True)
         search_birds = []
