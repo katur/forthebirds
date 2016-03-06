@@ -69,11 +69,43 @@ class RadioProgramRerunInline(admin.TabularInline):
     model = RadioProgramRerun
 
 
+class YearListFilter(admin.SimpleListFilter):
+    def lookups(self, request, model_admin):
+        date_list = RadioProgram.objects.all().dates('air_date', 'year')
+        year_tuples = [(d.year, d.year) for d in date_list]
+        return year_tuples
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(air_date__year=self.value())
+        else:
+            return queryset
+
+
+def year_filter(field, title_=None):
+    class YearListFieldFilter(YearListFilter):
+        parameter_name = field
+        title = title_ or parameter_name.replace('_', ' ')
+    return YearListFieldFilter
+
+
 class RadioProgramAdmin(admin.ModelAdmin):
-    list_display = ('title', 'air_date', 'date_is_estimate', 'duration',
-                    'file', 'get_number_of_reruns',)
-    list_filter = ('air_date', 'date_is_estimate',)
+    list_display = (
+        'title',
+        'air_date',
+        'date_is_estimate',
+        'duration',
+        'file',
+        'get_number_of_reruns',
+    )
+
+    list_filter = (
+        'date_is_estimate',
+        year_filter('air_date'),
+    )
+
     search_fields = ('title',)
+
     filter_horizontal = ('species',)
 
     inlines = [RadioProgramRerunInline]
