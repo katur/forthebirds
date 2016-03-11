@@ -19,6 +19,18 @@ class Command(BaseCommand):
 
 
 def _perform_sanity_checks(filename, date, stream):
+    """
+    Perform various sanity checks.
+
+    TODO: consider these additional checks:
+      - mp3 has an embedded photo
+      - no overlapping dates (across original air dates, rerun dates, and
+        "oops" dates)
+      - all weekdays accounted for
+      - no weekends
+      - no two files are exactly alike (ideally this check would be about
+        the audio only)
+    """
     if not _file_exists(filename):
         stream.stderr.write('FILE DOES NOT EXIST: {}'.format(filename))
 
