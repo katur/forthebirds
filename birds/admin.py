@@ -40,7 +40,10 @@ class HasCreationsFilter(admin.SimpleListFilter):
     title = 'has_creations'
 
     def lookups(self, request, model_admin):
-        return (('0', 'No creations',), ('1', 'Has creations',),)
+        return (
+            ('1', 'Has creations',),
+            ('0', 'No creations',),
+        )
 
     def queryset(self, request, queryset):
         if self.value() not in ('0', '1'):
