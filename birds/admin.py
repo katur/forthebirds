@@ -31,6 +31,34 @@ class SpeciesAdminForm(forms.ModelForm):
             self.fields['main_sound_recording'].queryset = recordings
 
 
+class HasCreationsFilter(admin.SimpleListFilter):
+    """
+    Admin list filter to filter for whether a bird has creations.
+    """
+
+    parameter_name = 'has_creations'
+    title = 'has_creations'
+
+    def lookups(self, request, model_admin):
+        return (('0', 'No creations',), ('1', 'Has creations',),)
+
+    def queryset(self, request, queryset):
+        if self.value() not in ('0', '1'):
+            return queryset
+
+        filtered_pks = set()
+
+        queryset = queryset.prefetch_related('creation_set').all()
+
+        for bird in queryset:
+            if self.value() == '0' and not bird.get_number_of_creations():
+                filtered_pks.add(bird.pk)
+            elif self.value() == '1' and bird.get_number_of_creations():
+                filtered_pks.add(bird.pk)
+
+        return Species.objects.filter(pk__in=filtered_pks)
+
+
 class SpeciesAdmin(admin.ModelAdmin):
 
     form = SpeciesAdminForm
@@ -50,6 +78,7 @@ class SpeciesAdmin(admin.ModelAdmin):
         empty_filter('blurb'),
         empty_filter('main_photo_url'),
         null_filter('main_sound_recording'),
+        HasCreationsFilter,
     )
 
     search_fields = (
