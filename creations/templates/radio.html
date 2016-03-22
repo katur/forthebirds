@@ -80,6 +80,7 @@
           </div>
 
           <div class="fields column">
+            {% if program.file %}
             <span class="audio">
               {% include 'audio_with_download.html' with file=program.file %}
             </span>
@@ -87,6 +88,10 @@
             <span class="duration">
               Duration: {{ program.get_printable_duration }}
             </span>
+
+            {% else %}
+            <span>Audio missing</span>
+            {% endif %}
 
             {% if program.supplemental_content_url %}
             <span class="transcript">

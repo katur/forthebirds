@@ -192,7 +192,7 @@ class ExternalProject(Creation):
 class RadioProgram(Creation):
     """A 'For the Birds' radio program."""
 
-    file = models.FileField(upload_to='radio')
+    file = models.FileField(upload_to='radio', blank=True)
 
     # Duration in seconds
     duration = models.PositiveIntegerField(blank=True, null=True)

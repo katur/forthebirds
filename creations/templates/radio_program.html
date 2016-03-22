@@ -27,55 +27,75 @@
 {% url 'admin:creations_radioprogram_change' program.id as edit_page_url %}
 {% include 'edit_page_link.html' %}
 
-<div id="program-columns" class="page-subsection">
-  <div id="artwork" class="column" data-pk="{{ program.pk }}">
-    <img src="{% static 'images/camera-icon.png' %}" />
-  </div>
-
-  <div class="column">
-    <div id="above-mp3">
-      <span>
-        Original Air Date: {{ program.air_date }}
-        {% if program.date_is_estimate %}(estimated date){% endif %}
-      </span>
-
-      {% with program.get_reruns as reruns %}
-      {% if reruns %}
-      <span>
-        Rerun Dates:
-        {% for rerun in reruns %}
-          {{ rerun.air_date }}{% if not forloop.last %}; {% endif %}
-        {% endfor %}
-      </span>
-      {% endif %}
-      {% endwith %}
-
-      <span>
-        {{ program.description|enhanced_markdown }}
-      </span>
+<div class="page-section">
+  <div id="program-columns" class="page-subsection">
+    <div id="artwork" class="column" data-pk="{{ program.pk }}">
+      <img src="{% static 'images/camera-icon.png' %}" />
     </div>
 
-    <div id="mp3-and-below">
-      <span>
-        {% include 'audio_with_download.html' with file=program.file %}
-      </span>
+    <div class="column">
+      <div id="above-mp3">
+        <span>
+          Original Air Date: {{ program.air_date }}
+          {% if program.date_is_estimate %}(estimated date){% endif %}
+        </span>
 
-      <span id="duration">
-        Duration: {{ program.get_printable_duration }}
-      </span>
+        {% with program.get_reruns as reruns %}
+        {% if reruns %}
+        <span>
+          Rerun Dates:
+          {% for rerun in reruns %}
+            {{ rerun.air_date }}{% if not forloop.last %}; {% endif %}
+          {% endfor %}
+        </span>
+        {% endif %}
+        {% endwith %}
 
-      {% if program.supplemental_content_url %}
-      <span id="transcript">
-        <a href="{{ program.supplemental_content_url }}">
-          Transcript and photos</a>
-      </span>
-      {% endif %}
+        <span>
+          {{ program.description|enhanced_markdown }}
+        </span>
+      </div>
+
+      <div id="mp3-and-below">
+        {% if program.file %}
+        <span>
+          {% include 'audio_with_download.html' with file=program.file %}
+        </span>
+
+        <span id="duration">
+          Duration: {{ program.get_printable_duration }}
+        </span>
+
+        {% else %}
+        <span>Audio missing</span>
+        {% endif %}
+
+        {% if program.supplemental_content_url %}
+        <span id="transcript">
+          <a href="{{ program.supplemental_content_url }}">
+            Transcript and photos</a>
+        </span>
+        {% endif %}
+      </div>
     </div>
   </div>
+
+  <div class="page-subsection">
+    {% include 'tags.html' with item=program %}
+  </div>
+
 </div>
 
-<div class="page-subsection">
-  {% include 'tags.html' with item=program %}
+{% if not program.supplemental_content_url and not program.file %}
+{% if program.transcript %}
+<div class="page-section">
+  <h3 class="page-subtitle">Transcript</h3>
+
+  <div id="transcript" class="markdown">
+    {{ program.transcript|enhanced_markdown }}
+  </div>
 </div>
+{% endif %}
+{% endif %}
 
 {% endblock %}

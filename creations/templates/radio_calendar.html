@@ -54,7 +54,9 @@ for {{ month }}, {{ year }}
           {{ program.title }}</a>
 
         <span class="program-type">
+          {% if program.duration %}
           {{ program.get_printable_duration}},
+          {% endif %}
 
           {% if is_rerun %}
           rerun ({{ program.air_date|date:'Y' }})
@@ -63,7 +65,14 @@ for {{ month }}, {{ year }}
           {% endif %}
         </span>
 
+        {% if program.file %}
         {% include 'download.html' with file=program.file %}
+
+        {% else %}
+        <span class="mp3-unavailable">
+          Audio missing
+        </span>
+        {% endif %}
 
         {% endif%}
       </span>

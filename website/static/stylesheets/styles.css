@@ -1401,6 +1401,24 @@ html, body {
     margin-bottom: 12px; }
     #radio-program #program-columns #mp3-and-below span:last-child {
       margin-bottom: 0px; }
+#radio-program #transcript {
+  width: 100%;
+  max-width: 750px; }
+  #radio-program #transcript .image-wrapper {
+    display: table;
+    margin-left: auto;
+    margin-right: auto; }
+    #radio-program #transcript .image-wrapper img {
+      max-width: 500px;
+      height: auto; }
+    #radio-program #transcript .image-wrapper .image-caption {
+      display: table-caption;
+      caption-side: bottom; }
+    #radio-program #transcript .image-wrapper.banner {
+      width: 100%; }
+      #radio-program #transcript .image-wrapper.banner img {
+        width: 100%;
+        max-width: 100%; }
 
 #radio .download-link img,
 #radio-program .download-link img {
@@ -1431,12 +1449,12 @@ html, body {
     #radio-calendar table td {
       height: 50px;
       font-size: 16px; }
-      #radio-calendar table td a, #radio-calendar table td span {
+      #radio-calendar table td span, #radio-calendar table td a {
         display: block; }
       #radio-calendar table td .day {
         font-family: "Dosis", sans-serif;
         font-weight: bold; }
-      #radio-calendar table td .program-type {
+      #radio-calendar table td .program-type, #radio-calendar table td .mp3-unavailable {
         font-family: "Dosis", sans-serif;
         font-size: 15px;
         color: #777e86; }

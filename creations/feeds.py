@@ -107,7 +107,9 @@ class ForTheBirdsPodcastFeed(Feed):
         """Get a list of items to publish in this feed."""
         today = datetime.today()
         return (RadioProgram.objects.order_by('-air_date')
-                .filter(air_date__lte=today))[:EPISODE_LIMIT]
+                .filter(air_date__lte=today)
+                .exclude(file='')
+                )[:EPISODE_LIMIT]
 
     def item_title(self, item):
         return item.title

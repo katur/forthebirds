@@ -188,6 +188,12 @@ $mobile-breakpoint: 500px
       @include cleared-spans($whitespace / 3)
       @include radio-detail-font
 
+  #transcript
+    width: 100%
+    max-width: 750px
+
+    @include markdown-image-wrapper(500px)
+
 
 #radio,
 #radio-program
@@ -228,14 +234,14 @@ $mobile-breakpoint: 500px
       height: 50px
       font-size: $base-font-size - 1
 
-      a, span
+      span, a
         display: block
 
       .day
         @include sans-font
         font-weight: bold
 
-      .program-type
+      .program-type, .mp3-unavailable
         @include radio-detail-font
 
       &.no-day
