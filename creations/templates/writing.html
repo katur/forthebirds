@@ -34,10 +34,13 @@
       {% endif %}
 
       <span class="title">{{ book.title }}</span>
-      <span class="date">{{ book.date_published|date:'Y' }}</span>
+
+      <span class="year-published">
+        {{ book.date_published|date:'Y' }}
+      </span>
 
       {% if book.published_by %}
-      <span class="published_by">
+      <span class="published-by">
         Published by {{ book.published_by }}
       </span>
       {% endif %}

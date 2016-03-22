@@ -1616,8 +1616,10 @@ html, body {
     #writing #books .book .title {
       font-style: italic;
       font-weight: bold; }
-    #writing #books .book .more-info {
+    #writing #books .book .more-info, #writing #books .book .year-published, #writing #books .book .published-by {
       font-family: "Dosis", sans-serif; }
+    #writing #books .book .year-published, #writing #books .book .published-by {
+      color: #777e86; }
   @media (max-width: 1000px) {
     #writing #books .book {
       width: 28.3%; }

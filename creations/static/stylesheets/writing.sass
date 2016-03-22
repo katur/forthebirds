@@ -37,8 +37,11 @@
         font-style: italic
         font-weight: bold
 
-      .more-info
+      .more-info, .year-published, .published-by
         @include sans-font
+
+      .year-published, .published-by
+        color: $chickadee-dark-gray
 
     @media (max-width: 1000px)
       .book
