@@ -20,7 +20,6 @@ def is_string_equal(x, y):
 @stringfilter
 def enhanced_markdown(value):
     extensions = [
-        'nl2br',  # more intuitive linebreak
         'smarty',  # emdash, endash, pretty quotes
     ]
 
