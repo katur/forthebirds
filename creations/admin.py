@@ -1,12 +1,12 @@
 from django import forms
 from django.contrib import admin
 
-from creations.models import (Article, BlogPost, Book, ExternalProject,
-                              RadioProgram, RadioProgramRerun,
-                              RadioProgramMissedDate,
-                              ResearchCategory, Research, SoundRecording,
-                              SpeakingProgram, SpeakingProgramFile,
-                              WebPage)
+from creations.models import (
+    Article, BlogPost, Book, ExternalProject,
+    RadioProgram, RadioProgramRerun, RadioProgramMissedDate,
+    ResearchCategory, Research, SoundRecording,
+    SpeakingProgram, SpeakingProgramFile, WebPage)
+from utils.admin import empty_filter
 
 
 BASIC_FIELDSET = (None, {'fields': (
@@ -164,6 +164,7 @@ class RadioProgramAdmin(admin.ModelAdmin):
 
     list_filter = (
         'date_is_estimate',
+        empty_filter('file'),
         AirYearListFilter,
     )
 
