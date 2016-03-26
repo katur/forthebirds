@@ -198,6 +198,10 @@ class RadioProgramMissedDateAdmin(admin.ModelAdmin):
         'text',
     )
 
+    search_fields = (
+        'text',
+    )
+
 
 class ResearchCategoryAdmin(admin.ModelAdmin):
 
