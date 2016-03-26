@@ -12,9 +12,13 @@ class Command(BaseCommand):
 
     def handle(self, **options):
         for p in RadioProgram.objects.all():
+            if not p.file:
+                continue
             _perform_sanity_checks(p.file.name, p.air_date, self)
 
         for s in SoundRecording.objects.all():
+            if not s.file:
+                continue
             _perform_sanity_checks(s.file.name, s.date_recorded, self)
 
 
