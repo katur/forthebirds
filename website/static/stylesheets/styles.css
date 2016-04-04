@@ -723,15 +723,17 @@ html, body {
     font-size: 26px;
     font-family: "Dosis";
     color: #9ba5a9; }
-  #home #content #slideshow-wrapper div {
-    margin-top: 36px; }
+  #home #content #slideshow-wrapper img {
+    margin-top: 36px;
+    width: 100%;
+    height: 100%; }
   @media (max-width: 750px) {
     #home #content #slideshow-wrapper span {
       font-size: 22px; } }
   @media (max-width: 500px) {
     #home #content #slideshow-wrapper span {
       font-size: 18px; }
-    #home #content #slideshow-wrapper div {
+    #home #content #slideshow-wrapper img {
       margin-top: 18px; } }
 
 #about img#primary-photo {
