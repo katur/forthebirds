@@ -199,7 +199,7 @@ class RadioProgram(Creation):
 
     air_date = models.DateField()
     date_is_estimate = models.BooleanField(default=False)
-    supplemental_content_url = models.URLField(blank=True)
+    blog_url = models.URLField(blank=True)
     transcript = models.TextField(blank=True,
                                   help_text=settings.MARKDOWN_PROMPT)
 
@@ -216,6 +216,10 @@ class RadioProgram(Creation):
     def has_file(self):
         return self.file != ''
     has_file.boolean = True
+
+    def has_blog_url(self):
+        return self.blog_url != ''
+    has_blog_url.boolean = True
 
     def has_transcript(self):
         return self.transcript != ''

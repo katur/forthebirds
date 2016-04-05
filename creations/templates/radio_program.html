@@ -70,9 +70,9 @@
         <span>Audio missing</span>
         {% endif %}
 
-        {% if program.supplemental_content_url %}
+        {% if program.blog_url %}
         <span id="transcript">
-          <a href="{{ program.supplemental_content_url }}">
+          <a href="{{ program.blog_url }}">
             Related blog post</a>
         </span>
         {% endif %}
@@ -86,8 +86,7 @@
 
 </div>
 
-{% if not program.supplemental_content_url and not program.file %}
-{% if program.transcript %}
+{% if not program.blog_url and not program.file and program.transcript %}
 <div class="page-section">
   <h3 class="page-subtitle">Transcript</h3>
 
@@ -95,7 +94,6 @@
     {{ program.transcript|enhanced_markdown }}
   </div>
 </div>
-{% endif %}
 {% endif %}
 
 {% endblock %}

@@ -159,6 +159,7 @@ class RadioProgramAdmin(admin.ModelAdmin):
         'date_is_estimate',
         'file',
         'duration',
+        'has_blog_url',
         'has_transcript',
         'get_number_of_reruns',
     )
@@ -166,6 +167,7 @@ class RadioProgramAdmin(admin.ModelAdmin):
     list_filter = (
         'date_is_estimate',
         empty_filter('file'),
+        empty_filter('blog_url'),
         empty_filter('transcript'),
         AirYearListFilter,
     )
@@ -186,7 +188,7 @@ class RadioProgramAdmin(admin.ModelAdmin):
             'air_date',
             'date_is_estimate',
             'file',
-            'supplemental_content_url',
+            'blog_url',
             'transcript',
         )}),
         TAGGING_FIELDSET,
