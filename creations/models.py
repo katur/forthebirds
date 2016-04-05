@@ -213,6 +213,14 @@ class RadioProgram(Creation):
         return reverse('radio_program_url',
                        args=[self.id, slugify(self.title)])
 
+    def has_file(self):
+        return self.file != ''
+    has_file.boolean = True
+
+    def has_transcript(self):
+        return self.transcript != ''
+    has_transcript.boolean = True
+
     def get_reruns(self):
         """
         Get all reruns of this program.

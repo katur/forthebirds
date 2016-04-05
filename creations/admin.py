@@ -157,14 +157,16 @@ class RadioProgramAdmin(admin.ModelAdmin):
         'title',
         'air_date',
         'date_is_estimate',
-        'duration',
         'file',
+        'duration',
+        'has_transcript',
         'get_number_of_reruns',
     )
 
     list_filter = (
         'date_is_estimate',
         empty_filter('file'),
+        empty_filter('transcript'),
         AirYearListFilter,
     )
 
