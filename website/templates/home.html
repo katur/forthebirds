@@ -5,11 +5,29 @@
 
 
 {% block content %}
-<div id="slideshow-wrapper">
-  <span>
+<div id="home-wrapper">
+  <span id="motto">
     For the love, understanding, and protection of birds.
   </span>
 
-  <img src="https://farm3.staticflickr.com/2943/15443275435_f8e6e0ca79_b.jpg"/>
+  <div id="home-slider" class="my-slider">
+    <ul>
+      {% for image in slideshow_images %}
+      <li class="home-slide">
+        <img src="{{ image }}">
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <script>
+    $(function() {
+      $('.my-slider').unslider({
+        autoplay: true,
+        arrows: false
+      });
+    })
+  </script>
+
 </div>
 {% endblock %}

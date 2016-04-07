@@ -2,29 +2,64 @@
   #page-title
     display: none
 
-  #content
-    #slideshow-wrapper
-      margin: auto
-      text-align: center
-      max-width: 900px
+  #home-wrapper
+    margin: auto
+    max-width: 800px
+    text-align: center
 
-      span
-        font-style: italic
-        font-size: 26px
-        font-family: 'Dosis'
-        color: $chickadee-gray
+    #motto
+      font-style: italic
+      font-size: 26px
+      font-family: 'Dosis'
+      color: $chickadee-gray
 
-      img
-        margin-top: $whitespace
+    #home-slider
+      margin-top: $whitespace
+      background: black
+
+      .home-slide
+        display: inline-block
+        position: relative
         width: 100%
-        height: 100%
 
-      @media (max-width: 750px)
-        span
-          font-size: 22px
+        &:before
+          content: ""
+          display: block
+          margin-top: 60%
 
-      @media (max-width: 500px)
-        span
-          font-size: 18px
         img
-          margin-top: $whitespace / 2
+          position: absolute
+          left: 0
+          top: 50%
+          @include transform(translateY(-50%))
+          width: 100%
+
+    .unslider-nav ol
+      list-style: none
+      text-align: center
+
+    .unslider-nav ol li
+      display: inline-block
+      width: 6px
+      height: 6px
+      margin: 0 4px
+      background: transparent
+      border-radius: 5px
+      overflow: hidden
+      text-indent: -999em
+      border: 2px solid $chickadee-gray
+      cursor: pointer
+
+    .unslider-nav ol li.unslider-active
+      background: $chickadee-gray
+      cursor: default
+
+    @media (max-width: 750px)
+      #motto
+        font-size: 22px
+
+    @media (max-width: 500px)
+      #motto
+        font-size: 18px
+      #home-slider
+        margin-top: $whitespace / 2
