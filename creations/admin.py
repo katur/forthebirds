@@ -158,7 +158,6 @@ class RadioProgramAdmin(admin.ModelAdmin):
         'air_date',
         'date_is_estimate',
         'file',
-        'duration',
         'has_blog_url',
         'has_transcript',
         'get_number_of_reruns',
