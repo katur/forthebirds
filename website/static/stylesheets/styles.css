@@ -1232,11 +1232,9 @@ html, body {
         list-style-type: disc; }
   #miscellany ul li {
     margin-bottom: 9px; }
-    #miscellany ul li a,
-    #miscellany ul li span {
-      display: block;
-      clear: both; }
     #miscellany ul li .description {
+      display: block;
+      clear: both;
       margin-left: 1em; }
       #miscellany ul li .description a {
         display: inline-block;
