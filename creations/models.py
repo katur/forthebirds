@@ -74,6 +74,7 @@ class Creation(models.Model, RealInstanceProvider):
     species = models.ManyToManyField(Species, blank=True,
                                      limit_choices_to={'is_visible': True})
     tags = TaggableManager(blank=True)
+    is_favorite = models.BooleanField(default=False)
     is_public = True
     is_image = False
 

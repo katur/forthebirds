@@ -12,12 +12,14 @@ from utils.admin import empty_filter
 BASIC_FIELDSET = (None, {'fields': (
     'title',
     'description',
+    'is_favorite',
 )})
 
 BASIC_FIELDSET_WITH_SLUG = (None, {'fields': (
     'title',
     'slug',
     'description',
+    'is_favorite',
 )})
 
 TAGGING_FIELDSET = ('Tagging', {'fields': (
