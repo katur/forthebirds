@@ -10,7 +10,7 @@
     For the love, understanding, and protection of birds.
   </span>
 
-  <div id="home-slider" class="my-slider">
+  <div id="home-slider">
     <ul>
       {% for image in slideshow_images %}
       <li class="home-slide">
@@ -21,13 +21,13 @@
   </div>
 
   <script>
-    $(function() {
-      $('.my-slider').unslider({
+    $(document).ready(function() {
+      $("#home-slider").unslider({
+        animation: 'fade',
         autoplay: true,
-        infinite: true,
         arrows: false
       });
-    })
+    });
   </script>
 
 </div>
