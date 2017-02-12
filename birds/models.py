@@ -87,7 +87,7 @@ class Species(models.Model):
     def get_abc_bird_of_the_week_url(self):
         url_name = self.common_name.replace(' ', '-')
         url_name = url_name.replace("'", '')
-        return 'http://abcbirds.org/bird/{}/'.format(url_name)
+        return 'https://abcbirds.org/bird/{}/'.format(url_name)
 
     def get_resolved_abc_bird_of_the_week_url(self):
         return http_response_url(self.get_abc_bird_of_the_week_url())
@@ -95,7 +95,7 @@ class Species(models.Model):
     def get_cornell_all_about_birds_url(self):
         url_name = self.common_name.replace(' ', '_')
         url_name = url_name.replace("'", '')
-        return 'http://www.allaboutbirds.org/guide/{}'.format(url_name)
+        return 'https://www.allaboutbirds.org/guide/{}'.format(url_name)
 
     def get_resolved_cornell_all_about_birds_url(self):
         url = http_response_url(self.get_cornell_all_about_birds_url())

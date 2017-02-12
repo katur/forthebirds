@@ -1248,14 +1248,14 @@ html, body {
 .itunes-badge-large {
   display: inline-block;
   overflow: hidden;
-  background: url(//linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;
+  background: url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;
   width: 110px;
   height: 40px; }
 
 .itunes-badge-small {
   display: inline-block;
   overflow: hidden;
-  background: url(//linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-sm.svg) no-repeat;
+  background: url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-sm.svg) no-repeat;
   width: 80px;
   height: 15px; }
 

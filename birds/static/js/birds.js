@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 
 function getFlickrImageSrc(item) {
-  return "http://farm" + item.farm + ".staticflickr.com/" +
+  return "https://farm" + item.farm + ".staticflickr.com/" +
     item.server + "/" + item.id + "_" + item.secret + ".jpg";
 }
 
