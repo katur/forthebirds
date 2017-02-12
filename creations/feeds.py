@@ -92,8 +92,8 @@ class ForTheBirdsPodcastFeed(Feed):
             settings.SITE_DOMAIN +
             '/radio/feed.xml')
         extras['itunes_image_url'] = (
-            'http://media.lauraerickson.com'
-            '/images/a588d7c7-cb24-487b-bf3e-b8e94b61fb72_'
+            settings.MEDIA_URL +
+            'images/a588d7c7-cb24-487b-bf3e-b8e94b61fb72_'
             'laura_erickson_itunes.jpg')
         extras['itunes_explicit'] = 'clean'
         extras['itunes_categories'] = {
