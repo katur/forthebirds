@@ -35,12 +35,12 @@ to download PDF.
 Django/Python. Scripts live in the standard location
 (`appname/management/commands`).
 
-Javascript uses [jQuery](http://jquery.com/).
+Javascript uses [jQuery](https://jquery.com).
 
-CSS is in [SASS](http://sass-lang.com/).
+CSS is in [SASS](http://sass-lang.com).
 [gulpfile.js](gulpfile.js) can be used to automate the compilation of
 SASS in development.
-To set up, assuming [Gulp.js](http://gulpjs.com/) is installed on the
+To set up, assuming [Gulp.js](http://gulpjs.com) is installed on the
 system, run the following in the project root (which will install the
 dependencies---listed in [package.json](package.json)---in a git-ignored
 directory called `node_modules`):
