@@ -28,27 +28,4 @@ Speaking Program: <i>{{ program.title }}</i>
   {% endif %}
 </div>
 
-
-{% if files %}
-<div class="page-section">
-  <h3 class="page-subtitle">
-    Presentation Files
-  </h3>
-
-  <ul id="files">
-    {% for file in files %}
-    <li>
-      <a href="{{ file.file.url }}">
-        {{ file.title }}
-        {% if file.date %}
-          ({{ file.date }})
-        {% endif %}
-      </a>
-      {{ file.description }}
-    </li>
-    {% endfor %}
-  </ul>
-</div>
-{% endif %}
-
 {% endblock %}

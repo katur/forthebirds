@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import private_media.storages
 
 
 class Migration(migrations.Migration):
@@ -25,7 +24,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='speakingprogramfile',
             name='file',
-            field=models.FileField(default=1, storage=private_media.storages.PrivateMediaStorage(), upload_to=b'speaking'),
+            field=models.FileField(default=1, upload_to=b'speaking'),
             preserve_default=False,
         ),
     ]

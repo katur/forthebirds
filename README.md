@@ -13,13 +13,6 @@ To install:
 pip install -r requirements.txt
 ```
 
-Due to a release issue with django-private-media, do these two steps for
-Django 1.9 compatibility:
-```
-pip uninstall django-private-media
-pip install git+https://github.com/RacingTadpole/django-private-media.git
-```
-
 
 ## Database Schema
 

@@ -29,7 +29,6 @@ urlpatterns += [
     url(r'^', include('birds.urls')),
     url(r'^', include('creations.urls')),
     url(r'^', include('waystohelp.urls')),
-    url(r'^', include('private_media.urls')),
 
     # Catchall to try old website before returning 404
     url(r'^(?P<path>.+)/$', try_old_website),

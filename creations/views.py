@@ -12,8 +12,7 @@ from creations.models import (Article, Book, ExternalProject,
                               RadioProgram, RadioProgramRerun,
                               RadioProgramMissedDate,
                               ResearchCategory, Research, SoundRecording,
-                              SpeakingProgram, SpeakingProgramFile,
-                              WebPage)
+                              SpeakingProgram, WebPage)
 from website.models import User
 
 
@@ -289,14 +288,9 @@ def speaking(request):
 
 def speaking_program(request, slug):
     program = get_object_or_404(SpeakingProgram, slug=slug)
-    if request.user.is_authenticated() and request.user.is_staff:
-        files = SpeakingProgramFile.objects.filter(program=program)
-    else:
-        files = None
 
     context = {
         'program': program,
-        'files': files,
     }
     return render(request, 'speaking_program.html', context)
 

@@ -11,7 +11,6 @@ from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
-from private_media.storages import PrivateMediaStorage
 
 from birds.models import Species
 from website.models import UploadedImage
@@ -427,27 +426,6 @@ class SpeakingProgram(Creation):
 
     def get_absolute_url(self):
         return reverse('speaking_program_url', args=[self.slug])
-
-
-class SpeakingProgramFile(models.Model):
-    """A file (typically a Powerpoint) for a SpeakingProgram."""
-
-    program = models.ForeignKey(SpeakingProgram, models.CASCADE)
-    title = models.CharField(max_length=120)
-    file = models.FileField(upload_to='speaking',
-                            storage=PrivateMediaStorage())
-    date = models.DateField(null=True, blank=True)
-    description = models.TextField(blank=True,
-                                   help_text=settings.MARKDOWN_PROMPT)
-
-    class Meta:
-        ordering = ['date']
-
-    def __unicode__(self):
-        return 'Speaking Presentation File: ' + self.title
-
-    def get_absolute_url(self):
-        return self.file.url
 
 
 class WebPage(Creation):

@@ -5,7 +5,7 @@ from creations.models import (
     Article, BlogPost, Book, ExternalProject,
     RadioProgram, RadioProgramRerun, RadioProgramMissedDate,
     ResearchCategory, Research, SoundRecording,
-    SpeakingProgram, SpeakingProgramFile, WebPage)
+    SpeakingProgram, WebPage)
 from utils.admin import empty_filter
 
 
@@ -285,11 +285,6 @@ class SoundRecordingAdmin(admin.ModelAdmin):
     )
 
 
-class SpeakingProgramFileInline(admin.TabularInline):
-
-    model = SpeakingProgramFile
-
-
 class SpeakingProgramAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -304,8 +299,6 @@ class SpeakingProgramAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ('title',)
     }
-
-    inlines = [SpeakingProgramFileInline]
 
     fieldsets = (
         BASIC_FIELDSET_WITH_SLUG,
