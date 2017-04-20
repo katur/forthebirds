@@ -33,7 +33,7 @@ class SpeciesAdminForm(forms.ModelForm):
 
 class HasCreationsFilter(admin.SimpleListFilter):
     """
-    Admin list filter to filter for whether a bird has creations.
+    Admin list filter for whether a bird has creations.
     """
 
     parameter_name = 'has_creations'
@@ -74,6 +74,7 @@ class SpeciesAdmin(admin.ModelAdmin):
         'has_photo',
         'has_sound',
         'get_number_of_creations',
+        'get_number_of_radio_programs',
     )
 
     list_filter = (

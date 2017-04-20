@@ -67,6 +67,11 @@ class Species(models.Model):
         return len(self.creation_set.all())
     get_number_of_creations.short_description = 'Num creations'
 
+    def get_number_of_radio_programs(self):
+        programs = [c for c in self.creation_set.all() if c.is_radio_program()]
+        return len(programs)
+    get_number_of_radio_programs.short_description = 'Num programs'
+
     def get_flickr_search_url(self):
         url = 'https://www.flickr.com/search?'
         get_params = {

@@ -109,6 +109,10 @@ class Creation(models.Model, RealInstanceProvider):
         class_name = self.__class__.__name__
         return class_name.lower() == 'research'
 
+    def is_radio_program(self):
+        class_name = self.get_actual_instance().__class__.__name__
+        return class_name.lower().startswith('radio')
+
     def has_tags(self):
         return len(self.species.all()) or len(self.tags.names())
 
