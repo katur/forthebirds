@@ -18,13 +18,8 @@
 {% url 'admin:waystohelp_waytohelp_change' way.id as edit_page_url %}
 {% include 'edit_page_link.html' %}
 
-{% if user.is_authenticated %}
 <div id="text" class="markdown">
   {{ way.text|enhanced_markdown }}
 </div>
-
-{% else %}
-More content coming soon!
-{% endif %}
 
 {% endblock %}
