@@ -2,8 +2,6 @@ from datetime import datetime, date, time
 
 from django.conf import settings
 from django.contrib.syndication.views import Feed
-from django.core.urlresolvers import reverse
-from django.template.defaultfilters import slugify
 from django.utils.feedgenerator import Rss201rev2Feed
 
 from creations.models import RadioProgram
@@ -130,8 +128,7 @@ class ForTheBirdsPodcastFeed(Feed):
     def item_link(self, item):
         return https_to_http('{}{}'.format(
             settings.SITE_DOMAIN,
-            reverse('radio_program_url',
-                    args=[item.pk, slugify(item.title)])
+            item.get_absolute_url()
         ))
 
     def item_enclosure_url(self, item):
