@@ -1,6 +1,7 @@
 """Utility module with helpers for HTTP response querying."""
 
 import urllib2
+import re
 from django.core.urlresolvers import reverse
 
 
@@ -32,3 +33,7 @@ def http_response_ok(url):
         return False
 
     return r.code == 200
+
+
+def https_to_http(url):
+    return re.sub(r'^https', 'http', url)

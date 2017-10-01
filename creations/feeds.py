@@ -2,13 +2,22 @@ from datetime import datetime, date, time
 
 from django.conf import settings
 from django.contrib.syndication.views import Feed
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
 from django.utils.feedgenerator import Rss201rev2Feed
 
 from creations.models import RadioProgram
+from utils.http import https_to_http
 
 EPISODE_LIMIT = 250
 
+HOME_URL = https_to_http(settings.SITE_DOMAIN)
+RADIO_URL = https_to_http('{}/radio/'.format(settings.SITE_DOMAIN))
+FEED_URL = https_to_http('{}/radio/feed.xml'.format(settings.SITE_DOMAIN))
+AUTHOR_IMAGE_URL = https_to_http((
+    '{}images/a588d7c7-cb24-487b-bf3e-b8e94b61fb72_'
+    'laura_erickson_itunes.jpg'
+).format(settings.MEDIA_URL))
 
 class iTunesFeed(Rss201rev2Feed):
     """
@@ -70,17 +79,20 @@ class ForTheBirdsPodcastFeed(Feed):
     feed_type = iTunesFeed
     title = "Laura Erickson's For the Birds"
     subtitle = 'For the love, understanding, and protection of birds.'
+    link = RADIO_URL
+    feed_url = FEED_URL
+
     description = (
         '"For the Birds" began airing on KUMD in Duluth, MN, in May, 1986, '
         'and is the longest continually-running radio '
         'program about birds in the U.S. '
-        'Hundreds more episodes are available for free at {}/radio/.'
-    ).format(settings.SITE_DOMAIN)
-    link = reverse_lazy('radio_url')
+        'Hundreds more episodes are available for free at {}.'
+    ).format(RADIO_URL)
 
     author_name = 'Laura Erickson'
     author_email = 'chickadee@lauraerickson.com'
-    author_link = settings.SITE_DOMAIN
+    author_link = HOME_URL
+
     feed_copyright = 'Copyright {} by Laura Erickson'.format(
         date.today().year)
 
@@ -88,13 +100,8 @@ class ForTheBirdsPodcastFeed(Feed):
         extras = {}
         extras['itunes_name'] = 'Laura Erickson'
         extras['itunes_email'] = 'chickadee@lauraerickson.com'
-        extras['itunes_new_feed_url'] = (
-            settings.SITE_DOMAIN +
-            '/radio/feed.xml')
-        extras['itunes_image_url'] = (
-            settings.MEDIA_URL +
-            'images/a588d7c7-cb24-487b-bf3e-b8e94b61fb72_'
-            'laura_erickson_itunes.jpg')
+        extras['itunes_new_feed_url'] = FEED_URL
+        extras['itunes_image_url'] = AUTHOR_IMAGE_URL
         extras['itunes_explicit'] = 'clean'
         extras['itunes_categories'] = {
             'Science &amp; Medicine': ['Natural Sciences'],
@@ -120,8 +127,16 @@ class ForTheBirdsPodcastFeed(Feed):
     def item_pubdate(self, item):
         return datetime.combine(item.air_date, time())
 
+    def item_link(self, item):
+        return https_to_http('{}{}'.format(
+            settings.SITE_DOMAIN,
+            reverse('radio_program_url',
+                    args=[item.pk, slugify(item.title)])
+        ))
+
     def item_enclosure_url(self, item):
-        return item.file.url
+        # The mp3 URL
+        return https_to_http(item.file.url)
 
     def item_enclosure_length(self, item):
         try:
