@@ -11,18 +11,35 @@ class Command(BaseCommand):
     def handle(self, **options):
         require_db_write_acknowledgement()
 
-        birds = Species.objects.all()
-        for bird in birds:
-            abc = bird.get_resolved_abc_bird_of_the_week_url()
-            if abc:
-                bird.has_abc_bird_of_the_week_url = True
+        for bird in Species.objects.filter(is_visible=True):
+            self.stdout.write('Processing bird {}'.format(bird))
 
             cornell = bird.get_resolved_cornell_all_about_birds_url()
-            if cornell:
+            if cornell and not bird.has_cornell_all_about_birds_url:
                 bird.has_cornell_all_about_birds_url = True
+                bird.save()
+                self.stdout.write('\tAdded Cornell url for {}'.format(bird))
 
-            wikipedia = bird.get_resolved_wikipedia_url()
-            if wikipedia:
+            elif not cornell and bird.has_cornell_all_about_birds_url:
+                self.stderr.write('\tWARNING: Cornell lookup failed for {}'
+                                  .format(bird))
+
+            wiki = bird.get_resolved_wikipedia_url()
+            if wiki and not bird.has_wikipedia_url:
                 bird.has_wikipedia_url = True
+                bird.save()
+                self.stdout.write('\tAdded Wikipedia url for {}'.format(bird))
 
-            bird.save()
+            elif not wiki and bird.has_wikipedia_url:
+                self.stderr.write('\tWARNING: Wikipedia lookup failed for {}'
+                                  .format(bird))
+
+            mn = bird.get_resolved_mn_bird_atlas_url()
+            if mn and not bird.has_mn_bird_atlas_url:
+                bird.has_mn_bird_atlas_url = True
+                bird.save()
+                self.stdout.write('\tAdded MN Bird Atlas url for {}'.format(bird))
+
+            elif not mn and bird.has_mn_bird_atlas_url:
+                self.stderr.write('\tWARNING: MN Bird Atlas lookup failed for {}'
+                                  .format(bird))
