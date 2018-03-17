@@ -30,8 +30,10 @@ class Species(models.Model):
     order = models.CharField(max_length=50)
 
     is_visible = models.BooleanField(default=False)
+
     has_abc_bird_of_the_week_url = models.BooleanField(default=False)
     has_cornell_all_about_birds_url = models.BooleanField(default=False)
+    has_mn_bird_atlas_url = models.BooleanField(default=False)
     has_wikipedia_url = models.BooleanField(default=False)
 
     blurb = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
@@ -81,32 +83,36 @@ class Species(models.Model):
         }
         return url + urllib.urlencode(get_params)
 
-    def get_wikipedia_url(self):
-        url_name = self.common_name.replace(' ', '_')
-        url_name = urllib.quote_plus(url_name)
-        return 'https://en.wikipedia.org/wiki/{}'.format(url_name)
-
-    def get_resolved_wikipedia_url(self):
-        return http_response_url(self.get_wikipedia_url())
-
     def get_abc_bird_of_the_week_url(self):
-        url_name = self.common_name.replace(' ', '-')
-        url_name = url_name.replace("'", '')
-        return 'https://abcbirds.org/bird/{}/'.format(url_name)
+        url_name = self.common_name.replace(' ', '-').replace("'", '')
+        return 'https://abcbirds.org/bird/{}'.format(url_name)
+
+    def get_cornell_all_about_birds_url(self):
+        url_name = self.common_name.replace(' ', '_').replace("'", '')
+        return 'https://www.allaboutbirds.org/guide/{}'.format(url_name)
+
+    def get_mn_bird_atlas_url(self):
+        url_name = self.common_name.replace(' ', '-').replace("'", '')
+        return 'https://mnbirdatlas.org/species/{}'.format(url_name)
+
+    def get_wikipedia_url(self):
+        url_name = urllib.quote_plus(self.common_name.replace(' ', '_'))
+        return 'https://en.wikipedia.org/wiki/{}'.format(url_name)
 
     def get_resolved_abc_bird_of_the_week_url(self):
         return http_response_url(self.get_abc_bird_of_the_week_url())
-
-    def get_cornell_all_about_birds_url(self):
-        url_name = self.common_name.replace(' ', '_')
-        url_name = url_name.replace("'", '')
-        return 'https://www.allaboutbirds.org/guide/{}'.format(url_name)
 
     def get_resolved_cornell_all_about_birds_url(self):
         url = http_response_url(self.get_cornell_all_about_birds_url())
         if url and 'search' in url:
             url = None
         return url
+
+    def get_resolved_mn_bird_atlas_url(self):
+        return http_response_url(self.get_mn_bird_atlas_url())
+
+    def get_resolved_wikipedia_url(self):
+        return http_response_url(self.get_wikipedia_url())
 
     def get_lauras_flickr_photos(self):
         """
