@@ -18,8 +18,10 @@ def http_response_url(url):
         r = urllib2.urlopen(req)
     except urllib2.URLError as e:
         return None
+    except:
+        return None
 
-    if r.code == 200:
+    if r.getcode() == 200:
         return r.url
     else:
         return None
@@ -30,6 +32,8 @@ def http_response_ok(url):
         url = url.encode('utf8')
         r = urllib2.urlopen(url)
     except urllib2.URLError:
+        return False
+    except:
         return False
 
     return r.code == 200
