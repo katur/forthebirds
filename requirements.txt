@@ -11,7 +11,7 @@ markdown2==2.2.2
 mutagen==1.31
 MySQL-python==1.2.5
 oauthlib==3.0.1
-Pillow==2.5.3
+Pillow==6.0.0
 requests==2.21.0
 requests-oauthlib==1.2.0
 requests-toolbelt==0.9.1
