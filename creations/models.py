@@ -130,7 +130,7 @@ class Article(Creation):
         ordering = ['-date_published']
 
     def __unicode__(self):
-        return 'Article: ' + self.title
+        return u'Article: {}'.format(self.title)
 
     def get_absolute_url(self):
         if self.url:
@@ -149,7 +149,7 @@ class BlogPost(Creation):
         ordering = ['title']
 
     def __unicode__(self):
-        return 'Blog Post: ' + self.title
+        return u'Blog Post: {}'.format(self.title)
 
     def get_absolute_url(self):
         return self.url
@@ -171,7 +171,7 @@ class Book(Creation):
         ordering = ['-date_published']
 
     def __unicode__(self):
-        return 'Book: ' + self.title
+        return u'Book: {}'.format(self.title)
 
     def get_absolute_url(self):
         return reverse('book_url', args=[self.slug])
@@ -187,7 +187,7 @@ class ExternalProject(Creation):
         ordering = ['display_order', 'title']
 
     def __unicode__(self):
-        return 'External Project: ' + self.title
+        return u'External Project: {}'.format(self.title)
 
     def get_absolute_url(self):
         return self.url
@@ -211,7 +211,7 @@ class RadioProgram(Creation):
         ordering = ['-air_date']
 
     def __unicode__(self):
-        return 'Radio Program: ' + self.title
+        return u'Radio Program: {}'.format(self.title)
 
     def get_absolute_url(self):
         return reverse('radio_program_url',
@@ -296,7 +296,7 @@ class RadioProgramRerun(models.Model):
         ordering = ['-air_date']
 
     def __unicode__(self):
-        return '{} aired {}'.format(self.program, self.air_date)
+        return u'{} aired {}'.format(self.program, self.air_date)
 
 
 class RadioProgramMissedDate(models.Model):
@@ -357,7 +357,7 @@ class Research(Creation):
         verbose_name_plural = 'Research'
 
     def __unicode__(self):
-        return 'Research: ' + self.title
+        return u'Research: {}'.format(self.title)
 
     def get_absolute_url(self):
         return reverse('research_item_url', args=[self.id])
@@ -383,7 +383,7 @@ class SoundRecording(Creation):
         ordering = ['-date_recorded']
 
     def __unicode__(self):
-        return 'Sound Recording: ' + self.title
+        return u'Sound Recording: {}'.format(self.title)
 
     def get_absolute_url(self):
         return reverse('sound_recording_url', args=[self.id])
@@ -426,7 +426,7 @@ class SpeakingProgram(Creation):
         ordering = ['title']
 
     def __unicode__(self):
-        return 'Speaking Program: ' + self.title
+        return u'Speaking Program: {}'.format(self.title)
 
     def get_absolute_url(self):
         return reverse('speaking_program_url', args=[self.slug])
@@ -446,7 +446,7 @@ class WebPage(Creation):
         ordering = ['display_order', 'title']
 
     def __unicode__(self):
-        return 'Web Page: ' + self.title
+        return u'Web Page: {}'.format(self.title)
 
     def get_absolute_url(self):
         return reverse('webpage_url', args=[self.slug])
