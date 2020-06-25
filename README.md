@@ -3,15 +3,12 @@
 A birder's portfolio and resources for learning about and helping birds.
 
 
-## Dependencies
+## Installation
 
-Python version is listed in `runtime.txt`.
-
-Package dependencies are listed in `requirements.txt`.
-To install:
-```
-pip install -r requirements.txt
-```
+1. Install the version Python listed in `runtime.txt`
+1. Install the python dependencies with `pip install -r requirements.txt`
+1. Add your `localsettings.py` file (see `forthebirds/localsettings.sample.py`)
+1. Start the site with the command `./manage.py runserver`
 
 
 ## Database Schema
