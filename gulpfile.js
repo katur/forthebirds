@@ -1,18 +1,18 @@
 var gulp = require('gulp');
-var util = require('gulp-util');
-var plumber = require('gulp-plumber');
-var sass = require('gulp-ruby-sass');
+var sass = require('gulp-sass');
 
-var sassMain = 'website/static/stylesheets/styles.sass';
-var cssDir = 'website/static/stylesheets/';
+sass.compiler = require('node-sass');
 
-gulp.task('default', function() {
-  gulp.run('compileSass')
-  gulp.watch('**/*.sass', ['compileSass']);
-});
+var watchFiles = '**/*.sass';
+var inputFile = 'website/static/stylesheets/styles.sass';
+var outputDirectory = 'website/static/stylesheets/';
 
-gulp.task('compileSass', function() {
-  return sass(sassMain)
-    .on('error', sass.logError)
-    .pipe(gulp.dest(cssDir));
+var compileCSS = function () {
+  return gulp.src(inputFile)
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(gulp.dest(outputDirectory));
+}
+
+gulp.task('default', function () {
+  gulp.watch(watchFiles, compileCSS);
 });

@@ -62,3 +62,14 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return unicode(self).encode('utf-8')
+
+class PatreonThankYou(models.Model):
+    text = models.CharField(max_length=100, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.text
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')

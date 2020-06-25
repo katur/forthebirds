@@ -42,4 +42,6 @@ ITUNES_SUBSCRIBE_LINK = (
     'laura-ericksons-for-the-birds/id655880335?mt=2'
 )
 
+PATREON_LINK = 'https://www.patreon.com/lauraerickson'
+
 PERMANENT_REDIRECTS = []

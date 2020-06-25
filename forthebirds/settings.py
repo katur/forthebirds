@@ -23,7 +23,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 from localsettings import (
     DEBUG, SECRET_KEY, DATABASES, SITE_DOMAIN, OLD_SITE_DOMAIN,
     ITUNES_SUBSCRIBE_LINK, GOOGLE_ANALYTICS_ID, PERMANENT_REDIRECTS,
-    STATIC_URL, MEDIA_URL, STATIC_ROOT, MEDIA_ROOT,)
+    STATIC_URL, MEDIA_URL, STATIC_ROOT, MEDIA_ROOT, PATREON_LINK,)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

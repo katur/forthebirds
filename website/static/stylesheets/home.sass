@@ -1,3 +1,6 @@
+$patreon-breakpoint: 750px
+
+
 #home
   #page-title
     display: none
@@ -41,6 +44,7 @@
             width: 100%
 
     .unslider-nav ol
+      margin-top: 5px
       list-style: none
       text-align: center
 
@@ -69,3 +73,50 @@
         font-size: 18px
       #home-slider
         margin-top: $whitespace / 2
+
+  .home-thanks
+    margin-top: 40px
+
+    &-intro
+      display: flex
+      align-items: center
+      justify-content: center
+
+      @media (max-width: #{$patreon-breakpoint})
+        flex-direction: column
+
+      &-icon
+        @media (max-width: #{$patreon-breakpoint})
+          margin-bottom: 10px
+
+        @media (min-width: #{$patreon-breakpoint + 1})
+          margin-right: 15px
+
+        &.logo
+          width: 60px
+
+          @media (max-width: #{$patreon-breakpoint})
+            display: block
+
+          @media (min-width: #{$patreon-breakpoint + 1})
+            display: none
+
+        &.wordmark
+          width: 140px
+
+          @media (max-width: #{$patreon-breakpoint})
+            display: none
+
+          @media (min-width: #{$patreon-breakpoint + 1})
+            display: block
+
+      &-text
+        text-align: left
+
+        @media (max-width: #{$patreon-breakpoint})
+          text-align: center
+
+    &-list
+      width: 100%
+      margin-top: 20px
+      color: $chickadee-gray

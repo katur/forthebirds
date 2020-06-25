@@ -6,6 +6,7 @@ A birder's portfolio and resources for learning about and helping birds.
 ## Installation
 
 1. Install the version Python listed in `runtime.txt`
+1. Create a virtual environment for the project with `mkvirtualenv forthebirds`
 1. Install the python dependencies with `pip install -r requirements.txt`
 1. Add your `localsettings.py` file (see `forthebirds/localsettings.sample.py`)
 1. Start the site with the command `./manage.py runserver`
@@ -27,18 +28,16 @@ Django/Python. Scripts live in the standard location
 
 Javascript uses [jQuery](https://jquery.com).
 
-CSS is in [SASS](http://sass-lang.com).
-[gulpfile.js](gulpfile.js) can be used to automate the compilation of
-SASS in development.
-To set up, assuming [Gulp.js](http://gulpjs.com) is installed on the
-system, run the following in the project root (which will install the
-dependencies---listed in [package.json](package.json)---in a git-ignored
-directory called `node_modules`):
+CSS is written in [SASS](http://sass-lang.com), and uses
+[gulp](gulpfile.js) to automate the compilation of SASS in development.
+Assuming you have [NPM](https://www.npmjs.com/get-npm), install the
+project's dependencies--listed in [package.json](package.json)--
+by running the following in the project root:
 ```
 npm install --dev-save
 ```
 
 And to start the gulp build script, run the following in the project root:
 ```
-gulp
+npx gulp
 ```
