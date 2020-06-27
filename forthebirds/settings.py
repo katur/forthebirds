@@ -114,6 +114,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'forthebirds.context_processors.google_analytics',
+                'forthebirds.context_processors.static_asset_hashes',
             ],
         },
     },

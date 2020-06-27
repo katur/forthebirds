@@ -41,3 +41,7 @@ And to start the gulp build script, run the following in the project root:
 ```
 npx gulp
 ```
+
+Cache busting the stylesheet happens automatically: gulp compilation writes the
+output file's hash to disk, which updates the stylesheet url. Cache busting
+javascript must be done manually.

@@ -37,3 +37,8 @@ def get_flickr_url_from_flickr_src(src):
     photo_id = src.split('/')[-1].split('_')[0]
     return 'https://www.flickr.com/photos/{}/{}'.format(FLICKR_USER_ID,
                                                         photo_id)
+
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
