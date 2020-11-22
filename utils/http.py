@@ -1,6 +1,6 @@
 """Utility module with helpers for HTTP response querying."""
 
-import urllib2
+import urllib
 import re
 from django.core.urlresolvers import reverse
 
@@ -14,9 +14,9 @@ def http_response_url(url):
         # Workaround so it doesn't seem like we are a content-stealing bot
         # (we're not! we're just checking if the URL works!)
         url = url.encode('utf8')
-        req = urllib2.Request(url, headers={'User-Agent': 'Magic Browser'})
-        r = urllib2.urlopen(req)
-    except urllib2.URLError as e:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Magic Browser'})
+        r = urllib.request.urlopen(req)
+    except urllib.error.URLError as e:
         return None
     except:
         return None
@@ -30,8 +30,8 @@ def http_response_url(url):
 def http_response_ok(url):
     try:
         url = url.encode('utf8')
-        r = urllib2.urlopen(url)
-    except urllib2.URLError:
+        r = urllib.request.urlopen(url)
+    except urllib.error.URLError:
         return False
     except:
         return False
