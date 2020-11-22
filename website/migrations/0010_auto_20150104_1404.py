@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='userprofile',
             name='publicity_photos',
-            field=models.ManyToManyField(related_name=b'uploaded_publicity_photos', to=b'website.UploadedImage', blank=True),
+            field=models.ManyToManyField(related_name=b'uploaded_publicity_photos', to='website.UploadedImage', blank=True),
         ),
     ]
