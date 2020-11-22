@@ -9,9 +9,11 @@ Python version is listed in `runtime.txt`.
 
 Package dependencies are listed in `requirements.txt`.
 To install:
-```
-pip install -r requirements.txt
-```
+
+* clone the repo and cd in
+* `python -m venv forthebirds-venv`
+* `source forthebirds-venv/bin/activate`
+* `pip install -r requirements.txt`
 
 
 ## Database Schema
