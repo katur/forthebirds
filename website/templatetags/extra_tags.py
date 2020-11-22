@@ -24,7 +24,7 @@ def enhanced_markdown(value):
     ]
 
     return mark_safe(markdown.markdown(
-        force_text(value), extensions, enable_attributes=False))
+        force_text(value), extensions=extensions))
 
 
 @register.filter
