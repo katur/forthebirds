@@ -23,7 +23,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 from .localsettings import (
     DEBUG, SECRET_KEY, DATABASES, SITE_DOMAIN, OLD_SITE_DOMAIN,
     ITUNES_SUBSCRIBE_LINK, GOOGLE_ANALYTICS_ID, PERMANENT_REDIRECTS,
-    STATIC_URL, MEDIA_URL, STATIC_ROOT, MEDIA_ROOT,)
+    STATIC_URL, MEDIA_URL, STATIC_ROOT, MEDIA_ROOT, PATREON_LINK,)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -114,6 +114,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'forthebirds.context_processors.google_analytics',
+                'forthebirds.context_processors.static_asset_hashes',
             ],
         },
     },
@@ -129,6 +130,7 @@ LOGIN_REDIRECT_URL = '/'
 # Miscellany
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/radio/program-count$'
+FILE_UPLOAD_PERMISSIONS = 0644
 
 MARKDOWN_PROMPT = (
     'Use Markdown syntax for italics, bullets, etc. See '

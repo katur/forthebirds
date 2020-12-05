@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from sorl.thumbnail.admin import AdminImageMixin
 
-from website.models import UserProfile, UploadedImage
+from website.models import UserProfile, UploadedImage, PatreonThankYou
 
 
 class UserProfileInline(admin.StackedInline):
@@ -33,6 +33,11 @@ class UploadedImageAdmin(AdminImageMixin, admin.ModelAdmin):
     search_fields = ('title', 'attribution',)
 
 
+class PatreonThankYouAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.unregister(User)
 admin.site.register(User, MyUserAdmin)
 admin.site.register(UploadedImage, UploadedImageAdmin)
+admin.site.register(PatreonThankYou, PatreonThankYouAdmin)

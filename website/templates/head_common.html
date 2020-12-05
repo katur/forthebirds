@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load extra_tags %}
 
 
 <meta name="viewport" content="width=device-width, user-scalable=no" />
@@ -6,7 +7,7 @@
 <link href="{% static 'images/favicon.ico' %}"
   rel="icon" type="image/x-icon" />
 
-<link href="{% static 'stylesheets/styles.css' %}"
+<link href="{% static 'stylesheets/styles.css' %}?v={{ static_asset_hashes|get_item:'styles.css' }}"
   rel="stylesheet" type="text/css" />
 
 <link href="{% static 'stylesheets/unslider.css' %}"

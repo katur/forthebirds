@@ -3,17 +3,15 @@
 A birder's portfolio and resources for learning about and helping birds.
 
 
-## Dependencies
+## Installation
 
-Python version is listed in `runtime.txt`.
-
-Package dependencies are listed in `requirements.txt`.
-To install:
-
-* clone the repo and cd in
-* `python -m venv forthebirds-venv`
-* `source forthebirds-venv/bin/activate`
-* `pip install -r requirements.txt`
+1. Install the Python version listed in `runtime.txt`
+1. Clone the repo and cd in
+1. `python -m venv forthebirds-venv`
+1. `source forthebirds-venv/bin/activate`
+1. `pip install -r requirements.txt`
+1. Add a `localsettings.py` file (see `forthebirds/localsettings.sample.py`)
+1. Start the site with the command `./manage.py runserver`
 
 
 ## Database Schema
@@ -32,18 +30,20 @@ Django/Python. Scripts live in the standard location
 
 Javascript uses [jQuery](https://jquery.com).
 
-CSS is in [SASS](http://sass-lang.com).
-[gulpfile.js](gulpfile.js) can be used to automate the compilation of
-SASS in development.
-To set up, assuming [Gulp.js](http://gulpjs.com) is installed on the
-system, run the following in the project root (which will install the
-dependencies---listed in [package.json](package.json)---in a git-ignored
-directory called `node_modules`):
+CSS is written in [SASS](http://sass-lang.com), and uses
+[gulp](gulpfile.js) to automate the compilation of SASS in development.
+Assuming you have [NPM](https://www.npmjs.com/get-npm), install the
+project's dependencies--listed in [package.json](package.json)--
+by running the following in the project root:
 ```
 npm install --dev-save
 ```
 
 And to start the gulp build script, run the following in the project root:
 ```
-gulp
+npx gulp
 ```
+
+Cache busting the stylesheet happens automatically: gulp compilation writes the
+output file's hash to disk, which updates the stylesheet url. Cache busting
+javascript must be done manually.

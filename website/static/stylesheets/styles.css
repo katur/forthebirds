@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /********** Get rid of native browser styles **********/
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -66,6 +65,7 @@ body:not(:-moz-handler-blocked) svg > * {
   margin: 12px;
   width: 72px;
   height: 72px; }
+
 @keyframes spin-cycle {
   from {
     fill: white;
@@ -99,6 +99,7 @@ body:not(:-moz-handler-blocked) svg > * {
   margin: 12px 24px;
   width: 48px;
   height: 48px; }
+
 @keyframes forthebirds {
   from {
     fill: #cfd3cf;
@@ -132,6 +133,7 @@ body:not(:-moz-handler-blocked) svg > * {
   margin: 12px 24px;
   width: 48px;
   height: 48px; }
+
 @keyframes yellow {
   from {
     fill: yellow;
@@ -165,6 +167,7 @@ body:not(:-moz-handler-blocked) svg > * {
   margin: 12px 24px;
   width: 100px;
   height: 40px; }
+
 @keyframes circles {
   from {
     fill: rgba(0, 255, 0, 0.8);
@@ -198,6 +201,7 @@ body:not(:-moz-handler-blocked) svg > * {
   margin: 12px 24px;
   width: 100px;
   height: 40px; }
+
 @keyframes your-animation {
   from {
     fill: cyan;
@@ -227,6 +231,7 @@ body:not(:-moz-handler-blocked) svg > * {
   margin: 12px 24px;
   width: 100px;
   height: 40px; }
+
 @keyframes faces {
   from {
     fill: rgba(255, 255, 0, 0.7);
@@ -265,11 +270,12 @@ body:not(:-moz-handler-blocked) svg > * {
         animation-delay: 1.1s; }
 
 @font-face {
-  font-family: "adelaidaregular";
+  font-family: 'adelaidaregular';
   src: url("../fonts/adelaida/adelaida-regular-webfont.eot");
   src: url("../fonts/adelaida/adelaida-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/adelaida/adelaida-regular-webfont.woff2") format("woff2"), url("../fonts/adelaida/adelaida-regular-webfont.woff") format("woff"), url("../fonts/adelaida/adelaida-regular-webfont.ttf") format("truetype"), url("../fonts/adelaida/adelaida-regular-webfont.svg#adelaidaregular") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 body {
   font-family: Georgia, serif;
   font-size: 17px;
@@ -285,7 +291,7 @@ h1, h2, h3, h4 {
   font-weight: normal; }
 
 h1 {
-  font-family: "adelaidaregular", sans-serif; }
+  font-family: 'adelaidaregular', sans-serif; }
 
 h2, h3, h4, .markdown h1 {
   font-family: "Dosis", sans-serif;
@@ -373,16 +379,20 @@ button:hover {
 
 .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
   margin-top: 36px; }
+
 .markdown p, .markdown ul, .markdown ol, .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown blockquote, .markdown .image-wrapper {
   margin-bottom: 24px; }
   .markdown p:last-child, .markdown ul:last-child, .markdown ol:last-child, .markdown h1:last-child, .markdown h2:last-child, .markdown h3:last-child, .markdown h4:last-child, .markdown blockquote:last-child, .markdown .image-wrapper:last-child {
     margin-bottom: 0px; }
+
 .markdown ul {
   list-style-type: disc;
   list-style-position: inside; }
+
 .markdown ol {
   list-style-type: decimal;
   list-style-position: inside; }
+
 .markdown img, .markdown .image-caption {
   display: block;
   width: 100%;
@@ -390,6 +400,7 @@ button:hover {
   height: auto;
   margin-left: auto;
   margin-right: auto; }
+
 .markdown blockquote {
   padding-left: 40px; }
 
@@ -714,6 +725,7 @@ html, body {
 
 #home #page-title {
   display: none; }
+
 #home #home-wrapper {
   margin: auto;
   max-width: 800px;
@@ -721,7 +733,7 @@ html, body {
   #home #home-wrapper #motto {
     font-style: italic;
     font-size: 26px;
-    font-family: "Dosis";
+    font-family: 'Dosis';
     color: #9ba5a9; }
   #home #home-wrapper #home-slider {
     margin-top: 36px;
@@ -750,6 +762,7 @@ html, body {
           transform: translateY(-50%);
           width: 100%; }
   #home #home-wrapper .unslider-nav ol {
+    margin-top: 5px;
     list-style: none;
     text-align: center; }
   #home #home-wrapper .unslider-nav ol li {
@@ -775,17 +788,60 @@ html, body {
     #home #home-wrapper #home-slider {
       margin-top: 18px; } }
 
+#home .home-thanks {
+  margin-top: 40px; }
+  #home .home-thanks-intro {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media (max-width: 750px) {
+      #home .home-thanks-intro {
+        flex-direction: column; } }
+    @media (max-width: 750px) {
+      #home .home-thanks-intro-icon {
+        margin-bottom: 10px; } }
+    @media (min-width: 751px) {
+      #home .home-thanks-intro-icon {
+        margin-right: 15px; } }
+    #home .home-thanks-intro-icon.logo {
+      width: 60px; }
+      @media (max-width: 750px) {
+        #home .home-thanks-intro-icon.logo {
+          display: block; } }
+      @media (min-width: 751px) {
+        #home .home-thanks-intro-icon.logo {
+          display: none; } }
+    #home .home-thanks-intro-icon.wordmark {
+      width: 140px; }
+      @media (max-width: 750px) {
+        #home .home-thanks-intro-icon.wordmark {
+          display: none; } }
+      @media (min-width: 751px) {
+        #home .home-thanks-intro-icon.wordmark {
+          display: block; } }
+    #home .home-thanks-intro-text {
+      text-align: left; }
+      @media (max-width: 750px) {
+        #home .home-thanks-intro-text {
+          text-align: center; } }
+  #home .home-thanks-list {
+    width: 100%;
+    margin-top: 20px;
+    color: #9ba5a9; }
+
 #about img#primary-photo {
   float: left;
   width: 40%;
   height: auto;
   margin-right: 5%;
   margin-bottom: 18px; }
+
 @media (max-width: 600px) {
   #about img#primary-photo {
     width: 100%;
     margin-right: 0%;
     margin-bottom: 36px; } }
+
 #about #overview, #about #bio {
   max-width: 900px; }
 
@@ -800,6 +856,7 @@ html, body {
       list-style-type: square; }
       #birds ul ul ul ul {
         list-style-type: disc; }
+
 #birds #bird-search form {
   margin-bottom: 18px; }
   #birds #bird-search form button,
@@ -833,14 +890,18 @@ html, body {
   letter-spacing: 1px;
   color: #f5f4ee;
   text-align: center; }
+
 #bird #taxonomy-table td {
   padding: 2px 4px; }
+
 @media (max-width: 800px) {
   #bird #taxonomy-table {
     font-size: 16px; } }
+
 @media (max-width: 600px) {
   #bird #taxonomy-table {
     display: none; } }
+
 #bird #taxonomy-text {
   display: none; }
   #bird #taxonomy-text:after {
@@ -861,6 +922,7 @@ html, body {
       #bird #taxonomy-text span {
         width: 100%;
         padding: 5px 10px; } }
+
 #bird #overview #main-media-wrapper {
   float: left;
   max-width: 45%;
@@ -877,12 +939,15 @@ html, body {
       max-width: 100%;
       margin-right: 0%;
       margin-bottom: 36px; } }
+
 #bird #overview #blurb {
   margin-bottom: 36px; }
+
 #bird #overview #info-spans span {
   font-family: "Dosis", sans-serif;
   display: block;
   margin-bottom: 12px; }
+
 #bird #additional-photos #spinner {
   display: inline-block;
   position: relative;
@@ -892,10 +957,12 @@ html, body {
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%); }
+
 #bird #additional-photos .no-photo-message {
   width: 100%;
   padding: 0 2.5%;
   float: left; }
+
 #bird #public-cards,
 #bird #private-cards,
 #bird #additional-photos {
@@ -1036,6 +1103,7 @@ html, body {
     font-size: 14px;
     font-style: italic;
     color: gray; }
+
 #birds-taxonomical .plus-sign {
   position: relative;
   top: -1px;
@@ -1045,7 +1113,7 @@ html, body {
   #birds-taxonomical .plus-sign:hover {
     cursor: pointer; }
   #birds-taxonomical .plus-sign::after, #birds-taxonomical .plus-sign::before {
-    content: " ";
+    content: ' ';
     position: absolute;
     background: #de8d88; }
     #birds-taxonomical .plus-sign::after:hover, #birds-taxonomical .plus-sign::before:hover {
@@ -1076,7 +1144,7 @@ html, body {
       width: 100%;
       float: left;
       clear: both;
-      font-family: "adelaidaregular", sans-serif;
+      font-family: 'adelaidaregular', sans-serif;
       font-size: 200px;
       color: #deedf2;
       text-align: center;
@@ -1188,7 +1256,7 @@ html, body {
               width: 95%;
               padding-top: 57%; } }
         #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption:after {
-          content: "";
+          content: '';
           display: block;
           position: absolute;
           top: 0;
@@ -1245,38 +1313,34 @@ html, body {
         display: inline-block;
         clear: none; }
 
-.itunes-badge-large {
-  display: inline-block;
-  overflow: hidden;
-  background: url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;
-  width: 110px;
-  height: 40px; }
-
-.itunes-badge-small {
-  display: inline-block;
-  overflow: hidden;
-  background: url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-sm.svg) no-repeat;
-  width: 80px;
-  height: 15px; }
-
 #radio #links {
   width: 100%;
   float: left;
   margin-bottom: 36px;
   font-family: "Dosis", sans-serif;
   font-size: 21px; }
-  #radio #links a {
-    display: inline-block;
-    margin-right: 18px; }
-    #radio #links a#itunes-link {
-      float: right;
-      margin-top: 0px;
-      margin-right: 0px; }
+  #radio #links .radio-link {
+    display: inline-block; }
+    #radio #links .radio-link + .radio-link {
+      margin-left: 18px; }
+  #radio #links .external-links {
+    position: relative;
+    bottom: 5px;
+    float: right; }
+    #radio #links .external-links .radio-link {
+      width: auto;
+      height: 40px; }
       @media (max-width: 500px) {
-        #radio #links a#itunes-link {
-          float: none;
-          position: relative;
-          top: 12px; } }
+        #radio #links .external-links .radio-link {
+          height: 34px; } }
+      #radio #links .external-links .radio-link img {
+        height: 100%; }
+    @media (max-width: 500px) {
+      #radio #links .external-links {
+        float: none;
+        position: relative;
+        top: 12px; } }
+
 #radio #year-program-container {
   float: left;
   position: relative;
@@ -1320,7 +1384,7 @@ html, body {
         -ms-transform: scaleX(0.7);
         -o-transform: scaleX(0.7);
         transform: scaleX(0.7);
-        content: "➤"; }
+        content: "\27A4"; }
   #radio #year-program-container #programs {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1408,18 +1472,22 @@ html, body {
 #radio-program #program-columns .column:first-child {
   float: left;
   width: 35%; }
+
 #radio-program #program-columns .column:last-child {
   float: right;
   width: 60%;
   margin-top: 0px; }
+
 @media (max-width: 600px) {
   #radio-program #program-columns .column:first-child, #radio-program #program-columns .column:last-child {
     float: left;
     width: 100%; }
   #radio-program #program-columns .column:last-child {
     margin-top: 36px; } }
+
 #radio-program #program-columns #artwork img {
   max-width: 100%; }
+
 #radio-program #program-columns #above-mp3 {
   float: left;
   width: 100%;
@@ -1430,6 +1498,7 @@ html, body {
     margin-bottom: 18px; }
     #radio-program #program-columns #above-mp3 span:last-child {
       margin-bottom: 0px; }
+
 #radio-program #program-columns #mp3-and-below {
   float: left;
   width: 100%;
@@ -1442,6 +1511,7 @@ html, body {
     margin-bottom: 12px; }
     #radio-program #program-columns #mp3-and-below span:last-child {
       margin-bottom: 0px; }
+
 #radio-program #transcript {
   width: 100%;
   max-width: 750px; }
@@ -1465,6 +1535,7 @@ html, body {
 #radio-program .download-link img {
   width: 30px;
   height: 30px; }
+
 #radio audio,
 #radio-program audio {
   max-width: 100%; }
@@ -1513,6 +1584,7 @@ html, body {
       list-style-type: square; }
       #research ul ul ul ul {
         list-style-type: disc; }
+
 #research #content .help-message {
   margin-left: 18px; }
   #research #content .help-message p {
@@ -1521,24 +1593,29 @@ html, body {
 #sound-recording #recording-columns .column:first-child {
   float: left;
   width: 35%; }
+
 #sound-recording #recording-columns .column:last-child {
   float: right;
   width: 60%;
   margin-top: 0px; }
+
 @media (max-width: 600px) {
   #sound-recording #recording-columns .column:first-child, #sound-recording #recording-columns .column:last-child {
     float: left;
     width: 100%; }
   #sound-recording #recording-columns .column:last-child {
     margin-top: 36px; } }
+
 #sound-recording #recording-columns #artwork img {
   max-width: 100%; }
+
 #sound-recording #recording-columns span {
   float: left;
   clear: both;
   margin-bottom: 18px; }
   #sound-recording #recording-columns span:last-child {
     margin-bottom: 0px; }
+
 #sound-recording #recording-columns .download-link img {
   width: 30px;
   height: 30px; }
@@ -1576,6 +1653,7 @@ html, body {
 
 #speaking-program .tags {
   padding-top: 36px; }
+
 #speaking-program #files {
   list-style-position: inside;
   list-style-type: disc; }
@@ -1593,14 +1671,17 @@ html, body {
   text-align: center;
   color: red;
   margin-bottom: 72px; }
+
 #webpage #page-title, #webpage #webpage-info, #webpage #webpage-text, #webpage #webpage-tags {
   float: none;
   width: 100%;
   max-width: 750px;
   margin-left: auto;
   margin-right: auto; }
+
 #webpage #webpage-info, #webpage #webpage-text, #webpage #webpage-tags {
   margin-bottom: 36px; }
+
 #webpage #webpage-text .image-wrapper {
   display: table;
   margin-left: auto;
@@ -1638,6 +1719,7 @@ html, body {
     display: inline;
     font-size: 13px;
     color: #9ba5a9; }
+
 #writing #books {
   width: 105%;
   padding: 0 2.5%;
@@ -1691,30 +1773,37 @@ html, body {
 #book #book-info .column:first-child {
   float: left;
   width: 35%; }
+
 #book #book-info .column:last-child {
   float: right;
   width: 60%;
   margin-top: 0px; }
+
 @media (max-width: 600px) {
   #book #book-info .column:first-child, #book #book-info .column:last-child {
     float: left;
     width: 100%; }
   #book #book-info .column:last-child {
     margin-top: 36px; } }
+
 #book #book-info span {
   float: left;
   clear: both;
   margin-bottom: 18px; }
   #book #book-info span:last-child {
     margin-bottom: 0px; }
+
 #book #book-info img {
   width: 100%; }
+
 #book .tags {
   float: left;
   width: 100%; }
+
 #book .purchase-link,
 #book .isbn {
   font-family: "Dosis", sans-serif; }
+
 #book .isbn {
   font-size: 15px;
   color: #9ba5a9; }
@@ -1759,7 +1848,7 @@ html, body {
       #ways-to-help #all-ways-to-help .way-to-help-card {
         width: 95%; } }
     #ways-to-help #all-ways-to-help .way-to-help-card:after {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       top: 0;
@@ -1787,7 +1876,7 @@ html, body {
         line-height: 70%;
         margin-right: 10px;
         margin-bottom: 8px;
-        font-family: "adelaidaregular";
+        font-family: 'adelaidaregular';
         font-size: 119px;
         color: rgba(207, 211, 207, 0.65); }
 

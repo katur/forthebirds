@@ -24,30 +24,36 @@
 {% block content %}
 
 <div id="links">
-  <a href="{% url 'radio_current_calendar_url' %}">
+  <a class="radio-link" href="{% url 'radio_current_calendar_url' %}">
     Air Calendar</a>
 
-  <a href="{% url 'radio_podcast_feed_url' %}">
+  <a class="radio-link" href="{% url 'radio_podcast_feed_url' %}">
     Podcast Feed</a>
 
-  <a id="itunes-link" class="itunes-badge-large"
-    href={{ ITUNES_SUBSCRIBE_LINK }}></a>
+  <div class="external-links">
+    <a class="radio-link patreon-badge" href="{{ PATREON_LINK }}">
+      <img class="patreon-badge-image" src="{{ STATIC_URL }}images/patreon-button.png" />
+    </a>
+    <a class="radio-link itunes-badge" href="{{ ITUNES_SUBSCRIBE_LINK }}">
+      <img class="itunes-badge-image" src="{{ STATIC_URL }}images/apple-podcasts-button.svg" />
+    </a>
+  </div>
 </div>
 
 <div id="year-program-container">
-	<div id="year-selector-container">
-		<label for="year-selector">
-			Choose a year
-		</label>
-		<select id="year-selector">
-			{% for y in all_years %}
-			<option value="{{ y.year }}"
-						{% if year|is_string_equal:y.year %}selected{% endif %}>
-				{{ y.year }}
-			</option>
-			{% endfor %}
-		</select>
-	</div>
+  <div id="year-selector-container">
+    <label for="year-selector">
+      Choose a year
+    </label>
+    <select id="year-selector">
+      {% for y in all_years %}
+      <option value="{{ y.year }}"
+            {% if year|is_string_equal:y.year %}selected{% endif %}>
+        {{ y.year }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
 
   <ul id="year-list">
     {% for y in all_years %}

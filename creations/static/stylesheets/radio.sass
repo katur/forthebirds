@@ -7,22 +7,6 @@ $mobile-breakpoint: 500px
   color: $chickadee-dark-gray
 
 
-.itunes-badge-large
-  display: inline-block
-  overflow: hidden
-  background: url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat
-  width: 110px
-  height: 40px
-
-
-.itunes-badge-small
-  display: inline-block
-  overflow: hidden
-  background: url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-sm.svg) no-repeat
-  width: 80px
-  height: 15px
-
-
 #radio
   #links
     width: 100%
@@ -31,19 +15,31 @@ $mobile-breakpoint: 500px
     @include sans-font
     font-size: $base-font-size + 4
 
-    a
+    .radio-link
       display: inline-block
-      margin-right: $whitespace / 2
 
-      &#itunes-link
-        float: right
-        margin-top: 0px
-        margin-right: 0px
+      & + .radio-link
+        margin-left: $whitespace / 2
+
+    .external-links
+      position: relative
+      bottom: 5px
+      float: right
+
+      .radio-link
+        width: auto
+        height: 40px
 
         @media (max-width: $mobile-breakpoint)
-          float: none
-          position: relative
-          top: 12px
+          height: 34px
+
+        img
+          height: 100%
+
+      @media (max-width: $mobile-breakpoint)
+        float: none
+        position: relative
+        top: 12px
 
   #year-program-container
     float: left
