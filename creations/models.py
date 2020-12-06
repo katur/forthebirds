@@ -25,8 +25,7 @@ def get_artwork_from_file(obj):
     try:
         program_path = '{}/{}'.format(settings.MEDIA_ROOT, obj.file.name)
         artwork = MP3(program_path).tags['APIC:'].data
-        base64 = binascii.b2a_base64(artwork)
-        return base64
+        return binascii.b2a_base64(artwork).decode('ascii')
 
     except Exception:
         return None
