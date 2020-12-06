@@ -6,7 +6,6 @@ staticfiles/
 
 # User-uploaded media files
 mediafiles/
-privatemediafiles/
 
 # Project-specific Node.js packages (e.g. gulp)
 node_modules/

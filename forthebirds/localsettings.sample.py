@@ -26,10 +26,6 @@ STATIC_ROOT = 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 
-PRIVATE_MEDIA_URL = '/private-media/'
-PRIVATE_MEDIA_ROOT = 'privatemedia'
-PRIVATE_MEDIA_SERVER = 'private_media.servers.ApacheXSendfileServer'
-
 
 GOOGLE_ANALYTICS_ID = '<add if you have google analytics>'
 
