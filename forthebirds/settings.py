@@ -130,7 +130,7 @@ LOGIN_REDIRECT_URL = '/'
 # Miscellany
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/radio/program-count$'
-FILE_UPLOAD_PERMISSIONS = 0644
+FILE_UPLOAD_PERMISSIONS = 0o644
 
 MARKDOWN_PROMPT = (
     'Use Markdown syntax for italics, bullets, etc. See '
