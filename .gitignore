@@ -11,6 +11,10 @@ privatemediafiles/
 # Project-specific Node.js packages (e.g. gulp)
 node_modules/
 
+# Python venv
+venv
+forthebirds-venv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

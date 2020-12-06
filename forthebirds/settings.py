@@ -20,7 +20,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 # I opted not to use the Sites framework for this since it does not
 # seem to be the intention of the Sites framework.
 
-from localsettings import (
+from .localsettings import (
     DEBUG, SECRET_KEY, DATABASES, SITE_DOMAIN, OLD_SITE_DOMAIN,
     ITUNES_SUBSCRIBE_LINK, GOOGLE_ANALYTICS_ID, PERMANENT_REDIRECTS,
     STATIC_URL, MEDIA_URL, STATIC_ROOT, MEDIA_ROOT, PATREON_LINK,)

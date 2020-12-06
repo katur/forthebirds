@@ -2,7 +2,7 @@ import markdown
 
 from django import template
 from django.template.defaultfilters import stringfilter
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 
 from forthebirds.localsettings import FLICKR_USER_ID
@@ -24,7 +24,7 @@ def enhanced_markdown(value):
     ]
 
     return mark_safe(markdown.markdown(
-        force_unicode(value), extensions, enable_attributes=False))
+        force_text(value), extensions=extensions))
 
 
 @register.filter

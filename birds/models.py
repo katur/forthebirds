@@ -81,7 +81,7 @@ class Species(models.Model):
             'sort': 'date-taken-desc',
             'text': self.common_name.encode('utf-8'),
         }
-        return url + urllib.urlencode(get_params)
+        return url + urllib.parse.urlencode(get_params)
 
     def get_abc_bird_of_the_week_url(self):
         url_name = self.common_name.replace(' ', '-').replace("'", '')
@@ -96,7 +96,7 @@ class Species(models.Model):
         return 'https://mnbirdatlas.org/species/{}'.format(url_name)
 
     def get_wikipedia_url(self):
-        url_name = urllib.quote_plus(self.common_name.replace(' ', '_'))
+        url_name = urllib.parse.quote_plus(self.common_name.replace(' ', '_'))
         return 'https://en.wikipedia.org/wiki/{}'.format(url_name)
 
     def get_resolved_abc_bird_of_the_week_url(self):

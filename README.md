@@ -5,10 +5,12 @@ A birder's portfolio and resources for learning about and helping birds.
 
 ## Installation
 
-1. Install the version Python listed in `runtime.txt`
-1. Create a virtual environment for the project with `mkvirtualenv forthebirds`
-1. Install the python dependencies with `pip install -r requirements.txt`
-1. Add your `localsettings.py` file (see `forthebirds/localsettings.sample.py`)
+1. Install the Python version listed in `runtime.txt`
+1. Clone the repo and cd in
+1. `python -m venv forthebirds-venv`
+1. `source forthebirds-venv/bin/activate`
+1. `pip install -r requirements.txt`
+1. Add a `localsettings.py` file (see `forthebirds/localsettings.sample.py`)
 1. Start the site with the command `./manage.py runserver`
 
 

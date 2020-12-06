@@ -22,6 +22,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='creation',
             name='species',
-            field=models.ManyToManyField(to=b'birds.Species', blank=True),
+            field=models.ManyToManyField(to='birds.Species', blank=True),
         ),
     ]
