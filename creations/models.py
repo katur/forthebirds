@@ -87,7 +87,7 @@ class Creation(models.Model, RealInstanceProvider):
             ancestors = list(reversed(self.get_ancestors()))
             ancestors.append(self.title)
             return u'\N{RIGHTWARDS ARROW}'.join(
-                (unicode(a) for a in ancestors))
+                (str(a) for a in ancestors))
 
         else:
             class_name = self.__class__.__name__
