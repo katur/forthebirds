@@ -23,9 +23,6 @@ class UploadedImage(models.Model):
             x = '{} ({})'.format(x, self.attribution)
         return x
 
-    def __str__(self):
-        return unicode(self).encode('utf-8')
-
     def get_url(self):
         return self.image.url
 
@@ -60,8 +57,6 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.get_full_name()
 
-    def __str__(self):
-        return unicode(self).encode('utf-8')
 
 class PatreonThankYou(models.Model):
     text = models.CharField(max_length=100, blank=True)
@@ -70,6 +65,3 @@ class PatreonThankYou(models.Model):
 
     def __unicode__(self):
         return self.text
-
-    def __str__(self):
-        return unicode(self).encode('utf-8')
