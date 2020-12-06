@@ -36,24 +36,32 @@ ITUNES_SUBSCRIBE_LINK = (
 PATREON_LINK = 'https://www.patreon.com/lauraerickson'
 
 PERMANENT_REDIRECTS = [
-    ('index.html', '/'),
-    ('AboutLaura.html', '/about-laura'),
-    ('Calendar.html', '/about-laura'),
+    (r'^index.html', '/'),
+    (r'^AboutLaura.html', '/about-laura'),
+    (r'^Calendar.html', '/about-laura'),
 
-    ('Radio/Podcasts/FTB.html', '/radio/'),
-    ('Radio/Podcasts/FTB.xml', '/radio/feed.xml'),
-    ('Radio/FortheBirds.html', '/radio/'),
+    (r'^Radio/FortheBirds.html', '/radio/'),
+    (r'^Radio/Podcasts/FTB.html', '/radio/'),
+    (r'^Radio/Podcasts/FTB.xml', '/radio/feed.xml'),
 
-    ('bird/Species/Owls/HarryPotter/HarryPotter.html',
+    (r'^bird/Species/Owls/HarryPotter/HarryPotter.html',
      '/page/owls-of-harry-potter/'),
-    ('bird/Species/Owls/HarryPotter/Hedwig.html',
+    (r'^bird/Species/Owls/HarryPotter/Hedwig.html',
      '/page/owls-of-harry-potter-book-7-spoilers/'),
 
-    ('bird/Species/Directory.html', '/birds/'),
+    (r'^bird/Species/Directory.html', '/birds/'),
 
-    ('101.html', '/book/101-ways-to-help-birds/'),
-    # ('101/Intro.html', '/ways-to-help/'),
-    # ('101/02-House/006-windows.html', '/way-to-help/6/'),
+    (r'^101.html', '/book/101-ways-to-help-birds/'),
+    # ('101/Intro.html', '/help-birds/'),
+    # ('101/02-House/006-windows.html', '/help-birds/6/'),
 
-    ('Stories/StoryIndex.html', '/miscellany/'),
+    (r'^Stories/StoryIndex.html', '/miscellany/'),
+    (r'^Radio/Podcasts/Archives/PaulWellstone.html', '/page/lauras-tribute-paul-wellstone/'),
+    (r'^Radio/Podcasts/Archives/FredRogers.html', '/page/lauras-tribute-mr-rogers/'),
+
+    # Outdated bird species names
+    (r'^bird/nutmeg-mannikin/', '/bird/scaly-breasted-munia/'),
+    (r'^bird/orange-bishop/', '/bird/northern-red-bishop/'),
+    (r'^bird/common-moorhen/', '/bird/eurasian-moorhen/'),
+    (r'^bird/shy-albatross/', '/bird/white-capped-albatross/'),
 ]
