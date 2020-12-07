@@ -16,7 +16,17 @@ def bird(request, slug):
     public_creations = []
     private_creations = []
 
-    for creation in bird.creation_set.all():
+    for creation in bird.creation_set.select_related(
+        'article',
+        'blogpost',
+        'book',
+        'externalproject',
+        'radioprogram',
+        'research',
+        'soundrecording',
+        'speakingprogram',
+        'webpage'
+    ).all():
         # Get actual instances to take advantage of polymorphic fields
         actual_creation = creation.get_actual_instance()
 
