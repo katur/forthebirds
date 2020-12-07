@@ -69,7 +69,7 @@ def radio(request):
     if not year:
         year = all_years[0].year
 
-    programs = RadioProgram.objects.filter(air_date__year=year)
+    programs = RadioProgram.objects.prefetch_related('species', 'tags').filter(air_date__year=year)
 
     context = {
         'ITUNES_SUBSCRIBE_LINK': settings.ITUNES_SUBSCRIBE_LINK,
