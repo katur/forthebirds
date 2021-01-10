@@ -76,7 +76,7 @@ class Creation(models.Model, RealInstanceProvider):
     is_public = True
     is_image = False
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_absolute_url(self):
@@ -128,7 +128,7 @@ class Article(Creation):
     class Meta:
         ordering = ['-date_published']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Article: {}'.format(self.title)
 
     def get_absolute_url(self):
@@ -147,7 +147,7 @@ class BlogPost(Creation):
     class Meta:
         ordering = ['title']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Blog Post: {}'.format(self.title)
 
     def get_absolute_url(self):
@@ -169,7 +169,7 @@ class Book(Creation):
     class Meta:
         ordering = ['-date_published']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Book: {}'.format(self.title)
 
     def get_absolute_url(self):
@@ -185,7 +185,7 @@ class ExternalProject(Creation):
     class Meta:
         ordering = ['display_order', 'title']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'External Project: {}'.format(self.title)
 
     def get_absolute_url(self):
@@ -209,7 +209,7 @@ class RadioProgram(Creation):
     class Meta:
         ordering = ['-air_date']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Radio Program: {}'.format(self.title)
 
     def get_absolute_url(self):
@@ -294,7 +294,7 @@ class RadioProgramRerun(models.Model):
     class Meta:
         ordering = ['-air_date']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'{} aired {}'.format(self.program, self.air_date)
 
 
@@ -324,7 +324,7 @@ class ResearchCategory(models.Model):
         ordering = ['name']
         verbose_name_plural = 'research categories'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def get_absolute_url(self):
@@ -355,7 +355,7 @@ class Research(Creation):
         ordering = ['-date']
         verbose_name_plural = 'Research'
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Research: {}'.format(self.title)
 
     def get_absolute_url(self):
@@ -381,7 +381,7 @@ class SoundRecording(Creation):
     class Meta:
         ordering = ['-date_recorded']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Sound Recording: {}'.format(self.title)
 
     def get_absolute_url(self):
@@ -424,7 +424,7 @@ class SpeakingProgram(Creation):
     class Meta:
         ordering = ['title']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Speaking Program: {}'.format(self.title)
 
     def get_absolute_url(self):
@@ -444,7 +444,7 @@ class WebPage(Creation):
     class Meta:
         ordering = ['display_order', 'title']
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Web Page: {}'.format(self.title)
 
     def get_absolute_url(self):

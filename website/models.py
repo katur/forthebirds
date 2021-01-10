@@ -17,7 +17,7 @@ class UploadedImage(models.Model):
     title = models.CharField(max_length=100, blank=True)
     attribution = models.CharField(max_length=255, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         x = self.title
         if self.attribution:
             x = '{} ({})'.format(x, self.attribution)
@@ -54,7 +54,7 @@ class UserProfile(models.Model):
     speaking_testimonials = models.TextField(
         help_text=settings.MARKDOWN_PROMPT, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.get_full_name()
 
 
@@ -63,5 +63,5 @@ class PatreonThankYou(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.text

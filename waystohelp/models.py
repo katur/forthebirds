@@ -16,7 +16,7 @@ class WayToHelp(models.Model):
         ordering = ['id']
         verbose_name_plural = 'ways to help'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_absolute_url(self):
