@@ -47,7 +47,7 @@ class Species(models.Model):
         ordering = ['taxon_order']
         verbose_name_plural = 'bird species'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.common_name + ' (' + self.scientific_name + ')'
 
     def get_absolute_url(self):
