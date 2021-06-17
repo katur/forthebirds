@@ -129,7 +129,7 @@ class Species(models.Model):
         common_name = self.common_name
         photos = search_flickr([common_name, 'website'], per_page=100)
 
-        if photos['photos']['total'] == '0':
+        if photos['photos']['total'] == 0:
             photos = search_flickr([common_name], per_page=12)
 
         return photos
