@@ -6,7 +6,7 @@ A birder's portfolio and resources for learning about and helping birds.
 ## Installation
 
 1. Install the Python version listed in `runtime.txt`
-1. Clone the repo and cd in
+1. Clone the repo and `cd` in
 1. `python -m venv forthebirds-venv`
 1. `source forthebirds-venv/bin/activate`
 1. `pip install -r requirements.txt`
