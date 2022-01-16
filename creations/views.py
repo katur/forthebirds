@@ -73,7 +73,6 @@ def radio(request):
 
     context = {
         'ITUNES_SUBSCRIBE_LINK': settings.ITUNES_SUBSCRIBE_LINK,
-        'PATREON_LINK': settings.PATREON_LINK,
         'SITE_DOMAIN': settings.SITE_DOMAIN,
         'year': year,
         'programs': programs,
