@@ -3,10 +3,10 @@ import datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
 from django.db.models import Max
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 
 from creations.models import (Article, Book, ExternalProject,
                               RadioProgram, RadioProgramRerun,
