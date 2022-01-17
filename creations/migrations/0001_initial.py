@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -25,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Book',
             fields=[
-                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation')),
+                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation', on_delete=django.db.models.deletion.CASCADE)),
                 ('purchase_url', models.CharField(max_length=500, blank=True)),
                 ('photo', models.ImageField(null=True, upload_to=b'books', blank=True)),
                 ('publisher', models.CharField(max_length=100, blank=True)),
@@ -42,7 +43,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RadioProgram',
             fields=[
-                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation')),
+                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation', on_delete=django.db.models.deletion.CASCADE)),
                 ('original_air_date', models.DateField(null=True, blank=True)),
                 ('file', models.FileField(null=True, upload_to=b'radio', blank=True)),
                 ('supplemental_content_url', models.CharField(max_length=500, blank=True)),
