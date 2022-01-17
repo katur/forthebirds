@@ -1,8 +1,6 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var hash = require('gulp-hash');
-
-sass.compiler = require('node-sass');
 
 var watchFiles = '**/*.sass';
 var inputFilename = 'styles';
