@@ -8,7 +8,7 @@ django-taggit==0.18.0
 flickrapi==2.4.0
 idna==2.8
 Markdown==3.3.3
-markdown2==2.3.7
+markdown2==2.4.0
 mutagen==1.31
 mysqlclient==2.0.1
 oauthlib==3.0.1
