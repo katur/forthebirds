@@ -1,7 +1,7 @@
 certifi==2019.3.9
 chardet==3.0.4
 charset-normalizer==2.0.10
-Django==1.11.29
+Django==2.0.13
 django-cors-headers==1.1.0
 django-jquery==1.9.1
 django-taggit==1.1.0
