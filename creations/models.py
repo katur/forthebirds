@@ -162,7 +162,7 @@ class Book(Creation):
     date_published = models.DateField(null=True, blank=True)
     purchase_url = models.URLField(blank=True)
     cover_photo = models.ForeignKey(
-        UploadedImage, models.SET_NULL, null=True, blank=True)
+        UploadedImage, on_delete=models.SET_NULL, null=True, blank=True)
     isbn_10 = models.CharField('ISBN 10', max_length=20, blank=True)
     isbn_13 = models.CharField('ISBN 13', max_length=20, blank=True)
 
@@ -288,7 +288,7 @@ def add_radio_program_duration(sender, instance, **kwargs):
 class RadioProgramRerun(models.Model):
     """A rerun airing of a RadioProgram."""
 
-    program = models.ForeignKey(RadioProgram, models.CASCADE)
+    program = models.ForeignKey(RadioProgram, on_delete=models.CASCADE)
     air_date = models.DateField()
 
     class Meta:
@@ -318,7 +318,7 @@ class ResearchCategory(models.Model):
     name = models.CharField(max_length=100)
     notes = models.TextField(blank=True, help_text=settings.MARKDOWN_PROMPT)
     parent = models.ForeignKey(
-        'self', models.SET_NULL, null=True, blank=True)
+        'self', on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         ordering = ['name']
@@ -342,7 +342,7 @@ class ResearchCategory(models.Model):
 class Research(Creation):
     """A (typically) private research item of Laura's."""
 
-    category = models.ForeignKey(ResearchCategory, models.CASCADE)
+    category = models.ForeignKey(ResearchCategory, on_delete=models.CASCADE)
     is_public = models.BooleanField(default=False)
     date = models.DateField(null=True, blank=True)
     attribution = models.CharField(max_length=200, blank=True,
