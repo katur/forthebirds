@@ -32,7 +32,7 @@ def bird(request, slug):
 
         if actual_creation.is_public:
             public_creations.append(actual_creation)
-        elif request.user.is_authenticated():
+        elif request.user.is_authenticated:
             private_creations.append(actual_creation)
         else:
             continue
