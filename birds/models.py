@@ -1,8 +1,8 @@
 import urllib
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.urls import reverse
 
 from birds.helpers.flickr import search_flickr
 from forthebirds.localsettings import FLICKR_USER_ID

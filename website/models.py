@@ -38,7 +38,7 @@ class UploadedImage(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, primary_key=True)
+    user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     blurb = models.TextField(help_text=settings.MARKDOWN_PROMPT, blank=True)
     bio = models.TextField(help_text=settings.MARKDOWN_PROMPT, blank=True)
     awards = models.TextField(help_text=settings.MARKDOWN_PROMPT, blank=True)
