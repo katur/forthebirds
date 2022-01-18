@@ -4,7 +4,7 @@ charset-normalizer==2.0.10
 Django==2.2.26
 django-cors-headers==1.1.0
 django-jquery==1.9.1
-django-taggit==1.1.0
+django-taggit==2.0.0
 flickrapi==2.4.0
 idna==2.8
 Markdown==3.3.3
