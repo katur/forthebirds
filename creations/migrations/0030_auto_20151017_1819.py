@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -19,7 +20,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateField(null=True, blank=True)),
                 ('description', models.TextField(help_text=b'Use Markdown syntax for italics, bullets, etc. See <a href="http://www.darkcoding.net/software/markdown-quick-reference">a quick reference</a>, <a href="http://www.markdowntutorial.com/">a tutorial</a>, or practice <a href="http://dillinger.io/">here</a>. ', blank=True)),
                 ('file', models.FileField(null=True, upload_to=b'speaking', blank=True)),
-                ('program', models.ForeignKey(to='creations.SpeakingProgram')),
+                ('program', models.ForeignKey(to='creations.SpeakingProgram', on_delete=django.db.models.deletion.CASCADE)),
             ],
             options={
                 'ordering': ['date'],

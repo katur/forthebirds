@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -14,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Research',
             fields=[
-                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation')),
+                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation', on_delete=django.db.models.deletion.CASCADE)),
                 ('date', models.DateField(null=True, blank=True)),
                 ('url', models.URLField(blank=True)),
                 ('file', models.FileField(null=True, upload_to=b'research', blank=True)),

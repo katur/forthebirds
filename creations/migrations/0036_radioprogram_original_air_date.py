@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -14,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='radioprogram',
             name='original_air_date',
-            field=models.OneToOneField(null=True, blank=True, to='creations.RadioProgramAirDate'),
+            field=models.OneToOneField(null=True, blank=True, to='creations.RadioProgramAirDate', on_delete=django.db.models.deletion.CASCADE),
         ),
     ]

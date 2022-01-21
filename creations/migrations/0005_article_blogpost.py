@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -14,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Article',
             fields=[
-                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation')),
+                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation', on_delete=django.db.models.deletion.CASCADE)),
                 ('published_by', models.CharField(max_length=100, blank=True)),
                 ('date_published', models.DateField(null=True, blank=True)),
                 ('url', models.URLField(blank=True)),
@@ -28,7 +29,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BlogPost',
             fields=[
-                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation')),
+                ('creation_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='creations.Creation', on_delete=django.db.models.deletion.CASCADE)),
                 ('url', models.URLField(blank=True)),
             ],
             options={

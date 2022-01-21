@@ -19,9 +19,9 @@ for old, new in settings.PERMANENT_REDIRECTS:
 
 urlpatterns += [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/$', auth_views.login, {'template_name': 'login.html'},
-        name='login_url'),
-    url(r'^logout/$', auth_views.logout, name='logout_url'),
+    url(r'^login/$', auth_views.LoginView.as_view(),
+        {'template_name': 'login.html'}, name='login_url'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout_url'),
 
     url(r'^', include('website.urls')),
     url(r'^(?P<path>bird\/Species\/.+)$', try_old_website),

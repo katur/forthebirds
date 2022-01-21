@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -14,12 +15,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='userprofile',
             name='main_photo',
-            field=models.ForeignKey(related_name=b'main_uploaded_photo', blank=True, to='website.UploadedImage', null=True),
+            field=models.ForeignKey(related_name=b'main_uploaded_photo', blank=True, to='website.UploadedImage', null=True, on_delete=django.db.models.deletion.CASCADE),
             preserve_default=True,
         ),
         migrations.AlterField(
             model_name='userprofile',
             name='publicity_photos',
-            field=models.ManyToManyField(related_name=b'uploaded_publicity_photos', to= 'website.UploadedImage'),
+            field=models.ManyToManyField(related_name='uploaded_publicity_photos', to= 'website.UploadedImage'),
         ),
     ]
