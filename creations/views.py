@@ -44,7 +44,7 @@ def miscellany(request):
     """
     Render the landing page for miscellaneous projects.
     """
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         webpages = WebPage.objects.all()
     else:
         webpages = WebPage.objects.filter(is_public=True)
@@ -234,7 +234,7 @@ def research_category(request, id):
 def research_item(request, id):
     research_item = get_object_or_404(Research, id=id)
 
-    if not research_item.is_public and not request.user.is_authenticated():
+    if not research_item.is_public and not request.user.is_authenticated:
         raise Http404
 
     context = {

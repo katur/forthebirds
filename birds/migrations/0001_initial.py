@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -39,7 +40,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='MinnesotaSpecies',
             fields=[
-                ('species', models.OneToOneField(primary_key=True, serialize=False, to='birds.Species')),
+                ('species', models.OneToOneField(primary_key=True, serialize=False, to='birds.Species', on_delete=django.db.models.deletion.CASCADE)),
                 ('include_in_book', models.NullBooleanField(default=None)),
                 ('mou_status', models.CharField(max_length=50, verbose_name=b'MOU status', blank=True)),
                 ('mou_breeding_status', models.NullBooleanField(default=None, verbose_name=b'MOU breeding status')),
@@ -80,19 +81,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='taxonomicgroup',
             name='level',
-            field=models.ForeignKey(to='birds.TaxonomicLevel'),
+            field=models.ForeignKey(to='birds.TaxonomicLevel', on_delete=django.db.models.deletion.CASCADE),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='taxonomicgroup',
             name='parent',
-            field=models.ForeignKey(blank=True, to='birds.TaxonomicGroup', null=True),
+            field=models.ForeignKey(blank=True, to='birds.TaxonomicGroup', null=True, on_delete=django.db.models.deletion.CASCADE),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='species',
             name='parent',
-            field=models.ForeignKey(to='birds.TaxonomicGroup'),
+            field=models.ForeignKey(to='birds.TaxonomicGroup', on_delete=django.db.models.deletion.CASCADE),
             preserve_default=True,
         ),
     ]
