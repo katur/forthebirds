@@ -17,7 +17,7 @@ def require_db_write_acknowledgement(prompt=DEFAULT_PROMPT):
 
     while not proceed:
         sys.stdout.write(prompt)
-        response = raw_input()
+        response = input()
         if response == 'no':
             sys.stdout.write('Okay. Goodbye!\n')
             sys.exit(0)
