@@ -1647,7 +1647,7 @@ html, body {
   margin-bottom: 36px;
   font-family: "Dosis", sans-serif;
   font-size: 21px;
-  height: 48px;
+  height: 44px;
 }
 @media (max-width: 500px) {
   #radio #links {
@@ -1665,13 +1665,10 @@ html, body {
 #radio #links .radio-link:last-child {
   margin-right: 0;
 }
-#radio #links .external-links {
-  display: flex;
-  align-items: center;
+#radio #links .radio-podcast-links {
   height: 100%;
 }
-#radio #links .external-links img {
-  display: inline-block;
+#radio #links .radio-podcast-links img {
   width: auto;
   height: 100%;
 }
@@ -1877,16 +1874,6 @@ html, body {
 #radio-program #program-columns #above-mp3 span:last-child {
   margin-bottom: 0px;
 }
-#radio-program #program-columns #above-mp3 .external-links {
-  display: flex;
-  align-items: center;
-}
-#radio-program #program-columns #above-mp3 .external-links .radio-link {
-  margin-right: 18px;
-}
-#radio-program #program-columns #above-mp3 .external-links .radio-link:last-child {
-  margin-right: 0;
-}
 #radio-program #program-columns #above-mp3 .original-air-date {
   font-family: "Dosis", sans-serif;
   font-size: 15px;
@@ -1934,6 +1921,10 @@ html, body {
 #radio-program #transcript .image-wrapper.banner img {
   width: 100%;
   max-width: 100%;
+}
+#radio-program .radio-podcast-links {
+  float: left;
+  width: 100%;
 }
 
 .audio-with-download {
@@ -1996,6 +1987,20 @@ html, body {
 }
 #radio-calendar table td.no-day {
   background: #cfd3cf;
+}
+
+.radio-podcast-links {
+  display: flex;
+  align-items: center;
+}
+.radio-podcast-links .radio-link {
+  margin-right: 18px;
+}
+.radio-podcast-links .radio-link:last-child {
+  margin-right: 0;
+}
+.radio-podcast-links img {
+  display: inline-block;
 }
 
 #research ul {
