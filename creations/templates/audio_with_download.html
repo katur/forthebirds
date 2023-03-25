@@ -1,0 +1,10 @@
+{% load staticfiles %}
+
+<div class="audio-with-download">
+  <audio controls preload="none">
+    <source src="{{ MEDIA_URL }}{{ file }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  {% include 'download.html' %}
+</div>
