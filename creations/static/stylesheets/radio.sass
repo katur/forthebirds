@@ -9,37 +9,39 @@ $mobile-breakpoint: 500px
 
 #radio
   #links
+    display: flex
+    justify-content: space-between
+    align-items: center
     width: 100%
     float: left
     margin-bottom: $whitespace
     @include sans-font
     font-size: $base-font-size + 4
+    height: 48px
+
+    @media (max-width: $mobile-breakpoint)
+      height: 34px
 
     .radio-link
-      display: inline-block
+      display: flex
+      height: 100%
+      align-items: center
+      justify-content: center
+      margin-right: $whitespace / 2
+      line-height: 1
 
-      & + .radio-link
-        margin-left: $whitespace / 2
+      &:last-child
+        margin-right: 0
 
     .external-links
-      position: relative
-      bottom: 5px
-      float: right
+      display: flex
+      align-items: center
+      height: 100%
 
-      .radio-link
+      img
+        display: inline-block
         width: auto
-        height: 40px
-
-        @media (max-width: $mobile-breakpoint)
-          height: 34px
-
-        img
-          height: 100%
-
-      @media (max-width: $mobile-breakpoint)
-        float: none
-        position: relative
-        top: 12px
+        height: 100%
 
   #year-program-container
     float: left
