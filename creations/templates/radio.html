@@ -26,15 +26,7 @@
 <div id="links">
   <a class="radio-link" href="{% url 'radio_current_calendar_url' %}">
     Air Calendar</a>
-
-  <a class="radio-link" href="{% url 'radio_podcast_feed_url' %}">
-    Podcast Feed</a>
-
-  <div class="external-links">
-    <a class="radio-link itunes-badge" href="{{ ITUNES_SUBSCRIBE_LINK }}">
-      <img class="itunes-badge-image" src="{{ STATIC_URL }}images/apple-podcasts-button.svg" />
-    </a>
-  </div>
+  {% include 'radio_podcast_links.html' %}
 </div>
 
 <div id="year-program-container">
