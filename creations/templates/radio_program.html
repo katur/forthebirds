@@ -35,7 +35,8 @@
 
     <div class="column">
       <div id="above-mp3">
-        <span>
+				{% include 'radio_podcast_links.html' %}
+        <span class="original-air-date">
           Original Air Date: {{ program.air_date }}
           {% if program.date_is_estimate %}(estimated date){% endif %}
         </span>

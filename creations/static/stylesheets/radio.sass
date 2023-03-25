@@ -135,6 +135,9 @@ $mobile-breakpoint: 500px
             font-size: $base-font-size - 2
             color: $chickadee-dark-gray
 
+            p + p
+              margin-top: 12px
+
         .program-more
           @include clearfix
 
@@ -180,6 +183,23 @@ $mobile-breakpoint: 500px
       @include cleared-spans
       margin-bottom: $whitespace
 
+      .external-links
+        display: flex
+        align-items: center
+
+        .radio-link
+          margin-right: $whitespace / 2
+
+          &:last-child
+            margin-right: 0
+
+      .original-air-date
+        @include radio-detail-font
+        margin-top: 5px
+
+      p + p
+        margin-top: 15px
+
     #mp3-and-below
       float: left
       width: 100%
@@ -192,6 +212,13 @@ $mobile-breakpoint: 500px
 
     @include markdown-image-wrapper(500px)
 
+
+.audio-with-download
+  display: flex
+  align-items: center
+
+  audio
+    margin-right: $whitespace / 2
 
 #radio,
 #radio-program
