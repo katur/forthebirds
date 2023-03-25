@@ -495,6 +495,14 @@ button:hover {
   color: #777e86;
 }
 
+.audio-with-download {
+  display: flex;
+  align-items: center;
+}
+.audio-with-download audio {
+  margin-right: 18px;
+}
+
 .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
   margin-top: 36px;
 }
@@ -1925,14 +1933,6 @@ html, body {
 #radio-program .radio-podcast-links {
   float: left;
   width: 100%;
-}
-
-.audio-with-download {
-  display: flex;
-  align-items: center;
-}
-.audio-with-download audio {
-  margin-right: 18px;
 }
 
 #radio .download-link img,
