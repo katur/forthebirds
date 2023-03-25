@@ -495,14 +495,6 @@ button:hover {
   color: #777e86;
 }
 
-.audio-with-download {
-  display: flex;
-  align-items: center;
-}
-.audio-with-download audio {
-  margin-right: 18px;
-}
-
 .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
   margin-top: 36px;
 }
@@ -1615,6 +1607,14 @@ html, body {
 }
 #photo-checklist #content #photo-checklist-full .photo-checklist-family .photo-and-caption .photo-caption .right {
   float: right;
+}
+
+.audio-with-download {
+  display: flex;
+  align-items: center;
+}
+.audio-with-download audio {
+  margin-right: 18px;
 }
 
 #miscellany ul {
