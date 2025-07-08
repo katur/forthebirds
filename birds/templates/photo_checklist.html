@@ -12,7 +12,7 @@
 
 {% block content %}
 <div id="photo-checklist-full" class="page-section">
-  {% regroup birds by family_common_nospace as families %}
+  {% regroup birds by family_common_shortened as families %}
 
   {% for family in families %}
   <h2>{{ family.grouper }}</h2>

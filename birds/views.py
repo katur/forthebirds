@@ -98,13 +98,10 @@ def photo_checklist(request):
 
     # Shorten family common names, since using a big font
     for bird in birds:
-        # Replace certain spaces with zero-width spaces, to cut down
-        # width while still having line breaks behave correctly
         s = bird.family_common
-        s = s.replace(', and ', u',\u200b')
-        s = s.replace(', ', u',\u200b')
-        s = s.replace(' and ', u',\u200b')
-        bird.family_common_nospace = s
+        s = s.replace(', and ', ', ')
+        s = s.replace(' and ', ', ')
+        bird.family_common_shortened = s
 
     context = {'birds': birds}
     return render(request, 'photo_checklist.html', context)

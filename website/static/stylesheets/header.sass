@@ -20,36 +20,30 @@
     h1
       position: absolute
       width: 100%
-      top: -46%
+      top: 0
       left: 0
       color: $chickadee-white
-      font-size: 110px
-      letter-spacing: 3px
-
+      font-size: 75px
 
     @media (max-width: 950px)
       width: 90%
       padding-top: 11%
 
       h1
-        font-size: 12vw
-        letter-spacing: 0.2vw
+        font-size: 8vw
 
     @media (max-width: 700px)
       width: 100%
       padding-top: 12%
 
       h1
-        font-size: 14vw
-        letter-spacing: 0.2vw
+        font-size: 9vw
 
     @media (max-width: 600px)
       margin-top: 10px
 
-      // this font doesn't have a bold face, so this text-shadow trick gives
-      // it a bit more weight
       h1
-        text-shadow: 0 0 1px $chickadee-white
+        font-weight: bold
 
   #menu
     float: left
